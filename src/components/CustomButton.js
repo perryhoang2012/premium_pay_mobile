@@ -1,5 +1,6 @@
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
+import Colors from '~assets/colors';
 
 const CustomButton = props => {
   const {
@@ -115,7 +116,7 @@ const CustomButton = props => {
     middle && styles.middle,
     center && styles.center,
     space && {justifyContent: `space-${space}`},
-    disabled && {backgroundColor: $gray2},
+    disabled && {backgroundColor: Colors.Gray},
   ];
 
   return (
