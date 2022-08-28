@@ -6,8 +6,8 @@
 
 # Version React Native
 
-- react: 17.0.2,
-- react-native: 0.68.0
+- React: 17.0.2
+- React-Native: 0.68.0
 
 # New Features!
 
