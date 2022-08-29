@@ -13,17 +13,8 @@ import CustomButton from './CustomButton';
 const Header = () => {
   const navigation = useNavigation();
   return (
-    <Block
-      space={'between'}
-      center
-      middle
-      row
-      style={{
-        height: pxScale.hp(50),
-        marginTop: Insets.TOP,
-        paddingHorizontal: 10,
-      }}>
-      <CustomButton onPress={() => navigation.toggleDrawer()}>
+    <Block space={'between'} center middle row style={styles.constrainer}>
+      <CustomButton onPress={() => console.log('run')}>
         <AppSvg source={AppIcon.iconMenu} width={20} height={20} />
       </CustomButton>
       <Block>
@@ -45,5 +36,10 @@ const styles = StyleSheet.create({
     letterSpacing: 4,
     fontSize: pxScale.fontSize(20),
     color: Colors.White,
+  },
+  constrainer: {
+    height: pxScale.hp(50),
+    marginTop: Insets.TOP,
+    paddingHorizontal: 10,
   },
 });

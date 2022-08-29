@@ -1,5 +1,6 @@
 import {Platform, StyleSheet, Text} from 'react-native';
 import React from 'react';
+import {pxScale} from '~utils/funcHelper';
 
 const CustomText = props => {
   const {
@@ -145,7 +146,7 @@ const styles = StyleSheet.create({
   // default style
   title: {
     color: 'black',
-    fontSize: 16,
+    fontSize: pxScale.fontSize(16),
     fontWeight: 'bold',
   },
   text: {
