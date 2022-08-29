@@ -3,6 +3,7 @@ import CustomText from './CustomText';
 import CustomInput from './CustomInput';
 import CustomButton from './CustomButton';
 import AppFastImage from './AppFastImage';
+import Header from './Header';
 
 module.exports = {
   Block,
@@ -10,4 +11,5 @@ module.exports = {
   CustomInput,
   CustomButton,
   AppFastImage,
+  Header,
 };

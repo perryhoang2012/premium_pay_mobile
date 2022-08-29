@@ -10,4 +10,11 @@ export default StyleSheet.create({
     borderRadius: 6,
     marginTop: pxScale.hp(5),
   },
+  linearGradient: {
+    flex: 1,
+  },
+  body: {
+    flex: 1,
+    // paddingHorizontal: pxScale.wp(10),
+  },
 });
