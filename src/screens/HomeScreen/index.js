@@ -18,18 +18,18 @@ const HomeScreen = () => {
       title: '120.221798 BEAM',
       key: '14.098765 BEAM',
       value: '83.4 USD',
-      color_start: 'rgb(1,94,111)',
-      color_end: 'rgb(3,49,95)',
+      color_start: '#0052D4',
+      color_end: '#65C7F7',
     },
     {
       title: '76.22 RAYS',
-      color_start: 'rgb(38,99,85)',
-      color_end: 'rgb(3,49,95)',
+      color_start: '#2980B9',
+      color_end: '#6DD5FA',
     },
     {
       title: '198.8M BEAMX',
-      color_start: 'rgb(50,63,130)',
-      color_end: 'rgb(3,49,95)',
+      color_start: '#000046',
+      color_end: '#1CB5E0',
     },
   ];
 
@@ -131,7 +131,7 @@ const HomeScreen = () => {
           <Block
             style={[
               {
-                backgroundColor: item.receive ? 'rgb(15,48,80)' : 'transparent',
+                backgroundColor: item.receive ? '#005C97' : 'transparent',
               },
               style.viewItem,
             ]}>
