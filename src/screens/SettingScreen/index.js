@@ -11,15 +11,37 @@ import {AppIcon} from '~assets/svg';
 import CustomButton from '~components/CustomButton';
 import {pxScale} from '~utils/funcHelper';
 import AppSvg from '~components/AppSvg';
+import {useNavigation} from '@react-navigation/native';
 
 const SettingScreen = () => {
+  const navigation = useNavigation();
   const renderSettingGeneral = () => {
     const arrayButton = [
-      {id: 1, title: 'General', icon: AppIcon.iconSetting},
-      {id: 1, title: 'Notifications', icon: AppIcon.iconNotification},
-      {id: 1, title: 'Node', icon: AppIcon.iconNode},
-      {id: 1, title: 'Privacy', icon: AppIcon.iconPrivacy},
-      {id: 1, title: 'Utilities', icon: AppIcon.iconUtilities},
+      {
+        id: 1,
+        title: 'General',
+        icon: AppIcon.iconSetting,
+        route: 'SettingGeneralScreen',
+      },
+      {
+        id: 1,
+        title: 'Notifications',
+        icon: AppIcon.iconNotification,
+        route: 'NotificationsScreen',
+      },
+      {id: 1, title: 'Node', icon: AppIcon.iconNode, route: 'NodeScreen'},
+      {
+        id: 1,
+        title: 'Privacy',
+        icon: AppIcon.iconPrivacy,
+        route: 'PrivacyScreen',
+      },
+      {
+        id: 1,
+        title: 'Utilities',
+        icon: AppIcon.iconUtilities,
+        route: 'UtilitiesScreen',
+      },
     ];
     return (
       <Block
@@ -30,6 +52,7 @@ const SettingScreen = () => {
         }}>
         {arrayButton.map((item, index) => (
           <CustomButton
+            onPress={() => item.route && navigation.navigate(item.route)}
             row
             middle
             key={index}

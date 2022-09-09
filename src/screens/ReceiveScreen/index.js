@@ -11,14 +11,25 @@ import ButtonGradient from '~components/ButtonGradient';
 import AppSvg from '~components/AppSvg';
 import {AppIcon} from '~assets/svg';
 import ModalScanQr from './components/ModalScanQr';
+import Clipboard from '@react-native-clipboard/clipboard';
+import {useNavigation} from '@react-navigation/native';
 
 const ReceiveScreen = () => {
+  const navigation = useNavigation();
   const [modalVisible, setModalVisible] = React.useState(false);
+  const [activeTab, setActiveTab] = React.useState(0);
+
+  const copyToClipboard = () => {
+    Clipboard.setString('hello world');
+  };
 
   const toggleModal = () => {
     setModalVisible(pre => !pre);
   };
 
+  const goBack = () => {
+    navigation.goBack();
+  };
   const renderTab = () => {
     return (
       <Block
@@ -32,11 +43,12 @@ const ReceiveScreen = () => {
           padding: pxScale.hp(4),
         }}>
         <ButtonGradient
-          onGradient
+          onGradient={activeTab === 0 ? true : false}
           center
-          style={{width: '48%', borderRadius: pxScale.hp(50)}}>
+          style={{width: '48%', borderRadius: pxScale.hp(50)}}
+          onPress={() => setActiveTab(0)}>
           <CustomText
-            color={Colors.White}
+            color={activeTab === 0 ? Colors.White : Colors.Gray}
             weight={'500'}
             customFont="Bold"
             size={16}>
@@ -44,10 +56,12 @@ const ReceiveScreen = () => {
           </CustomText>
         </ButtonGradient>
         <ButtonGradient
+          onGradient={activeTab === 1 ? true : false}
           center
-          style={{width: '48%', borderRadius: pxScale.hp(50)}}>
+          style={{width: '48%', borderRadius: pxScale.hp(50)}}
+          onPress={() => setActiveTab(1)}>
           <CustomText
-            color={Colors.Gray}
+            color={activeTab === 1 ? Colors.White : Colors.Gray}
             weight={'500'}
             customFont="Bold"
             size={16}>
@@ -93,7 +107,13 @@ const ReceiveScreen = () => {
                     {item.value}
                   </CustomText>
                   <Block row space={'around'} style={{width: pxScale.wp(50)}}>
-                    <AppSvg source={AppIcon.iconCopy} width={16} height={16} />
+                    <CustomButton onPress={() => copyToClipboard()}>
+                      <AppSvg
+                        source={AppIcon.iconCopy}
+                        width={16}
+                        height={16}
+                      />
+                    </CustomButton>
                     <AppSvg
                       source={AppIcon.iconQrCode}
                       width={16}
@@ -130,7 +150,11 @@ const ReceiveScreen = () => {
 
   return (
     <Block style={styles.container}>
-      <HeaderGradient title={'RECEIVE'} styleTitle={styles.textTitleHeader} />
+      <HeaderGradient
+        title={'RECEIVE'}
+        styleTitle={styles.textTitleHeader}
+        goBack={goBack}
+      />
       <Block style={styles.body}>
         <CustomText
           color={Colors.White}

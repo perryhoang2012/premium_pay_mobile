@@ -21,7 +21,7 @@ function AppDrawer() {
   };
   return (
     <Drawer.Navigator
-      drawerContentOptions={drawerContentOptions}
+      screenOptions={drawerContentOptions}
       drawerContent={props => <DrawerContent {...props} />}
       initialRouteName="HomeScreen">
       <Drawer.Screen

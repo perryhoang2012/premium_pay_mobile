@@ -4,6 +4,15 @@ import CreateNewWallet from './CreateNewWallet';
 import SettingScreen from './SettingScreen';
 import UTXOScreen from './UTXOScreen';
 import AddressedScreen from './AddressedScreen';
+import SendScreen from './SendScreen';
+import ReceiveScreen from './ReceiveScreen';
+import TransactionDetailScreen from './TransactionDetailsScreen';
+import UtilitiesScreen from './UtilitiesScreen';
+import PaymentProofVerificationScreen from './PaymentProofVerificationScreen';
+import SettingGeneralScreen from './SettingGeneralScreen';
+import NotificationsScreen from './NotificationScreen';
+import NodeScreen from './NodeScreen';
+import PrivacyScreen from './PrivacyScreen';
 
 module.exports = {
   HomeScreen,
@@ -11,5 +20,14 @@ module.exports = {
   SettingScreen,
   UTXOScreen,
   AddressedScreen,
+  SendScreen,
+  ReceiveScreen,
+  TransactionDetailScreen,
+  UtilitiesScreen,
+  PaymentProofVerificationScreen,
+  SettingGeneralScreen,
+  NotificationsScreen,
+  NodeScreen,
+  PrivacyScreen,
   // WelcomeScreen,
 };

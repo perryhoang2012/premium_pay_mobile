@@ -13,6 +13,11 @@ const os = require('os');
     cwd: 'ios',
     onlyPlatforms: ['darwin'],
   },
+
+  //fix library LiuC520/react-native-scrollable-tab-view-forked
+  {
+    command: 'yarn fixLibScrollableTabView',
+  },
 ]
   .filter(
     ({onlyPlatforms}) =>

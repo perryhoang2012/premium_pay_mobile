@@ -7,7 +7,7 @@ export default StyleSheet.create({
   linearGradient: {
     flex: 1,
     paddingLeft: pxScale.wp(12),
-    // paddingRight: pxScale.wp(12),
+    paddingRight: pxScale.wp(12),
   },
   container: {
     flex: 1,
@@ -17,10 +17,10 @@ export default StyleSheet.create({
   },
   body: {
     flex: 1,
-    paddingLeft: pxScale.wp(12),
+    padding: pxScale.wp(20),
   },
   viewStatus: {
-    paddingHorizontal: pxScale.wp(10),
+    marginBottom: pxScale.hp(10),
   },
   gradientDot: {
     width: pxScale.wp(12),
@@ -30,18 +30,5 @@ export default StyleSheet.create({
   },
   textStatus: {
     marginLeft: pxScale.wp(10),
-  },
-  scrollStyle: {
-    // justifyContent: 'center',
-  },
-  tabBarTextStyle: {
-    fontSize: 16,
-    fontWeight: 'normal',
-    fontFamily: 'Rubik-Bold',
-  },
-  underlineStyle: {
-    height: 3,
-    backgroundColor: Colors.Blue_ice,
-    borderRadius: 3,
   },
 });

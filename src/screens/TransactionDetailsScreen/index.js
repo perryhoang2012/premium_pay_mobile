@@ -11,6 +11,7 @@ import {pxScale} from '~utils/funcHelper';
 import CustomButton from '~components/CustomButton';
 import AppSvg from '~components/AppSvg';
 import {AppIcon} from '~assets/svg';
+import {useNavigation} from '@react-navigation/native';
 
 if (
   Platform.OS === 'android' &&
@@ -20,12 +21,17 @@ if (
 }
 
 const TransactionDetailScreen = () => {
+  const navigation = useNavigation();
   const [showDropDown, setShowDropdown] = React.useState(false);
+
+  const goBack = () => {
+    navigation.goBack();
+  };
   return (
     <LinearGradient
       colors={[Colors.Gradient_start, Colors.Gradient_end]}
       style={styles.linearGradient}>
-      <Header title={'Transaction details'} iconEye />
+      <Header title={'Transaction details'} iconEye goBack={goBack} />
 
       <Block style={styles.body}>
         <Block row middle style={styles.viewStatus}>

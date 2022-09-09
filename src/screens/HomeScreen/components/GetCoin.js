@@ -8,7 +8,8 @@ import AppSvg from '~components/AppSvg';
 import {AppIcon} from '~assets/svg';
 import CustomButton from '~components/CustomButton';
 
-const GetCoin = () => {
+const GetCoin = props => {
+  const {toggleGetCoin} = props;
   return (
     <Block center middle style={styles.container}>
       <Block row>
@@ -22,7 +23,9 @@ const GetCoin = () => {
             community faucet.
           </CustomText>
         </Block>
-        <CustomButton style={{marginLeft: pxScale.wp(10)}}>
+        <CustomButton
+          style={{marginLeft: pxScale.wp(10)}}
+          onPress={toggleGetCoin}>
           <AppSvg source={AppIcon.iconCancel} width={14} height={14} />
         </CustomButton>
       </Block>

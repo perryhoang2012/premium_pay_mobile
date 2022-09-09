@@ -11,8 +11,12 @@ import {pxScale} from '~utils/funcHelper';
 import CustomButton from '~components/CustomButton';
 import AppSvg from '~components/AppSvg';
 import {AppIcon} from '~assets/svg';
+import {useNavigation} from '@react-navigation/native';
 
 const PaymentProofVerificationScreen = () => {
+  const navigation = useNavigation();
+
+  const goBack = () => navigation.goBack();
   const options = [
     {title: 'Show public offline address'},
     {title: 'Get PPay from Beam Community Faucet'},
@@ -25,7 +29,7 @@ const PaymentProofVerificationScreen = () => {
     <LinearGradient
       colors={[Colors.Gradient_start, Colors.Gradient_end]}
       style={styles.linearGradient}>
-      <Header title={'Payment Proof Verification'} />
+      <Header title={'Payment Proof Verification'} goBack={goBack} />
       <Block style={styles.body}>
         <Block row middle style={styles.viewStatus}>
           <Block style={styles.gradientDot} />

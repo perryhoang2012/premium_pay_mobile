@@ -8,17 +8,12 @@ import {HeaderDrawer, ButtonGradient, CustomButton} from '~components';
 import AppSvg from '~components/AppSvg';
 import {AppIcon} from '~assets/svg';
 import {pxScale} from '~utils/funcHelper';
-import {
-  FlatList,
-  LayoutAnimation,
-  Platform,
-  ScrollView,
-  UIManager,
-} from 'react-native';
+import {FlatList, LayoutAnimation, Platform, UIManager} from 'react-native';
 import constants from '~constants';
 import GetCoin from './components/GetCoin';
 import AppFastImage from '~components/AppFastImage';
 import images from '~assets/images';
+import {useNavigation} from '@react-navigation/native';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -27,7 +22,10 @@ if (Platform.OS === 'android') {
 }
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
   const [showChildren, setShowChildren] = React.useState(false);
+
+  const [closeGetCoin, setCloseGetCoin] = React.useState(false);
   const data = [
     {id: 1, value: '0 PPAY', title: '-PPAY', image: images.imageEth},
     {id: 2, value: '0 BNB', title: `-BNB`, image: images.imageBnb},
@@ -84,6 +82,22 @@ const HomeScreen = () => {
       icon: AppIcon.iconArrowReceive,
     },
   ];
+
+  const toggleGetCoin = () => {
+    setCloseGetCoin(true);
+  };
+
+  const goToSend = () => {
+    navigation.navigate('SendScreen');
+  };
+  const goToReceive = () => {
+    navigation.navigate('ReceiveScreen');
+  };
+
+  const goToDetail = () => {
+    navigation.navigate('TransactionDetailScreen');
+  };
+
   const _renderItemHome = ({item}) => {
     return (
       <>
@@ -93,7 +107,6 @@ const HomeScreen = () => {
             LayoutAnimation.configureNext(
               LayoutAnimation.Presets.easeInEaseOut,
             );
-
             setShowChildren(pre => !pre);
           }}>
           <Block row space={'between'}>
@@ -144,7 +157,8 @@ const HomeScreen = () => {
 
   const _renderItemChild = (item, index) => {
     return (
-      <Block
+      <CustomButton
+        onPress={() => goToDetail()}
         row
         key={index}
         space={'between'}
@@ -181,7 +195,7 @@ const HomeScreen = () => {
             {item.value2}
           </CustomText>
         </Block>
-      </Block>
+      </CustomButton>
     );
   };
   return (
@@ -206,7 +220,8 @@ const HomeScreen = () => {
             row
             center
             middle
-            style={style.buttonSendAndReceive}>
+            style={style.buttonSendAndReceive}
+            onPress={() => goToSend()}>
             <AppSvg source={AppIcon.iconUp} width={16} height={16} />
             <CustomText
               color={Colors.White}
@@ -220,7 +235,8 @@ const HomeScreen = () => {
             middle
             row
             center
-            style={style.buttonSendAndReceive}>
+            style={style.buttonSendAndReceive}
+            onPress={() => goToReceive()}>
             <AppSvg source={AppIcon.iconDown} width={16} height={16} />
             <CustomText
               color={Colors.White}
@@ -230,7 +246,7 @@ const HomeScreen = () => {
             </CustomText>
           </ButtonGradient>
         </Block>
-        <GetCoin />
+        {!closeGetCoin && <GetCoin toggleGetCoin={toggleGetCoin} />}
         <Block style={style.viewScrollView}>
           <FlatList
             showsVerticalScrollIndicator={false}

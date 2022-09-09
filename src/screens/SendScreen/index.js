@@ -10,9 +10,15 @@ import AppSvg from '~components/AppSvg';
 import CustomButton from '~components/CustomButton';
 import {AppIcon} from '~assets/svg';
 import ButtonGradient from '~components/ButtonGradient';
+import {useNavigation} from '@react-navigation/native';
 
 const SendScreen = () => {
+  const navigation = useNavigation();
   const [activeTab, setActiveTab] = React.useState(0);
+
+  const goBack = () => {
+    navigation.goBack();
+  };
   const transactionInfo = () => {
     return (
       <Block
@@ -109,7 +115,11 @@ const SendScreen = () => {
 
   return (
     <Block style={styles.container}>
-      <HeaderGradient title={'SEND'} styleTitle={styles.textTitleHeader} />
+      <HeaderGradient
+        title={'SEND'}
+        styleTitle={styles.textTitleHeader}
+        goBack={goBack}
+      />
       <Block style={styles.body}>
         {transactionInfo()}
         <Block>

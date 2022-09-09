@@ -9,13 +9,17 @@ import CustomText from '~components/CustomText';
 import constants from '~constants';
 import {pxScale} from '~utils/funcHelper';
 import CustomButton from '~components/CustomButton';
+import {useNavigation} from '@react-navigation/native';
 
 const UtilitiesScreen = () => {
+  const navigation = useNavigation();
+
+  const goBack = () => navigation.goBack();
   const options = [
     {title: 'Show public offline address'},
     {title: 'Get PPay from Beam Community Faucet'},
     {title: 'Rescan'},
-    {title: 'Payment proof'},
+    {title: 'Payment proof', route: 'PaymentProofVerificationScreen'},
     {title: 'Export wallet data'},
     {title: 'Import wallet data'},
   ];
@@ -23,7 +27,7 @@ const UtilitiesScreen = () => {
     <LinearGradient
       colors={[Colors.Gradient_start, Colors.Gradient_end]}
       style={styles.linearGradient}>
-      <Header title={'Utilities'} />
+      <Header title={'Utilities'} goBack={goBack} />
       <Block style={styles.body}>
         <Block row middle style={styles.viewStatus}>
           <Block style={styles.gradientDot} />
@@ -44,6 +48,7 @@ const UtilitiesScreen = () => {
           }}>
           {options.map((item, index) => (
             <CustomButton
+              onPress={() => item.route && navigation.navigate(item.route)}
               row
               middle
               key={index}
