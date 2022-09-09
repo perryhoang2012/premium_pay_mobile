@@ -13,6 +13,7 @@ import {
   NotificationsScreen,
   NodeScreen,
   PrivacyScreen,
+  CreateNewWallet,
 } from '~screens';
 import AppDrawer from './AppDrawer';
 
@@ -23,7 +24,7 @@ const AppNavigator = () => {
     <NavigationContainer
       fallback={<ActivityIndicator color="blue" size="large" />}>
       <Stack.Navigator
-        initialRouteName="AppDrawer"
+        initialRouteName="CreateNewWallet"
         screenOptions={{
           headerShown: false,
         }}>
@@ -51,6 +52,7 @@ const AppNavigator = () => {
         />
         <Stack.Screen name="NodeScreen" component={NodeScreen} />
         <Stack.Screen name="PrivacyScreen" component={PrivacyScreen} />
+        <Stack.Screen name="CreateNewWallet" component={CreateNewWallet} />
       </Stack.Navigator>
     </NavigationContainer>
   );

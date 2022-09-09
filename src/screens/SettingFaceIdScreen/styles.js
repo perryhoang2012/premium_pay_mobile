@@ -1,19 +1,21 @@
 import {StyleSheet} from 'react-native';
 import Colors from '~assets/colors';
 import {pxScale} from '~utils/funcHelper';
+import Insets from '~utils/insets';
 
 export default StyleSheet.create({
   linearGradient: {
     flex: 1,
   },
-  body: {
+  container: {
     flex: 1,
   },
-  textTitle: {
-    fontWeight: '500',
-    marginLeft: pxScale.wp(4),
-    letterSpacing: 2,
-    fontSize: pxScale.fontSize(20),
-    color: Colors.White,
+
+  image: {
+    paddingLeft: pxScale.wp(10),
+    paddingRight: pxScale.wp(10),
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
 });
