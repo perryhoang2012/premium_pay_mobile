@@ -30,7 +30,7 @@ const HeaderGradient = prop => {
             {title}
           </CustomText>
         </Block>
-        <Block style={{width: 24}}></Block>
+        <Block style={styles.viewRight} />
       </Block>
       <Block row middle style={styles.viewStatus}>
         <Block style={styles.gradientDot} />
@@ -72,4 +72,5 @@ const styles = StyleSheet.create({
   textStatus: {
     marginLeft: pxScale.wp(10),
   },
+  viewRight: {width: 24},
 });

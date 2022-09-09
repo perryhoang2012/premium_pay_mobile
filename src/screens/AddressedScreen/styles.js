@@ -44,4 +44,19 @@ export default StyleSheet.create({
     backgroundColor: Colors.Blue_ice,
     borderRadius: 3,
   },
+  viewItem: {
+    height: pxScale.hp(420),
+    backgroundColor: Colors.Background_item,
+    padding: 20,
+    borderRadius: pxScale.hp(12),
+    marginBottom: pxScale.hp(16),
+    marginTop: pxScale.hp(10),
+    borderColor: 'rgba(255, 255, 255, 0.1)',
+    borderWidth: 1,
+    paddingRight: pxScale.wp(20),
+  },
+  viewUnderlined: {
+    marginTop: pxScale.hp(5),
+    backgroundColor: Colors.Blue_ice,
+  },
 });

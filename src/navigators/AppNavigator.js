@@ -24,11 +24,10 @@ const AppNavigator = () => {
     <NavigationContainer
       fallback={<ActivityIndicator color="blue" size="large" />}>
       <Stack.Navigator
-        initialRouteName="CreateNewWallet"
+        initialRouteName="AppDrawer"
         screenOptions={{
           headerShown: false,
         }}>
-        {/* <Stack.Screen name="CreateNewWallet" component={CreateNewWallet} /> */}
         <Stack.Screen name="AppDrawer" component={AppDrawer} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="SendScreen" component={SendScreen} />

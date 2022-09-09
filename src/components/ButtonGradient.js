@@ -13,7 +13,6 @@ const ButtonGradient = props => {
     margin,
     space,
     padding,
-    shadow,
     children,
     center,
     disabled,
@@ -129,14 +128,7 @@ const ButtonGradient = props => {
         start={{x: 0.7, y: 0}}
         colors={['#5271FF', 'rgb(73,139,255)', '#38B6FF']}>
         <TouchableOpacity
-          style={[
-            {
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '100%',
-            },
-          ]}
+          style={styles.button}
           activeOpacity={opacity !== 0.7 ? opacity : 0.85}
           onPress={() => {
             onPress && onPress();
@@ -149,14 +141,7 @@ const ButtonGradient = props => {
     return (
       <Block style={buttonStyles}>
         <TouchableOpacity
-          style={[
-            {
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '100%',
-            },
-          ]}
+          style={styles.button}
           activeOpacity={opacity !== 0.7 ? opacity : 0.85}
           onPress={() => {
             onPress && onPress();
@@ -166,28 +151,6 @@ const ButtonGradient = props => {
       </Block>
     );
   }
-  // return (
-  //   <LinearGradient
-  //     style={buttonStyles}
-  //     start={{x: 0.7, y: 0}}
-  //     colors={['#5271FF', 'rgb(73,139,255)', '#38B6FF']}>
-  //     <TouchableOpacity
-  //       style={[
-  //         {
-  //           flexDirection: 'row',
-  //           justifyContent: 'center',
-  //           alignItems: 'center',
-  //           width: '100%',
-  //         },
-  //       ]}
-  //       activeOpacity={opacity !== 0.7 ? opacity : 0.85}
-  //       onPress={() => {
-  //         onPress && onPress();
-  //       }}>
-  //       {children}
-  //     </TouchableOpacity>
-  //   </LinearGradient>
-  // );
 };
 
 ButtonGradient.defaultProps = {
@@ -208,5 +171,11 @@ const styles = StyleSheet.create({
   },
   middle: {
     alignItems: 'center',
+  },
+  button: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
   },
 });

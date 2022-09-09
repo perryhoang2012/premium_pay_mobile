@@ -1,7 +1,6 @@
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import React from 'react';
 import {HomeScreen, SettingScreen, AddressedScreen, UTXOScreen} from '~screens';
-import {NavigationContainer} from '@react-navigation/native';
 import DrawerContent from './DrawerContent';
 import Colors from '~assets/colors';
 

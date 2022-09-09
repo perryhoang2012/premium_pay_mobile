@@ -11,7 +11,6 @@ const CustomButton = props => {
     margin,
     space,
     padding,
-    shadow,
     children,
     center,
     disabled,

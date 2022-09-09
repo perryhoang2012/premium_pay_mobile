@@ -1,4 +1,4 @@
-import {View, Text, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from '~assets/colors';
@@ -7,10 +7,7 @@ import HeaderDrawer from '~components/HeaderDrawer';
 import Block from '~components/Block';
 import CustomText from '~components/CustomText';
 import constants from '~constants';
-import ScrollableTabView, {
-  DefaultTabBar,
-  ScrollableTabBar,
-} from 'react-native-scrollable-tab-view';
+
 import CustomButton from '~components/CustomButton';
 import {pxScale} from '~utils/funcHelper';
 
@@ -35,29 +32,20 @@ const AddressedScreen = () => {
           {item.title}
         </CustomText>
         <Block
-          style={{
-            marginTop: pxScale.hp(5),
-            height: index === activeTab ? 2 : 0,
-            backgroundColor: Colors.Blue_ice,
-          }}></Block>
+          style={[
+            styles.textTitleHeader,
+            {
+              height: index === activeTab ? 2 : 0,
+            },
+          ]}
+        />
       </CustomButton>
     ));
   };
 
   const renderContent = () => {
     return (
-      <Block
-        style={{
-          height: pxScale.hp(420),
-          backgroundColor: Colors.Background_item,
-          padding: 20,
-          borderRadius: pxScale.hp(12),
-          marginBottom: pxScale.hp(16),
-          marginTop: pxScale.hp(10),
-          borderColor: 'rgba(255, 255, 255, 0.1)',
-          borderWidth: 1,
-          paddingRight: pxScale.wp(20),
-        }}>
+      <Block style={styles.viewItem}>
         <CustomText
           color={Colors.White}
           size={16}

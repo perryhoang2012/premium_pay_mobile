@@ -13,7 +13,7 @@ const Header = props => {
   const {title, styleTitle, goBack, iconEye} = props;
   return (
     <Block center middle row style={styles.constrainer}>
-      <Block middle row style={{width: '80%'}}>
+      <Block middle row style={styles.viewLeft}>
         <CustomButton onPress={() => goBack()}>
           <AppSvg source={AppIcon.iconRight} width={24} height={24} />
         </CustomButton>
@@ -22,11 +22,11 @@ const Header = props => {
           color={Colors.White}
           customFont={'Bold'}
           weight={'600'}
-          style={[styleTitle, {marginLeft: pxScale.wp(10), lineHeight: 28}]}>
+          style={[styleTitle, styles.textTitle]}>
           {title}
         </CustomText>
       </Block>
-      <Block center style={{width: '20%', alignItems: 'flex-end'}}>
+      <Block center style={styles.viewRight}>
         {iconEye && (
           <CustomButton>
             <AppSvg source={AppIcon.iconEye} width={24} height={24} />
@@ -45,4 +45,7 @@ const styles = StyleSheet.create({
     marginTop: Insets.TOP,
     paddingHorizontal: 10,
   },
+  viewLeft: {width: '80%'},
+  viewRight: {width: '20%', alignItems: 'flex-end'},
+  textTitle: {marginLeft: pxScale.wp(10), lineHeight: 28},
 });
