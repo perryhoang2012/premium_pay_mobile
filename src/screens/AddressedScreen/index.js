@@ -33,7 +33,7 @@ const AddressedScreen = () => {
         </CustomText>
         <Block
           style={[
-            styles.textTitleHeader,
+            styles.viewUnderlined,
             {
               height: index === activeTab ? 2 : 0,
             },
@@ -80,7 +80,9 @@ const AddressedScreen = () => {
       <Block style={styles.body}>
         <Block
           style={{marginTop: pxScale.hp(20), marginBottom: pxScale.hp(20)}}>
-          <ScrollView horizontal>{renderTab()}</ScrollView>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            {renderTab()}
+          </ScrollView>
         </Block>
         <Block style={{paddingRight: pxScale.wp(20)}}>{renderContent()}</Block>
       </Block>
