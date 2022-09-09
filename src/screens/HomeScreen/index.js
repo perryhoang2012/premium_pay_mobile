@@ -27,7 +27,7 @@ const HomeScreen = () => {
 
   const [closeGetCoin, setCloseGetCoin] = React.useState(false);
   const data = [
-    {id: 1, value: '0 PPAY', title: '-PPAY', image: images.imageEth},
+    {id: 1, value: '0 PPAY', title: '-PPAY', image: images.imageIconApp},
     {id: 2, value: '0 BNB', title: `-BNB`, image: images.imageBnb},
     {id: 3, value: '0 Ethereum', title: `-ETH`, image: images.imageEth},
   ];

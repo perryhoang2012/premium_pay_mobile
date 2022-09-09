@@ -18,6 +18,7 @@ function AppDrawer() {
       padding: 3,
       borderRadius: 0,
     },
+    drawerType: 'front',
   };
   return (
     <Drawer.Navigator

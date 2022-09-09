@@ -14,15 +14,31 @@ import AppFastImage from '~components/AppFastImage';
 import images from '~assets/images';
 import {AppIcon} from '~assets/svg';
 import AppSvg from '~components/AppSvg';
+import {useSelector, useDispatch} from 'react-redux';
+import {setActiveDrawer} from '~redux/actions/ui';
 
 export default function DrawerContent(props) {
   const navigation = useNavigation();
+
+  const dispatch = useDispatch();
+
+  const activeDrawer = useSelector(rootState => rootState?.activeDrawer);
+
   const _renderMenu = () => {
     return routes.map((item, index) => (
       <CustomButton
         key={item.title}
-        style={styles.menuItem}
-        onPress={() => props.navigation.navigate(item.route)}>
+        style={[
+          styles.menuItem,
+          {
+            backgroundColor:
+              activeDrawer === index ? 'rgba(72, 204, 247, 0.1)' : null,
+          },
+        ]}
+        onPress={() => {
+          dispatch(setActiveDrawer(index));
+          item.route && props.navigation.navigate(item.route);
+        }}>
         <AppSvg source={item.icon} width={20} height={20} />
         <CustomText style={styles.menuText}>{item.title}</CustomText>
       </CustomButton>
@@ -44,7 +60,8 @@ export default function DrawerContent(props) {
         />
       </Block>
 
-      <ScrollView style={{marginHorizontal: -10, flex: 1}}>
+      <ScrollView
+        style={{marginHorizontal: -10, flex: 1, marginTop: pxScale.hp(30)}}>
         {_renderMenu()}
       </ScrollView>
 
@@ -67,6 +84,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
     flexDirection: 'row',
     alignItems: 'center',
+    width: '96%',
   },
   menuText: {
     letterSpacing: 1,
