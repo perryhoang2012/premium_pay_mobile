@@ -19,6 +19,7 @@ const CustomText = props => {
     style,
     children,
     numberOfLines,
+    customFont,
   } = props;
 
   const handleMargins = () => {
@@ -113,7 +114,7 @@ const CustomText = props => {
   const textStyles = [
     styles.text,
     title && styles.title,
-    size && {fontSize: size},
+    size && {fontSize: pxScale.fontSize(size)},
     margin && {...handleMargins()},
     padding && {...handlePaddings()},
     align && {textAlign: 'center'},
@@ -125,6 +126,8 @@ const CustomText = props => {
     right && styles.right,
     color && styles[color],
     color && !styles[color] && {color},
+    customFont && {fontFamily: `Rubik-${customFont}`},
+
     // color shortcuts
 
     secondary && styles.secondary,
@@ -148,8 +151,10 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: pxScale.fontSize(16),
     fontWeight: 'bold',
+    fontFamily: 'Rubik-Light',
   },
   text: {
+    fontFamily: 'Rubik-Regular',
     // fontSize: pxScale.fontSize(16),
     // color: color.black,
   },

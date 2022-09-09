@@ -12,17 +12,19 @@ export default StyleSheet.create({
   },
   linearGradient: {
     flex: 1,
+    paddingLeft: pxScale.wp(12),
+    paddingRight: pxScale.wp(12),
   },
   body: {
     flex: 1,
   },
-  buttonSend: {
-    backgroundColor: Colors.Pink,
-    height: pxScale.hp(50),
+  buttonSendAndReceive: {
+    height: pxScale.hp(40),
     flex: 1,
     marginRight: pxScale.wp(20),
     borderRadius: pxScale.wp(50),
   },
+
   viewItem: {
     padding: pxScale.hp(10),
     borderRadius: pxScale.hp(10),
@@ -34,9 +36,10 @@ export default StyleSheet.create({
     paddingHorizontal: pxScale.wp(10),
   },
   gradientDot: {
-    width: pxScale.wp(10),
-    height: pxScale.hp(10),
+    width: pxScale.wp(12),
+    height: pxScale.hp(12),
     borderRadius: pxScale.hp(50),
+    backgroundColor: Colors.Green_status,
   },
   textStatus: {
     marginLeft: pxScale.wp(10),
@@ -47,17 +50,11 @@ export default StyleSheet.create({
   },
   textButton: {
     fontSize: pxScale.fontSize(16),
-    fontWeight: '700',
     marginLeft: pxScale.wp(10),
   },
-  buttonReceive: {
-    backgroundColor: Colors.Blue_ice,
-    height: pxScale.hp(50),
-    borderRadius: pxScale.wp(50),
-    flex: 1,
-  },
+
   viewScrollView: {
-    flex: 11,
+    flex: 10,
   },
   letterSpacingText: {
     letterSpacing: 2,
@@ -85,5 +82,14 @@ export default StyleSheet.create({
   },
   marginTopView: {
     marginTop: pxScale.hp(20),
+  },
+
+  containerItem: {
+    backgroundColor: Colors.Background_item,
+    padding: pxScale.hp(20),
+    borderRadius: pxScale.wp(12),
+    marginTop: pxScale.hp(10),
+    borderColor: 'rgba(255, 255, 255, 0.1)',
+    borderWidth: 1,
   },
 });

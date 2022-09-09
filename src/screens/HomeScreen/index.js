@@ -4,176 +4,183 @@ import Block from '~components/Block';
 import CustomText from '~components/CustomText';
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from '~assets/colors';
-import Header from '~components/Header';
+import {HeaderDrawer, ButtonGradient, CustomButton} from '~components';
 import AppSvg from '~components/AppSvg';
 import {AppIcon} from '~assets/svg';
-import CustomButton from '~components/CustomButton';
 import {pxScale} from '~utils/funcHelper';
-import {ScrollView} from 'react-native';
+import {
+  FlatList,
+  LayoutAnimation,
+  Platform,
+  ScrollView,
+  UIManager,
+} from 'react-native';
 import constants from '~constants';
+import GetCoin from './components/GetCoin';
+import AppFastImage from '~components/AppFastImage';
+import images from '~assets/images';
+
+if (Platform.OS === 'android') {
+  if (UIManager.setLayoutAnimationEnabledExperimental) {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
+}
 
 const HomeScreen = () => {
-  const dataAssets = [
-    {
-      title: '120.221798 BEAM',
-      key: '14.098765 BEAM',
-      value: '83.4 USD',
-      color_start: '#0052D4',
-      color_end: '#65C7F7',
-    },
-    {
-      title: '76.22 RAYS',
-      color_start: '#2980B9',
-      color_end: '#6DD5FA',
-    },
-    {
-      title: '198.8M BEAMX',
-      color_start: '#000046',
-      color_end: '#1CB5E0',
-    },
+  const [showChildren, setShowChildren] = React.useState(false);
+  const data = [
+    {id: 1, value: '0 PPAY', title: '-PPAY', image: images.imageEth},
+    {id: 2, value: '0 BNB', title: `-BNB`, image: images.imageBnb},
+    {id: 3, value: '0 Ethereum', title: `-ETH`, image: images.imageEth},
   ];
 
-  const dataTransactions = [
+  const dataChild = [
     {
-      title: '115.60 BEAM',
-      value: '79.93 USD',
-      receive: true,
+      id: 1,
+      value: '-0.039997 PPAY',
+      value2: '-0.03 USD',
+      type: 'Send',
+      subTitle: 'Send (max privacy)',
+      icon: AppIcon.iconArrowSendMax,
     },
     {
-      title: '115.60 BEAM',
-      value: '79.93 USD',
-      receive: false,
+      id: 2,
+      value: '-0.01 PPAY',
+      value2: '-0.01 USD',
+      type: 'Send',
+      subTitle: 'Send (offline)',
+      icon: AppIcon.iconArrowSendOffline,
     },
     {
-      title: '115.60 BEAM',
-      value: '79.93 USD',
-      change: true,
+      id: 3,
+      value: '-0.01 PPAY',
+      value2: '-0.01 USD',
+      type: 'Send',
+      subTitle: 'Send',
+      icon: AppIcon.iconArrowSend,
     },
     {
-      title: '115.60 BEAM',
-      value: '79.93 USD',
-      receive: true,
+      id: 4,
+      value: '+0.08 PPAY',
+      value2: '+0.06 USD',
+      type: 'Receive',
+      subTitle: 'Receive',
+      icon: AppIcon.iconArrowReceive,
+    },
+    {
+      id: 5,
+      value: '-0.01 PPAY',
+      value2: '-0.01 USD',
+      type: 'Send',
+      subTitle: 'Send',
+      icon: AppIcon.iconArrowSend,
+    },
+    {
+      id: 6,
+      value: '+0.08 PPAY',
+      value2: '+0.06 USD',
+      type: 'Receive',
+      subTitle: 'Receive',
+      icon: AppIcon.iconArrowReceive,
     },
   ];
-  const _renderAssets = () => {
+  const _renderItemHome = ({item}) => {
     return (
-      <Block style={style.viewAssets}>
-        <Block row space={'between'} middle style={style.viewTitleAssets}>
-          <CustomText
-            size={20}
-            weight={'700'}
-            style={style.letterSpacingText}
-            color={Colors.White}>
-            {constants.ASSETS}
-          </CustomText>
-          <AppSvg source={AppIcon.iconRight} width={14} height={14} />
-        </Block>
-        {dataAssets.map((item, index) => (
-          <LinearGradient
-            key={index}
-            start={{x: 0, y: 0}}
-            end={{x: 1, y: 0}}
-            colors={[item.color_start, item.color_end]}
-            style={style.viewItem}>
-            <Block row middle flex space={'between'}>
-              <Block flex row middle>
-                <AppSvg source={AppIcon.iconBitCoin} width={20} height={20} />
-                <CustomText
-                  color={Colors.White}
-                  weight={'600'}
-                  size={16}
-                  style={style.marginLeftStyle}>
-                  {item.title}
-                </CustomText>
-              </Block>
-              {item.value && (
-                <CustomText
-                  color={Colors.Gray}
-                  weight={'400'}
-                  size={14}
-                  style={style.textRight}>
-                  {item.value}
-                </CustomText>
-              )}
+      <>
+        <CustomButton
+          style={style.containerItem}
+          onPress={() => {
+            LayoutAnimation.configureNext(
+              LayoutAnimation.Presets.easeInEaseOut,
+            );
+
+            setShowChildren(pre => !pre);
+          }}>
+          <Block row space={'between'}>
+            <CustomText style={{letterSpacing: 1}} color={Colors.Gray}>
+              AVAILABLE
+            </CustomText>
+            <AppSvg source={AppIcon.iconDropDown} width={14} height={14} />
+          </Block>
+          <Block row style={{marginTop: 10}}>
+            <AppFastImage source={item.image} style={{width: 16, height: 16}} />
+            <Block style={{marginLeft: 10}}>
+              <CustomText size={20} color={Colors.White}>
+                {item.value}
+              </CustomText>
+              <CustomText size={14} color={Colors.Gray}>
+                {item.title}
+              </CustomText>
             </Block>
-            {item.key && (
-              <Block row style={style.viewLock}>
-                <AppSvg source={AppIcon.iconLock} width={14} height={14} />
-                <CustomText
-                  color={Colors.Gray}
-                  weight={'400'}
-                  size={14}
-                  style={style.marginLeftStyle}>
-                  {item.key}
-                </CustomText>
-              </Block>
-            )}
-          </LinearGradient>
-        ))}
-      </Block>
+          </Block>
+        </CustomButton>
+
+        {showChildren && (
+          <Block style={{marginTop: 24}}>
+            <Block row space="between">
+              <CustomText
+                color={Colors.White}
+                size={16}
+                weight={'500'}
+                style={{letterSpacing: 2}}>
+                TRANSACTION
+              </CustomText>
+              <CustomText
+                color={Colors.Blue_ice}
+                weight={'500'}
+                customFont="Bold"
+                style={{marginLeft: pxScale.wp(10)}}>
+                address details
+              </CustomText>
+            </Block>
+            <Block style={{marginTop: pxScale.hp(12)}}>
+              {dataChild.map((item, index) => _renderItemChild(item, index))}
+            </Block>
+          </Block>
+        )}
+      </>
     );
   };
 
-  const _renderTransactions = () => {
+  const _renderItemChild = (item, index) => {
     return (
-      <Block style={style.marginTopView}>
-        <Block row space={'between'} middle style={style.viewTitleTransition}>
-          <CustomText
-            size={20}
-            weight={'700'}
-            style={style.letterSpacingText}
-            color={Colors.White}>
-            {constants.TRANSACTIONS}
-          </CustomText>
-          <AppSvg source={AppIcon.iconRight} width={14} height={14} />
-        </Block>
-        {dataTransactions.map((item, index) => (
-          <Block
-            style={[
-              {
-                backgroundColor: item.receive ? '#005C97' : 'transparent',
-              },
-              style.viewItem,
-            ]}>
-            <Block row middle flex space={'between'}>
-              <Block flex row middle>
-                <AppSvg source={AppIcon.iconBitCoin} width={20} height={20} />
-                <CustomText
-                  color={Colors.White}
-                  weight={'600'}
-                  size={16}
-                  style={style.marginLeftStyle}>
-                  {item.title}
-                </CustomText>
-              </Block>
-              {item.value && (
-                <CustomText
-                  color={Colors.Gray}
-                  weight={'400'}
-                  size={14}
-                  style={style.textRight}>
-                  {item.receive ? ' + ' : ' - '} {item.value}
-                </CustomText>
-              )}
-            </Block>
-            {item.receive && (
-              <Block row style={style.viewLock}>
-                <AppSvg
-                  source={AppIcon.iconDownGradient}
-                  width={14}
-                  height={14}
-                />
-                <CustomText
-                  color={'#1581B0'}
-                  weight={'400'}
-                  size={14}
-                  style={style.marginLeftStyle}>
-                  {constants.RECEIVE} ({constants.OFFLINE})
-                </CustomText>
-              </Block>
-            )}
+      <Block
+        row
+        key={index}
+        space={'between'}
+        style={{
+          backgroundColor: index % 2 === 0 ? Colors.Background_item : null,
+          padding: 12,
+          borderTopLeftRadius: index === 0 ? 12 : 0,
+          borderTopRightRadius: index === 0 ? 12 : 0,
+          borderBottomLeftRadius: index === dataChild.length - 1 ? 12 : 0,
+          borderBottomRightRadius: index === dataChild.length - 1 ? 12 : 0,
+          borderColor: 'rgba(255, 255, 255, 0.1)',
+          borderWidth: 1,
+        }}>
+        <Block row middle>
+          <AppSvg source={item.icon} width={15} height={15} />
+          <Block style={{marginLeft: pxScale.wp(5)}}>
+            <CustomText size={16} weight={'500'} color={Colors.White}>
+              {item.type}
+            </CustomText>
+            <CustomText size={14} weight={'400'} color={Colors.White}>
+              {item.subTitle}
+            </CustomText>
           </Block>
-        ))}
+        </Block>
+        <Block>
+          <CustomText size={16} weight={'500'} color={Colors.White}>
+            {item.value}
+          </CustomText>
+          <CustomText
+            style={{textAlign: 'right'}}
+            size={14}
+            weight={'400'}
+            color={Colors.White}>
+            {item.value2}
+          </CustomText>
+        </Block>
       </Block>
     );
   };
@@ -181,13 +188,10 @@ const HomeScreen = () => {
     <LinearGradient
       colors={[Colors.Gradient_start, Colors.Gradient_end]}
       style={style.linearGradient}>
-      <Header />
+      <HeaderDrawer title={'WALLET'} />
       <Block style={style.body}>
         <Block row middle style={style.viewStatus}>
-          <LinearGradient
-            colors={['#34e89e', '#0f3443']}
-            style={style.gradientDot}
-          />
+          <Block style={style.gradientDot} />
           <CustomText
             color={Colors.Gray}
             weight={'500'}
@@ -197,22 +201,43 @@ const HomeScreen = () => {
           </CustomText>
         </Block>
         <Block middle row space="between" style={style.viewDoubleButton}>
-          <CustomButton row center middle style={style.buttonSend}>
+          <ButtonGradient
+            onGradient
+            row
+            center
+            middle
+            style={style.buttonSendAndReceive}>
             <AppSvg source={AppIcon.iconUp} width={16} height={16} />
-            <CustomText style={style.textButton}>{constants.SEND}</CustomText>
-          </CustomButton>
-          <CustomButton middle row center style={style.buttonReceive}>
+            <CustomText
+              color={Colors.White}
+              style={style.textButton}
+              weight={'500'}>
+              {constants.SEND}
+            </CustomText>
+          </ButtonGradient>
+          <ButtonGradient
+            onGradient
+            middle
+            row
+            center
+            style={style.buttonSendAndReceive}>
             <AppSvg source={AppIcon.iconDown} width={16} height={16} />
-            <CustomText style={style.textButton}>
+            <CustomText
+              color={Colors.White}
+              style={style.textButton}
+              weight={'500'}>
               {constants.RECEIVE}
             </CustomText>
-          </CustomButton>
+          </ButtonGradient>
         </Block>
+        <GetCoin />
         <Block style={style.viewScrollView}>
-          <ScrollView>
-            {_renderAssets()}
-            {_renderTransactions()}
-          </ScrollView>
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={data}
+            renderItem={_renderItemHome}
+            keyExtractor={item => item.id}
+          />
         </Block>
       </Block>
     </LinearGradient>

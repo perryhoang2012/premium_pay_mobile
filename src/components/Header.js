@@ -1,27 +1,37 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React from 'react';
 import Block from './Block';
-import {pxScale} from '~utils/funcHelper';
-import Insets from '~utils/insets';
+import CustomButton from './CustomButton';
 import AppSvg from './AppSvg';
-import {AppIcon} from '~assets/svg';
 import CustomText from './CustomText';
 import Colors from '~assets/colors';
-import {useNavigation} from '@react-navigation/native';
-import CustomButton from './CustomButton';
+import {pxScale} from '~utils/funcHelper';
+import Insets from '~utils/insets';
+import {AppIcon} from '~assets/svg';
 
-const Header = () => {
-  const navigation = useNavigation();
+const Header = props => {
+  const {title, styleTitle, goBack, iconEye} = props;
   return (
-    <Block space={'between'} center middle row style={styles.constrainer}>
-      <CustomButton onPress={() => console.log('run')}>
-        <AppSvg source={AppIcon.iconMenu} width={20} height={20} />
-      </CustomButton>
-      <Block>
-        <CustomText style={styles.textCenter}>WALLET</CustomText>
+    <Block center middle row style={styles.constrainer}>
+      <Block middle row style={{width: '80%'}}>
+        <CustomButton onPress={() => goBack()}>
+          <AppSvg source={AppIcon.iconRight} width={24} height={24} />
+        </CustomButton>
+        <CustomText
+          size={20}
+          color={Colors.White}
+          customFont={'Bold'}
+          weight={'600'}
+          style={[styleTitle, {marginLeft: pxScale.wp(10), lineHeight: 28}]}>
+          {title}
+        </CustomText>
       </Block>
-      <Block>
-        <AppSvg source={AppIcon.iconEye} width={18} height={18} />
+      <Block center style={{width: '20%', alignItems: 'flex-end'}}>
+        {iconEye && (
+          <CustomButton>
+            <AppSvg source={AppIcon.iconEye} width={24} height={24} />
+          </CustomButton>
+        )}
       </Block>
     </Block>
   );
@@ -30,13 +40,6 @@ const Header = () => {
 export default Header;
 
 const styles = StyleSheet.create({
-  textCenter: {
-    fontWeight: '500',
-    marginLeft: pxScale.wp(4),
-    letterSpacing: 4,
-    fontSize: pxScale.fontSize(20),
-    color: Colors.White,
-  },
   constrainer: {
     height: pxScale.hp(50),
     marginTop: Insets.TOP,

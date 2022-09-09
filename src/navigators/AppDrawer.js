@@ -1,19 +1,56 @@
-// import {createDrawerNavigator} from '@react-navigation/drawer';
-// import React from 'react';
-// import {HomeScreen} from '~screens';
-// import {NavigationContainer} from '@react-navigation/native';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import React from 'react';
+import {HomeScreen, SettingScreen, AddressedScreen, UTXOScreen} from '~screens';
+import {NavigationContainer} from '@react-navigation/native';
+import DrawerContent from './DrawerContent';
+import Colors from '~assets/colors';
 
-// const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator();
 
-// function AppDrawer() {
-//   return (
-//     <NavigationContainer>
-//       <Drawer.Navigator>
-//         <Drawer.Screen name="HomeScreen" component={HomeScreen} />
-//         <Drawer.Screen name="DetailScreen" component={HomeScreen} />
-//         <Drawer.Screen name="NotificationScreen" component={HomeScreen} />
-//       </Drawer.Navigator>
-//     </NavigationContainer>
-//   );
-// }
-// export default AppDrawer;
+function AppDrawer() {
+  const drawerContentOptions = {
+    activeBackgroundColor: Colors.Blue_ice,
+    activeTintColor: 'white',
+    itemStyle: {
+      borderBottomWidth: 1,
+      borderBottomColor: '#e1e1e1',
+      marginVertical: 0,
+      padding: 3,
+      borderRadius: 0,
+    },
+  };
+  return (
+    <Drawer.Navigator
+      drawerContentOptions={drawerContentOptions}
+      drawerContent={props => <DrawerContent {...props} />}
+      initialRouteName="HomeScreen">
+      <Drawer.Screen
+        options={{headerShown: false}}
+        name="HomeScreen"
+        component={HomeScreen}
+      />
+      <Drawer.Screen
+        options={{headerShown: false}}
+        name="AddressedScreen"
+        component={AddressedScreen}
+      />
+      <Drawer.Screen
+        options={{headerShown: false}}
+        name="NotificationScreen"
+        component={HomeScreen}
+      />
+      <Drawer.Screen
+        options={{headerShown: false}}
+        name="UTXOScreen"
+        component={UTXOScreen}
+      />
+
+      <Drawer.Screen
+        options={{headerShown: false}}
+        name="SettingScreen"
+        component={SettingScreen}
+      />
+    </Drawer.Navigator>
+  );
+}
+export default AppDrawer;
