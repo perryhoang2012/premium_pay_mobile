@@ -1,4 +1,4 @@
-import {View, Text, Switch} from 'react-native';
+import {Switch} from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from '~assets/colors';
@@ -8,7 +8,6 @@ import Block from '~components/Block';
 import CustomText from '~components/CustomText';
 import constants from '~constants';
 import {pxScale} from '~utils/funcHelper';
-import CustomButton from '~components/CustomButton';
 import {useNavigation} from '@react-navigation/native';
 
 const SettingGeneralScreen = () => {
@@ -17,14 +16,6 @@ const SettingGeneralScreen = () => {
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
   const goBack = () => navigation.goBack();
-  const options = [
-    {title: 'Show public offline address'},
-    {title: 'Get PPay from Beam Community Faucet'},
-    {title: 'Rescan'},
-    {title: 'Payment proof'},
-    {title: 'Export wallet data'},
-    {title: 'Import wallet data'},
-  ];
 
   const settingOne = () => {
     const setting = [
@@ -51,11 +42,12 @@ const SettingGeneralScreen = () => {
               color={Colors.White}
               size={16}
               weight={'400'}
-              style={{
-                marginLeft: pxScale.wp(10),
-                marginTop: index === 0 ? 0 : pxScale.hp(20),
-                width: '70%',
-              }}>
+              style={[
+                styles.textTile,
+                {
+                  marginTop: index === 0 ? 0 : pxScale.hp(20),
+                },
+              ]}>
               {item.title}
             </CustomText>
             {item.type === 'switch' && (
@@ -68,7 +60,7 @@ const SettingGeneralScreen = () => {
                 ios_backgroundColor={Colors.Gray}
                 value={isEnabled}
                 onValueChange={toggleSwitch}
-                style={{transform: [{scaleX: 0.8}, {scaleY: 0.8}]}}
+                style={styles.switch}
               />
             )}
             {item.subtitle && (
@@ -76,11 +68,7 @@ const SettingGeneralScreen = () => {
                 color={Colors.Gray}
                 size={16}
                 weight={'400'}
-                style={{
-                  marginLeft: pxScale.wp(10),
-                  marginTop: pxScale.wp(5),
-                  width: '70%',
-                }}>
+                style={styles.textSubTitle}>
                 {item.subtitle}
               </CustomText>
             )}
@@ -111,11 +99,12 @@ const SettingGeneralScreen = () => {
               color={Colors.White}
               size={16}
               weight={'400'}
-              style={{
-                marginLeft: pxScale.wp(10),
-                marginTop: index === 0 ? 0 : pxScale.hp(20),
-                width: '70%',
-              }}>
+              style={[
+                styles.textTile,
+                {
+                  marginTop: index === 0 ? 0 : pxScale.hp(20),
+                },
+              ]}>
               {item.title}
             </CustomText>
             {item.type === 'switch' && (
@@ -128,7 +117,7 @@ const SettingGeneralScreen = () => {
                 ios_backgroundColor={Colors.Gray}
                 value={isEnabled}
                 onValueChange={toggleSwitch}
-                style={{transform: [{scaleX: 0.8}, {scaleY: 0.8}]}}
+                style={styles.switch}
               />
             )}
             {item.subtitle && (
@@ -136,11 +125,7 @@ const SettingGeneralScreen = () => {
                 color={Colors.Gray}
                 size={16}
                 weight={'400'}
-                style={{
-                  marginLeft: pxScale.wp(10),
-                  marginTop: pxScale.wp(5),
-                  width: '70%',
-                }}>
+                style={styles.textSubTitle}>
                 {item.subtitle}
               </CustomText>
             )}

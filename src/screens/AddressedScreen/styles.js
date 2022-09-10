@@ -1,19 +1,17 @@
 import {StyleSheet} from 'react-native';
 import Colors from '~assets/colors';
 import {pxScale} from '~utils/funcHelper';
-import Insets from '~utils/insets';
 
 export default StyleSheet.create({
   linearGradient: {
     flex: 1,
     paddingLeft: pxScale.wp(12),
-    // paddingRight: pxScale.wp(12),
   },
   container: {
     flex: 1,
   },
   textTitleHeader: {
-    fontSize: 20,
+    fontSize: pxScale.fontSize(20),
   },
   body: {
     flex: 1,
@@ -51,7 +49,7 @@ export default StyleSheet.create({
     borderRadius: pxScale.hp(12),
     marginBottom: pxScale.hp(16),
     marginTop: pxScale.hp(10),
-    borderColor: 'rgba(255, 255, 255, 0.1)',
+    borderColor: Colors.Border_Gray,
     borderWidth: 1,
     paddingRight: pxScale.wp(20),
   },
@@ -59,4 +57,6 @@ export default StyleSheet.create({
     marginTop: pxScale.hp(5),
     backgroundColor: Colors.Blue_ice,
   },
+  viewScrollView: {marginTop: pxScale.hp(20), marginBottom: pxScale.hp(20)},
+  viewContent: {paddingRight: pxScale.wp(20)},
 });

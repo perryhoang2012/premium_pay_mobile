@@ -1,4 +1,3 @@
-import {View, Text} from 'react-native';
 import React from 'react';
 import Block from '~components/Block';
 import styles from './styles';
@@ -13,6 +12,7 @@ import {AppIcon} from '~assets/svg';
 import ModalScanQr from './components/ModalScanQr';
 import Clipboard from '@react-native-clipboard/clipboard';
 import {useNavigation} from '@react-navigation/native';
+import constants from '~constants';
 
 const ReceiveScreen = () => {
   const navigation = useNavigation();
@@ -32,40 +32,31 @@ const ReceiveScreen = () => {
   };
   const renderTab = () => {
     return (
-      <Block
-        row
-        center
-        style={{
-          height: pxScale.hp(48),
-          backgroundColor: 'rgba(255, 255, 255, 0.08)',
-          borderRadius: pxScale.hp(50),
-          marginTop: pxScale.hp(16),
-          padding: pxScale.hp(4),
-        }}>
+      <Block row center style={styles.viewTab}>
         <ButtonGradient
           onGradient={activeTab === 0 ? true : false}
           center
-          style={{width: '48%', borderRadius: pxScale.hp(50)}}
+          style={styles.buttonTab}
           onPress={() => setActiveTab(0)}>
           <CustomText
             color={activeTab === 0 ? Colors.White : Colors.Gray}
             weight={'500'}
             customFont="Bold"
             size={16}>
-            Regular
+            {constants.REGULAR}
           </CustomText>
         </ButtonGradient>
         <ButtonGradient
           onGradient={activeTab === 1 ? true : false}
           center
-          style={{width: '48%', borderRadius: pxScale.hp(50)}}
+          style={styles.buttonTab}
           onPress={() => setActiveTab(1)}>
           <CustomText
             color={activeTab === 1 ? Colors.White : Colors.Gray}
             weight={'500'}
             customFont="Bold"
             size={16}>
-            Max privacy
+            {constants.MAX_PRIVACY}
           </CustomText>
         </ButtonGradient>
       </Block>
@@ -82,21 +73,11 @@ const ReceiveScreen = () => {
     return (
       <Block style={{marginTop: pxScale.hp(16)}}>
         {data.map((item, index) => (
-          <Block
-            key={index}
-            style={{
-              backgroundColor: Colors.Background_item,
-              padding: 20,
-              borderRadius: pxScale.hp(12),
-              marginBottom: pxScale.hp(16),
-              marginTop: pxScale.hp(10),
-              borderColor: 'rgba(255, 255, 255, 0.1)',
-              borderWidth: 1,
-            }}>
+          <Block key={index} style={styles.viewItem}>
             {item.type === 'address' ? (
               <Block space={'between'}>
                 <CustomText
-                  style={{letterSpacing: 1}}
+                  letterSpacing={1}
                   color={Colors.White}
                   weight={'500'}
                   customFont="Bold">
@@ -133,8 +114,8 @@ const ReceiveScreen = () => {
             ) : (
               <Block row space="between">
                 <CustomText
-                  style={{letterSpacing: 1}}
                   color={Colors.White}
+                  letterSpacing={1}
                   weight={'500'}
                   customFont="Bold">
                   {item.title}
@@ -160,7 +141,7 @@ const ReceiveScreen = () => {
           color={Colors.White}
           size={16}
           weight={'500'}
-          style={{letterSpacing: 1}}>
+          letterSpacing={1}>
           TRANSACTION TYPE
         </CustomText>
         {renderTab()}
@@ -168,17 +149,18 @@ const ReceiveScreen = () => {
 
         <Block center middle>
           <CustomText
-            style={{textAlign: 'center', lineHeight: 22}}
+            style={styles.textCenterAndLineHeight}
             color={Colors.White}
             size={16}>
             Sender will be given a choice between regular and offline payment.
           </CustomText>
           <CustomText
-            style={{
-              textAlign: 'center',
-              lineHeight: 22,
-              marginTop: pxScale.hp(10),
-            }}
+            style={[
+              styles.textCenterAndLineHeight,
+              {
+                marginTop: pxScale.hp(10),
+              },
+            ]}
             color={Colors.White}
             size={16}>
             For the transaction to complete, you should get online during the 12
@@ -197,12 +179,11 @@ const ReceiveScreen = () => {
             center
             onPress={toggleModal}>
             <CustomText
-              style={{textAlign: 'center'}}
               color={Colors.White}
               customFont="Bold"
               weight={'500'}
               size={16}>
-              Share address
+              {constants.SHARE_ADDRESS}
             </CustomText>
           </ButtonGradient>
         </Block>

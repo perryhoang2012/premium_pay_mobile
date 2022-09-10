@@ -1,4 +1,3 @@
-import {View, Text} from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from '~assets/colors';
@@ -42,14 +41,21 @@ const SettingScreen = () => {
         icon: AppIcon.iconUtilities,
         route: 'UtilitiesScreen',
       },
+      {
+        id: 1,
+        title: 'Create New Waller',
+        icon: AppIcon.iconUtilities,
+        route: 'CreateNewWallet',
+      },
+      {
+        id: 1,
+        title: 'Face Id',
+        icon: AppIcon.iconUtilities,
+        route: 'SettingFaceIdScreen',
+      },
     ];
     return (
-      <Block
-        style={{
-          backgroundColor: Colors.Background_item,
-          padding: pxScale.wp(20),
-          borderRadius: pxScale.wp(12),
-        }}>
+      <Block style={styles.viewItem}>
         {arrayButton.map((item, index) => (
           <CustomButton
             onPress={() => item.route && navigation.navigate(item.route)}
@@ -74,12 +80,12 @@ const SettingScreen = () => {
   const renderSettingTag = () => {
     return (
       <Block
-        style={{
-          backgroundColor: Colors.Background_item,
-          padding: pxScale.wp(20),
-          borderRadius: pxScale.wp(12),
-          marginTop: pxScale.wp(20),
-        }}>
+        style={[
+          styles.viewItem,
+          {
+            marginTop: pxScale.wp(20),
+          },
+        ]}>
         <CustomButton row middle>
           <AppSvg source={AppIcon.iconTag} width={20} height={20} />
           <CustomText
@@ -97,12 +103,12 @@ const SettingScreen = () => {
   const renderSettingRateAndReport = () => {
     return (
       <Block
-        style={{
-          backgroundColor: Colors.Background_item,
-          padding: pxScale.wp(20),
-          borderRadius: pxScale.wp(12),
-          marginTop: pxScale.wp(20),
-        }}>
+        style={[
+          styles.viewItem,
+          {
+            marginTop: pxScale.wp(20),
+          },
+        ]}>
         <CustomButton row middle>
           <AppSvg source={AppIcon.iconStar} width={20} height={20} />
           <CustomText
@@ -130,12 +136,12 @@ const SettingScreen = () => {
   const renderSettingRemove = () => {
     return (
       <Block
-        style={{
-          backgroundColor: Colors.Background_item,
-          padding: pxScale.wp(20),
-          borderRadius: pxScale.wp(12),
-          marginTop: pxScale.wp(20),
-        }}>
+        style={[
+          styles.viewItem,
+          {
+            marginTop: pxScale.wp(20),
+          },
+        ]}>
         <CustomButton row middle>
           <AppSvg source={AppIcon.iconTrashRed} width={20} height={20} />
           <CustomText

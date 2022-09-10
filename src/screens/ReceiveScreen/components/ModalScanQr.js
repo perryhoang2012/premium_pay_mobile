@@ -1,4 +1,4 @@
-import {Modal, StyleSheet, Text, View} from 'react-native';
+import {Modal, StyleSheet} from 'react-native';
 import React from 'react';
 import Colors from '~assets/colors';
 import Block from '~components/Block';
@@ -10,6 +10,7 @@ import {pxScale} from '~utils/funcHelper';
 import CustomText from '~components/CustomText';
 import ButtonGradient from '~components/ButtonGradient';
 import CustomButton from '~components/CustomButton';
+import constants from '~constants';
 
 const ModalScanQr = prop => {
   const {modalVisible, toggleModal} = prop;
@@ -23,47 +24,24 @@ const ModalScanQr = prop => {
       }}>
       <Block style={styles.centeredView}>
         <Block style={styles.modalView}>
-          <Block
-            style={{
-              width: '100%',
-              alignItems: 'flex-end',
-            }}>
+          <Block style={styles.viewButtonClose}>
             <CustomButton onPress={toggleModal}>
               <AppSvg source={AppIcon.iconCancel} width={14} height={14} />
             </CustomButton>
           </Block>
 
-          <AppFastImage
-            source={images.imageQr}
-            style={{width: pxScale.wp(160), height: pxScale.hp(160)}}
-          />
-          <CustomText
-            color={Colors.White}
-            style={{
-              marginTop: pxScale.hp(10),
-              lineHeight: pxScale.hp(20),
-              textAlign: 'center',
-            }}>
-            For online payment to complete, you should get online during 12
-            hours after coins are sent.
+          <AppFastImage source={images.imageQr} style={styles.imageQr} />
+          <CustomText color={Colors.White} style={styles.textSubTitle}>
+            {constants.SUBTITLE_QR_CODE_MODAL}
           </CustomText>
 
-          <ButtonGradient
-            center
-            middle
-            onGradient
-            style={{
-              height: pxScale.hp(40),
-              width: pxScale.wp(160),
-              borderRadius: 50,
-              marginTop: pxScale.wp(10),
-            }}>
+          <ButtonGradient center middle onGradient style={styles.buttonShare}>
             <CustomText
               color={Colors.White}
               size={18}
               customFont={'Bold'}
               weight={'500'}>
-              Share QR
+              {constants.SHARE_QR}
             </CustomText>
           </ButtonGradient>
         </Block>
@@ -78,14 +56,13 @@ const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
     justifyContent: 'center',
-
     backgroundColor: 'rgba(255, 255, 255, 0.6);',
   },
   modalView: {
     backgroundColor: Colors.Blue_2,
-    margin: 20,
-    borderRadius: 20,
-    padding: 35,
+    margin: pxScale.wp(20),
+    borderRadius: pxScale.wp(20),
+    padding: pxScale.wp(35),
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -95,5 +72,23 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+
+  imageQr: {
+    width: pxScale.wp(160),
+    height: pxScale.hp(160),
+  },
+  viewButtonClose: {width: '100%', alignItems: 'flex-end'},
+
+  textSubTitle: {
+    marginTop: pxScale.hp(10),
+    lineHeight: pxScale.hp(20),
+    textAlign: 'center',
+  },
+  buttonShare: {
+    height: pxScale.hp(40),
+    width: pxScale.wp(160),
+    borderRadius: pxScale.wp(50),
+    marginTop: pxScale.wp(10),
   },
 });

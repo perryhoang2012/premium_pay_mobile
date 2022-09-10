@@ -14,6 +14,7 @@ import {
   NodeScreen,
   PrivacyScreen,
   CreateNewWallet,
+  SettingFaceIdScreen,
 } from '~screens';
 import AppDrawer from './AppDrawer';
 
@@ -52,6 +53,10 @@ const AppNavigator = () => {
         <Stack.Screen name="NodeScreen" component={NodeScreen} />
         <Stack.Screen name="PrivacyScreen" component={PrivacyScreen} />
         <Stack.Screen name="CreateNewWallet" component={CreateNewWallet} />
+        <Stack.Screen
+          name="SettingFaceIdScreen"
+          component={SettingFaceIdScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

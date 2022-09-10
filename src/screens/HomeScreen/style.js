@@ -89,7 +89,15 @@ export default StyleSheet.create({
     padding: pxScale.hp(20),
     borderRadius: pxScale.wp(12),
     marginTop: pxScale.hp(10),
-    borderColor: 'rgba(255, 255, 255, 0.1)',
+    borderColor: Colors.Border_Gray,
     borderWidth: 1,
   },
+
+  viewItemChild: {
+    padding: pxScale.wp(12),
+    borderColor: Colors.Border_Gray,
+    borderWidth: 1,
+  },
+
+  imageIconItem: {width: pxScale.wp(16), height: pxScale.hp(16)},
 });

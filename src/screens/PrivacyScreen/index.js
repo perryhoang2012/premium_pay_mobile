@@ -27,13 +27,7 @@ const PrivacyScreen = () => {
       {title: 'Change password'},
     ];
     return (
-      <Block
-        style={{
-          backgroundColor: Colors.Background_item,
-          padding: pxScale.wp(20),
-          borderRadius: pxScale.wp(12),
-          marginTop: pxScale.wp(20),
-        }}>
+      <Block style={styles.viewContent}>
         {setting.map((item, index) => (
           <Block
             key={index}
@@ -43,11 +37,12 @@ const PrivacyScreen = () => {
               color={Colors.White}
               size={16}
               weight={'400'}
-              style={{
-                marginLeft: pxScale.wp(10),
-                marginTop: index === 0 ? 0 : pxScale.hp(20),
-                width: '70%',
-              }}>
+              style={[
+                styles.textTitle,
+                {
+                  marginTop: index === 0 ? 0 : pxScale.hp(20),
+                },
+              ]}>
               {item.title}
             </CustomText>
             {item.type === 'switch' && (
@@ -60,7 +55,7 @@ const PrivacyScreen = () => {
                 ios_backgroundColor={Colors.Gray}
                 value={isEnabled}
                 onValueChange={toggleSwitch}
-                style={{transform: [{scaleX: 0.8}, {scaleY: 0.8}]}}
+                style={styles.switch}
               />
             )}
             {item.subtitle && (
@@ -68,11 +63,7 @@ const PrivacyScreen = () => {
                 color={Colors.Gray}
                 size={16}
                 weight={'400'}
-                style={{
-                  marginLeft: pxScale.wp(10),
-                  marginTop: pxScale.wp(5),
-                  width: '70%',
-                }}>
+                style={styles.textSubTitle}>
                 {item.subtitle}
               </CustomText>
             )}

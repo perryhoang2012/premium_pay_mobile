@@ -1,7 +1,6 @@
 import {StyleSheet} from 'react-native';
 import Colors from '~assets/colors';
 import {pxScale} from '~utils/funcHelper';
-import Insets from '~utils/insets';
 
 export default StyleSheet.create({
   linearGradient: {
@@ -13,7 +12,7 @@ export default StyleSheet.create({
     flex: 1,
   },
   textTitleHeader: {
-    fontSize: 20,
+    fontSize: pxScale.fontSize(20),
   },
   body: {
     flex: 1,
@@ -30,5 +29,11 @@ export default StyleSheet.create({
   },
   textStatus: {
     marginLeft: pxScale.wp(10),
+  },
+
+  viewItem: {
+    backgroundColor: Colors.Background_item,
+    padding: pxScale.wp(20),
+    borderRadius: pxScale.wp(12),
   },
 });

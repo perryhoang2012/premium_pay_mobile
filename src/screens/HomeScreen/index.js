@@ -110,13 +110,13 @@ const HomeScreen = () => {
             setShowChildren(pre => !pre);
           }}>
           <Block row space={'between'}>
-            <CustomText style={{letterSpacing: 1}} color={Colors.Gray}>
-              AVAILABLE
+            <CustomText letterSpacing={1} color={Colors.Gray}>
+              {constants.AVAILABLE}
             </CustomText>
             <AppSvg source={AppIcon.iconDropDown} width={14} height={14} />
           </Block>
           <Block row style={{marginTop: 10}}>
-            <AppFastImage source={item.image} style={{width: 16, height: 16}} />
+            <AppFastImage source={item.image} style={style.imageIconItem} />
             <Block style={{marginLeft: 10}}>
               <CustomText size={20} color={Colors.White}>
                 {item.value}
@@ -135,19 +135,21 @@ const HomeScreen = () => {
                 color={Colors.White}
                 size={16}
                 weight={'500'}
-                style={{letterSpacing: 2}}>
-                TRANSACTION
+                letterSpacing={2}>
+                {constants.TRANSACTION}
               </CustomText>
               <CustomText
                 color={Colors.Blue_ice}
                 weight={'500'}
                 customFont="Bold"
                 style={{marginLeft: pxScale.wp(10)}}>
-                address details
+                {constants.ADDRESS_DETAILS}
               </CustomText>
             </Block>
             <Block style={{marginTop: pxScale.hp(12)}}>
-              {dataChild.map((item, index) => _renderItemChild(item, index))}
+              {dataChild.map((itemChild, indexChild) =>
+                _renderItemChild(itemChild, indexChild),
+              )}
             </Block>
           </Block>
         )}
@@ -162,16 +164,16 @@ const HomeScreen = () => {
         row
         key={index}
         space={'between'}
-        style={{
-          backgroundColor: index % 2 === 0 ? Colors.Background_item : null,
-          padding: 12,
-          borderTopLeftRadius: index === 0 ? 12 : 0,
-          borderTopRightRadius: index === 0 ? 12 : 0,
-          borderBottomLeftRadius: index === dataChild.length - 1 ? 12 : 0,
-          borderBottomRightRadius: index === dataChild.length - 1 ? 12 : 0,
-          borderColor: 'rgba(255, 255, 255, 0.1)',
-          borderWidth: 1,
-        }}>
+        style={[
+          style.viewItemChild,
+          {
+            backgroundColor: index % 2 === 0 ? Colors.Background_item : null,
+            borderTopLeftRadius: index === 0 ? 12 : 0,
+            borderTopRightRadius: index === 0 ? 12 : 0,
+            borderBottomLeftRadius: index === dataChild.length - 1 ? 12 : 0,
+            borderBottomRightRadius: index === dataChild.length - 1 ? 12 : 0,
+          },
+        ]}>
         <Block row middle>
           <AppSvg source={item.icon} width={15} height={15} />
           <Block style={{marginLeft: pxScale.wp(5)}}>
@@ -188,7 +190,7 @@ const HomeScreen = () => {
             {item.value}
           </CustomText>
           <CustomText
-            style={{textAlign: 'right'}}
+            style={style.textRight}
             size={14}
             weight={'400'}
             color={Colors.White}>

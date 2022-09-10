@@ -20,6 +20,7 @@ const CustomText = props => {
     children,
     numberOfLines,
     customFont,
+    letterSpacing,
   } = props;
 
   const handleMargins = () => {
@@ -127,6 +128,7 @@ const CustomText = props => {
     color && styles[color],
     color && !styles[color] && {color},
     customFont && {fontFamily: `Rubik-${customFont}`},
+    letterSpacing && {letterSpacing: letterSpacing},
 
     // color shortcuts
 

@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React from 'react';
 import Block from '~components/Block';
 import Colors from '~assets/colors';
@@ -7,6 +7,7 @@ import {pxScale} from '~utils/funcHelper';
 import AppSvg from '~components/AppSvg';
 import {AppIcon} from '~assets/svg';
 import CustomButton from '~components/CustomButton';
+import constants from '~constants';
 
 const GetCoin = props => {
   const {toggleGetCoin} = props;
@@ -19,13 +20,10 @@ const GetCoin = props => {
             color={Colors.White}
             weight={'400'}
             size={14}>
-            See the wallet in action. Get a very small amount of Beams from the
-            community faucet.
+            {constants.SUBTITLE_GET_COINS}
           </CustomText>
         </Block>
-        <CustomButton
-          style={{marginLeft: pxScale.wp(10)}}
-          onPress={toggleGetCoin}>
+        <CustomButton style={styles.textMarginLeft} onPress={toggleGetCoin}>
           <AppSvg source={AppIcon.iconCancel} width={14} height={14} />
         </CustomButton>
       </Block>
@@ -35,8 +33,8 @@ const GetCoin = props => {
           color={Colors.Blue_ice}
           size={16}
           weight={'700'}
-          style={{marginLeft: pxScale.wp(10)}}>
-          Get coins
+          style={styles.textMarginLeft}>
+          {constants.GET_COINS}
         </CustomText>
       </CustomButton>
     </Block>
@@ -61,4 +59,6 @@ const styles = StyleSheet.create({
     borderColor: Colors.Blue_ice,
     borderWidth: 1,
   },
+
+  textMarginLeft: {marginLeft: pxScale.wp(10)},
 });

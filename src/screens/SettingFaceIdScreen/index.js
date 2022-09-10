@@ -1,12 +1,10 @@
-import {View, Text, Switch, ImageBackground} from 'react-native';
+import {ImageBackground} from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from '~assets/colors';
 import styles from './styles';
-import Header from '~components/Header';
 import Block from '~components/Block';
 import CustomText from '~components/CustomText';
-import constants from '~constants';
 import {pxScale} from '~utils/funcHelper';
 import CustomButton from '~components/CustomButton';
 import images from '~assets/images';
@@ -15,7 +13,10 @@ import ButtonGradient from '~components/ButtonGradient';
 import AppSvg from '~components/AppSvg';
 import {AppIcon} from '~assets/svg';
 
+import {useNavigation} from '@react-navigation/native';
+
 const SettingFaceIdScreen = () => {
+  const navigation = useNavigation();
   const [check, setCheck] = React.useState(false);
   return (
     <LinearGradient
@@ -56,13 +57,14 @@ const SettingFaceIdScreen = () => {
           weight={'400'}
           color={Colors.White}
           style={{marginBottom: pxScale.hp(10), width: '90%'}}>
-          You successfully identifed your documents and you can now proceed to
+          You successfully identified your documents and you can now proceed to
           order Premium Pay Card
         </CustomText>
         <ButtonGradient
           onGradient
           middle
           center
+          onPress={() => navigation.goBack()}
           style={{
             width: pxScale.wp(260),
             height: pxScale.hp(40),

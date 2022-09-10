@@ -1,4 +1,4 @@
-import {FlatList, StyleSheet} from 'react-native';
+import {FlatList} from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from '~assets/colors';
@@ -9,7 +9,6 @@ import Block from '~components/Block';
 import constants from '~constants';
 import CustomText from '~components/CustomText';
 import {pxScale} from '~utils/funcHelper';
-
 import CustomButton from '~components/CustomButton';
 import CustomInput from '~components/CustomInput';
 import ButtonGradient from '~components/ButtonGradient';
@@ -61,36 +60,13 @@ const CreateNewWallet = () => {
 
   const _renderItemSeedPhase = ({item, index}) => {
     return (
-      <Block
-        row
-        middle
-        style={{
-          width: pxScale.wp(120),
-          height: pxScale.hp(40),
-          marginBottom: pxScale.hp(10),
-          marginLeft: pxScale.hp(30),
-          marginRight: pxScale.hp(30),
-          backgroundColor: Colors.Background_item,
-          borderRadius: pxScale.hp(12),
-          marginTop: pxScale.hp(10),
-          borderColor: 'rgba(255, 255, 255, 0.1)',
-          borderWidth: 1,
-          padding: 10,
-        }}>
-        <Block
-          center
-          middle
-          style={{
-            backgroundColor: Colors.Blue_ice,
-            width: pxScale.wp(20),
-            height: pxScale.hp(20),
-            borderRadius: 10,
-          }}>
+      <Block row middle style={style.viewItemSendPhase}>
+        <Block center middle style={style.viewNumber}>
           <CustomText color={Colors.White} size={12}>
             {item.id}
           </CustomText>
         </Block>
-        <CustomText color={Colors.White} style={{marginLeft: 10}}>
+        <CustomText color={Colors.White} style={style.viewMarginLeft}>
           {item.title}
         </CustomText>
       </Block>
@@ -99,37 +75,14 @@ const CreateNewWallet = () => {
 
   const _renderItemConfirmSeed = ({item, index}) => {
     return (
-      <Block
-        row
-        middle
-        style={{
-          width: pxScale.wp(120),
-          height: pxScale.hp(40),
-          marginBottom: pxScale.hp(10),
-          marginLeft: pxScale.hp(30),
-          marginRight: pxScale.hp(30),
-          backgroundColor: Colors.Background_item,
-          borderRadius: pxScale.hp(12),
-          marginTop: pxScale.hp(10),
-          borderColor: 'rgba(255, 255, 255, 0.1)',
-          borderWidth: 1,
-          padding: 10,
-        }}>
-        <Block
-          center
-          middle
-          style={{
-            backgroundColor: Colors.Blue_ice,
-            width: pxScale.wp(20),
-            height: pxScale.hp(20),
-            borderRadius: 10,
-          }}>
+      <Block row middle style={style.viewItemSendPhase}>
+        <Block center middle style={style.viewNumber}>
           <CustomText color={Colors.White} size={12}>
             {item.id}
           </CustomText>
         </Block>
         <CustomInput
-          style={{width: pxScale.wp(90), color: Colors.White}}
+          style={style.inputConfirm}
           value={item.value}
           onChangeText={e => {
             let newArr = [...stateConfirm];
@@ -144,17 +97,11 @@ const CreateNewWallet = () => {
     switch (step) {
       case 1:
         return (
-          <Block style={{marginTop: pxScale.hp(20), padding: 10}}>
-            <CustomText style={{textAlign: 'center'}} color={Colors.White}>
+          <Block style={style.viewStepOne}>
+            <CustomText style={style.textCenter} color={Colors.White}>
               {constants.SUBTITLE_CREATE_WALLET}
             </CustomText>
-            <Block
-              style={{
-                marginTop: pxScale.hp(35),
-                paddingLeft: 10,
-                paddingRight: 10,
-                alignItems: 'flex-start',
-              }}>
+            <Block style={style.viewContentStepOne}>
               <Block row middle>
                 <AppSvg
                   source={AppIcon.iconEyeSecurity}
@@ -162,7 +109,7 @@ const CreateNewWallet = () => {
                   height={30}
                 />
                 <CustomText
-                  style={{marginLeft: 10, width: pxScale.wp(250)}}
+                  style={style.textContentStepOne}
                   color={Colors.White}>
                   {constants.DO_NOT_SEE_YOUR_PHRASE}
                 </CustomText>
@@ -170,7 +117,7 @@ const CreateNewWallet = () => {
               <Block row middle style={{marginTop: pxScale.hp(30)}}>
                 <AppSvg source={AppIcon.iconLock} width={30} height={30} />
                 <CustomText
-                  style={{marginLeft: 10, width: pxScale.wp(270)}}
+                  style={style.textContentStepOne}
                   color={Colors.White}>
                   {constants.NEVER_TYPE_PHRASE}
                 </CustomText>
@@ -178,30 +125,22 @@ const CreateNewWallet = () => {
               <Block row middle style={{marginTop: pxScale.hp(30)}}>
                 <AppSvg source={AppIcon.iconBook} width={30} height={30} />
                 <CustomText
-                  style={{marginLeft: 10, width: pxScale.wp(270)}}
+                  style={style.textContentStepOne}
                   color={Colors.White}>
                   {constants.DO_NOT_SEE_YOUR_PHRASE}
                 </CustomText>
               </Block>
             </Block>
 
-            <Block style={{marginTop: pxScale.hp(70)}} center middle>
+            <Block style={style.viewMarginTop} center middle>
               <ButtonGradient
                 onGradient
                 middle
                 center
-                style={{
-                  height: pxScale.hp(40),
-                  backgroundColor: Colors.Blue_ice,
-                  borderRadius: 30,
-                  minWidth: pxScale.wp(250),
-                }}
+                style={style.buttonStepOne}
                 row
                 onPress={() => setStep(2)}>
-                <CustomText
-                  color={Colors.White}
-                  style={{marginLeft: 4}}
-                  weight={'500'}>
+                <CustomText color={Colors.White} weight={'500'}>
                   {constants.I_UNDERSTAND}
                 </CustomText>
               </ButtonGradient>
@@ -211,17 +150,11 @@ const CreateNewWallet = () => {
 
       case 2:
         return (
-          <Block style={{marginTop: pxScale.hp(20), padding: 10}}>
-            <CustomText style={{textAlign: 'center'}} color={Colors.White}>
+          <Block style={style.viewStepOne}>
+            <CustomText style={style.textCenter} color={Colors.White}>
               {constants.SUBTITLE_SEND_PHASE}
             </CustomText>
-            <Block
-              style={{
-                marginTop: pxScale.hp(35),
-                paddingLeft: 10,
-                paddingRight: 10,
-                alignItems: 'center',
-              }}>
+            <Block style={style.viewFlatListStepTwo}>
               <FlatList
                 scrollEnabled={false}
                 data={dataSeedPhase}
@@ -235,18 +168,12 @@ const CreateNewWallet = () => {
                   onGradient
                   middle
                   center
-                  style={{
-                    height: pxScale.hp(40),
-                    backgroundColor: Colors.Blue_ice,
-                    borderRadius: 30,
-                    minWidth: pxScale.wp(250),
-                    width: pxScale.wp(250),
-                  }}
+                  style={style.buttonCompleteStepTwo}
                   row
                   onPress={() => setStep(3)}>
                   <CustomText
                     color={Colors.White}
-                    style={{marginLeft: 6}}
+                    style={style.textMarginLeft}
                     weight={'500'}>
                     {constants.COMPLETE_VERIFICATION}
                   </CustomText>
@@ -254,19 +181,10 @@ const CreateNewWallet = () => {
                 <CustomButton
                   middle
                   center
-                  style={{
-                    height: pxScale.hp(40),
-                    backgroundColor: Colors.Black,
-                    borderRadius: 30,
-                    minWidth: pxScale.wp(250),
-                    marginTop: pxScale.hp(20),
-                  }}
+                  style={style.buttonGrayStepTwo}
                   row
                   onPress={() => setStep(2)}>
-                  <CustomText
-                    style={{marginLeft: 4}}
-                    weight={'500'}
-                    color={Colors.White}>
+                  <CustomText weight={'500'} color={Colors.White}>
                     {constants.I_WILL_DO_IT_LATER}
                   </CustomText>
                 </CustomButton>
@@ -277,17 +195,11 @@ const CreateNewWallet = () => {
 
       case 3:
         return (
-          <Block style={{marginTop: pxScale.hp(20), padding: 10}}>
-            <CustomText style={{textAlign: 'center'}} color={Colors.White}>
+          <Block style={style.viewStepOne}>
+            <CustomText style={style.textCenter} color={Colors.White}>
               {constants.SUBTITLE_CONFIRM_SEED_PHASE}
             </CustomText>
-            <Block
-              style={{
-                marginTop: pxScale.hp(35),
-                paddingLeft: 10,
-                paddingRight: 10,
-                alignItems: 'center',
-              }}>
+            <Block style={style.viewFlatListStepTwo}>
               <FlatList
                 scrollEnabled={false}
                 data={stateConfirm}
@@ -297,23 +209,15 @@ const CreateNewWallet = () => {
                 horizontal={false}
               />
             </Block>
-            <Block style={{marginTop: pxScale.hp(70)}} center middle>
+            <Block style={style.viewMarginTop} center middle>
               <ButtonGradient
                 onGradient
                 middle
                 center
-                style={{
-                  height: pxScale.hp(40),
-                  backgroundColor: Colors.Blue_ice,
-                  borderRadius: 30,
-                  width: pxScale.wp(250),
-                }}
+                style={style.buttonCompleteStepTwo}
                 row
                 onPress={() => setStep(2)}>
-                <CustomText
-                  color={Colors.White}
-                  style={{marginLeft: 6}}
-                  weight={'500'}>
+                <CustomText color={Colors.White} weight={'500'}>
                   {constants.NEXT}
                 </CustomText>
               </ButtonGradient>
@@ -344,5 +248,3 @@ const CreateNewWallet = () => {
 };
 
 export default CreateNewWallet;
-
-const styles = StyleSheet.create({});

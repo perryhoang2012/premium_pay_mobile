@@ -1,4 +1,3 @@
-import {View, Text} from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from '~assets/colors';
@@ -7,8 +6,6 @@ import Header from '~components/Header';
 import Block from '~components/Block';
 import CustomText from '~components/CustomText';
 import constants from '~constants';
-import {pxScale} from '~utils/funcHelper';
-import CustomButton from '~components/CustomButton';
 import AppSvg from '~components/AppSvg';
 import {AppIcon} from '~assets/svg';
 import {useNavigation} from '@react-navigation/native';
@@ -17,14 +14,7 @@ const PaymentProofVerificationScreen = () => {
   const navigation = useNavigation();
 
   const goBack = () => navigation.goBack();
-  const options = [
-    {title: 'Show public offline address'},
-    {title: 'Get PPay from Beam Community Faucet'},
-    {title: 'Rescan'},
-    {title: 'Payment proof'},
-    {title: 'Export wallet data'},
-    {title: 'Import wallet data'},
-  ];
+
   return (
     <LinearGradient
       colors={[Colors.Gradient_start, Colors.Gradient_end]}
@@ -41,45 +31,32 @@ const PaymentProofVerificationScreen = () => {
             {constants.ONLINE}
           </CustomText>
         </Block>
-        <Block
-          style={{
-            backgroundColor: Colors.Background_item,
-            padding: pxScale.wp(20),
-            borderRadius: pxScale.wp(12),
-            marginTop: pxScale.wp(20),
-          }}>
+        <Block style={styles.viewKeyCode}>
           <Block>
             <CustomText
               color={Colors.White}
               size={15}
               weight={'500'}
-              style={{letterSpacing: 1, marginTop: pxScale.hp(10)}}>
-              KEY CODE
+              letterSpacing={1}>
+              {constants.KEY_CODE}
             </CustomText>
-
             <CustomText
               color={Colors.White}
               weight={'400'}
-              style={{marginTop: pxScale.hp(10)}}>
+              style={styles.textMarginTop}>
               3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJko3XHPHamvtJko3XHPHamvtJko3XHPHamvtJko3XHPHamvtJko3XHPHamvtJko3XHPHamvtJko
             </CustomText>
           </Block>
         </Block>
-        <Block
-          style={{
-            backgroundColor: Colors.Background_item,
-            padding: pxScale.wp(20),
-            borderRadius: pxScale.wp(12),
-            marginTop: pxScale.wp(20),
-          }}>
+        <Block style={styles.viewKeyCode}>
           <Block>
             <Block row space="between" center>
               <CustomText
                 color={Colors.White}
                 size={16}
                 weight={'500'}
-                style={{letterSpacing: 1}}>
-                PAYMENT PROOF
+                letterSpacing={1}>
+                {constants.PAYMENT_PROOF}
               </CustomText>
               <AppSvg source={AppIcon.iconDropDown} width={14} height={14} />
             </Block>
@@ -88,14 +65,14 @@ const PaymentProofVerificationScreen = () => {
                 color={Colors.Gray}
                 size={15}
                 weight={'500'}
-                style={{letterSpacing: 1, marginTop: pxScale.hp(10)}}>
-                SENDER
+                letterSpacing={1}
+                style={styles.textMarginTop}>
+                {constants.SENDER}
               </CustomText>
-
               <CustomText
                 color={Colors.White}
                 weight={'400'}
-                style={{marginTop: pxScale.hp(10)}}>
+                style={styles.textMarginTop}>
                 3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJko
               </CustomText>
             </Block>
@@ -104,14 +81,15 @@ const PaymentProofVerificationScreen = () => {
                 color={Colors.Gray}
                 size={15}
                 weight={'500'}
-                style={{letterSpacing: 1, marginTop: pxScale.hp(10)}}>
-                RECEIVE
+                letterSpacing={1}
+                style={styles.textMarginTop}>
+                {constants.RECEIVE_UPCASE}
               </CustomText>
 
               <CustomText
                 color={Colors.White}
                 weight={'400'}
-                style={{marginTop: pxScale.hp(10)}}>
+                style={styles.textMarginTop}>
                 3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJkoU3XHPHamvtJko
               </CustomText>
             </Block>
@@ -120,14 +98,15 @@ const PaymentProofVerificationScreen = () => {
                 color={Colors.White}
                 size={15}
                 weight={'500'}
-                style={{letterSpacing: 1, marginTop: pxScale.hp(10)}}>
+                letterSpacing={1}
+                style={styles.textMarginTop}>
                 AMOUNT
               </CustomText>
 
               <CustomText
                 color={Colors.Blue_ice}
                 weight={'400'}
-                style={{marginTop: pxScale.hp(10)}}>
+                style={styles.textMarginTop}>
                 0.02999999 PPAY
               </CustomText>
             </Block>

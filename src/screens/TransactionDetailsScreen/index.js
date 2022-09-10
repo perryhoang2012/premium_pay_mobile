@@ -1,4 +1,4 @@
-import {View, Text, Platform, UIManager, LayoutAnimation} from 'react-native';
+import {Platform, UIManager, LayoutAnimation} from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from '~assets/colors';
@@ -52,7 +52,8 @@ const TransactionDetailScreen = () => {
           color={Colors.White}
           size={16}
           weight={'500'}
-          style={{letterSpacing: 1, marginTop: pxScale.hp(15)}}>
+          letterSpacing={1}
+          style={{marginTop: pxScale.hp(15)}}>
           KERNEL ID
         </CustomText>
         <CustomText
@@ -74,16 +75,7 @@ const TransactionDetailScreen = () => {
           <AppSvg source={AppIcon.openExplorer} width={16} height={16} />
         </CustomButton>
 
-        <Block
-          style={{
-            backgroundColor: Colors.Background_item,
-            padding: 20,
-            borderRadius: pxScale.hp(12),
-            marginBottom: pxScale.hp(16),
-            marginTop: pxScale.hp(10),
-            borderColor: 'rgba(255, 255, 255, 0.1)',
-            borderWidth: 1,
-          }}>
+        <Block style={styles.viewItem}>
           <CustomButton
             row
             space={'between'}
@@ -97,8 +89,8 @@ const TransactionDetailScreen = () => {
               color={Colors.White}
               size={16}
               weight={'500'}
-              style={{letterSpacing: 1}}>
-              PAYMENT PROOF
+              letterSpacing={1}>
+              {constants.PAYMENT_PROOF}
             </CustomText>
             <AppSvg
               source={showDropDown ? AppIcon.iconDropUp : AppIcon.iconDropDown}
@@ -112,8 +104,9 @@ const TransactionDetailScreen = () => {
               color={Colors.Gray}
               size={15}
               weight={'500'}
-              style={{letterSpacing: 1, marginTop: pxScale.hp(10)}}>
-              CODE
+              letterSpacing={1}
+              style={{marginTop: pxScale.hp(10)}}>
+              {constants.CODE}
             </CustomText>
 
             <CustomText

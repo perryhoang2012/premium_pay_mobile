@@ -7,16 +7,16 @@ import HeaderDrawer from '~components/HeaderDrawer';
 import Block from '~components/Block';
 import CustomText from '~components/CustomText';
 import constants from '~constants';
-
 import CustomButton from '~components/CustomButton';
 import {pxScale} from '~utils/funcHelper';
 
 const AddressedScreen = () => {
   const [activeTab, setActiveTab] = React.useState(0);
+
   const renderTab = () => {
     const tabs = [
       {title: 'AVAILABLE', value: 'available'},
-      {title: 'IN PROGESS', value: 'in_progess'},
+      {title: 'IN PROGRESS', value: 'in_progress'},
       {title: 'SPENT', value: 'spent'},
       {title: 'UNAVAILABLE', value: 'unavailable'},
     ];
@@ -50,8 +50,8 @@ const AddressedScreen = () => {
           color={Colors.White}
           size={16}
           weight={'500'}
-          style={{letterSpacing: 1}}>
-          Default
+          letterSpacing={1}>
+          {constants.DEFAULT}
         </CustomText>
         <CustomText
           color={Colors.White}
@@ -62,6 +62,7 @@ const AddressedScreen = () => {
       </Block>
     );
   };
+
   return (
     <LinearGradient
       colors={[Colors.Gradient_start, Colors.Gradient_end]}
@@ -78,13 +79,12 @@ const AddressedScreen = () => {
         </CustomText>
       </Block>
       <Block style={styles.body}>
-        <Block
-          style={{marginTop: pxScale.hp(20), marginBottom: pxScale.hp(20)}}>
+        <Block style={styles.viewScrollView}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {renderTab()}
           </ScrollView>
         </Block>
-        <Block style={{paddingRight: pxScale.wp(20)}}>{renderContent()}</Block>
+        <Block style={styles.viewContent}>{renderContent()}</Block>
       </Block>
     </LinearGradient>
   );

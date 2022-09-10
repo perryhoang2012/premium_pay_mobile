@@ -28,4 +28,40 @@ export default {
     'To ensure the seed phrase is written down correctly , please fill in the specific words below',
 
   NEXT: 'Next',
+
+  SUBTITLE_GET_COINS:
+    ' See the wallet in action. Get a very small amount of Beams from the community faucet.',
+
+  GET_COINS: 'Get coins',
+
+  DEFAULT: 'Default',
+
+  AVAILABLE: 'AVAILABLE',
+  TRANSACTION: 'TRANSACTION',
+  COMMENT: 'COMMENT',
+
+  ADDRESS_DETAILS: 'address details',
+
+  KEY_CODE: 'KEY CODE',
+
+  PAYMENT_PROOF: 'PAYMENT PROOF',
+  SENDER: 'SENDER',
+
+  RECEIVE_UPCASE: 'RECEIVE',
+
+  SUBTITLE_QR_CODE_MODAL:
+    ' For online payment to complete, you should get online during 12 hours after coins are sent.',
+
+  SHARE_QR: 'Share QR',
+  SHARE_ADDRESS: 'Share address',
+
+  REGULAR: 'Regular',
+
+  MAX_PRIVACY: 'Max privacy',
+
+  TRANSACTION_INFO: 'TRANSACTION INFO',
+  TRANSACTION_TYPE: 'TRANSACTION TYPE',
+  AMOUNT: 'AMOUNT',
+
+  CODE: 'CODE',
 };

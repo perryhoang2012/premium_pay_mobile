@@ -1,7 +1,6 @@
 import {StyleSheet} from 'react-native';
 import Colors from '~assets/colors';
 import {pxScale} from '~utils/funcHelper';
-import Insets from '~utils/insets';
 
 export default StyleSheet.create({
   linearGradient: {

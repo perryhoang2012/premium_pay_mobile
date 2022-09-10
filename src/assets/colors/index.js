@@ -14,5 +14,7 @@ const Colors = {
   Green_status: '#4CF2D3',
   Background_item: '#0F3052',
   Blue_2: '#042548',
+
+  Border_Gray: 'rgba(255, 255, 255, 0.1)',
 };
 export default Colors;

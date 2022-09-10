@@ -13,6 +13,7 @@ import SettingGeneralScreen from './SettingGeneralScreen';
 import NotificationsScreen from './NotificationScreen';
 import NodeScreen from './NodeScreen';
 import PrivacyScreen from './PrivacyScreen';
+import SettingFaceIdScreen from './SettingFaceIdScreen';
 
 module.exports = {
   HomeScreen,
@@ -29,5 +30,6 @@ module.exports = {
   NotificationsScreen,
   NodeScreen,
   PrivacyScreen,
+  SettingFaceIdScreen,
   // WelcomeScreen,
 };
