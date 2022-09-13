@@ -13,11 +13,21 @@ import ModalScanQr from './components/ModalScanQr';
 import Clipboard from '@react-native-clipboard/clipboard';
 import {useNavigation} from '@react-navigation/native';
 import constants from '~constants';
+import CustomInput from '~components/CustomInput';
 
+import {LayoutAnimation, Platform, UIManager} from 'react-native';
+
+if (Platform.OS === 'android') {
+  if (UIManager.setLayoutAnimationEnabledExperimental) {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
+}
 const ReceiveScreen = () => {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = React.useState(false);
   const [activeTab, setActiveTab] = React.useState(0);
+  const [showComment, setShowComment] = React.useState(false);
+  const [valueComment, setValueComment] = React.useState('');
 
   const copyToClipboard = () => {
     Clipboard.setString('hello world');
@@ -112,15 +122,46 @@ const ReceiveScreen = () => {
                 </Block>
               </Block>
             ) : (
-              <Block row space="between">
-                <CustomText
-                  color={Colors.White}
-                  letterSpacing={1}
-                  weight={'500'}
-                  customFont="Bold">
-                  {item.title}
-                </CustomText>
-                <AppSvg source={AppIcon.iconDropDown} width={14} height={14} />
+              <Block>
+                <Block row space="between">
+                  <CustomText
+                    color={Colors.White}
+                    letterSpacing={1}
+                    weight={'500'}
+                    customFont="Bold">
+                    {item.title}
+                  </CustomText>
+                  <CustomButton
+                    onPress={() => {
+                      if (item.title === 'COMMENT') {
+                        LayoutAnimation.configureNext(
+                          LayoutAnimation.Presets.easeInEaseOut,
+                        );
+                        setShowComment(pre => !pre);
+                      }
+                    }}>
+                    <AppSvg
+                      source={
+                        showComment && item.title === 'COMMENT'
+                          ? AppIcon.iconDropUp
+                          : AppIcon.iconDropDown
+                      }
+                      width={14}
+                      height={14}
+                    />
+                  </CustomButton>
+                </Block>
+                {showComment && item.title === 'COMMENT' && (
+                  <Block>
+                    <CustomInput
+                      style={styles.inputComment}
+                      value={valueComment}
+                      onChangeText={e => {
+                        setValueComment(e);
+                      }}
+                    />
+                  </Block>
+                )}
               </Block>
             )}
           </Block>

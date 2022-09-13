@@ -10,10 +10,11 @@ import TransactionDetailScreen from './TransactionDetailsScreen';
 import UtilitiesScreen from './UtilitiesScreen';
 import PaymentProofVerificationScreen from './PaymentProofVerificationScreen';
 import SettingGeneralScreen from './SettingGeneralScreen';
-import NotificationsScreen from './NotificationScreen';
+import SettingNotificationScreen from './SettingNotificationScreen';
 import NodeScreen from './NodeScreen';
 import PrivacyScreen from './PrivacyScreen';
 import SettingFaceIdScreen from './SettingFaceIdScreen';
+import NotificationScreen from './NotificationScreen';
 
 module.exports = {
   HomeScreen,
@@ -27,9 +28,10 @@ module.exports = {
   UtilitiesScreen,
   PaymentProofVerificationScreen,
   SettingGeneralScreen,
-  NotificationsScreen,
+  SettingNotificationScreen,
   NodeScreen,
   PrivacyScreen,
   SettingFaceIdScreen,
+  NotificationScreen,
   // WelcomeScreen,
 };

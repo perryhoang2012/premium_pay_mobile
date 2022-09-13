@@ -10,7 +10,7 @@ const WALLET = {
 
 const ADDRESS_BOOK = {
   id: 1,
-  title: 'Address Book',
+  title: 'Transactions History',
   icon: AppIcon.iconAddressBook,
   value: 'address_book',
   route: 'AddressedScreen',
@@ -21,6 +21,7 @@ const NOTIFICATION = {
   title: 'Notifications',
   icon: AppIcon.iconNotification,
   value: 'notification',
+  route: 'NotificationScreen',
 };
 const UTXO = {
   id: 1,
@@ -37,6 +38,6 @@ const SETTING = {
   route: 'SettingScreen',
 };
 
-let routes = [WALLET, ADDRESS_BOOK, NOTIFICATION, UTXO, SETTING];
+let routes = [WALLET, ADDRESS_BOOK, NOTIFICATION, SETTING];
 
 export default routes;

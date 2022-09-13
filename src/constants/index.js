@@ -64,4 +64,6 @@ export default {
   AMOUNT: 'AMOUNT',
 
   CODE: 'CODE',
+
+  NO_DATA_NOTIFICATION: 'There are no notifications yet',
 };

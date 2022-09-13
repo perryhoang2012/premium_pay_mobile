@@ -28,7 +28,11 @@ const HeaderDrawer = prop => {
         </CustomText>
       </Block>
       <Block>
-        {!noEye && <AppSvg source={AppIcon.iconEye} width={24} height={24} />}
+        {!noEye ? (
+          <AppSvg source={AppIcon.iconEye} width={24} height={24} />
+        ) : (
+          <Block style={{width: 24}} />
+        )}
       </Block>
     </Block>
   );

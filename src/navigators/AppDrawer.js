@@ -1,6 +1,12 @@
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import React from 'react';
-import {HomeScreen, SettingScreen, AddressedScreen, UTXOScreen} from '~screens';
+import {
+  HomeScreen,
+  SettingScreen,
+  AddressedScreen,
+  NotificationScreen,
+  UTXOScreen,
+} from '~screens';
 import DrawerContent from './DrawerContent';
 import Colors from '~assets/colors';
 
@@ -37,7 +43,7 @@ function AppDrawer() {
       <Drawer.Screen
         options={{headerShown: false}}
         name="NotificationScreen"
-        component={HomeScreen}
+        component={NotificationScreen}
       />
       <Drawer.Screen
         options={{headerShown: false}}

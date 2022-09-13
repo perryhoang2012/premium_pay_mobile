@@ -46,7 +46,7 @@ export default function DrawerContent(props) {
       <Block middle center>
         <AppFastImage
           source={images.imageIconApp}
-          style={{width: pxScale.wp(68), height: pxScale.hp(70)}}
+          style={{width: pxScale.wp(73), height: pxScale.hp(70)}}
         />
       </Block>
 
@@ -58,7 +58,7 @@ export default function DrawerContent(props) {
           style={{width: pxScale.wp(20), height: pxScale.hp(21)}}
         />
         <CustomText color={Colors.White} style={{marginLeft: pxScale.wp(10)}}>
-          Where to buy PPAY?
+          Where to buy Fac?
         </CustomText>
       </Block>
     </Block>
