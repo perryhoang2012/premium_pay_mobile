@@ -132,6 +132,7 @@ const ReceiveScreen = () => {
                     {item.title}
                   </CustomText>
                   <CustomButton
+                    hitSlop={{top: 10, left: 10, right: 10, bottom: 10}}
                     onPress={() => {
                       if (item.title === 'COMMENT') {
                         LayoutAnimation.configureNext(
@@ -142,7 +143,7 @@ const ReceiveScreen = () => {
                     }}>
                     <AppSvg
                       source={
-                        showComment && item.title === 'COMMENT'
+                        !!showComment && item.title === 'COMMENT'
                           ? AppIcon.iconDropUp
                           : AppIcon.iconDropDown
                       }
@@ -151,7 +152,7 @@ const ReceiveScreen = () => {
                     />
                   </CustomButton>
                 </Block>
-                {showComment && item.title === 'COMMENT' && (
+                {!!showComment && item.title === 'COMMENT' && (
                   <Block>
                     <CustomInput
                       style={styles.inputComment}

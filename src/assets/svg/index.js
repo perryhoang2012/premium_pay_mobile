@@ -167,15 +167,8 @@ export const AppIcon = {
   <path d="M7.33337 10.7667V12.5667C7.33337 14.0667 6.73337 14.6667 5.23337 14.6667H3.43337C1.93337 14.6667 1.33337 14.0667 1.33337 12.5667V10.7667C1.33337 9.26669 1.93337 8.66669 3.43337 8.66669H5.23337C6.73337 8.66669 7.33337 9.26669 7.33337 10.7667Z" stroke="#48CCF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
   `,
-  iconDropUp: `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <g clip-path="url(#clip0_1_1256)">
-  <path d="M11.4211 9.28772H0.578825C0.0657523 9.28772 -0.195624 8.66816 0.172239 8.3003L5.59339 2.87915C5.81604 2.6565 6.1839 2.6565 6.40665 2.87915L11.8278 8.3003C12.1956 8.66816 11.9342 9.28772 11.4211 9.28772Z" fill="white"/>
-  </g>
-  <defs>
-  <clipPath id="clip0_1_1256">
-  <rect width="12" height="12" fill="white" transform="matrix(1 0 0 -1 0 12)"/>
-  </clipPath>
-  </defs>
+  iconDropUp: `<svg width="512" height="286" viewBox="0 0 512 286" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M483.51 285.173H28.4893C12.7834 285.201 0.027982 272.491 -1.23933e-05 256.784C-0.0140096 249.212 2.99339 241.946 8.35532 236.598L235.866 9.08766C247.029 -1.92815 264.972 -1.92815 276.135 9.08766L503.646 236.598C514.765 247.69 514.788 265.697 503.697 276.817C498.348 282.179 491.083 285.186 483.51 285.173Z" fill="white"/>
   </svg>`,
   iconWalletBlue: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M13 11.15H7" stroke="#48CCF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

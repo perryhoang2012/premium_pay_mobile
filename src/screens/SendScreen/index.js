@@ -212,22 +212,25 @@ const SendScreen = () => {
                 {constants.COMMENT}
               </CustomText>
               <CustomButton
+                hitSlop={{top: 10, left: 10, right: 10, bottom: 10}}
                 onPress={() => {
                   LayoutAnimation.configureNext(
                     LayoutAnimation.Presets.easeInEaseOut,
                   );
-                  setShowComment(pre => !pre);
+                  setShowComment(!showComment);
                 }}>
-                <AppSvg
-                  source={
-                    showComment ? AppIcon.iconDropUp : AppIcon.iconDropDown
-                  }
-                  width={14}
-                  height={14}
-                />
+                {showComment ? (
+                  <AppSvg source={AppIcon.iconDropUp} width={14} height={14} />
+                ) : (
+                  <AppSvg
+                    source={AppIcon.iconDropDown}
+                    width={14}
+                    height={14}
+                  />
+                )}
               </CustomButton>
             </Block>
-            {showComment && (
+            {!!showComment && (
               <Block>
                 <CustomInput
                   style={styles.inputComment}

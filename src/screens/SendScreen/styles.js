@@ -64,7 +64,7 @@ export default StyleSheet.create({
     borderRadius: pxScale.hp(40),
   },
   inputComment: {
-    marginTop: pxScale.hp(10),
+    marginTop: pxScale.hp(15),
     height: pxScale.hp(40),
     borderColor: Colors.Gray,
     borderWidth: 0.5,

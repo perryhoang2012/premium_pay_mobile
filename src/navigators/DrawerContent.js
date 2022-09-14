@@ -1,7 +1,7 @@
 import {isIphoneX} from 'react-native-iphone-x-helper';
 import Block from '~components/Block';
 import routes from '../constants/routes';
-import {StyleSheet, ScrollView} from 'react-native';
+import {StyleSheet, ScrollView, Platform} from 'react-native';
 import React from 'react';
 import Insets from '~utils/insets';
 import Colors from '~assets/colors';
@@ -67,7 +67,7 @@ export default function DrawerContent(props) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Insets.TOP,
+    paddingTop: Platform.OS === 'ios' ? Insets.TOP : pxScale.hp(30),
     flex: 1,
     paddingBottom: isIphoneX() ? 10 : 5,
     backgroundColor: Colors.Gradient_start,
