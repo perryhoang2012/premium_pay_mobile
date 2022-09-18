@@ -65,5 +65,31 @@ export default {
 
   CODE: 'CODE',
 
-  NO_DATA_NOTIFICATION: 'There are no notifications yet',
+  NO_DATA_NOTIFICATION: 'No Notifications Yet',
+  SUBTITLE_NO_DATA_NOTIFICATION:
+    'No notification right now, notifications about your activity will show up here.',
+
+  NOTIFICATIONS_SETTINGS: 'Notifications Settings',
+
+  NAME_APP: 'FACWALLET',
+
+  I_HAVE_NOT_GOT_A_WALLET: 'I Haven’t Got A Wallet',
+
+  RESTORE_WALLET: 'Restore Wallet',
+  RESTORE_WALLET_UP_CASE: 'RESTORE WALLET',
+  SUBTITLE_RESTORE_WALLET: 'Type in your seed phrase',
+
+  MANAGER_TOKEN_LIST: 'Manager token list',
+  SEARCH: 'Search',
+
+  ADD_TOKEN_METADATA: 'Add token metadata',
+  CANCEL: 'Cancel',
+  SAVE: 'Save',
+
+  CREATE: 'Create',
+  IMPORT: 'Import',
+
+  OFFER: 'OFFER',
+
+  NFT_MARKETPLACE: 'NFT MARKETPLACE',
 };

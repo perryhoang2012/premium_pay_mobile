@@ -14,6 +14,9 @@ import GetCoin from './components/GetCoin';
 import AppFastImage from '~components/AppFastImage';
 import images from '~assets/images';
 import {useNavigation} from '@react-navigation/native';
+import {Modal} from 'react-native';
+import CustomInput from '~components/CustomInput';
+import {Switch} from 'react-native';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -26,10 +29,39 @@ const HomeScreen = () => {
   const [showChildren, setShowChildren] = React.useState(false);
 
   const [closeGetCoin, setCloseGetCoin] = React.useState(false);
+
+  const [showModalManagerTokenList, setShowModalManagerTokenList] =
+    React.useState(false);
+
+  const [showModalAddToken, setShowModalAddToken] = React.useState(false);
+
   const data = [
     {id: 1, value: '0 Fac', title: '-Fac', image: images.imageIconApp},
     {id: 2, value: '0 BNB', title: `-BNB`, image: images.imageBnb},
     {id: 3, value: '0 Ethereum', title: `-ETH`, image: images.imageEth},
+  ];
+
+  const dataToken = [
+    {
+      id: 1,
+      title: '123 FAC',
+      value: '$100',
+    },
+    {
+      id: 2,
+      title: '123 FAC',
+      value: '$100',
+    },
+    {
+      id: 3,
+      title: '123 FAC',
+      value: '$100',
+    },
+    {
+      id: 4,
+      title: '123 FAC',
+      value: '$100',
+    },
   ];
 
   const dataChild = [
@@ -109,14 +141,17 @@ const HomeScreen = () => {
             );
             setShowChildren(pre => !pre);
           }}>
-          <Block row space={'between'}>
+          {/* <Block row space={'between'}>
             <CustomText letterSpacing={1} color={Colors.Gray}>
               {constants.AVAILABLE}
             </CustomText>
             <AppSvg source={AppIcon.iconDropDown} width={14} height={14} />
-          </Block>
-          <Block row style={{marginTop: 10}}>
-            <AppFastImage source={item.image} style={style.imageIconItem} />
+          </Block> */}
+
+          <Block row>
+            <Block style={{marginTop: pxScale.hp(4)}}>
+              <AppFastImage source={item.image} style={style.imageIconItem} />
+            </Block>
             <Block style={{marginLeft: 10}}>
               <CustomText size={20} color={Colors.White}>
                 {item.value}
@@ -128,33 +163,89 @@ const HomeScreen = () => {
           </Block>
         </CustomButton>
 
-        {showChildren && (
-          <Block style={{marginTop: 24}}>
-            <Block row space="between">
-              <CustomText
-                color={Colors.White}
-                size={16}
-                weight={'500'}
-                letterSpacing={2}>
-                {constants.TRANSACTION}
-              </CustomText>
-              <CustomText
-                color={Colors.Blue_ice}
-                weight={'500'}
-                customFont="Bold"
-                style={{marginLeft: pxScale.wp(10)}}>
-                {constants.ADDRESS_DETAILS}
-              </CustomText>
-            </Block>
-            <Block style={{marginTop: pxScale.hp(12)}}>
-              {dataChild.map((itemChild, indexChild) =>
-                _renderItemChild(itemChild, indexChild),
-              )}
-            </Block>
+        <CustomButton
+          row
+          center
+          middle
+          style={{paddingVertical: 20}}
+          onPress={() => setShowModalManagerTokenList(true)}>
+          <AppSvg source={AppIcon.iconSettingSwitch} width={20} height={20} />
+          <CustomText
+            color={Colors.White}
+            size={14}
+            style={{marginLeft: pxScale.wp(10)}}>
+            {constants.MANAGER_TOKEN_LIST}
+          </CustomText>
+        </CustomButton>
+
+        <Block style={{marginTop: 24}}>
+          <Block row space="between">
+            <CustomText
+              color={Colors.White}
+              size={16}
+              weight={'500'}
+              letterSpacing={2}>
+              {constants.TRANSACTION}
+            </CustomText>
+            <CustomText
+              color={Colors.Blue_ice}
+              weight={'500'}
+              customFont="Bold"
+              style={{marginLeft: pxScale.wp(10)}}>
+              {constants.ADDRESS_DETAILS}
+            </CustomText>
           </Block>
-        )}
+          <Block style={{marginTop: pxScale.hp(12)}}>
+            {dataChild.map((itemChild, indexChild) =>
+              _renderItemChild(itemChild, indexChild),
+            )}
+          </Block>
+        </Block>
       </>
     );
+  };
+
+  const _renderInputAddToken = () => {
+    const input = [
+      {title: 'MINT ADDRESS', value: '', type: 'Paste'},
+      {title: 'NAME', value: ''},
+      {title: 'SYMBOL', value: ''},
+    ];
+
+    return input.map((item, index) => (
+      <Block key={index}>
+        <CustomText color={Colors.White}>{item.title}</CustomText>
+        <Block
+          row
+          middle
+          center
+          style={{
+            backgroundColor: Colors.Background_item,
+            marginTop: pxScale.hp(8),
+            height: pxScale.hp(48),
+            borderRadius: pxScale.hp(10),
+            marginBottom: pxScale.hp(20),
+          }}>
+          <Block flex>
+            <CustomInput style={{width: '100%'}} />
+          </Block>
+
+          {item.type === 'Paste' && (
+            <CustomButton
+              style={{
+                backgroundColor: 'rgba(72, 204, 247, 0.2)',
+                padding: 7,
+                borderRadius: pxScale.hp(10),
+                marginRight: pxScale.wp(10),
+              }}>
+              <CustomText size={12} color={Colors.Blue_ice}>
+                Paste
+              </CustomText>
+            </CustomButton>
+          )}
+        </Block>
+      </Block>
+    ));
   };
 
   const _renderItemChild = (item, index) => {
@@ -198,6 +289,64 @@ const HomeScreen = () => {
           </CustomText>
         </Block>
       </CustomButton>
+    );
+  };
+
+  const _renderItemToken = ({item}) => {
+    return (
+      <LinearGradient
+        colors={['#144765', '#194281']}
+        style={[
+          {
+            flex: 1,
+            flexDirection: 'row',
+            marginTop: pxScale.hp(10),
+            width: '100%',
+            alignItems: 'center',
+            // justifyContent: 'center',
+            height: pxScale.hp(70),
+            borderRadius: pxScale.hp(12),
+            paddingHorizontal: pxScale.wp(16),
+          },
+        ]}>
+        <Block flex>
+          <Block
+            center
+            middle
+            style={{
+              backgroundColor: Colors.White,
+              borderRadius: 50,
+              padding: 6,
+              width: pxScale.wp(35),
+              height: pxScale.hp(35),
+            }}>
+            <AppFastImage
+              resizeMode="contain"
+              source={images.imageIconAppRemove}
+              style={{width: 20, height: 20}}
+            />
+          </Block>
+        </Block>
+
+        <Block style={{flex: 4}}>
+          <CustomText color={Colors.White} size={16}>
+            {item.title}
+          </CustomText>
+          <CustomText color={Colors.Gray} size={14}>
+            {item.value}
+          </CustomText>
+        </Block>
+
+        <Switch
+          trackColor={{
+            false: Colors.Gradient_end,
+            true: Colors.Gradient_start,
+          }}
+          thumbColor={Colors.White}
+          ios_backgroundColor={Colors.Gray}
+          style={style.switch}
+        />
+      </LinearGradient>
     );
   };
   return (
@@ -257,6 +406,159 @@ const HomeScreen = () => {
             keyExtractor={item => item.id}
           />
         </Block>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={showModalManagerTokenList}
+          onRequestClose={() => {
+            setShowModalManagerTokenList(false);
+          }}>
+          <Block style={style.centeredView}>
+            <Block style={style.modalView}>
+              <Block
+                row
+                space={'between'}
+                style={{width: '100%', marginTop: pxScale.hp(11)}}>
+                <CustomButton
+                  onPress={() => setShowModalManagerTokenList(false)}>
+                  <AppSvg source={AppIcon.iconCancel} width={14} height={14} />
+                </CustomButton>
+                <CustomText color={Colors.White} size={16} weight={'500'}>
+                  {constants.MANAGER_TOKEN_LIST}
+                </CustomText>
+                <CustomButton
+                  onPress={() => {
+                    setShowModalManagerTokenList(false);
+                    setShowModalAddToken(true);
+                  }}>
+                  <AppSvg source={AppIcon.iconPlus} width={14} height={14} />
+                </CustomButton>
+              </Block>
+              <Block
+                row
+                style={{
+                  justifyContent: 'flex-start',
+                  alignItems: 'center',
+                  height: pxScale.hp(40),
+                  width: '100%',
+                  paddingHorizontal: pxScale.hp(20),
+                  backgroundColor: Colors.Background_item,
+                  borderRadius: pxScale.hp(10),
+                  marginTop: pxScale.hp(20),
+                }}>
+                <AppSvg source={AppIcon.iconSearch} width={20} height={20} />
+                <CustomInput
+                  placeholder={constants.SEARCH}
+                  onChangeText={() => console.log('hihi')}
+                  style={{color: Colors.White}}
+                />
+              </Block>
+              <Block
+                style={[
+                  style.viewScrollView,
+                  {
+                    marginTop: pxScale.hp(20),
+                    width: '100%',
+                  },
+                ]}>
+                <FlatList
+                  showsVerticalScrollIndicator={false}
+                  data={dataToken}
+                  renderItem={_renderItemToken}
+                  keyExtractor={item => item.id}
+                />
+              </Block>
+            </Block>
+          </Block>
+        </Modal>
+
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={showModalAddToken}
+          onRequestClose={() => {
+            setShowModalAddToken(false);
+          }}>
+          <Block style={style.centeredView}>
+            <Block style={style.modalView}>
+              <Block
+                row
+                space={'between'}
+                style={{width: '100%', marginTop: pxScale.hp(11)}}>
+                <CustomButton onPress={() => setShowModalAddToken(false)}>
+                  <AppSvg source={AppIcon.iconCancel} width={14} height={14} />
+                </CustomButton>
+                <CustomText color={Colors.White} size={16} weight={'500'}>
+                  {constants.ADD_TOKEN_METADATA}
+                </CustomText>
+                <AppSvg source={AppIcon.iconPlus} width={14} height={14} />
+              </Block>
+              <Block style={{marginTop: pxScale.hp(28)}}>
+                <AppSvg source={AppIcon.iconPlusBlue} width={80} height={80} />
+              </Block>
+              <Block style={{width: '100%', flex: 3}}>
+                {_renderInputAddToken()}
+              </Block>
+
+              <Block flex style={{width: '100%'}}>
+                <Block
+                  row
+                  middle
+                  style={{
+                    backgroundColor: Colors.Background_item,
+                    width: '100%',
+                    height: pxScale.hp(44),
+                    paddingHorizontal: pxScale.wp(20),
+                    borderRadius: pxScale.hp(15),
+                  }}>
+                  <AppSvg
+                    source={AppIcon.iconInfoCircle}
+                    width={20}
+                    height={20}
+                  />
+                  <CustomText
+                    color={Colors.White}
+                    size={14}
+                    style={{marginLeft: pxScale.wp(10)}}>
+                    This will cost 0.00204 FAC
+                  </CustomText>
+                </Block>
+                <Block
+                  row
+                  flex
+                  style={{width: '100%', marginTop: pxScale.hp(20)}}
+                  space={'between'}>
+                  <CustomButton
+                    center
+                    middle
+                    style={{
+                      backgroundColor: Colors.Background_item,
+                      height: pxScale.hp(40),
+                      width: '45%',
+                      borderRadius: pxScale.wp(40),
+                    }}>
+                    <CustomText size={16} color={Colors.White}>
+                      {constants.CANCEL}
+                    </CustomText>
+                  </CustomButton>
+                  <ButtonGradient
+                    center
+                    middle
+                    onGradient
+                    style={{
+                      height: pxScale.hp(40),
+                      width: '45%',
+                      borderRadius: pxScale.wp(40),
+                    }}>
+                    <CustomText size={16} color={Colors.White}>
+                      {constants.SAVE}
+                    </CustomText>
+                  </ButtonGradient>
+                </Block>
+              </Block>
+            </Block>
+          </Block>
+        </Modal>
       </Block>
     </LinearGradient>
   );

@@ -6,6 +6,7 @@ import {
   AddressedScreen,
   NotificationScreen,
   UTXOScreen,
+  TransactionHistoryScreen,
 } from '~screens';
 import DrawerContent from './DrawerContent';
 import Colors from '~assets/colors';
@@ -39,6 +40,11 @@ function AppDrawer() {
         options={{headerShown: false}}
         name="AddressedScreen"
         component={AddressedScreen}
+      />
+      <Drawer.Screen
+        options={{headerShown: false}}
+        name="TransactionHistoryScreen"
+        component={TransactionHistoryScreen}
       />
       <Drawer.Screen
         options={{headerShown: false}}

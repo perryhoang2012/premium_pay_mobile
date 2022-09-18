@@ -10,12 +10,15 @@ const CustomInput = props => {
     keyboardType,
     onChangeText,
     negative,
+    placeholder,
+    password,
   } = props;
   return (
     <TextInput
       textAlignVertical={multiline ? 'top' : 'center'}
       multiline={multiline}
       value={value && value}
+      secureTextEntry={password}
       onChangeText={e => {
         if (number) {
           const num = negative
@@ -26,7 +29,8 @@ const CustomInput = props => {
           onChangeText(e);
         }
       }}
-      placeholderTextColor="#999"
+      placeholderTextColor="rgba(255, 255, 255, 0.6)"
+      placeholder={placeholder}
       keyboardType={keyboardType || 'default'}
       style={[styles.input, style, multiline && {paddingTop: 10}]}
     />

@@ -1,12 +1,14 @@
 import {StyleSheet} from 'react-native';
 import Colors from '~assets/colors';
 import {pxScale} from '~utils/funcHelper';
+import Insets from '~utils/insets';
 
 export default StyleSheet.create({
   linearGradient: {
     flex: 1,
     paddingLeft: pxScale.wp(12),
     paddingRight: pxScale.wp(12),
+    backgroundColor: Colors.Gradient_end,
   },
   container: {
     flex: 1,
@@ -17,20 +19,6 @@ export default StyleSheet.create({
   body: {
     flex: 1,
     padding: pxScale.wp(20),
-  },
-  viewStatus: {
-    paddingHorizontal: pxScale.wp(10),
-  },
-  gradientDot: {
-    width: pxScale.wp(12),
-    height: pxScale.hp(12),
-    borderRadius: pxScale.hp(50),
-    backgroundColor: Colors.Green_status,
-  },
-  textStatus: {
-    marginLeft: pxScale.wp(10),
-  },
-  textNoData: {
-    marginTop: pxScale.hp(16),
+    marginTop: Insets.TOP,
   },
 });

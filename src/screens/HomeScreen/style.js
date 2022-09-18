@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import Colors from '~assets/colors';
 import {pxScale} from '~utils/funcHelper';
+import Insets from '~utils/insets';
 
 export default StyleSheet.create({
   button: {
@@ -55,6 +56,7 @@ export default StyleSheet.create({
 
   viewScrollView: {
     flex: 10,
+    marginTop: pxScale.hp(10),
   },
   letterSpacingText: {
     letterSpacing: 2,
@@ -88,7 +90,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.Background_item,
     padding: pxScale.hp(20),
     borderRadius: pxScale.wp(12),
-    marginTop: pxScale.hp(10),
+    // marginTop: pxScale.hp(10),
     borderColor: Colors.Border_Gray,
     borderWidth: 1,
   },
@@ -100,4 +102,23 @@ export default StyleSheet.create({
   },
 
   imageIconItem: {width: pxScale.wp(16), height: pxScale.hp(16)},
+
+  centeredView: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginTop: Insets.TOP - 10,
+    width: '100%',
+  },
+  modalView: {
+    width: '100%',
+    height: '100%',
+    margin: 20,
+    backgroundColor: Colors.Blue_2,
+    borderRadius: pxScale.wp(10),
+    alignItems: 'center',
+    padding: pxScale.wp(10),
+    paddingHorizontal: pxScale.wp(20),
+  },
+  switch: {flex: 1, transform: [{scaleX: 0.8}, {scaleY: 0.8}]},
 });

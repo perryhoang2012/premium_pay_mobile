@@ -9,6 +9,7 @@ import CustomText from '~components/CustomText';
 import constants from '~constants';
 import {pxScale} from '~utils/funcHelper';
 import {useNavigation} from '@react-navigation/native';
+import CustomButton from '~components/CustomButton';
 
 const PrivacyScreen = () => {
   const navigation = useNavigation();
@@ -24,18 +25,19 @@ const PrivacyScreen = () => {
       {title: 'Max Privacy lock time limit', subtitle: '72 hours'},
       {title: 'Verify speed phrase'},
       {title: 'Show owner key'},
-      {title: 'Change password'},
+      {title: 'Change password', route: 'ChangePasswordScreen'},
     ];
     return (
       <Block style={styles.viewContent}>
         {setting.map((item, index) => (
-          <Block
+          <CustomButton
             key={index}
             style={{
               marginTop: index === 0 ? 0 : pxScale.hp(20),
             }}
             middle={item.type === 'switch' ? true : false}
-            row={item.type === 'switch' ? true : false}>
+            row={item.type === 'switch' ? true : false}
+            onPress={() => item.route && navigation.navigate(item.route)}>
             <CustomText
               color={Colors.White}
               size={16}
@@ -65,7 +67,7 @@ const PrivacyScreen = () => {
                 {item.subtitle}
               </CustomText>
             )}
-          </Block>
+          </CustomButton>
         ))}
       </Block>
     );

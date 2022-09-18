@@ -178,7 +178,7 @@ const SendScreen = () => {
                   size={24}
                   weight={'400'}
                   letterSpacing={1}>
-                  1 Fac
+                  1 FAC
                 </CustomText>
               </Block>
               <Block row>
@@ -250,7 +250,7 @@ const SendScreen = () => {
             style={styles.textCenterAndLineHeight}>
             {activeTab === 0
               ? 'For the transaction to complete, the recipient must get online within the next 12 hours and you should get online within 2 hours afterwards'
-              : ' Min transaction fee to send offline transaction is 0.01 Fac'}
+              : ' Min transaction fee to send offline transaction is 0.01 FAC'}
           </CustomText>
           <Block center middle style={{marginBottom: pxScale.hp(50)}}>
             <ButtonGradient onGradient style={styles.buttonNext} middle center>

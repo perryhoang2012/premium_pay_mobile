@@ -1,10 +1,14 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {View} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import Colors from '~assets/colors';
 import images from '~assets/images';
 import AppFastImage from '~components/AppFastImage';
+import Block from '~components/Block';
+import CustomText from '~components/CustomText';
+import constants from '~constants';
 import styles from './styles';
-import constant from '~constant';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SplashScreen = () => {
   // *
@@ -12,22 +16,50 @@ const SplashScreen = () => {
 
   //
 
+  const checkNewUser = React.useCallback(async () => {
+    try {
+      const value = await AsyncStorage.getItem('isNewUser');
+      if (value) {
+        setTimeout(() => {
+          navigation.replace('AppDrawer');
+        }, 500);
+      } else {
+        try {
+          await AsyncStorage.setItem('isNewUser', 'true');
+        } catch (e) {}
+      }
+    } catch (e) {}
+  }, [navigation]);
+
   // * useEffect
   React.useEffect(() => {
-    setTimeout(() => {
-      navigation.replace('BottomTabNavigator');
-    }, 500);
-  }, [navigation]);
+    checkNewUser();
+  }, [checkNewUser]);
 
   // * render
   return (
-    <View style={styles.container}>
-      <AppFastImage
-        resizeMode="contain"
-        source={images.logo_remove}
-        style={styles.logo}
-      />
-    </View>
+    <LinearGradient
+      colors={[Colors.Gradient_start, Colors.Gradient_end]}
+      style={styles.linearGradient}>
+      <Block style={styles.container}>
+        <AppFastImage
+          resizeMode="contain"
+          source={images.imageIconAppRemove}
+          style={styles.logo}
+        />
+      </Block>
+      <Block style={styles.viewTextFooter}>
+        <CustomText
+          customFont={'Bold'}
+          style={styles.textCenter}
+          size={24}
+          weight={'500'}
+          color={Colors.White}
+          letterSpacing={4}>
+          {constants.NAME_APP}
+        </CustomText>
+      </Block>
+    </LinearGradient>
   );
 };
 

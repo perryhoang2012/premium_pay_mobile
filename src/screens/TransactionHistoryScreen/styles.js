@@ -43,20 +43,20 @@ export default StyleSheet.create({
     borderRadius: 3,
   },
   viewItem: {
-    height: pxScale.hp(64),
+    height: pxScale.hp(420),
     backgroundColor: Colors.Background_item,
-    padding: pxScale.hp(12),
+    padding: 20,
+    borderRadius: pxScale.hp(12),
+    marginBottom: pxScale.hp(16),
+    marginTop: pxScale.hp(10),
     borderColor: Colors.Border_Gray,
     borderWidth: 1,
+    paddingRight: pxScale.wp(20),
   },
   viewUnderlined: {
     marginTop: pxScale.hp(5),
     backgroundColor: Colors.Blue_ice,
   },
-  viewScrollView: {marginTop: pxScale.hp(20), marginBottom: pxScale.hp(10)},
-  viewContent: {
-    borderRadius: pxScale.hp(10),
-    marginRight: pxScale.wp(15),
-    flex: 1,
-  },
+  viewScrollView: {marginTop: pxScale.hp(20), marginBottom: pxScale.hp(20)},
+  viewContent: {paddingRight: pxScale.wp(20)},
 });

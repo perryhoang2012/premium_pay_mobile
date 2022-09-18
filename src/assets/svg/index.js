@@ -282,4 +282,94 @@ export const AppIcon = {
   <path d="M213.332 469.333C193.536 469.311 174.557 461.438 160.559 447.44C146.561 433.442 138.688 414.463 138.666 394.667C138.666 391.838 139.789 389.125 141.79 387.124C143.79 385.124 146.503 384 149.332 384C152.161 384 154.874 385.124 156.875 387.124C158.875 389.125 159.999 391.838 159.999 394.667C159.999 408.812 165.618 422.377 175.62 432.379C185.622 442.381 199.187 448 213.332 448C227.477 448 241.043 442.381 251.045 432.379C261.047 422.377 266.666 408.812 266.666 394.667C266.666 391.838 267.789 389.125 269.79 387.124C271.79 385.124 274.503 384 277.332 384C280.161 384 282.874 385.124 284.875 387.124C286.875 389.125 287.999 391.838 287.999 394.667C287.977 414.463 280.103 433.442 266.105 447.44C252.107 461.438 233.128 469.311 213.332 469.333V469.333Z" fill="#FFFEFE"/>
   </svg>
   `,
+  iconSettingSwitch: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 6.5H16" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M6 6.5H2" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M10 10C11.933 10 13.5 8.433 13.5 6.5C13.5 4.567 11.933 3 10 3C8.067 3 6.5 4.567 6.5 6.5C6.5 8.433 8.067 10 10 10Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M22 17.5H18" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M8 17.5H2" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M14 21C15.933 21 17.5 19.433 17.5 17.5C17.5 15.567 15.933 14 14 14C12.067 14 10.5 15.567 10.5 17.5C10.5 19.433 12.067 21 14 21Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  `,
+  iconPlus: `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M1 7H13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M7 13V1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  `,
+  iconSearch: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M7.66683 14.5C3.90016 14.5 0.833496 11.4333 0.833496 7.66666C0.833496 3.89999 3.90016 0.833328 7.66683 0.833328C11.4335 0.833328 14.5002 3.89999 14.5002 7.66666C14.5002 11.4333 11.4335 14.5 7.66683 14.5ZM7.66683 1.83333C4.44683 1.83333 1.8335 4.45333 1.8335 7.66666C1.8335 10.88 4.44683 13.5 7.66683 13.5C10.8868 13.5 13.5002 10.88 13.5002 7.66666C13.5002 4.45333 10.8868 1.83333 7.66683 1.83333Z" fill="white"/>
+  <path d="M14.6666 15.1667C14.54 15.1667 14.4133 15.12 14.3133 15.02L12.98 13.6867C12.7866 13.4933 12.7866 13.1733 12.98 12.98C13.1733 12.7867 13.4933 12.7867 13.6866 12.98L15.02 14.3133C15.2133 14.5067 15.2133 14.8267 15.02 15.02C14.92 15.12 14.7933 15.1667 14.6666 15.1667Z" fill="white"/>
+  </svg>
+  `,
+  iconPlusBlue: `<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="40" cy="40" r="40" fill="white" fill-opacity="0.1"/>
+  <path d="M27.2002 40H52.8002" stroke="#48CCF7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M40 52.7999V27.2" stroke="#48CCF7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  `,
+
+  iconInfoCircle: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M9.99984 18.3333C14.5832 18.3333 18.3332 14.5833 18.3332 9.99996C18.3332 5.41663 14.5832 1.66663 9.99984 1.66663C5.4165 1.66663 1.6665 5.41663 1.6665 9.99996C1.6665 14.5833 5.4165 18.3333 9.99984 18.3333Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M10 6.66663V10.8333" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M9.99561 13.3334H10.0031" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`,
+
+  iconRepeater: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M14 3L16.44 5.34003L8.48999 5.32001C4.91999 5.32001 1.98999 8.25003 1.98999 11.84C1.98999 13.63 2.71998 15.26 3.89998 16.44" stroke="#48CCF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M10.0001 21L7.56006 18.66L15.5101 18.68C19.0801 18.68 22.0101 15.75 22.0101 12.16C22.0101 10.37 21.2801 8.74 20.1001 7.56" stroke="#48CCF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M9 12H15" stroke="#48CCF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  `,
+
+  iconArrowRight: `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M9.33352 5.53176L3.99337 0.191706C3.86985 0.068097 3.70498 0 3.52917 0C3.35337 0 3.18849 0.068097 3.06498 0.191706L2.67172 0.584873C2.41582 0.841066 2.41582 1.25745 2.67172 1.51326L7.15597 5.99751L2.66674 10.4867C2.54323 10.6104 2.47504 10.7751 2.47504 10.9508C2.47504 11.1267 2.54323 11.2915 2.66674 11.4152L3.06001 11.8083C3.18362 11.9319 3.3484 12 3.5242 12C3.7 12 3.86488 11.9319 3.98839 11.8083L9.33352 6.46336C9.45732 6.33936 9.52532 6.1738 9.52493 5.9978C9.52532 5.82112 9.45732 5.65566 9.33352 5.53176Z" fill="white"/>
+  </svg>
+  `,
+
+  iconDropRight: `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g clip-path="url(#clip0_70_217)">
+  <path d="M2.71228 11.4211L2.71228 0.578825C2.71228 0.0657524 3.33184 -0.195624 3.6997 0.172239L9.12085 5.59339C9.3435 5.81604 9.3435 6.1839 9.12085 6.40665L3.6997 11.8278C3.33184 12.1956 2.71228 11.9342 2.71228 11.4211Z" fill="white"/>
+  </g>
+  <defs>
+  <clipPath id="clip0_70_217">
+  <rect width="12" height="12" fill="white" transform="matrix(-4.37114e-08 1 1 4.37114e-08 0 0)"/>
+  </clipPath>
+  </defs>
+  </svg>  
+  `,
+  iconBrowser: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g clip-path="url(#clip0_70_361)">
+  <path d="M12 0.666687C8.25329 0.666687 4.74663 2.52002 2.63329 5.62669C1.34663 7.50669 0.666626 9.71335 0.666626 12C0.666626 14.2867 1.34663 16.4934 2.63329 18.3734C4.74663 21.48 8.25329 23.3334 12 23.3334C15.7466 23.3334 19.2533 21.48 21.3666 18.3734C22.6533 16.4934 23.3333 14.2867 23.3333 12C23.3333 9.71335 22.6533 7.50669 21.3666 5.62669C19.2533 2.52002 15.7533 0.666687 12 0.666687V0.666687ZM19.4533 5.33335H16.4866C16.1 4.20002 15.6133 3.24002 15.0533 2.48669C16.7466 3.03335 18.2666 4.01335 19.4533 5.33335ZM7.84663 11.3334C7.89329 9.68002 8.12663 8.08002 8.51329 6.66669H15.48C15.8666 8.08002 16.1 9.68002 16.1466 11.3334H7.84663ZM16.1533 12.6667C16.1066 14.32 15.8733 15.92 15.4866 17.3334H8.51329C8.12663 15.92 7.89329 14.32 7.84663 12.6667H16.1533ZM12 2.00002C13.1133 2.00002 14.24 3.23335 15.0466 5.33335H8.95329C9.75996 3.23335 10.8866 2.00002 12 2.00002ZM8.94663 2.48669C8.38663 3.24002 7.89996 4.20002 7.51329 5.33335H4.54663C5.73329 4.01335 7.25329 3.03335 8.94663 2.48669V2.48669ZM3.53996 6.66669H7.11996C6.75996 8.09335 6.55329 9.69335 6.51329 11.3334H2.01996C2.13329 9.67335 2.65329 8.07335 3.53996 6.66669V6.66669ZM3.53996 17.3334C2.65329 15.9267 2.12663 14.3267 2.01996 12.6667H6.51329C6.55996 14.3067 6.76663 15.9067 7.11996 17.3334H3.53996ZM4.54663 18.6667H7.51329C7.89996 19.8 8.38663 20.76 8.94663 21.5134C7.25329 20.9667 5.73329 19.9867 4.54663 18.6667V18.6667ZM12 22C10.8866 22 9.75996 20.7667 8.95329 18.6667H15.0466C14.24 20.7667 13.1133 22 12 22ZM15.0533 21.5134C15.6133 20.7667 16.1 19.8 16.4866 18.6667H19.4533C18.2666 19.9867 16.7466 20.9667 15.0533 21.5134ZM20.46 17.3334H16.88C17.24 15.9067 17.4466 14.3067 17.4866 12.6667H21.98C21.8666 14.3267 21.3466 15.9267 20.46 17.3334ZM17.4866 11.3334C17.44 9.69335 17.2333 8.09335 16.88 6.66669H20.46C21.3466 8.07335 21.8733 9.67335 21.98 11.3334H17.4866Z" fill="#48CCF7"/>
+  </g>
+  <defs>
+  <clipPath id="clip0_70_361">
+  <rect width="24" height="24" fill="white"/>
+  </clipPath>
+  </defs>
+  </svg>
+  `,
+  iconDocument: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 10V15C22 20 20 22 15 22H9C4 22 2 20 2 15V9C2 4 4 2 9 2H14" stroke="#48CCF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M22 10H18C15 10 14 9 14 6V2L22 10Z" stroke="#48CCF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M7 13H13" stroke="#48CCF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M7 17H11" stroke="#48CCF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  `,
+  iconHome: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M19 8.71001L13.667 4.56201C13.199 4.19792 12.623 4.00024 12.03 4.00024C11.4371 4.00024 10.861 4.19792 10.393 4.56201L5.05903 8.71001C4.73847 8.9593 4.47912 9.27854 4.30078 9.64336C4.12245 10.0082 4.02984 10.4089 4.03003 10.815V18.015C4.03003 18.5454 4.24074 19.0542 4.61582 19.4292C4.99089 19.8043 5.4996 20.015 6.03003 20.015H18.03C18.5605 20.015 19.0692 19.8043 19.4442 19.4292C19.8193 19.0542 20.03 18.5454 20.03 18.015V10.815C20.03 9.99201 19.65 9.21501 19 8.71001Z" stroke="#2FA2B9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M16 15C13.79 16.333 10.208 16.333 8 15" stroke="#2FA2B9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  `,
+  iconDiscount: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M7 13L13 7" stroke="#2FA2B9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M7.5 8C7.77614 8 8 7.77614 8 7.5C8 7.22386 7.77614 7 7.5 7C7.22386 7 7 7.22386 7 7.5C7 7.77614 7.22386 8 7.5 8Z" fill="#2FA2B9" stroke="#2FA2B9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M12.5 13C12.7761 13 13 12.7761 13 12.5C13 12.2239 12.7761 12 12.5 12C12.2239 12 12 12.2239 12 12.5C12 12.7761 12.2239 13 12.5 13Z" fill="#2FA2B9" stroke="#2FA2B9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z" stroke="#2FA2B9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  `,
+  iconChartLine: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M4 19H20" stroke="#2FA2B9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M4 15L8 9L12 11L16 6L20 10" stroke="#2FA2B9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  `,
 };

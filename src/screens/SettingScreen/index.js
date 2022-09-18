@@ -41,12 +41,6 @@ const SettingScreen = () => {
         icon: AppIcon.iconUtilities,
         route: 'UtilitiesScreen',
       },
-      {
-        id: 1,
-        title: 'Create New Waller',
-        icon: AppIcon.iconUtilities,
-        route: 'CreateNewWallet',
-      },
       // {
       //   id: 1,
       //   title: 'Face Id',

@@ -4,3 +4,8 @@ export const setActiveDrawer = payload => ({
   type: 'SET_ACTIVE_DRAWER',
   payload: payload,
 });
+
+export const setActiveWallet = payload => ({
+  type: 'SET_ACTIVE_WALLET',
+  payload: payload,
+});

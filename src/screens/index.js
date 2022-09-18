@@ -1,6 +1,6 @@
 import HomeScreen from './HomeScreen';
 import CreateNewWallet from './CreateNewWallet';
-// import WelcomeScreen from './WelcomeScreen';
+import WelcomeScreen from './WelcomeScreen';
 import SettingScreen from './SettingScreen';
 import UTXOScreen from './UTXOScreen';
 import AddressedScreen from './AddressedScreen';
@@ -15,6 +15,11 @@ import NodeScreen from './NodeScreen';
 import PrivacyScreen from './PrivacyScreen';
 import SettingFaceIdScreen from './SettingFaceIdScreen';
 import NotificationScreen from './NotificationScreen';
+import SplashScreen from './SplashScreen';
+import RestoreWalletScreen from './RestoreWalletScreen';
+import TransactionHistoryScreen from './TransactionHistoryScreen';
+import ChangePasswordScreen from './ChangePasswordScreen';
+import FacBrowserScreen from './FacBrowserScreen';
 
 module.exports = {
   HomeScreen,
@@ -33,5 +38,10 @@ module.exports = {
   PrivacyScreen,
   SettingFaceIdScreen,
   NotificationScreen,
-  // WelcomeScreen,
+  SplashScreen,
+  WelcomeScreen,
+  RestoreWalletScreen,
+  TransactionHistoryScreen,
+  ChangePasswordScreen,
+  FacBrowserScreen,
 };
