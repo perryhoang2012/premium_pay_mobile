@@ -19,7 +19,7 @@ export default StyleSheet.create({
     padding: pxScale.wp(20),
   },
   viewStatus: {
-    marginBottom: pxScale.hp(10),
+    paddingHorizontal: pxScale.wp(10),
   },
   gradientDot: {
     width: pxScale.wp(12),
@@ -30,17 +30,7 @@ export default StyleSheet.create({
   textStatus: {
     marginLeft: pxScale.wp(10),
   },
-
-  textSubtitle: {
-    marginLeft: pxScale.wp(10),
-    marginTop: pxScale.wp(5),
-    width: '70%',
+  textNoData: {
+    marginTop: pxScale.hp(10),
   },
-
-  textTitle: {
-    marginLeft: pxScale.wp(10),
-    width: '70%',
-  },
-
-  switch: {transform: [{scaleX: 0.8}, {scaleY: 0.8}]},
 });

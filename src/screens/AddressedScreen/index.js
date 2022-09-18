@@ -15,7 +15,7 @@ const AddressedScreen = () => {
 
   const renderTab = () => {
     const tabs = [
-      {title: 'AVAILABLE', value: 'available'},
+      {title: 'TOKEN', value: 'token'},
       {title: 'IN PROGRESS', value: 'in_progress'},
       {title: 'SPENT', value: 'spent'},
       {title: 'UNAVAILABLE', value: 'unavailable'},
@@ -67,7 +67,7 @@ const AddressedScreen = () => {
     <LinearGradient
       colors={[Colors.Gradient_start, Colors.Gradient_end]}
       style={styles.linearGradient}>
-      <HeaderDrawer title={'ADDRESSED'} noEye />
+      <HeaderDrawer title={'HISTORY'} noEye />
       <Block row middle style={styles.viewStatus}>
         <Block style={styles.gradientDot} />
         <CustomText

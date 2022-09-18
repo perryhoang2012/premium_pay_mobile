@@ -10,7 +10,7 @@ import constants from '~constants';
 import {pxScale} from '~utils/funcHelper';
 import {useNavigation} from '@react-navigation/native';
 
-const PrivacyScreen = () => {
+const SettingNotificationScreen = () => {
   const navigation = useNavigation();
   const [isEnabled, setIsEnabled] = React.useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
@@ -19,28 +19,32 @@ const PrivacyScreen = () => {
 
   const renderSetting = () => {
     const setting = [
-      {title: 'Ask for password on every Send', type: 'switch'},
-      {title: 'Enable Face Id/Fingerprint unlock', type: 'switch'},
-      {title: 'Max Privacy lock time limit', subtitle: '72 hours'},
-      {title: 'Verify speed phrase'},
-      {title: 'Show owner key'},
-      {title: 'Change password'},
+      {title: 'Wallet Update', type: 'switch'},
+      {title: 'Transaction Status', type: 'switch'},
     ];
     return (
-      <Block style={styles.viewContent}>
+      <Block
+        style={{
+          backgroundColor: Colors.Background_item,
+          padding: pxScale.wp(20),
+          borderRadius: pxScale.wp(12),
+          marginTop: pxScale.wp(20),
+        }}>
         {setting.map((item, index) => (
           <Block
             key={index}
-            style={{
-              marginTop: index === 0 ? 0 : pxScale.hp(20),
-            }}
             middle={item.type === 'switch' ? true : false}
             row={item.type === 'switch' ? true : false}>
             <CustomText
               color={Colors.White}
               size={16}
               weight={'400'}
-              style={[styles.textTitle]}>
+              style={[
+                styles.textTitle,
+                {
+                  marginTop: index === 0 ? 0 : pxScale.hp(20),
+                },
+              ]}>
               {item.title}
             </CustomText>
             {item.type === 'switch' && (
@@ -61,7 +65,7 @@ const PrivacyScreen = () => {
                 color={Colors.Gray}
                 size={16}
                 weight={'400'}
-                style={styles.textSubTitle}>
+                style={styles.textSubtitle}>
                 {item.subtitle}
               </CustomText>
             )}
@@ -75,7 +79,7 @@ const PrivacyScreen = () => {
     <LinearGradient
       colors={[Colors.Gradient_start, Colors.Gradient_end]}
       style={styles.linearGradient}>
-      <Header title={'Privacy'} goBack={goBack} />
+      <Header title={'Notification'} goBack={goBack} />
       <Block style={styles.body}>
         <Block row middle style={styles.viewStatus}>
           <Block style={styles.gradientDot} />
@@ -93,4 +97,4 @@ const PrivacyScreen = () => {
   );
 };
 
-export default PrivacyScreen;
+export default SettingNotificationScreen;

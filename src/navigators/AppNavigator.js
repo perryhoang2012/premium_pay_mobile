@@ -10,7 +10,7 @@ import {
   UtilitiesScreen,
   PaymentProofVerificationScreen,
   SettingGeneralScreen,
-  NotificationsScreen,
+  SettingNotificationScreen,
   NodeScreen,
   PrivacyScreen,
   CreateNewWallet,
@@ -47,8 +47,8 @@ const AppNavigator = () => {
           component={SettingGeneralScreen}
         />
         <Stack.Screen
-          name="NotificationsScreen"
-          component={NotificationsScreen}
+          name="SettingNotificationScreen"
+          component={SettingNotificationScreen}
         />
         <Stack.Screen name="NodeScreen" component={NodeScreen} />
         <Stack.Screen name="PrivacyScreen" component={PrivacyScreen} />

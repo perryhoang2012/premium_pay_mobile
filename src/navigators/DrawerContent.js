@@ -1,7 +1,7 @@
 import {isIphoneX} from 'react-native-iphone-x-helper';
 import Block from '~components/Block';
 import routes from '../constants/routes';
-import {StyleSheet, ScrollView} from 'react-native';
+import {StyleSheet, ScrollView, Platform} from 'react-native';
 import React from 'react';
 import Insets from '~utils/insets';
 import Colors from '~assets/colors';
@@ -46,7 +46,7 @@ export default function DrawerContent(props) {
       <Block middle center>
         <AppFastImage
           source={images.imageIconApp}
-          style={{width: pxScale.wp(68), height: pxScale.hp(70)}}
+          style={{width: pxScale.wp(73), height: pxScale.hp(70)}}
         />
       </Block>
 
@@ -58,7 +58,7 @@ export default function DrawerContent(props) {
           style={{width: pxScale.wp(20), height: pxScale.hp(21)}}
         />
         <CustomText color={Colors.White} style={{marginLeft: pxScale.wp(10)}}>
-          Where to buy PPAY?
+          Where to buy Fac?
         </CustomText>
       </Block>
     </Block>
@@ -67,7 +67,7 @@ export default function DrawerContent(props) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Insets.TOP,
+    paddingTop: Platform.OS === 'ios' ? Insets.TOP : pxScale.hp(30),
     flex: 1,
     paddingBottom: isIphoneX() ? 10 : 5,
     backgroundColor: Colors.Gradient_start,

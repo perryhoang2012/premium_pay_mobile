@@ -107,7 +107,7 @@ const PaymentProofVerificationScreen = () => {
                 color={Colors.Blue_ice}
                 weight={'400'}
                 style={styles.textMarginTop}>
-                0.02999999 PPAY
+                0.02999999 Fac
               </CustomText>
             </Block>
           </Block>

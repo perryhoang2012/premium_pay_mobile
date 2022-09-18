@@ -31,11 +31,10 @@ export default StyleSheet.create({
     marginLeft: pxScale.wp(10),
   },
 
-  viewContent: {
-    backgroundColor: Colors.Background_item,
-    padding: pxScale.wp(20),
-    borderRadius: pxScale.wp(12),
-    marginTop: pxScale.wp(20),
+  textSubtitle: {
+    marginLeft: pxScale.wp(10),
+    marginTop: pxScale.wp(5),
+    width: '70%',
   },
 
   textTitle: {
@@ -43,14 +42,5 @@ export default StyleSheet.create({
     width: '70%',
   },
 
-  textSubTitle: {
-    marginLeft: pxScale.wp(10),
-    marginTop: pxScale.wp(5),
-    width: '70%',
-  },
-
-  switch: {
-    transform: [{scaleX: 0.8}, {scaleY: 0.8}],
-    backgroundColor: 'yellow',
-  },
+  switch: {transform: [{scaleX: 0.8}, {scaleY: 0.8}]},
 });

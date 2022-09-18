@@ -12,7 +12,7 @@ import {AppIcon} from '~assets/svg';
 import AppSvg from '~components/AppSvg';
 import {useNavigation} from '@react-navigation/native';
 
-const NotificationScreen = () => {
+const NodeScreen = () => {
   const navigation = useNavigation();
   const [select, setSelect] = React.useState(0);
 
@@ -22,18 +22,18 @@ const NotificationScreen = () => {
     const setting = [
       {
         title: 'RANDOM NODE (fast sync)',
-        subTitle: 'For those who don’t have any  other PPay wallet.',
+        subTitle: 'For those who don’t have any  other Fac wallet.',
         icon: AppIcon.iconNode,
       },
       {
         title: 'MOBILE NODE (slow sync)',
         subTitle:
-          'For those who want to sync the balance across multiple PPay wallets.',
+          'For those who want to sync the balance across multiple Fac wallets.',
         icon: AppIcon.iconMobile,
       },
       {
         title: 'OWN NODE (fast and secure, advanced)',
-        subTitle: 'For those who don’t have any  other PPay wallet.',
+        subTitle: 'For those who don’t have any  other Fac wallet.',
         icon: AppIcon.iconQrCode,
       },
     ];
@@ -44,6 +44,7 @@ const NotificationScreen = () => {
         }}>
         {setting.map((item, index) => (
           <Block
+            key={index}
             row
             middle
             style={{marginTop: index !== 0 ? pxScale.wp(30) : 0}}>
@@ -110,4 +111,4 @@ const NotificationScreen = () => {
   );
 };
 
-export default NotificationScreen;
+export default NodeScreen;
