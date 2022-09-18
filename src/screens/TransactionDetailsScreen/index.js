@@ -27,6 +27,7 @@ const TransactionDetailScreen = () => {
   const goBack = () => {
     navigation.goBack();
   };
+
   return (
     <LinearGradient
       colors={[Colors.Gradient_start, Colors.Gradient_end]}
@@ -92,11 +93,11 @@ const TransactionDetailScreen = () => {
               letterSpacing={1}>
               {constants.PAYMENT_PROOF}
             </CustomText>
-            <AppSvg
-              source={showDropDown ? AppIcon.iconDropUp : AppIcon.iconDropDown}
-              width={14}
-              height={14}
-            />
+            {showDropDown ? (
+              <AppSvg source={AppIcon.iconDropUp} width={14} height={14} />
+            ) : (
+              <AppSvg source={AppIcon.iconDropDown} width={14} height={14} />
+            )}
           </CustomButton>
 
           <Block>

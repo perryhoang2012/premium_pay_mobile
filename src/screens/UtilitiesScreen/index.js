@@ -16,7 +16,7 @@ const UtilitiesScreen = () => {
   const goBack = () => navigation.goBack();
   const options = [
     {title: 'Show public offline address'},
-    {title: 'Get PPay from Beam Community Faucet'},
+    {title: 'Get FAC from Fahrenheit Chain Faucet'},
     {title: 'Rescan'},
     {title: 'Payment proof', route: 'PaymentProofVerificationScreen'},
     {title: 'Export wallet data'},

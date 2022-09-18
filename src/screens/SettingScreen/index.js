@@ -26,7 +26,7 @@ const SettingScreen = () => {
         id: 1,
         title: 'Notifications',
         icon: AppIcon.iconNotification,
-        route: 'NotificationsScreen',
+        route: 'SettingNotificationScreen',
       },
       {id: 1, title: 'Node', icon: AppIcon.iconNode, route: 'NodeScreen'},
       {
@@ -47,12 +47,12 @@ const SettingScreen = () => {
         icon: AppIcon.iconUtilities,
         route: 'CreateNewWallet',
       },
-      {
-        id: 1,
-        title: 'Face Id',
-        icon: AppIcon.iconUtilities,
-        route: 'SettingFaceIdScreen',
-      },
+      // {
+      //   id: 1,
+      //   title: 'Face Id',
+      //   icon: AppIcon.iconUtilities,
+      //   route: 'SettingFaceIdScreen',
+      // },
     ];
     return (
       <Block style={styles.viewItem}>
@@ -159,7 +159,7 @@ const SettingScreen = () => {
     <LinearGradient
       colors={[Colors.Gradient_start, Colors.Gradient_end]}
       style={styles.linearGradient}>
-      <HeaderDrawer title={'SETTINGS'} />
+      <HeaderDrawer title={'SETTINGS'} noEye />
       <Block row middle style={styles.viewStatus}>
         <Block style={styles.gradientDot} />
         <CustomText

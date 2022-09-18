@@ -63,4 +63,12 @@ export default StyleSheet.create({
     marginTop: pxScale.hp(10),
     borderRadius: pxScale.hp(40),
   },
+  inputComment: {
+    marginTop: pxScale.hp(15),
+    height: pxScale.hp(40),
+    borderColor: Colors.Gray,
+    borderWidth: 0.5,
+    borderRadius: pxScale.wp(10),
+    color: Colors.White,
+  },
 });

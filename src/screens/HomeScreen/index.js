@@ -27,7 +27,7 @@ const HomeScreen = () => {
 
   const [closeGetCoin, setCloseGetCoin] = React.useState(false);
   const data = [
-    {id: 1, value: '0 PPAY', title: '-PPAY', image: images.imageIconApp},
+    {id: 1, value: '0 Fac', title: '-Fac', image: images.imageIconApp},
     {id: 2, value: '0 BNB', title: `-BNB`, image: images.imageBnb},
     {id: 3, value: '0 Ethereum', title: `-ETH`, image: images.imageEth},
   ];
@@ -35,7 +35,7 @@ const HomeScreen = () => {
   const dataChild = [
     {
       id: 1,
-      value: '-0.039997 PPAY',
+      value: '-0.039997 Fac',
       value2: '-0.03 USD',
       type: 'Send',
       subTitle: 'Send (max privacy)',
@@ -43,7 +43,7 @@ const HomeScreen = () => {
     },
     {
       id: 2,
-      value: '-0.01 PPAY',
+      value: '-0.01 Fac',
       value2: '-0.01 USD',
       type: 'Send',
       subTitle: 'Send (offline)',
@@ -51,7 +51,7 @@ const HomeScreen = () => {
     },
     {
       id: 3,
-      value: '-0.01 PPAY',
+      value: '-0.01 Fac',
       value2: '-0.01 USD',
       type: 'Send',
       subTitle: 'Send',
@@ -59,7 +59,7 @@ const HomeScreen = () => {
     },
     {
       id: 4,
-      value: '+0.08 PPAY',
+      value: '+0.08 Fac',
       value2: '+0.06 USD',
       type: 'Receive',
       subTitle: 'Receive',
@@ -67,7 +67,7 @@ const HomeScreen = () => {
     },
     {
       id: 5,
-      value: '-0.01 PPAY',
+      value: '-0.01 Fac',
       value2: '-0.01 USD',
       type: 'Send',
       subTitle: 'Send',
@@ -75,7 +75,7 @@ const HomeScreen = () => {
     },
     {
       id: 6,
-      value: '+0.08 PPAY',
+      value: '+0.08 Fac',
       value2: '+0.06 USD',
       type: 'Receive',
       subTitle: 'Receive',

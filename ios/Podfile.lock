@@ -402,8 +402,6 @@ PODS:
   - RNScreens (3.17.0):
     - React-Core
     - React-RCTImage
-  - RNSensors (7.3.5):
-    - React-Core
   - RNStaticSafeAreaInsets (2.2.0):
     - React-Core
   - RNSVG (13.0.0):
@@ -481,7 +479,6 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
-  - RNSensors (from `../node_modules/react-native-sensors`)
   - RNStaticSafeAreaInsets (from `../node_modules/react-native-static-safe-area-insets`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -582,8 +579,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
-  RNSensors:
-    :path: "../node_modules/react-native-sensors"
   RNStaticSafeAreaInsets:
     :path: "../node_modules/react-native-static-safe-area-insets"
   RNSVG:
@@ -643,7 +638,6 @@ SPEC CHECKSUMS:
   RNGestureHandler: 920eb17f5b1e15dae6e5ed1904045f8f90e0b11e
   RNReanimated: 5bdcbcc3a72aedeee7bb099604262403aa75a1e5
   RNScreens: 0df01424e9e0ed7827200d6ed1087ddd06c493f9
-  RNSensors: e74c8bd9606400c1048ab67af7f41eb2091cb2fc
   RNStaticSafeAreaInsets: 055ddbf5e476321720457cdaeec0ff2ba40ec1b8
   RNSVG: 42a0c731b11179ebbd27a3eeeafa7201ebb476ff
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
@@ -652,6 +646,6 @@ SPEC CHECKSUMS:
   Yoga: 6671cf077f614314c22fd09ddf87d7abeee64e96
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: c9a419803cc1ffb38dd27d24a2fff9b256bf9e76
+PODFILE CHECKSUM: 3907c3693fbb3f09ab1843af6df8e2580281393c
 
 COCOAPODS: 1.11.3
