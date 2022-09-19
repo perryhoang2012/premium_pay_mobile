@@ -206,7 +206,7 @@ const ReceiveScreen = () => {
             color={Colors.White}
             size={16}>
             For the transaction to complete, you should get online during the 12
-            hours after Beams are sent
+            hours after Fac are sent
           </CustomText>
 
           <ButtonGradient

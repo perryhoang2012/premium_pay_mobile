@@ -326,15 +326,8 @@ export const AppIcon = {
   </svg>
   `,
 
-  iconDropRight: `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <g clip-path="url(#clip0_70_217)">
-  <path d="M2.71228 11.4211L2.71228 0.578825C2.71228 0.0657524 3.33184 -0.195624 3.6997 0.172239L9.12085 5.59339C9.3435 5.81604 9.3435 6.1839 9.12085 6.40665L3.6997 11.8278C3.33184 12.1956 2.71228 11.9342 2.71228 11.4211Z" fill="white"/>
-  </g>
-  <defs>
-  <clipPath id="clip0_70_217">
-  <rect width="12" height="12" fill="white" transform="matrix(-4.37114e-08 1 1 4.37114e-08 0 0)"/>
-  </clipPath>
-  </defs>
+  iconDropRight: `<svg width="166" height="293" viewBox="0 0 166 293" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M159.979 133.331L32.073 5.424C28.456 1.807 24.178 0 19.226 0C14.274 0 9.993 1.807 6.376 5.424C2.759 9.041 0.951996 13.322 0.951996 18.271V274.084C0.951996 279.032 2.759 283.316 6.376 286.931C9.997 290.548 14.278 292.359 19.226 292.359C24.175 292.359 28.456 290.548 32.073 286.931L159.979 159.024C163.593 155.411 165.407 151.127 165.407 146.177C165.407 141.229 163.594 136.948 159.979 133.331Z" fill="white"/>
   </svg>  
   `,
   iconBrowser: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

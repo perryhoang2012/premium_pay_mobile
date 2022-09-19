@@ -73,7 +73,8 @@ const RestoreWalletScreen = () => {
             middle
             center
             style={style.buttonStepOne}
-            row>
+            row
+            onPress={() => navigation.replace('AppDrawer')}>
             <CustomText color={Colors.White} weight={'500'}>
               {constants.NEXT}
             </CustomText>

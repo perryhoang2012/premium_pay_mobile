@@ -216,7 +216,7 @@ const CreateNewWallet = () => {
                 center
                 style={style.buttonCompleteStepTwo}
                 row
-                onPress={() => setStep(2)}>
+                onPress={() => navigation.replace('AppDrawer')}>
                 <CustomText color={Colors.White} weight={'500'}>
                   {constants.NEXT}
                 </CustomText>

@@ -22,6 +22,7 @@ import {setActiveDrawer, setActiveWallet} from '~redux/actions/ui';
 import {AppIcon} from '~assets/svg';
 import constants from '~constants';
 import routes from '~constants/routes';
+import {useNavigation} from '@react-navigation/native';
 
 if (
   Platform.OS === 'android' &&
@@ -32,6 +33,8 @@ if (
 
 export default function DrawerContent(props) {
   const dispatch = useDispatch();
+
+  const navigation = useNavigation();
 
   const activeDrawer = useSelector(rootState => rootState?.activeDrawer);
   const activeWallet = useSelector(rootState => rootState?.activeWallet);
@@ -183,13 +186,11 @@ export default function DrawerContent(props) {
                 setShowWallet(pre => !pre);
               }}
               hitSlop={{top: 10, bottom: 10, right: 10, left: 10}}>
-              <AppSvg
-                source={
-                  showWallet ? AppIcon.iconDropDown : AppIcon.iconDropRight
-                }
-                width={12}
-                height={12}
-              />
+              {showWallet ? (
+                <AppSvg source={AppIcon.iconDropDown} width={12} height={12} />
+              ) : (
+                <AppSvg source={AppIcon.iconDropRight} width={12} height={12} />
+              )}
             </CustomButton>
           )}
         </Block>
@@ -211,7 +212,8 @@ export default function DrawerContent(props) {
                   borderWidth: 1,
                   borderColor: 'rgba(72, 204, 247, 0.4)',
                   marginRight: pxScale.wp(30),
-                }}>
+                }}
+                onPress={() => navigation.navigate('CreateNewWallet')}>
                 <CustomText color={Colors.White} weight={'500'} size={15}>
                   {constants.CREATE}
                 </CustomText>

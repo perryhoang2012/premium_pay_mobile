@@ -22,7 +22,7 @@ const ChangePasswordScreen = () => {
       {title: 'PASSWORD CONFIRMATION', value: 'password_confirmation'},
     ];
     return input.map((item, index) => (
-      <Block style={{marginBottom: pxScale.hp(30)}}>
+      <Block key={index} style={{marginBottom: pxScale.hp(30)}}>
         <CustomText
           color={Colors.White}
           weight={'500'}

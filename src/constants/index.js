@@ -30,7 +30,7 @@ export default {
   NEXT: 'Next',
 
   SUBTITLE_GET_COINS:
-    ' See the wallet in action. Get a very small amount of Beams from the community faucet.',
+    ' See the wallet in action. Get a very small amount of Fac from the community faucet.',
 
   GET_COINS: 'Get coins',
 

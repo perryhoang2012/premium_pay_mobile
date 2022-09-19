@@ -8,7 +8,13 @@ import {HeaderDrawer, ButtonGradient, CustomButton} from '~components';
 import AppSvg from '~components/AppSvg';
 import {AppIcon} from '~assets/svg';
 import {pxScale} from '~utils/funcHelper';
-import {FlatList, LayoutAnimation, Platform, UIManager} from 'react-native';
+import {
+  FlatList,
+  LayoutAnimation,
+  Platform,
+  ScrollView,
+  UIManager,
+} from 'react-native';
 import constants from '~constants';
 import GetCoin from './components/GetCoin';
 import AppFastImage from '~components/AppFastImage';
@@ -499,8 +505,7 @@ const HomeScreen = () => {
               <Block style={{width: '100%', flex: 3}}>
                 {_renderInputAddToken()}
               </Block>
-
-              <Block flex style={{width: '100%'}}>
+              <Block flex style={{width: '100%', marginTop: pxScale.hp(50)}}>
                 <Block
                   row
                   middle

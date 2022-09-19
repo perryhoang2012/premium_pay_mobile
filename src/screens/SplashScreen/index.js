@@ -26,6 +26,9 @@ const SplashScreen = () => {
       } else {
         try {
           await AsyncStorage.setItem('isNewUser', 'true');
+          setTimeout(() => {
+            navigation.replace('WelcomeScreen');
+          }, 500);
         } catch (e) {}
       }
     } catch (e) {}
