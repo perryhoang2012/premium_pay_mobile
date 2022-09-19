@@ -90,7 +90,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.Background_item,
     padding: pxScale.hp(20),
     borderRadius: pxScale.wp(12),
-    // marginTop: pxScale.hp(10),
+    marginTop: pxScale.hp(10),
     borderColor: Colors.Border_Gray,
     borderWidth: 1,
   },
@@ -101,7 +101,7 @@ export default StyleSheet.create({
     borderWidth: 1,
   },
 
-  imageIconItem: {width: pxScale.wp(16), height: pxScale.hp(16)},
+  imageIconItem: {width: pxScale.wp(20), height: pxScale.hp(20)},
 
   centeredView: {
     flex: 1,

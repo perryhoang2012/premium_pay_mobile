@@ -41,7 +41,7 @@ export default StyleSheet.create({
 
   inputConfirm: {width: pxScale.wp(90), color: Colors.White},
 
-  textCenter: {textAlign: 'center'},
+  textCenter: {textAlign: 'center', marginHorizontal: pxScale.wp(10)},
 
   viewStepOne: {marginTop: pxScale.hp(20), padding: pxScale.wp(10)},
 
@@ -58,7 +58,7 @@ export default StyleSheet.create({
     height: pxScale.hp(40),
     backgroundColor: Colors.Blue_ice,
     borderRadius: 30,
-    minWidth: pxScale.wp(250),
+    width: pxScale.wp(250),
   },
 
   viewFlatListStepTwo: {
@@ -80,7 +80,7 @@ export default StyleSheet.create({
 
   buttonGrayStepTwo: {
     height: pxScale.hp(40),
-    backgroundColor: Colors.Black,
+    backgroundColor: Colors.Gray,
     borderRadius: pxScale.hp(30),
     minWidth: pxScale.wp(250),
     marginTop: pxScale.hp(20),

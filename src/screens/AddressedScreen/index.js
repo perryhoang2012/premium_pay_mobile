@@ -96,10 +96,10 @@ const AddressedScreen = () => {
         <Block style={styles.gradientDot} />
         <CustomText
           color={Colors.Gray}
-          weight={'500'}
+          weight={'400'}
           size={16}
           style={styles.textStatus}>
-          {constants.ONLINE}
+          {constants.ONLINE}: random node supports online transaction only
         </CustomText>
       </Block>
       <Block style={styles.body}>

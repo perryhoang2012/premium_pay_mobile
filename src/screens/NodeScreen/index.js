@@ -22,18 +22,18 @@ const NodeScreen = () => {
     const setting = [
       {
         title: 'RANDOM NODE (fast sync)',
-        subTitle: 'For those who don’t have any  other Fac wallet.',
+        subTitle: 'For those who don’t have any  other FAC wallet.',
         icon: AppIcon.iconNode,
       },
       {
         title: 'MOBILE NODE (slow sync)',
         subTitle:
-          'For those who want to sync the balance across multiple Fac wallets.',
+          'For those who want to sync the balance across multiple FAC wallets.',
         icon: AppIcon.iconMobile,
       },
       {
         title: 'OWN NODE (fast and secure, advanced)',
-        subTitle: 'For those who don’t have any  other Fac wallet.',
+        subTitle: 'For those who don’t have any  other FAC wallet.',
         icon: AppIcon.iconQrCode,
       },
     ];
@@ -66,8 +66,8 @@ const NodeScreen = () => {
               <AppSvg source={item.icon} width={24} height={24} />
               <CustomText
                 color={Colors.White}
-                size={16}
-                weight={'400'}
+                size={18}
+                weight={'500'}
                 style={{
                   marginTop: pxScale.wp(10),
                 }}>
@@ -99,7 +99,7 @@ const NodeScreen = () => {
           <Block style={styles.gradientDot} />
           <CustomText
             color={Colors.Gray}
-            weight={'500'}
+            weight={'400'}
             size={14}
             style={styles.textStatus}>
             {constants.ONLINE} : mobile node

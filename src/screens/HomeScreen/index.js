@@ -42,7 +42,7 @@ const HomeScreen = () => {
   const [showModalAddToken, setShowModalAddToken] = React.useState(false);
 
   const data = [
-    {id: 1, value: '0 Fac', title: '-Fac', image: images.imageIconApp},
+    {id: 1, value: '100 FAC', title: '$100', image: images.imageIconEllipse},
     {id: 2, value: '0 BNB', title: `-BNB`, image: images.imageBnb},
     {id: 3, value: '0 Ethereum', title: `-ETH`, image: images.imageEth},
   ];
@@ -73,48 +73,48 @@ const HomeScreen = () => {
   const dataChild = [
     {
       id: 1,
-      value: '-0.039997 Fac',
-      value2: '-0.03 USD',
+      value: '- 0.039997 FAC',
+      value2: '- 0.03 USD',
       type: 'Send',
       subTitle: 'Send (max privacy)',
       icon: AppIcon.iconArrowSendMax,
     },
     {
       id: 2,
-      value: '-0.01 Fac',
-      value2: '-0.01 USD',
+      value: '- 0.01 FAC',
+      value2: '- 0.01 USD',
       type: 'Send',
       subTitle: 'Send (offline)',
       icon: AppIcon.iconArrowSendOffline,
     },
     {
       id: 3,
-      value: '-0.01 Fac',
-      value2: '-0.01 USD',
+      value: '- 0.01 FAC',
+      value2: '- 0.01 USD',
       type: 'Send',
       subTitle: 'Send',
       icon: AppIcon.iconArrowSend,
     },
     {
       id: 4,
-      value: '+0.08 Fac',
-      value2: '+0.06 USD',
+      value: '+ 0.08 FAC',
+      value2: '+ 0.06 USD',
       type: 'Receive',
       subTitle: 'Receive',
       icon: AppIcon.iconArrowReceive,
     },
     {
       id: 5,
-      value: '-0.01 Fac',
-      value2: '-0.01 USD',
+      value: '- 0.01 FAC',
+      value2: '- 0.01 USD',
       type: 'Send',
       subTitle: 'Send',
       icon: AppIcon.iconArrowSend,
     },
     {
       id: 6,
-      value: '+0.08 Fac',
-      value2: '+0.06 USD',
+      value: '+ 0.08 FAC',
+      value2: '+ 0.06 USD',
       type: 'Receive',
       subTitle: 'Receive',
       icon: AppIcon.iconArrowReceive,
@@ -139,14 +139,16 @@ const HomeScreen = () => {
   const _renderItemHome = ({item}) => {
     return (
       <>
-        <CustomButton
+        <LinearGradient
+          colors={['#144765', '#194281']}
           style={style.containerItem}
-          onPress={() => {
-            LayoutAnimation.configureNext(
-              LayoutAnimation.Presets.easeInEaseOut,
-            );
-            setShowChildren(pre => !pre);
-          }}>
+          // onPress={() => {
+          //   LayoutAnimation.configureNext(
+          //     LayoutAnimation.Presets.easeInEaseOut,
+          //   );
+          //   setShowChildren(pre => !pre);
+          // }}
+        >
           {/* <Block row space={'between'}>
             <CustomText letterSpacing={1} color={Colors.Gray}>
               {constants.AVAILABLE}
@@ -158,16 +160,19 @@ const HomeScreen = () => {
             <Block style={{marginTop: pxScale.hp(4)}}>
               <AppFastImage source={item.image} style={style.imageIconItem} />
             </Block>
-            <Block style={{marginLeft: 10}}>
+            <Block style={{marginLeft: pxScale.hp(10)}}>
               <CustomText size={20} color={Colors.White}>
                 {item.value}
               </CustomText>
-              <CustomText size={14} color={Colors.Gray}>
+              <CustomText
+                style={{marginTop: pxScale.hp(4)}}
+                size={14}
+                color={Colors.Gray}>
                 {item.title}
               </CustomText>
             </Block>
           </Block>
-        </CustomButton>
+        </LinearGradient>
 
         <CustomButton
           row
@@ -365,7 +370,7 @@ const HomeScreen = () => {
           <Block style={style.gradientDot} />
           <CustomText
             color={Colors.Gray}
-            weight={'500'}
+            weight={'400'}
             size={16}
             style={style.textStatus}>
             {constants.ONLINE}

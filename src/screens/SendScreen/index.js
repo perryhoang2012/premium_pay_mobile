@@ -13,6 +13,8 @@ import {useNavigation} from '@react-navigation/native';
 import constants from '~constants';
 import CustomInput from '~components/CustomInput';
 import {LayoutAnimation, Platform, ScrollView, UIManager} from 'react-native';
+import images from '~assets/images';
+import AppFastImage from '~components/AppFastImage';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -140,13 +142,17 @@ const SendScreen = () => {
                   0.01
                 </CustomText>
               </Block>
-              <Block row>
+              <Block row middle>
+                <AppFastImage
+                  source={images.imageIconEllipse}
+                  style={{width: 20, height: 20, marginRight: 5}}
+                />
                 <CustomText
                   color={Colors.White}
                   size={14}
                   weight={'400'}
                   style={{marginRight: pxScale.wp(5)}}>
-                  Fac
+                  FAC
                 </CustomText>
                 <AppSvg source={AppIcon.iconDropDown} width={12} height={12} />
               </Block>
@@ -246,7 +252,7 @@ const SendScreen = () => {
           <CustomText
             color={Colors.White}
             size={14}
-            weight={'500'}
+            weight={'400'}
             style={styles.textCenterAndLineHeight}>
             {activeTab === 0
               ? 'For the transaction to complete, the recipient must get online within the next 12 hours and you should get online within 2 hours afterwards'

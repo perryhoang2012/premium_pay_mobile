@@ -85,7 +85,7 @@ const SettingNotificationScreen = () => {
           <Block style={styles.gradientDot} />
           <CustomText
             color={Colors.Gray}
-            weight={'500'}
+            weight={'400'}
             size={16}
             style={styles.textStatus}>
             {constants.ONLINE}

@@ -15,7 +15,7 @@ const TransactionHistoryScreen = () => {
 
   const renderTab = () => {
     const tabs = [
-      {title: 'TOKEN', value: 'token'},
+      {title: 'AVAILABLE', value: 'available'},
       {title: 'IN PROGRESS', value: 'in_progress'},
       {title: 'SPENT', value: 'spent'},
       {title: 'UNAVAILABLE', value: 'unavailable'},
@@ -72,7 +72,7 @@ const TransactionHistoryScreen = () => {
         <Block style={styles.gradientDot} />
         <CustomText
           color={Colors.Gray}
-          weight={'500'}
+          weight={'400'}
           size={16}
           style={styles.textStatus}>
           {constants.ONLINE}

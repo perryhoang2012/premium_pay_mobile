@@ -28,6 +28,7 @@ export default StyleSheet.create({
   },
   textStatus: {
     marginLeft: pxScale.wp(10),
+    width: pxScale.wp(250),
   },
   scrollStyle: {
     // justifyContent: 'center',

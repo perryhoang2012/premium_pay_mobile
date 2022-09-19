@@ -234,8 +234,6 @@ const CreateNewWallet = () => {
         title={
           step === 1
             ? constants.CREATE_NEW_WALLET
-            : step === 2
-            ? constants.SEND_PHASE
             : constants.CONFIRM_SEND_PHASE
         }
         goBack={goBack}

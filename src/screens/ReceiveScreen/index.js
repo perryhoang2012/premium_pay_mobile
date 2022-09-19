@@ -66,7 +66,7 @@ const ReceiveScreen = () => {
             weight={'500'}
             customFont="Bold"
             size={16}>
-            {constants.MAX_PRIVACY}
+            {constants.OFFLINE}
           </CustomText>
         </ButtonGradient>
       </Block>
@@ -206,7 +206,7 @@ const ReceiveScreen = () => {
             color={Colors.White}
             size={16}>
             For the transaction to complete, you should get online during the 12
-            hours after Fac are sent
+            hours after FAC are sent
           </CustomText>
 
           <ButtonGradient

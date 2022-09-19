@@ -259,7 +259,7 @@ export default function DrawerContent(props) {
           style={{width: pxScale.wp(20), height: pxScale.hp(21)}}
         />
         <CustomText color={Colors.White} style={{marginLeft: pxScale.wp(10)}}>
-          Where to buy Fac?
+          Where to buy FAC?
         </CustomText> */}
       </Block>
     </Block>

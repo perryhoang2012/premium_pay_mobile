@@ -36,11 +36,13 @@ const ModalScanQr = prop => {
           </CustomText>
 
           <ButtonGradient center middle onGradient style={styles.buttonShare}>
+            <AppSvg source={AppIcon.iconShare} width="14" height="14" />
             <CustomText
               color={Colors.White}
               size={18}
               customFont={'Bold'}
-              weight={'500'}>
+              weight={'500'}
+              style={{marginLeft: pxScale.wp(5)}}>
               {constants.SHARE_QR}
             </CustomText>
           </ButtonGradient>

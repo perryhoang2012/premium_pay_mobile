@@ -19,7 +19,7 @@ const GetCoin = props => {
             style={styles.textContent}
             color={Colors.White}
             weight={'400'}
-            size={14}>
+            size={12}>
             {constants.SUBTITLE_GET_COINS}
           </CustomText>
         </Block>
@@ -50,7 +50,10 @@ const styles = StyleSheet.create({
     borderRadius: pxScale.wp(12),
     marginTop: pxScale.wp(10),
   },
-  textContent: {},
+  textContent: {
+    width: pxScale.wp(230),
+    lineHeight: pxScale.hp(20),
+  },
   buttonGradient: {
     marginTop: pxScale.hp(16),
     height: pxScale.hp(40),
