@@ -80,7 +80,7 @@ export default StyleSheet.create({
 
   buttonGrayStepTwo: {
     height: pxScale.hp(40),
-    backgroundColor: Colors.Gray,
+    backgroundColor: Colors.Gradient_start,
     borderRadius: pxScale.hp(30),
     minWidth: pxScale.wp(250),
     marginTop: pxScale.hp(20),

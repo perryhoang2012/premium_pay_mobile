@@ -120,6 +120,43 @@ const TransactionDetailScreen = () => {
             </CustomText>
           </Block>
         </Block>
+
+        <Block style={styles.viewItem}>
+          <CustomButton
+            row
+            space={'between'}
+            onPress={() => {
+              LayoutAnimation.configureNext(
+                LayoutAnimation.Presets.easeInEaseOut,
+              );
+              setShowDropdown(pre => !pre);
+            }}>
+            <CustomText
+              color={Colors.White}
+              size={16}
+              weight={'500'}
+              letterSpacing={1}>
+              {constants.TRANSACTION_LIST}
+            </CustomText>
+            {showDropDown ? (
+              <AppSvg source={AppIcon.iconDropUp} width={14} height={14} />
+            ) : (
+              <AppSvg source={AppIcon.iconDropDown} width={14} height={14} />
+            )}
+          </CustomButton>
+
+          <Block row middle style={{marginTop: pxScale.hp(10)}}>
+            <AppSvg source={AppIcon.iconUpBlue} width={14} height={14} />
+            <CustomText
+              color={Colors.White}
+              size={15}
+              weight={'500'}
+              letterSpacing={1}
+              style={{marginLeft: pxScale.hp(10)}}>
+              0.01 FAC
+            </CustomText>
+          </Block>
+        </Block>
       </Block>
     </LinearGradient>
   );

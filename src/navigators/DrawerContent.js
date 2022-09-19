@@ -92,71 +92,12 @@ export default function DrawerContent(props) {
             <AppSvg source={item.icon} width={20} height={20} />
             <CustomText style={styles.menuText}>{item.title}</CustomText>
           </Block>
-          {item.value === 'wallet' && (
-            <CustomButton
-              onPress={() => {
-                LayoutAnimation.configureNext(
-                  LayoutAnimation.Presets.easeInEaseOut,
-                );
-                setShowWallet(pre => !pre);
-              }}
-              hitSlop={{top: 10, bottom: 10, right: 10, left: 10}}>
-              <AppSvg
-                source={
-                  showWallet ? AppIcon.iconDropDown : AppIcon.iconDropRight
-                }
-                width={12}
-                height={12}
-              />
-            </CustomButton>
-          )}
         </Block>
-
-        {item.value === 'wallet' && showWallet && (
-          <Block style={{flex: 1, width: '100%', marginTop: pxScale.hp(5)}}>
-            <ScrollView>
-              {dataWallet.map((item, index) => renderItemWallet(item, index))}
-            </ScrollView>
-            <Block row middle center style={{marginTop: pxScale.hp(10)}}>
-              <CustomButton
-                center
-                middle
-                style={{
-                  width: '35%',
-                  height: pxScale.hp(35),
-                  borderRadius: 50,
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  borderWidth: 1,
-                  borderColor: 'rgba(72, 204, 247, 0.4)',
-                  marginRight: pxScale.wp(30),
-                }}>
-                <CustomText color={Colors.White} weight={'500'} size={15}>
-                  {constants.CREATE}
-                </CustomText>
-              </CustomButton>
-              <CustomButton
-                center
-                middle
-                style={{
-                  width: '35%',
-                  height: pxScale.hp(35),
-                  borderRadius: 50,
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  borderWidth: 1,
-                  borderColor: 'rgba(72, 204, 247, 0.4)',
-                }}>
-                <CustomText color={Colors.White} weight={'500'} size={15}>
-                  {constants.IMPORT}
-                </CustomText>
-              </CustomButton>
-            </Block>
-          </Block>
-        )}
       </CustomButton>
     ));
   };
 
-  const _renderMenu = () => {
+  const _renderMenu = React.useCallback(() => {
     return routes.routesTop.map((item, index) => (
       <CustomButton
         key={item.title}
@@ -186,11 +127,13 @@ export default function DrawerContent(props) {
                 setShowWallet(pre => !pre);
               }}
               hitSlop={{top: 10, bottom: 10, right: 10, left: 10}}>
-              {showWallet ? (
-                <AppSvg source={AppIcon.iconDropDown} width={12} height={12} />
-              ) : (
-                <AppSvg source={AppIcon.iconDropRight} width={12} height={12} />
-              )}
+              <AppSvg
+                source={
+                  showWallet ? AppIcon.iconDropDownNew : AppIcon.iconDropRight
+                }
+                width={12}
+                height={12}
+              />
             </CustomButton>
           )}
         </Block>
@@ -238,7 +181,15 @@ export default function DrawerContent(props) {
         )}
       </CustomButton>
     ));
-  };
+  }, [
+    activeDrawer,
+    dataWallet,
+    dispatch,
+    navigation,
+    props.navigation,
+    renderItemWallet,
+    showWallet,
+  ]);
 
   return (
     <Block style={styles.container}>

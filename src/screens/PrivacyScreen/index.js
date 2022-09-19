@@ -21,7 +21,7 @@ const PrivacyScreen = () => {
   const renderSetting = () => {
     const setting = [
       {title: 'Ask for password on every Send', type: 'switch'},
-      {title: 'Enable Face Id/Fingerprint unlock', type: 'switch'},
+      {title: 'Enable Fingerprint/Face ID unlock', type: 'switch'},
       {title: 'Max Privacy lock time limit', subtitle: '72 hours'},
       {title: 'Verify speed phrase'},
       {title: 'Show owner key'},

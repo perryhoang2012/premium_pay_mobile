@@ -106,7 +106,7 @@ const ReceiveScreen = () => {
                       />
                     </CustomButton>
                     <AppSvg
-                      source={AppIcon.iconQrCode}
+                      source={AppIcon.iconQrCodeBlue}
                       width={16}
                       height={16}
                     />

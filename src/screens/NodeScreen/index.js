@@ -22,19 +22,19 @@ const NodeScreen = () => {
     const setting = [
       {
         title: 'RANDOM NODE (fast sync)',
-        subTitle: 'For those who don’t have any  other FAC wallet.',
+        subTitle: 'For those who don’t have any  other PPay wallet.',
         icon: AppIcon.iconNode,
       },
       {
         title: 'MOBILE NODE (slow sync)',
         subTitle:
-          'For those who want to sync the balance across multiple FAC wallets.',
+          'For those who want to sync the balance across multiple PPay wallets.',
         icon: AppIcon.iconMobile,
       },
       {
         title: 'OWN NODE (fast and secure, advanced)',
-        subTitle: 'For those who don’t have any  other FAC wallet.',
-        icon: AppIcon.iconQrCode,
+        subTitle: 'For those who don’t have any  other PPay wallet.',
+        icon: AppIcon.iconQrCodeBlue,
       },
     ];
     return (

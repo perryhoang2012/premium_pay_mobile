@@ -206,7 +206,8 @@ const HomeScreen = () => {
               {constants.ADDRESS_DETAILS}
             </CustomText>
           </Block>
-          <Block style={{marginTop: pxScale.hp(12)}}>
+          <Block
+            style={{marginTop: pxScale.hp(12), marginBottom: pxScale.hp(12)}}>
             {dataChild.map((itemChild, indexChild) =>
               _renderItemChild(itemChild, indexChild),
             )}
@@ -269,7 +270,7 @@ const HomeScreen = () => {
         style={[
           style.viewItemChild,
           {
-            backgroundColor: index % 2 === 0 ? Colors.Background_item : null,
+            backgroundColor: index % 2 === 0 ? null : Colors.Background_item,
             borderTopLeftRadius: index === 0 ? 12 : 0,
             borderTopRightRadius: index === 0 ? 12 : 0,
             borderBottomLeftRadius: index === dataChild.length - 1 ? 12 : 0,

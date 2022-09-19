@@ -13,10 +13,11 @@ export default {
   CONFIRM_SEND_PHASE: 'CONFIRM SEND PHASE',
   SUBTITLE_CREATE_WALLET:
     'Create a new wallet by generating a seed phrase. If you lose your divice, you will need the seed phrase to recover your funds. Never type your seed phrase in keychains or password managers. Never save it in your local filesystem or remote folders of any kind.',
-  DO_NOT_SEE_YOUR_PHRASE:
-    'Make at least 2 copies of the phrase in case of emergency',
+  DO_NOT_SEE_YOUR_PHRASE: 'Do not let anyone see your spee phrase',
   NEVER_TYPE_PHRASE:
     'Never type your seed phrase into password managers or elsewhere',
+  MAKE_AT_LEAST_2_COPIES:
+    'Make at least 2 copies of the phrase in case of emergency',
 
   I_UNDERSTAND: 'I understand',
 
@@ -93,4 +94,6 @@ export default {
   OFFER: 'OFFER',
 
   NFT_MARKETPLACE: 'NFT MARKETPLACE',
+
+  TRANSACTION_LIST: 'TRANSACTION LIST',
 };

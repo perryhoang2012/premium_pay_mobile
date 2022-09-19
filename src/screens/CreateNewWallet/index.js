@@ -127,7 +127,7 @@ const CreateNewWallet = () => {
                 <CustomText
                   style={style.textContentStepOne}
                   color={Colors.White}>
-                  {constants.DO_NOT_SEE_YOUR_PHRASE}
+                  {constants.MAKE_AT_LEAST_2_COPIES}
                 </CustomText>
               </Block>
             </Block>
@@ -140,7 +140,11 @@ const CreateNewWallet = () => {
                 style={style.buttonStepOne}
                 row
                 onPress={() => setStep(2)}>
-                <CustomText color={Colors.White} weight={'500'}>
+                <AppSvg source={AppIcon.iconCheck} width={14} height={14} />
+                <CustomText
+                  color={Colors.White}
+                  weight={'500'}
+                  style={{marginLeft: pxScale.wp(10)}}>
                   {constants.I_UNDERSTAND}
                 </CustomText>
               </ButtonGradient>
@@ -151,7 +155,9 @@ const CreateNewWallet = () => {
       case 2:
         return (
           <Block style={style.viewStepOne}>
-            <CustomText style={style.textCenter} color={Colors.White}>
+            <CustomText
+              color={Colors.White}
+              style={{width: '80%', marginLeft: pxScale.wp(8)}}>
               {constants.SUBTITLE_SEND_PHASE}
             </CustomText>
             <Block style={style.viewFlatListStepTwo}>
@@ -196,7 +202,9 @@ const CreateNewWallet = () => {
       case 3:
         return (
           <Block style={style.viewStepOne}>
-            <CustomText style={style.textCenter} color={Colors.White}>
+            <CustomText
+              style={{width: '80%', marginLeft: pxScale.wp(8)}}
+              color={Colors.White}>
               {constants.SUBTITLE_CONFIRM_SEED_PHASE}
             </CustomText>
             <Block style={style.viewFlatListStepTwo}>

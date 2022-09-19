@@ -16,7 +16,7 @@ export default StyleSheet.create({
   },
   body: {
     flex: 1,
-    padding: pxScale.wp(20),
+    paddingHorizontal: pxScale.wp(10),
   },
   viewStatus: {
     paddingHorizontal: pxScale.wp(10),

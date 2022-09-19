@@ -54,9 +54,9 @@ const TransactionHistoryScreen = () => {
           {constants.DEFAULT}
         </CustomText>
         <CustomText
-          color={Colors.White}
+          color={Colors.Gray}
           weight={'400'}
-          style={{marginTop: pxScale.hp(10)}}>
+          style={{marginTop: pxScale.hp(4)}}>
           3XHPHamvtJkoU3XHPHam
         </CustomText>
       </Block>

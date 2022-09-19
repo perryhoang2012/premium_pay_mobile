@@ -40,7 +40,7 @@ export default StyleSheet.create({
 
   textTitle: {
     marginLeft: pxScale.wp(10),
-    width: '70%',
+    width: '80%',
   },
 
   textSubTitle: {

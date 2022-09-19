@@ -54,7 +54,7 @@ const SendScreen = () => {
               style={{marginRight: pxScale.wp(10)}}>
               {constants.ADDRESS_DETAILS}
             </CustomText>
-            <AppSvg source={AppIcon.iconQrCode} width={16} height={16} />
+            <AppSvg source={AppIcon.iconQrCodeBlue} width={16} height={16} />
           </CustomButton>
         </Block>
         <CustomText

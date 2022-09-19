@@ -9,10 +9,13 @@ import CustomText from '~components/CustomText';
 import constants from '~constants';
 import styles from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useDispatch} from 'react-redux';
+import {setActiveDrawer} from '~redux/actions/ui';
 
 const SplashScreen = () => {
   // *
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   //
 
@@ -20,6 +23,7 @@ const SplashScreen = () => {
     try {
       const value = await AsyncStorage.getItem('isNewUser');
       if (value) {
+        dispatch(setActiveDrawer(1));
         setTimeout(() => {
           navigation.replace('AppDrawer');
         }, 500);

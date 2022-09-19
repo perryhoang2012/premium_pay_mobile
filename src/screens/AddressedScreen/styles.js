@@ -25,6 +25,7 @@ export default StyleSheet.create({
     height: pxScale.hp(12),
     borderRadius: pxScale.hp(50),
     backgroundColor: Colors.Green_status,
+    marginTop: pxScale.hp(4),
   },
   textStatus: {
     marginLeft: pxScale.wp(10),
@@ -44,11 +45,12 @@ export default StyleSheet.create({
     borderRadius: 3,
   },
   viewItem: {
-    height: pxScale.hp(64),
+    // height: pxScale.hp(64),
     backgroundColor: Colors.Background_item,
-    padding: pxScale.hp(12),
+    padding: pxScale.hp(20),
     borderColor: Colors.Border_Gray,
     borderWidth: 1,
+    paddingVertical: pxScale.hp(12),
   },
   viewUnderlined: {
     marginTop: pxScale.hp(5),
