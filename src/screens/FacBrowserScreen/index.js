@@ -12,14 +12,42 @@ import {AppIcon} from '~assets/svg';
 import AppSvg from '~components/AppSvg';
 import {useNavigation} from '@react-navigation/native';
 import CustomInput from '~components/CustomInput';
-import {ScrollView} from 'react-native';
+import {
+  Animated,
+  FlatList,
+  ScrollView,
+  useWindowDimensions,
+  Platform,
+  UIManager,
+  LayoutAnimation,
+} from 'react-native';
 import images from '~assets/images';
 import AppFastImage from '~components/AppFastImage';
+import {ExpandingDot} from 'react-native-animated-pagination-dots';
+
+if (
+  Platform.OS === 'android' &&
+  UIManager.setLayoutAnimationEnabledExperimental
+) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
 const FacBrowserScreen = () => {
+  const {width} = useWindowDimensions();
+
   const navigation = useNavigation();
 
+  const [onSearch, setOnSearch] = React.useState(false);
+
   const goBack = () => navigation.goBack();
+
+  const scrollX = React.useRef(new Animated.Value(0)).current;
+
+  const data = [
+    {id: 1, title: ' yOOts: mint t00bs', image: images.image_548},
+    {id: 2, title: ' yOOts: mint t00bs', image: images.image_548},
+    {id: 3, title: ' yOOts: mint t00bs', image: images.image_548},
+  ];
 
   const renderDataOffer = () => {
     const data = [
@@ -41,26 +69,73 @@ const FacBrowserScreen = () => {
     ));
   };
 
-  return (
-    <Block style={styles.linearGradient}>
-      <Block style={styles.body}>
-        <Block
-          row
+  const renderItem = ({item}) => {
+    return (
+      <Block>
+        <AppFastImage
+          source={item.image}
           style={{
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-            height: pxScale.hp(40),
-            width: '100%',
-            paddingHorizontal: pxScale.hp(20),
-            backgroundColor: Colors.Background_item,
-            borderRadius: pxScale.hp(10),
-          }}>
-          <AppSvg source={AppIcon.iconSearch} width={20} height={20} />
-          <CustomInput
-            placeholder={constants.SEARCH}
-            onChangeText={() => console.log('hihi')}
-            style={{color: Colors.White}}
-          />
+            width: width - 40,
+            height: pxScale.hp(211),
+            borderRadius: 10,
+          }}
+        />
+        <CustomText
+          color={Colors.White}
+          weight={'500'}
+          style={{marginTop: pxScale.hp(10)}}>
+          {item.title}
+        </CustomText>
+      </Block>
+    );
+  };
+
+  console.log(onSearch);
+  return (
+    <Block flex style={styles.linearGradient}>
+      <Block flex style={styles.body}>
+        <Block row>
+          <Block
+            row
+            style={{
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              height: pxScale.hp(40),
+              width: onSearch ? '80%' : '100%',
+              paddingHorizontal: pxScale.hp(20),
+              backgroundColor: Colors.Background_item,
+              borderRadius: pxScale.hp(10),
+            }}>
+            {!onSearch && (
+              <AppSvg source={AppIcon.iconSearch} width={20} height={20} />
+            )}
+            <CustomInput
+              onFocus={() => {
+                LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
+                setOnSearch(true);
+              }}
+              placeholder={constants.ENTER_WEBSITE}
+              onChangeText={() => {
+                if (!onSearch) {
+                  LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
+                  setOnSearch(true);
+                }
+                console.log('hihi');
+              }}
+              style={{color: Colors.White}}
+            />
+          </Block>
+          {onSearch && (
+            <CustomButton
+              center
+              middle
+              onPress={() => setOnSearch(false)}
+              style={{marginLeft: pxScale.wp(10), width: '20%'}}>
+              <CustomText color={Colors.Blue_ice}>
+                {constants.CANCEL}
+              </CustomText>
+            </CustomButton>
+          )}
         </Block>
 
         <Block style={{marginTop: pxScale.hp(20)}}>
@@ -76,23 +151,48 @@ const FacBrowserScreen = () => {
           </ScrollView>
         </Block>
 
-        <Block style={{marginTop: pxScale.hp(20)}}>
+        <Block flex style={{marginTop: pxScale.hp(20)}}>
           <CustomText color={Colors.White} weight={'500'} letterSpacing={1}>
             {constants.NFT_MARKETPLACE}
           </CustomText>
 
-          <Block style={{marginTop: pxScale.hp(12)}}>
-            <AppFastImage
-              source={images.image_548}
-              style={{width: '100%', height: pxScale.hp(211), borderRadius: 10}}
-            />
-
-            <CustomText
-              color={Colors.White}
-              weight={'500'}
-              style={{marginTop: pxScale.hp(10)}}>
-              yOOts: mint t00bs
-            </CustomText>
+          <Block flex style={{marginTop: pxScale.hp(12)}}>
+            <Block flex>
+              <FlatList
+                data={data}
+                keyExtractor={(item, index) => index}
+                showsHorizontalScrollIndicator={false}
+                onScroll={Animated.event(
+                  [{nativeEvent: {contentOffset: {x: scrollX}}}],
+                  {
+                    useNativeDriver: false,
+                  },
+                )}
+                pagingEnabled
+                horizontal
+                decelerationRate={'normal'}
+                scrollEventThrottle={16}
+                renderItem={renderItem}
+              />
+            </Block>
+            <Block style={{flex: 1}}>
+              <ExpandingDot
+                data={data}
+                expandingDotWidth={27}
+                scrollX={scrollX}
+                inActiveDotOpacity={0.7}
+                dotStyle={{
+                  width: pxScale.wp(6),
+                  height: pxScale.hp(6),
+                  backgroundColor: '#48CCF7',
+                  borderRadius: 5,
+                  // marginHorizontal: 5,
+                }}
+                containerStyle={{
+                  top: -10,
+                }}
+              />
+            </Block>
           </Block>
         </Block>
       </Block>

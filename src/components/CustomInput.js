@@ -12,6 +12,7 @@ const CustomInput = props => {
     negative,
     placeholder,
     password,
+    onFocus,
   } = props;
   return (
     <TextInput
@@ -29,6 +30,7 @@ const CustomInput = props => {
           onChangeText(e);
         }
       }}
+      onFocus={onFocus}
       placeholderTextColor="rgba(255, 255, 255, 0.6)"
       placeholder={placeholder}
       keyboardType={keyboardType || 'default'}

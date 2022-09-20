@@ -26,6 +26,7 @@
     "@react-navigation/native-stack": "^6.8.0",
     "react": "17.0.2",
     "react-native": "0.68.0",
+    "react-native-animated-pagination-dots": "^0.1.73",
     "react-native-fast-image": "^8.5.12",
     "react-native-gesture-handler": "^2.6.0",
     "react-native-image-progress": "^1.2.0",
