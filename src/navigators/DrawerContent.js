@@ -44,8 +44,6 @@ export default function DrawerContent(props) {
   const activeWallet = useSelector(rootState => rootState?.activeWallet);
   const netWorkActive = useSelector(rootState => rootState?.netWorkActive);
 
-  console.log(netWorkActive);
-
   const [showWallet, setShowWallet] = React.useState(false);
   const [showNetwork, setShowNetwork] = React.useState(false);
 

@@ -90,7 +90,6 @@ const FacBrowserScreen = () => {
     );
   };
 
-  console.log(onSearch);
   return (
     <Block flex style={styles.linearGradient}>
       <Block flex style={styles.body}>
