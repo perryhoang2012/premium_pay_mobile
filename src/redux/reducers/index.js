@@ -3,6 +3,7 @@ import {SET_ACTIVE_DRAWER} from '~constants/actionRedux';
 var initialState = {
   activeDrawer: 1,
   activeWallet: 0,
+  netWorkActive: 'FACscan',
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -12,6 +13,9 @@ export const userReducer = (state = initialState, action) => {
     }
     case 'SET_ACTIVE_WALLET': {
       return {...state, activeWallet: action.payload};
+    }
+    case 'SET_NETWORK_ACTIVE': {
+      return {...state, netWorkActive: action.payload};
     }
     default:
       return state;

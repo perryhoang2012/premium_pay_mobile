@@ -35,12 +35,12 @@ const SettingScreen = () => {
         icon: AppIcon.iconPrivacy,
         route: 'PrivacyScreen',
       },
-      {
-        id: 1,
-        title: 'Utilities',
-        icon: AppIcon.iconUtilities,
-        route: 'UtilitiesScreen',
-      },
+      // {
+      //   id: 1,
+      //   title: 'Utilities',
+      //   icon: AppIcon.iconUtilities,
+      //   route: 'UtilitiesScreen',
+      // },
       // {
       //   id: 1,
       //   title: 'Face Id',

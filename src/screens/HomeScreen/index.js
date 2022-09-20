@@ -219,9 +219,9 @@ const HomeScreen = () => {
 
   const _renderInputAddToken = () => {
     const input = [
-      {title: 'MINT ADDRESS', value: '', type: 'Paste'},
-      {title: 'NAME', value: ''},
-      {title: 'SYMBOL', value: ''},
+      {title: 'TOKEN ADDRESS', value: '', type: 'Paste'},
+      {title: 'TOKEN DECIMAL', value: ''},
+      {title: 'TOKEN SYMBOL', value: ''},
     ];
 
     return input.map((item, index) => (
@@ -409,7 +409,7 @@ const HomeScreen = () => {
             </CustomText>
           </ButtonGradient>
         </Block>
-        {!closeGetCoin && <GetCoin toggleGetCoin={toggleGetCoin} />}
+        {/* {!closeGetCoin && <GetCoin toggleGetCoin={toggleGetCoin} />} */}
         <Block style={style.viewScrollView}>
           <FlatList
             showsVerticalScrollIndicator={false}

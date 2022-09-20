@@ -81,7 +81,7 @@ const ReceiveScreen = () => {
 
   const renderContent = () => {
     return (
-      <Block style={{marginTop: pxScale.hp(16)}}>
+      <Block>
         {data.map((item, index) => (
           <Block key={index} style={styles.viewItem}>
             {item.type === 'address' ? (
@@ -179,23 +179,23 @@ const ReceiveScreen = () => {
         goBack={goBack}
       />
       <Block style={styles.body}>
-        <CustomText
+        {/* <CustomText
           color={Colors.White}
           size={16}
           weight={'500'}
           letterSpacing={1}>
           TRANSACTION TYPE
         </CustomText>
-        {renderTab()}
+        {renderTab()} */}
         {renderContent()}
 
         <Block center middle>
-          <CustomText
+          {/* <CustomText
             style={styles.textCenterAndLineHeight}
             color={Colors.White}
             size={16}>
             Sender will be given a choice between regular and offline payment.
-          </CustomText>
+          </CustomText> */}
           <CustomText
             style={[
               styles.textCenterAndLineHeight,

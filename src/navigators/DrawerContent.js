@@ -18,7 +18,11 @@ import AppFastImage from '~components/AppFastImage';
 import images from '~assets/images';
 import AppSvg from '~components/AppSvg';
 import {useSelector, useDispatch} from 'react-redux';
-import {setActiveDrawer, setActiveWallet} from '~redux/actions/ui';
+import {
+  setActiveDrawer,
+  setActiveWallet,
+  setNetWorkActive,
+} from '~redux/actions/ui';
 import {AppIcon} from '~assets/svg';
 import constants from '~constants';
 import routes from '~constants/routes';
@@ -38,13 +42,35 @@ export default function DrawerContent(props) {
 
   const activeDrawer = useSelector(rootState => rootState?.activeDrawer);
   const activeWallet = useSelector(rootState => rootState?.activeWallet);
+  const netWorkActive = useSelector(rootState => rootState?.netWorkActive);
+
+  console.log(netWorkActive);
 
   const [showWallet, setShowWallet] = React.useState(false);
+  const [showNetwork, setShowNetwork] = React.useState(false);
+
+  const [activeNetwork, setActiveNetwork] = React.useState(0);
 
   const dataWallet = [
     {id: 1, name: 'Account 1 (0xDeEb...367)'},
     {id: 2, name: 'Account 2 (0xDeEb...256)'},
     {id: 3, name: 'Account 3 (0xDeEb...341)'},
+  ];
+
+  const dataNetwork = [
+    {
+      id: 1,
+      title: 'Fahrenheit Chain',
+      icon: images.imageIconEllipse,
+      value: 'FACscan',
+    },
+    {
+      id: 1,
+      title: 'Ethereum Main Network',
+      icon: images.imageBnb,
+      value: 'Etherscan',
+    },
+    {id: 1, title: 'BSC', icon: images.imageEth, value: 'BSCscan'},
   ];
 
   const renderItemWallet = React.useCallback(
@@ -69,6 +95,52 @@ export default function DrawerContent(props) {
       );
     },
     [activeWallet, dispatch],
+  );
+
+  const renderItemNetwork = React.useCallback(
+    (item, index) => {
+      return (
+        <CustomButton
+          row
+          middle
+          key={index}
+          style={{
+            width: '100%',
+            height: pxScale.hp(39),
+            marginLeft: pxScale.wp(20),
+            borderRadius: activeNetwork === index ? pxScale.hp(10) : 0,
+          }}
+          onPress={() => {
+            dispatch(setNetWorkActive(item.value));
+            setActiveNetwork(index);
+          }}>
+          <Block row style={{width: '80%'}}>
+            <AppFastImage
+              source={item.icon}
+              style={{width: pxScale.wp(20), height: pxScale.hp(20)}}
+            />
+            <CustomText
+              style={{marginLeft: pxScale.wp(10)}}
+              color={activeNetwork === index ? Colors.White : Colors.Blue_ice}>
+              {item.title}
+            </CustomText>
+          </Block>
+          {activeNetwork === index && (
+            <Block
+              style={{
+                width: pxScale.wp(12),
+                height: pxScale.hp(12),
+                borderRadius: pxScale.hp(50),
+                backgroundColor: Colors.Green_status,
+                alignItems: 'flex-end',
+                // marginLeft: pxScale.wp(140),
+              }}
+            />
+          )}
+        </CustomButton>
+      );
+    },
+    [activeNetwork, dispatch],
   );
 
   const _renderMenuFooter = () => {
@@ -113,11 +185,43 @@ export default function DrawerContent(props) {
           dispatch(setActiveDrawer(item.id));
           item.route && props.navigation.navigate(item.route);
         }}>
-        <Block row>
-          <Block row flex>
+        <Block row middle>
+          <Block row flex middle>
             <AppSvg source={item.icon} width={20} height={20} />
-            <CustomText style={styles.menuText}>{item.title}</CustomText>
+            <Block>
+              <CustomText style={styles.menuText}>
+                {item.value === 'view_on'
+                  ? item.title + netWorkActive
+                  : item.title}
+              </CustomText>
+              {item.children && (
+                <CustomText
+                  color={Colors.Blue_ice}
+                  style={{marginLeft: pxScale.wp(6), marginTop: pxScale.hp(2)}}>
+                  {item.children}
+                </CustomText>
+              )}
+            </Block>
           </Block>
+
+          {item.value === 'network' && (
+            <CustomButton
+              onPress={() => {
+                setShowNetwork(pre => !pre);
+                LayoutAnimation.configureNext(
+                  LayoutAnimation.Presets.easeInEaseOut,
+                );
+              }}
+              hitSlop={{top: 10, bottom: 10, right: 10, left: 10}}>
+              <AppSvg
+                source={
+                  showNetwork ? AppIcon.iconDropDownNew : AppIcon.iconDropRight
+                }
+                width={12}
+                height={12}
+              />
+            </CustomButton>
+          )}
           {item.value === 'wallet' && (
             <CustomButton
               onPress={() => {
@@ -138,10 +242,43 @@ export default function DrawerContent(props) {
           )}
         </Block>
 
+        {item.value === 'network' && showNetwork && (
+          <Block style={{flex: 1, width: '100%', marginTop: pxScale.hp(5)}}>
+            <ScrollView>
+              {dataNetwork.map((itemNetwork, indexNetwork) =>
+                renderItemNetwork(itemNetwork, indexNetwork),
+              )}
+            </ScrollView>
+            <Block
+              row
+              middle
+              style={{marginTop: pxScale.hp(6), marginLeft: pxScale.wp(20)}}>
+              <CustomButton
+                center
+                middle
+                style={{
+                  paddingHorizontal: pxScale.wp(15),
+                  height: pxScale.hp(39),
+                  borderRadius: 50,
+                  backgroundColor: Colors.Gradient_start,
+                  borderWidth: 1,
+                  borderColor: 'rgba(72, 204, 247, 0.4)',
+                }}
+                onPress={() => navigation.navigate('AddANetworkScreen')}>
+                <CustomText color={Colors.White} weight={'500'} size={15}>
+                  {constants.ADD_A_NETWORK}
+                </CustomText>
+              </CustomButton>
+            </Block>
+          </Block>
+        )}
+
         {item.value === 'wallet' && showWallet && (
           <Block style={{flex: 1, width: '100%', marginTop: pxScale.hp(5)}}>
             <ScrollView>
-              {dataWallet.map((item, index) => renderItemWallet(item, index))}
+              {dataWallet.map((itemWallet, indexWallet) =>
+                renderItemWallet(itemWallet, indexWallet),
+              )}
             </ScrollView>
             <Block row middle center style={{marginTop: pxScale.hp(10)}}>
               <CustomButton
@@ -183,11 +320,14 @@ export default function DrawerContent(props) {
     ));
   }, [
     activeDrawer,
+    dataNetwork,
     dataWallet,
     dispatch,
     navigation,
     props.navigation,
+    renderItemNetwork,
     renderItemWallet,
+    showNetwork,
     showWallet,
   ]);
 

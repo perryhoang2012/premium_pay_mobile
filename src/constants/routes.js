@@ -56,12 +56,33 @@ const DOCUMENTATION = {
 
 const SETTING = {
   id: 7,
-  title: 'Setting',
+  title: 'Settings',
   icon: AppIcon.iconSetting,
   value: 'setting',
   route: 'SettingScreen',
 };
-let routesTop = [WALLET, ADDRESS_BOOK, TRANSACTION_HISTORY, FAC_BROWSER];
+
+const VIEW_ON_FAC = {
+  id: 8,
+  title: 'View on ',
+  icon: AppIcon.iconViewOnFAC,
+  value: 'view_on',
+};
+const NETWORK = {
+  id: 9,
+  title: 'NetWork',
+  icon: AppIcon.iconNetWork,
+  value: 'network',
+  children: 'Fahrenheit Chain',
+};
+
+let routesTop = [
+  WALLET,
+  TRANSACTION_HISTORY,
+  FAC_BROWSER,
+  VIEW_ON_FAC,
+  NETWORK,
+];
 
 let routesBottom = [NOTIFICATION, DOCUMENTATION, SETTING];
 

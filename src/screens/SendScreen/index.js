@@ -57,12 +57,12 @@ const SendScreen = () => {
             <AppSvg source={AppIcon.iconQrCodeBlue} width={16} height={16} />
           </CustomButton>
         </Block>
-        <CustomText
+        {/* <CustomText
           color={Colors.White}
           weight={'400'}
           style={{marginTop: pxScale.wp(10)}}>
           Regular online-only address.
-        </CustomText>
+        </CustomText> */}
       </Block>
     );
   };
@@ -113,7 +113,7 @@ const SendScreen = () => {
           style={styles.body}
           showsVerticalScrollIndicator={false}>
           {transactionInfo()}
-          <Block>
+          {/* <Block>
             <CustomText
               color={Colors.White}
               size={16}
@@ -122,8 +122,8 @@ const SendScreen = () => {
               style={{textAlign: 'center'}}>
               {constants.TRANSACTION_TYPE}
             </CustomText>
-          </Block>
-          {renderTab()}
+          </Block> */}
+          {/* {renderTab()} */}
           <Block style={styles.viewItem}>
             <CustomText
               color={Colors.White}

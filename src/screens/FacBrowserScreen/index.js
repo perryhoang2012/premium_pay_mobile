@@ -23,11 +23,11 @@ const FacBrowserScreen = () => {
 
   const renderDataOffer = () => {
     const data = [
+      {id: 4, title: 'FACswap', image: images.imageLogoGradient},
       {id: 1, title: 'Pancakes', image: images.imagePancakes},
       {id: 2, title: '1 inch', image: images.image1Inch},
       {id: 3, title: 'UniSwap', image: images.imageUniswap},
     ];
-
     return data.map((item, index) => (
       <Block center middle key={index} style={{marginRight: pxScale.wp(12)}}>
         <AppFastImage
@@ -68,7 +68,10 @@ const FacBrowserScreen = () => {
             {constants.OFFER}
           </CustomText>
 
-          <ScrollView horizontal style={{marginTop: pxScale.hp(16)}}>
+          <ScrollView
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            style={{marginTop: pxScale.hp(16)}}>
             {renderDataOffer()}
           </ScrollView>
         </Block>

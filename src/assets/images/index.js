@@ -11,6 +11,6 @@ export default {
   imagePancakes: require('./Pancakes.png'),
   image1Inch: require('./1_inch.png'),
   imageUniswap: require('./Uniswap.png'),
-
   image_548: require('./image_548.png'),
+  imageLogoGradient: require('./logo_gradient.png'),
 };

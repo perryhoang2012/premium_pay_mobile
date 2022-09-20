@@ -20,6 +20,7 @@ import {
   RestoreWalletScreen,
   ChangePasswordScreen,
   FacBrowserScreen,
+  AddANetworkScreen,
 } from '~screens';
 import AppDrawer from './AppDrawer';
 
@@ -73,8 +74,8 @@ const AppNavigator = () => {
           name="ChangePasswordScreen"
           component={ChangePasswordScreen}
         />
-
         <Stack.Screen name="FacBrowserScreen" component={FacBrowserScreen} />
+        <Stack.Screen name="AddANetworkScreen" component={AddANetworkScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -6,8 +6,8 @@ import Insets from '~utils/insets';
 export default StyleSheet.create({
   linearGradient: {
     flex: 1,
-    paddingLeft: pxScale.wp(12),
-    paddingRight: pxScale.wp(12),
+    paddingLeft: pxScale.wp(4),
+    paddingRight: pxScale.wp(4),
     backgroundColor: Colors.Gradient_end,
   },
   container: {

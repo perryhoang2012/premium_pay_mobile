@@ -20,6 +20,7 @@ import RestoreWalletScreen from './RestoreWalletScreen';
 import TransactionHistoryScreen from './TransactionHistoryScreen';
 import ChangePasswordScreen from './ChangePasswordScreen';
 import FacBrowserScreen from './FacBrowserScreen';
+import AddANetworkScreen from './AddANetworkScreen';
 
 module.exports = {
   HomeScreen,
@@ -44,4 +45,5 @@ module.exports = {
   TransactionHistoryScreen,
   ChangePasswordScreen,
   FacBrowserScreen,
+  AddANetworkScreen,
 };

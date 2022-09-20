@@ -81,7 +81,7 @@ export default {
   RESTORE_WALLET_UP_CASE: 'RESTORE WALLET',
   SUBTITLE_RESTORE_WALLET: 'Type in your seed phrase',
 
-  MANAGER_TOKEN_LIST: 'Manager token list',
+  MANAGER_TOKEN_LIST: 'Manage token list',
   SEARCH: 'Search',
 
   ADD_TOKEN_METADATA: 'Add token metadata',
@@ -96,4 +96,8 @@ export default {
   NFT_MARKETPLACE: 'NFT MARKETPLACE',
 
   TRANSACTION_LIST: 'TRANSACTION LIST',
+
+  ADD_A_NETWORK: 'Add a network',
+
+  ADD: 'Add',
 };
