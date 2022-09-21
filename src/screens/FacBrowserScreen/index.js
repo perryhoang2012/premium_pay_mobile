@@ -20,6 +20,7 @@ import {
   Platform,
   UIManager,
   LayoutAnimation,
+  Linking,
 } from 'react-native';
 import images from '~assets/images';
 import AppFastImage from '~components/AppFastImage';
@@ -39,9 +40,25 @@ const FacBrowserScreen = () => {
 
   const [onSearch, setOnSearch] = React.useState(false);
 
+  const [valueSearch, setValueSearch] = React.useState('');
   const goBack = () => navigation.goBack();
 
   const scrollX = React.useRef(new Animated.Value(0)).current;
+
+  const submitSearch = () => {
+    const url = 'https://www.google.com/search?q=' + valueSearch;
+
+    Linking.openURL(url).catch(err => {
+      alert("Don't know how to open URI: " + url);
+    });
+    // Linking.canOpenURL(url).then(supported => {
+    //   if (supported) {
+    //     Linking.openURL(url);
+    //   } else {
+    //     console.log("Don't know how to open URI: " + url);
+    //   }
+    // });
+  };
 
   const data = [
     {id: 1, title: ' yOOts: mint t00bs', image: images.image_548},
@@ -92,6 +109,7 @@ const FacBrowserScreen = () => {
 
   return (
     <Block flex style={styles.linearGradient}>
+      <Header goBack={goBack} />
       <Block flex style={styles.body}>
         <Block row>
           <Block
@@ -109,26 +127,33 @@ const FacBrowserScreen = () => {
               <AppSvg source={AppIcon.iconSearch} width={20} height={20} />
             )}
             <CustomInput
+              value={valueSearch}
+              onSubmitEditing={() => submitSearch()}
               onFocus={() => {
                 LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
                 setOnSearch(true);
               }}
               placeholder={constants.ENTER_WEBSITE}
-              onChangeText={() => {
+              onChangeText={e => {
                 if (!onSearch) {
                   LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
                   setOnSearch(true);
                 }
-                console.log('hihi');
+
+                setValueSearch(e);
               }}
-              style={{color: Colors.White}}
+              style={{color: Colors.White, width: '100%'}}
             />
           </Block>
           {onSearch && (
             <CustomButton
               center
               middle
-              onPress={() => setOnSearch(false)}
+              onPress={() => {
+                LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
+                setOnSearch(false);
+                setValueSearch('');
+              }}
               style={{marginLeft: pxScale.wp(10), width: '20%'}}>
               <CustomText color={Colors.Blue_ice}>
                 {constants.CANCEL}

@@ -83,7 +83,7 @@ export default {
 
   MANAGER_TOKEN_LIST: 'Manage token list',
   SEARCH: 'Search',
-  ENTER_WEBSITE: 'Enter website',
+  ENTER_WEBSITE: 'Search or Enter website',
 
   ADD_TOKEN_METADATA: 'Add token metadata',
   CANCEL: 'Cancel',

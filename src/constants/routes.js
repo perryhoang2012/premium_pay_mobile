@@ -70,7 +70,7 @@ const VIEW_ON_FAC = {
 };
 const NETWORK = {
   id: 9,
-  title: 'NetWork',
+  title: 'Networks',
   icon: AppIcon.iconNetWork,
   value: 'network',
   children: 'Fahrenheit Chain',

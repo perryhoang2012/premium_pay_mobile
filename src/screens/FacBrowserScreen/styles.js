@@ -18,7 +18,7 @@ export default StyleSheet.create({
   },
   body: {
     flex: 1,
-    padding: pxScale.wp(20),
-    marginTop: Insets.TOP,
+    paddingHorizontal: pxScale.wp(20),
+    // marginTop: Insets.TOP,
   },
 });

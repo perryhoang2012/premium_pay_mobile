@@ -13,6 +13,7 @@ const CustomInput = props => {
     placeholder,
     password,
     onFocus,
+    onSubmitEditing,
   } = props;
   return (
     <TextInput
@@ -31,6 +32,7 @@ const CustomInput = props => {
         }
       }}
       onFocus={onFocus}
+      onSubmitEditing={onSubmitEditing}
       placeholderTextColor="rgba(255, 255, 255, 0.6)"
       placeholder={placeholder}
       keyboardType={keyboardType || 'default'}

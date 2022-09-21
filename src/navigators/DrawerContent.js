@@ -47,6 +47,9 @@ export default function DrawerContent(props) {
   const [showWallet, setShowWallet] = React.useState(false);
   const [showNetwork, setShowNetwork] = React.useState(false);
 
+  const [activeChildren, setActiveChildren] =
+    React.useState('Fahrenheit Chain');
+
   const [activeNetwork, setActiveNetwork] = React.useState(0);
 
   const dataWallet = [
@@ -111,11 +114,13 @@ export default function DrawerContent(props) {
           onPress={() => {
             dispatch(setNetWorkActive(item.value));
             setActiveNetwork(index);
+            setActiveChildren(item.title);
           }}>
-          <Block row style={{width: '80%'}}>
+          <Block row style={{width: '85%'}}>
             <AppFastImage
+              resizeMode="contain"
               source={item.icon}
-              style={{width: pxScale.wp(20), height: pxScale.hp(20)}}
+              style={{width: pxScale.wp(23), height: pxScale.hp(20)}}
             />
             <CustomText
               style={{marginLeft: pxScale.wp(10)}}
@@ -196,7 +201,7 @@ export default function DrawerContent(props) {
                 <CustomText
                   color={Colors.Blue_ice}
                   style={{marginLeft: pxScale.wp(6), marginTop: pxScale.hp(2)}}>
-                  {item.children}
+                  {activeChildren}
                 </CustomText>
               )}
             </Block>

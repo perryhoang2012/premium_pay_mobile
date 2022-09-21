@@ -25,7 +25,7 @@ const ChangePasswordScreen = () => {
         value: 'network_name',
         placeholder: 'Network Name (optional)',
       },
-      {title: 'RFC URL', value: 'rfc_url', placeholder: 'New RPC Network'},
+      {title: 'RPC URL', value: 'rpc_url', placeholder: 'New RPC Network'},
       {title: 'CHAIN ID', value: 'chain_id', placeholder: 'Chain ID'},
       {title: 'SYMBOL', value: 'symbol', placeholder: 'Symbol (optional)'},
       {
