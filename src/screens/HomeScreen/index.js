@@ -23,6 +23,7 @@ import {useNavigation} from '@react-navigation/native';
 import {Modal} from 'react-native';
 import CustomInput from '~components/CustomInput';
 import {Switch} from 'react-native';
+import {Alert} from 'react-native';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -139,8 +140,7 @@ const HomeScreen = () => {
   const _renderItemHome = ({item}) => {
     return (
       <>
-        <LinearGradient
-          colors={['#144765', '#194281']}
+        <Block
           style={style.containerItem}
           // onPress={() => {
           //   LayoutAnimation.configureNext(
@@ -172,7 +172,7 @@ const HomeScreen = () => {
               </CustomText>
             </Block>
           </Block>
-        </LinearGradient>
+        </Block>
 
         <CustomButton
           row
@@ -194,12 +194,12 @@ const HomeScreen = () => {
             <CustomText
               color={Colors.White}
               size={16}
-              weight={'500'}
+              weight={'700'}
               letterSpacing={2}>
               {constants.TRANSACTION}
             </CustomText>
             <CustomText
-              color={Colors.Blue_ice}
+              color={Colors.Pink}
               weight={'500'}
               customFont="Bold"
               style={{marginLeft: pxScale.wp(10)}}>
@@ -207,7 +207,11 @@ const HomeScreen = () => {
             </CustomText>
           </Block>
           <Block
-            style={{marginTop: pxScale.hp(12), marginBottom: pxScale.hp(12)}}>
+            style={{
+              marginTop: pxScale.hp(12),
+              marginBottom: pxScale.hp(12),
+              borderRadius: 10,
+            }}>
             {dataChild.map((itemChild, indexChild) =>
               _renderItemChild(itemChild, indexChild),
             )}
@@ -232,7 +236,7 @@ const HomeScreen = () => {
           middle
           center
           style={{
-            backgroundColor: Colors.Background_item,
+            backgroundColor: Colors.Background_button,
             marginTop: pxScale.hp(8),
             height: pxScale.hp(48),
             borderRadius: pxScale.hp(10),
@@ -245,12 +249,12 @@ const HomeScreen = () => {
           {item.type === 'Paste' && (
             <CustomButton
               style={{
-                backgroundColor: 'rgba(72, 204, 247, 0.2)',
+                backgroundColor: 'rgba(241, 63, 149, 0.2)',
                 padding: 7,
                 borderRadius: pxScale.hp(10),
                 marginRight: pxScale.wp(10),
               }}>
-              <CustomText size={12} color={Colors.Blue_ice}>
+              <CustomText size={12} color={Colors.Pink}>
                 Paste
               </CustomText>
             </CustomButton>
@@ -270,7 +274,8 @@ const HomeScreen = () => {
         style={[
           style.viewItemChild,
           {
-            backgroundColor: index % 2 === 0 ? null : Colors.Background_item,
+            backgroundColor:
+              index % 2 === 0 ? '#111010' : Colors.Background_button,
             borderTopLeftRadius: index === 0 ? 12 : 0,
             borderTopRightRadius: index === 0 ? 12 : 0,
             borderBottomLeftRadius: index === dataChild.length - 1 ? 12 : 0,
@@ -306,8 +311,7 @@ const HomeScreen = () => {
 
   const _renderItemToken = ({item}) => {
     return (
-      <LinearGradient
-        colors={['#144765', '#194281']}
+      <Block
         style={[
           {
             flex: 1,
@@ -319,6 +323,7 @@ const HomeScreen = () => {
             height: pxScale.hp(70),
             borderRadius: pxScale.hp(12),
             paddingHorizontal: pxScale.wp(16),
+            backgroundColor: Colors.Background_button,
           },
         ]}>
         <Block flex>
@@ -349,7 +354,30 @@ const HomeScreen = () => {
           </CustomText>
         </Block>
 
-        <Switch
+        <CustomButton
+          center
+          middle
+          style={{
+            width: 30,
+            height: 30,
+            borderRadius: 6,
+            borderColor: Colors.Background_block,
+            borderWidth: 1,
+          }}
+          onPress={() =>
+            Alert.alert('Delete token', 'Are you sure you want to delete it?', [
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ])
+          }>
+          <AppSvg source={AppIcon.iconCancel} width={12} height={12} />
+        </CustomButton>
+
+        {/* <Switch
           trackColor={{
             false: Colors.Gradient_end,
             true: Colors.Gradient_start,
@@ -357,13 +385,18 @@ const HomeScreen = () => {
           thumbColor={Colors.White}
           ios_backgroundColor={Colors.Gray}
           style={style.switch}
-        />
-      </LinearGradient>
+        /> */}
+      </Block>
     );
   };
   return (
     <LinearGradient
-      colors={[Colors.Gradient_start, Colors.Gradient_end]}
+      colors={[
+        Colors.Gradient_start,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+      ]}
       style={style.linearGradient}>
       <HeaderDrawer title={'WALLET'} />
       <Block style={style.body}>
@@ -378,8 +411,7 @@ const HomeScreen = () => {
           </CustomText>
         </Block>
         <Block middle row space="between" style={style.viewDoubleButton}>
-          <ButtonGradient
-            onGradient
+          <CustomButton
             row
             center
             middle
@@ -387,14 +419,13 @@ const HomeScreen = () => {
             onPress={() => goToSend()}>
             <AppSvg source={AppIcon.iconUp} width={16} height={16} />
             <CustomText
-              color={Colors.White}
+              color={Colors.Black}
               style={style.textButton}
-              weight={'500'}>
+              weight={'600'}>
               {constants.SEND}
             </CustomText>
-          </ButtonGradient>
-          <ButtonGradient
-            onGradient
+          </CustomButton>
+          <CustomButton
             middle
             row
             center
@@ -402,12 +433,12 @@ const HomeScreen = () => {
             onPress={() => goToReceive()}>
             <AppSvg source={AppIcon.iconDown} width={16} height={16} />
             <CustomText
-              color={Colors.White}
+              color={Colors.Black}
               style={style.textButton}
-              weight={'500'}>
+              weight={'600'}>
               {constants.RECEIVE}
             </CustomText>
-          </ButtonGradient>
+          </CustomButton>
         </Block>
         {/* {!closeGetCoin && <GetCoin toggleGetCoin={toggleGetCoin} />} */}
         <Block style={style.viewScrollView}>
@@ -454,7 +485,7 @@ const HomeScreen = () => {
                   height: pxScale.hp(40),
                   width: '100%',
                   paddingHorizontal: pxScale.hp(20),
-                  backgroundColor: Colors.Background_item,
+                  backgroundColor: Colors.Background_button,
                   borderRadius: pxScale.hp(10),
                   marginTop: pxScale.hp(20),
                 }}>
@@ -506,13 +537,13 @@ const HomeScreen = () => {
                 <AppSvg source={AppIcon.iconPlus} width={14} height={14} />
               </Block>
               <Block style={{marginTop: pxScale.hp(28)}}>
-                <AppSvg source={AppIcon.iconPlusBlue} width={80} height={80} />
+                <AppSvg source={AppIcon.iconPlusPink} width={80} height={80} />
               </Block>
               <Block style={{width: '100%', flex: 3}}>
                 {_renderInputAddToken()}
               </Block>
               <Block flex style={{width: '100%', marginTop: pxScale.hp(50)}}>
-                <Block
+                {/* <Block
                   row
                   middle
                   style={{
@@ -533,7 +564,7 @@ const HomeScreen = () => {
                     style={{marginLeft: pxScale.wp(10)}}>
                     This will cost 0.00204 FAC
                   </CustomText>
-                </Block>
+                </Block> */}
                 <Block
                   row
                   flex
@@ -543,28 +574,29 @@ const HomeScreen = () => {
                     center
                     middle
                     style={{
-                      backgroundColor: Colors.Background_item,
-                      height: pxScale.hp(40),
+                      backgroundColor: Colors.Background_button,
+                      height: pxScale.hp(43),
                       width: '45%',
-                      borderRadius: pxScale.wp(40),
+                      borderRadius: pxScale.wp(10),
                     }}>
-                    <CustomText size={16} color={Colors.White}>
+                    <CustomText size={16} weight={'600'} color={Colors.White}>
                       {constants.CANCEL}
                     </CustomText>
                   </CustomButton>
-                  <ButtonGradient
+                  <CustomButton
                     center
                     middle
                     onGradient
                     style={{
-                      height: pxScale.hp(40),
+                      height: pxScale.hp(43),
                       width: '45%',
-                      borderRadius: pxScale.wp(40),
+                      borderRadius: pxScale.wp(10),
+                      backgroundColor: Colors.White,
                     }}>
-                    <CustomText size={16} color={Colors.White}>
+                    <CustomText size={16} weight={'600'} color={Colors.Black}>
                       {constants.SAVE}
                     </CustomText>
-                  </ButtonGradient>
+                  </CustomButton>
                 </Block>
               </Block>
             </Block>

@@ -28,7 +28,7 @@ const SettingGeneralScreen = () => {
     return (
       <Block
         style={{
-          backgroundColor: Colors.Background_item,
+          backgroundColor: Colors.Background_block,
           padding: pxScale.wp(20),
           borderRadius: pxScale.wp(12),
           marginTop: pxScale.wp(20),
@@ -54,7 +54,7 @@ const SettingGeneralScreen = () => {
               <Switch
                 trackColor={{
                   false: Colors.Gradient_end,
-                  true: Colors.Gradient_start,
+                  true: Colors.Pink,
                 }}
                 thumbColor={Colors.White}
                 ios_backgroundColor={Colors.Gray}
@@ -86,7 +86,7 @@ const SettingGeneralScreen = () => {
     return (
       <Block
         style={{
-          backgroundColor: Colors.Background_item,
+          backgroundColor: Colors.Background_block,
           padding: pxScale.wp(20),
           borderRadius: pxScale.wp(12),
           marginTop: pxScale.wp(20),
@@ -111,7 +111,7 @@ const SettingGeneralScreen = () => {
               <Switch
                 trackColor={{
                   false: Colors.Gradient_end,
-                  true: Colors.Gradient_start,
+                  true: Colors.Pink,
                 }}
                 thumbColor={Colors.White}
                 ios_backgroundColor={Colors.Gray}
@@ -136,7 +136,12 @@ const SettingGeneralScreen = () => {
   };
   return (
     <LinearGradient
-      colors={[Colors.Gradient_start, Colors.Gradient_end]}
+      colors={[
+        Colors.Gradient_start,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+      ]}
       style={styles.linearGradient}>
       <Header title={'General'} goBack={goBack} />
       <Block style={styles.body}>

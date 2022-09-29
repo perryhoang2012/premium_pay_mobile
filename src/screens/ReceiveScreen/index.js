@@ -16,6 +16,7 @@ import constants from '~constants';
 import CustomInput from '~components/CustomInput';
 
 import {LayoutAnimation, Platform, UIManager} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -94,7 +95,7 @@ const ReceiveScreen = () => {
                   {item.title}
                 </CustomText>
                 <Block row style={{marginTop: pxScale.hp(5)}} space={'between'}>
-                  <CustomText color={Colors.White} weight={'500'}>
+                  <CustomText color={Colors.White} weight={'400'}>
                     {item.value}
                   </CustomText>
                   <Block row space={'around'} style={{width: pxScale.wp(50)}}>
@@ -106,15 +107,15 @@ const ReceiveScreen = () => {
                       />
                     </CustomButton>
                     <AppSvg
-                      source={AppIcon.iconQrCodeBlue}
+                      source={AppIcon.iconQrCodeWhite}
                       width={16}
                       height={16}
                     />
                   </Block>
                   <CustomButton>
                     <CustomText
-                      color={Colors.Blue_ice}
-                      weight={'500'}
+                      color={Colors.Pink}
+                      weight={'600'}
                       customFont="Bold">
                       address details
                     </CustomText>
@@ -172,7 +173,14 @@ const ReceiveScreen = () => {
   };
 
   return (
-    <Block style={styles.container}>
+    <LinearGradient
+      colors={[
+        Colors.Gradient_start,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+      ]}
+      style={styles.linearGradient}>
       <HeaderGradient
         title={'RECEIVE'}
         styleTitle={styles.textTitleHeader}
@@ -209,13 +217,13 @@ const ReceiveScreen = () => {
             hours after FAC are sent
           </CustomText>
 
-          <ButtonGradient
-            onGradient
+          <CustomButton
             style={{
-              height: pxScale.hp(40),
-              width: pxScale.wp(170),
-              marginTop: pxScale.hp(10),
-              borderRadius: pxScale.hp(40),
+              height: pxScale.hp(43),
+              width: pxScale.wp(220),
+              marginTop: pxScale.hp(16),
+              borderRadius: pxScale.hp(10),
+              backgroundColor: Colors.Background_button,
             }}
             middle
             center
@@ -223,16 +231,16 @@ const ReceiveScreen = () => {
             <CustomText
               color={Colors.White}
               customFont="Bold"
-              weight={'500'}
+              weight={'700'}
               size={16}>
               {constants.SHARE_ADDRESS}
             </CustomText>
-          </ButtonGradient>
+          </CustomButton>
         </Block>
 
         <ModalScanQr modalVisible={modalVisible} toggleModal={toggleModal} />
       </Block>
-    </Block>
+    </LinearGradient>
   );
 };
 

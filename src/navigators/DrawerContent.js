@@ -84,12 +84,11 @@ export default function DrawerContent(props) {
           style={{
             width: '100%',
             height: pxScale.hp(39),
-
             borderRadius: activeWallet === index ? pxScale.hp(10) : 0,
           }}
           onPress={() => dispatch(setActiveWallet(index))}>
           <CustomText
-            color={activeWallet === index ? Colors.White : Colors.Blue_ice}>
+            color={activeWallet === index ? Colors.Pink : Colors.White}>
             {item.name}
           </CustomText>
         </CustomButton>
@@ -124,15 +123,15 @@ export default function DrawerContent(props) {
             />
             <CustomText
               style={{marginLeft: pxScale.wp(10)}}
-              color={activeNetwork === index ? Colors.White : Colors.Blue_ice}>
+              color={activeNetwork === index ? Colors.Pink : Colors.White}>
               {item.title}
             </CustomText>
           </Block>
           {activeNetwork === index && (
             <Block
               style={{
-                width: pxScale.wp(12),
-                height: pxScale.hp(12),
+                width: pxScale.wp(10),
+                height: pxScale.hp(10),
                 borderRadius: pxScale.hp(50),
                 backgroundColor: Colors.Green_status,
                 alignItems: 'flex-end',
@@ -185,8 +184,15 @@ export default function DrawerContent(props) {
           },
         ]}
         onPress={() => {
-          dispatch(setActiveDrawer(item.id));
-          item.route && props.navigation.navigate(item.route);
+          if (item.title === 'Wallet') {
+            LayoutAnimation.configureNext(
+              LayoutAnimation.Presets.easeInEaseOut,
+            );
+            setShowWallet(pre => !pre);
+          } else {
+            dispatch(setActiveDrawer(item.id));
+            item.route && props.navigation.navigate(item.route);
+          }
         }}>
         <Block row middle>
           <Block row flex middle>
@@ -199,8 +205,11 @@ export default function DrawerContent(props) {
               </CustomText>
               {item.children && (
                 <CustomText
-                  color={Colors.Blue_ice}
-                  style={{marginLeft: pxScale.wp(6), marginTop: pxScale.hp(2)}}>
+                  color={Colors.Pink}
+                  style={{
+                    marginLeft: pxScale.wp(10),
+                    marginTop: pxScale.hp(2),
+                  }}>
                   {activeChildren}
                 </CustomText>
               )}
@@ -262,10 +271,10 @@ export default function DrawerContent(props) {
                 style={{
                   paddingHorizontal: pxScale.wp(15),
                   height: pxScale.hp(39),
-                  borderRadius: 50,
-                  backgroundColor: Colors.Gradient_start,
-                  borderWidth: 1,
-                  borderColor: 'rgba(72, 204, 247, 0.4)',
+                  borderRadius: 10,
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  // borderWidth: 1,
+                  // borderColor: 'rgba(72, 204, 247, 0.4)',
                 }}
                 onPress={() => navigation.navigate('AddANetworkScreen')}>
                 <CustomText color={Colors.White} weight={'500'} size={15}>
@@ -283,18 +292,24 @@ export default function DrawerContent(props) {
                 renderItemWallet(itemWallet, indexWallet),
               )}
             </ScrollView>
-            <Block row middle center style={{marginTop: pxScale.hp(10)}}>
+            <Block
+              row
+              center
+              style={{
+                marginTop: pxScale.hp(10),
+                width: '100%',
+              }}>
               <CustomButton
                 center
                 middle
                 style={{
                   width: '35%',
                   height: pxScale.hp(35),
-                  borderRadius: 50,
+                  borderRadius: 10,
                   backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  borderWidth: 1,
-                  borderColor: 'rgba(72, 204, 247, 0.4)',
-                  marginRight: pxScale.wp(30),
+                  // borderWidth: 1,
+                  // borderColor: 'rgba(72, 204, 247, 0.4)',
+                  marginRight: pxScale.wp(7),
                 }}
                 onPress={() => navigation.navigate('CreateNewWallet')}>
                 <CustomText color={Colors.White} weight={'500'} size={15}>
@@ -307,10 +322,10 @@ export default function DrawerContent(props) {
                 style={{
                   width: '35%',
                   height: pxScale.hp(35),
-                  borderRadius: 50,
+                  borderRadius: 10,
                   backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  borderWidth: 1,
-                  borderColor: 'rgba(72, 204, 247, 0.4)',
+                  // borderWidth: 1,
+                  // borderColor: 'rgba(72, 204, 247, 0.4)',
                 }}>
                 <CustomText color={Colors.White} weight={'500'} size={15}>
                   {constants.IMPORT}
@@ -322,11 +337,13 @@ export default function DrawerContent(props) {
       </CustomButton>
     ));
   }, [
+    activeChildren,
     activeDrawer,
     dataNetwork,
     dataWallet,
     dispatch,
     navigation,
+    netWorkActive,
     props.navigation,
     renderItemNetwork,
     renderItemWallet,
@@ -336,11 +353,21 @@ export default function DrawerContent(props) {
 
   return (
     <Block style={styles.container}>
-      <Block middle center>
-        <AppFastImage
-          source={images.imageIconApp}
-          style={{width: pxScale.wp(73), height: pxScale.hp(70)}}
-        />
+      <Block center middle>
+        <Block
+          middle
+          center
+          style={{
+            backgroundColor: Colors.White,
+            width: pxScale.wp(80),
+            height: pxScale.hp(80),
+            borderRadius: 50,
+          }}>
+          <AppFastImage
+            source={images.imageIconAppRemove}
+            style={{width: pxScale.wp(40), height: pxScale.hp(36)}}
+          />
+        </Block>
       </Block>
 
       <ScrollView style={styles.scrollView}>{_renderMenu()}</ScrollView>
@@ -365,9 +392,9 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === 'ios' ? Insets.TOP : pxScale.hp(30),
     flex: 1,
     paddingBottom: isIphoneX() ? 10 : 5,
-    backgroundColor: Colors.Gradient_start,
+    backgroundColor: Colors.Background_block,
   },
-  scrollView: {marginHorizontal: -10, flex: 1, marginTop: pxScale.hp(30)},
+  scrollView: {marginHorizontal: -10, flex: 1, marginTop: pxScale.hp(40)},
   menuItem: {
     paddingVertical: 13,
     paddingHorizontal: 25,
@@ -380,7 +407,7 @@ const styles = StyleSheet.create({
     fontSize: pxScale.fontSize(16),
     fontWeight: '400',
     color: Colors.White,
-    marginLeft: pxScale.wp(6),
+    marginLeft: pxScale.wp(10),
   },
   viewFooter: {marginBottom: pxScale.hp(40)},
 });

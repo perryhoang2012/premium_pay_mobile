@@ -12,6 +12,16 @@ import CustomInput from '~components/CustomInput';
 import AppSvg from '~components/AppSvg';
 import {AppIcon} from '~assets/svg';
 import ButtonGradient from '~components/ButtonGradient';
+import {ScrollView} from 'react-native';
+import {KeyboardAvoidingView} from 'react-native';
+import {Platform} from 'react-native';
+import {TouchableWithoutFeedback} from 'react-native';
+import {Keyboard} from 'react-native';
+import {View} from 'react-native';
+import {TextInput} from 'react-native';
+import {Button} from 'react-native';
+import {Text} from 'react-native';
+import CustomButton from '~components/CustomButton';
 
 const ChangePasswordScreen = () => {
   const navigation = useNavigation();
@@ -61,16 +71,16 @@ const ChangePasswordScreen = () => {
     <Block
       row
       style={{
-        backgroundColor: Colors.Background_item,
+        backgroundColor: Colors.Background_block,
         marginBottom: pxScale.hp(16),
         paddingHorizontal: pxScale.wp(20),
         paddingVertical: pxScale.wp(10),
         borderRadius: pxScale.hp(12),
-        borderColor: 'rgba(72, 204, 247, 0.2)',
-        borderWidth: 1,
-        backgroundColor: 'rgba(72, 204, 247, 0.1)',
+        // borderColor: 'rgba(72, 204, 247, 0.2)',
+        // borderWidth: 1,
+        // backgroundColor: 'rgba(72, 204, 247, 0.1)',
       }}>
-      <AppSvg source={AppIcon.iconInfoCircleBlue} width={20} height={20} />
+      <AppSvg source={AppIcon.iconInfoCirclePink} width={20} height={20} />
       <CustomText color={Colors.White} style={{marginLeft: pxScale.wp(8)}}>
         A malicious network provider can lie about the state of the blockchain
         and record your network activity. Only add custom networks you trust
@@ -80,30 +90,38 @@ const ChangePasswordScreen = () => {
 
   return (
     <LinearGradient
-      colors={[Colors.Gradient_start, Colors.Gradient_end]}
+      colors={[
+        Colors.Gradient_start,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+      ]}
       style={styles.linearGradient}>
       <Header title={'Custom networks'} goBack={goBack} />
-      <Block style={styles.body}>
-        {_renderHeader()}
-        <Block>{_renderInput()}</Block>
-
-        <Block center middle>
-          <ButtonGradient
-            onGradient
-            middle
-            center
-            style={{
-              height: pxScale.hp(40),
-              backgroundColor: Colors.Blue_ice,
-              borderRadius: 30,
-              width: pxScale.wp(250),
-            }}>
-            <CustomText color={Colors.White} size={16} weight={'500'}>
-              {constants.ADD}
-            </CustomText>
-          </ButtonGradient>
-        </Block>
-      </Block>
+      <KeyboardAvoidingView behavior={'height'} style={styles.container}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <ScrollView style={styles.body} showsVerticalScrollIndicator={false}>
+            {_renderHeader()}
+            <Block>{_renderInput()}</Block>
+            <Block middle center>
+              <CustomButton
+                middle
+                center
+                style={{
+                  height: pxScale.hp(43),
+                  backgroundColor: Colors.Background_button,
+                  borderRadius: 10,
+                  width: pxScale.wp(250),
+                  marginBottom: 100,
+                }}>
+                <CustomText color={Colors.White} size={16} weight={'600'}>
+                  {constants.ADD}
+                </CustomText>
+              </CustomButton>
+            </Block>
+          </ScrollView>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
     </LinearGradient>
   );
 };

@@ -37,7 +37,6 @@ export default StyleSheet.create({
   tabBarTextStyle: {
     fontSize: 16,
     fontWeight: 'normal',
-    fontFamily: 'Rubik-Bold',
   },
   underlineStyle: {
     height: 3,

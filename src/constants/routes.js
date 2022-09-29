@@ -3,7 +3,7 @@ import {AppIcon} from '~assets/svg';
 const WALLET = {
   id: 1,
   title: 'Wallet',
-  icon: AppIcon.iconWalletBlue,
+  icon: AppIcon.iconWallet,
   value: 'wallet',
   route: 'HomeScreen',
 };

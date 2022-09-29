@@ -32,7 +32,7 @@ export default StyleSheet.create({
   },
 
   viewItem: {
-    backgroundColor: Colors.Background_item,
+    backgroundColor: Colors.Background_block,
     padding: 20,
     borderRadius: pxScale.hp(12),
     marginBottom: pxScale.hp(16),

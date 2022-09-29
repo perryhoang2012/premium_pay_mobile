@@ -66,7 +66,7 @@ const NotificationScreen = () => {
           middle
           center
           style={{
-            backgroundColor: 'rgba(47, 162, 185, 0.1)',
+            backgroundColor: Colors.Background_button,
             width: pxScale.wp(44),
             height: pxScale.hp(44),
             borderRadius: pxScale.wp(12),
@@ -98,7 +98,7 @@ const NotificationScreen = () => {
                 style={{
                   width: pxScale.wp(8),
                   height: pxScale.hp(8),
-                  backgroundColor: '#2FA2B9',
+                  backgroundColor: Colors.Pink,
                   borderRadius: 5,
                   marginLeft: pxScale.wp(20),
                 }}
@@ -112,7 +112,12 @@ const NotificationScreen = () => {
 
   return (
     <LinearGradient
-      colors={[Colors.Gradient_start, Colors.Gradient_end]}
+      colors={[
+        Colors.Gradient_start,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+      ]}
       style={styles.linearGradient}>
       <HeaderDrawer title={'NOTIFICATION'} noEye />
       <Block row middle style={styles.viewStatus}>

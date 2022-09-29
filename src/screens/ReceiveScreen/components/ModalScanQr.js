@@ -35,17 +35,17 @@ const ModalScanQr = prop => {
             {constants.SUBTITLE_QR_CODE_MODAL}
           </CustomText>
 
-          <ButtonGradient center middle onGradient style={styles.buttonShare}>
+          <CustomButton row center middle style={styles.buttonShare}>
             <AppSvg source={AppIcon.iconShare} width="14" height="14" />
             <CustomText
               color={Colors.White}
               size={18}
               customFont={'Bold'}
-              weight={'500'}
+              weight={'600'}
               style={{marginLeft: pxScale.wp(5)}}>
               {constants.SHARE_QR}
             </CustomText>
-          </ButtonGradient>
+          </CustomButton>
         </Block>
       </Block>
     </Modal>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.6);',
   },
   modalView: {
-    backgroundColor: Colors.Blue_2,
+    backgroundColor: Colors.Background_block,
     margin: pxScale.wp(20),
     borderRadius: pxScale.wp(20),
     padding: pxScale.wp(35),
@@ -88,9 +88,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   buttonShare: {
-    height: pxScale.hp(40),
-    width: pxScale.wp(160),
-    borderRadius: pxScale.wp(50),
-    marginTop: pxScale.wp(10),
+    height: pxScale.hp(43),
+    width: pxScale.wp(200),
+    borderRadius: pxScale.wp(10),
+    marginTop: pxScale.wp(16),
+    backgroundColor: Colors.Background_button,
   },
 });

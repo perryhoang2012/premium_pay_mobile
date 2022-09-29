@@ -62,7 +62,7 @@ const CreateNewWallet = () => {
     return (
       <Block row middle style={style.viewItemSendPhase}>
         <Block center middle style={style.viewNumber}>
-          <CustomText color={Colors.White} size={12}>
+          <CustomText color={Colors.White} size={14}>
             {item.id}
           </CustomText>
         </Block>
@@ -133,8 +133,7 @@ const CreateNewWallet = () => {
             </Block>
 
             <Block style={style.viewMarginTop} center middle>
-              <ButtonGradient
-                onGradient
+              <CustomButton
                 middle
                 center
                 style={style.buttonStepOne}
@@ -142,12 +141,13 @@ const CreateNewWallet = () => {
                 onPress={() => setStep(2)}>
                 <AppSvg source={AppIcon.iconCheck} width={14} height={14} />
                 <CustomText
+                  size={16}
                   color={Colors.White}
-                  weight={'500'}
+                  weight={'700'}
                   style={{marginLeft: pxScale.wp(10)}}>
                   {constants.I_UNDERSTAND}
                 </CustomText>
-              </ButtonGradient>
+              </CustomButton>
             </Block>
           </Block>
         );
@@ -170,7 +170,7 @@ const CreateNewWallet = () => {
                 horizontal={false}
               />
               <Block style={{marginTop: pxScale.hp(30)}} center middle>
-                <ButtonGradient
+                <CustomButton
                   onGradient
                   middle
                   center
@@ -178,12 +178,12 @@ const CreateNewWallet = () => {
                   row
                   onPress={() => setStep(3)}>
                   <CustomText
-                    color={Colors.White}
+                    color={Colors.Black}
                     style={style.textMarginLeft}
-                    weight={'500'}>
+                    weight={'700'}>
                     {constants.COMPLETE_VERIFICATION}
                   </CustomText>
-                </ButtonGradient>
+                </CustomButton>
                 <CustomButton
                   middle
                   center
@@ -218,17 +218,19 @@ const CreateNewWallet = () => {
               />
             </Block>
             <Block style={style.viewMarginTop} center middle>
-              <ButtonGradient
-                onGradient
+              <CustomButton
                 middle
                 center
-                style={style.buttonCompleteStepTwo}
+                style={[
+                  style.buttonCompleteStepTwo,
+                  {backgroundColor: Colors.Background_button},
+                ]}
                 row
                 onPress={() => navigation.replace('AppDrawer')}>
                 <CustomText color={Colors.White} weight={'500'}>
                   {constants.NEXT}
                 </CustomText>
-              </ButtonGradient>
+              </CustomButton>
             </Block>
           </Block>
         );
@@ -236,7 +238,12 @@ const CreateNewWallet = () => {
   };
   return (
     <LinearGradient
-      colors={[Colors.Gradient_start, Colors.Gradient_end]}
+      colors={[
+        Colors.Gradient_start_2,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+      ]}
       style={style.linearGradient}>
       <Header
         title={

@@ -20,10 +20,11 @@ export default StyleSheet.create({
     flex: 1,
   },
   buttonSendAndReceive: {
-    height: pxScale.hp(40),
+    height: pxScale.hp(43),
     flex: 1,
     marginRight: pxScale.wp(20),
-    borderRadius: pxScale.wp(50),
+    borderRadius: pxScale.wp(10),
+    backgroundColor: Colors.White,
   },
 
   viewItem: {
@@ -87,12 +88,12 @@ export default StyleSheet.create({
   },
 
   containerItem: {
-    backgroundColor: Colors.Background_item,
+    backgroundColor: Colors.Background_block,
     padding: pxScale.hp(20),
     borderRadius: pxScale.wp(12),
     marginTop: pxScale.hp(10),
-    borderColor: Colors.Border_Gray,
-    borderWidth: 1,
+    // borderColor: Colors.Border_Gray,
+    // borderWidth: 1,
   },
 
   viewItemChild: {
@@ -114,7 +115,7 @@ export default StyleSheet.create({
     width: '100%',
     height: '100%',
     margin: 20,
-    backgroundColor: Colors.Blue_2,
+    backgroundColor: Colors.Background_block,
     borderRadius: pxScale.wp(10),
     alignItems: 'center',
     padding: pxScale.wp(10),

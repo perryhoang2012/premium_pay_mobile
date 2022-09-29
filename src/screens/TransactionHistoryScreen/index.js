@@ -65,7 +65,12 @@ const TransactionHistoryScreen = () => {
 
   return (
     <LinearGradient
-      colors={[Colors.Gradient_start, Colors.Gradient_end]}
+      colors={[
+        Colors.Gradient_start,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+      ]}
       style={styles.linearGradient}>
       <HeaderDrawer title={'HISTORY'} noEye />
       <Block row middle style={styles.viewStatus}>

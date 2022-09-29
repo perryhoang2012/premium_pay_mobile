@@ -35,7 +35,6 @@ export default StyleSheet.create({
   tabBarTextStyle: {
     fontSize: 16,
     fontWeight: 'normal',
-    fontFamily: 'Rubik-Bold',
   },
   underlineStyle: {
     height: 3,
@@ -44,7 +43,7 @@ export default StyleSheet.create({
   },
   viewItem: {
     height: pxScale.hp(420),
-    backgroundColor: Colors.Background_item,
+    backgroundColor: Colors.Background_block,
     padding: 20,
     borderRadius: pxScale.hp(12),
     marginBottom: pxScale.hp(16),
@@ -55,7 +54,7 @@ export default StyleSheet.create({
   },
   viewUnderlined: {
     marginTop: pxScale.hp(5),
-    backgroundColor: Colors.Blue_ice,
+    backgroundColor: Colors.Pink,
   },
   viewScrollView: {marginTop: pxScale.hp(20), marginBottom: pxScale.hp(20)},
   viewContent: {paddingRight: pxScale.wp(20)},

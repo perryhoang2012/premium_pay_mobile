@@ -15,6 +15,7 @@ import CustomInput from '~components/CustomInput';
 import {LayoutAnimation, Platform, ScrollView, UIManager} from 'react-native';
 import images from '~assets/images';
 import AppFastImage from '~components/AppFastImage';
+import LinearGradient from 'react-native-linear-gradient';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -39,7 +40,8 @@ const SendScreen = () => {
           color={Colors.White}
           size={16}
           weight={'500'}
-          letterSpacing={1}>
+          letterSpacing={1}
+          style={{marginBottom: pxScale.hp(10)}}>
           {constants.TRANSACTION_INFO}{' '}
         </CustomText>
         <Block row style={styles.viewUnderlined} space={'between'}>
@@ -48,13 +50,13 @@ const SendScreen = () => {
           </CustomText>
           <CustomButton row>
             <CustomText
-              color={Colors.Blue_ice}
+              color={Colors.Pink}
               weight={'500'}
               customFont="Bold"
               style={{marginRight: pxScale.wp(10)}}>
               {constants.ADDRESS_DETAILS}
             </CustomText>
-            <AppSvg source={AppIcon.iconQrCodeBlue} width={16} height={16} />
+            <AppSvg source={AppIcon.iconQrCodeWhite} width={16} height={16} />
           </CustomButton>
         </Block>
         {/* <CustomText
@@ -101,7 +103,14 @@ const SendScreen = () => {
   };
 
   return (
-    <Block style={styles.container}>
+    <LinearGradient
+      colors={[
+        Colors.Gradient_start,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+      ]}
+      style={styles.container}>
       <HeaderGradient
         title={'SEND'}
         styleTitle={styles.textTitleHeader}
@@ -128,14 +137,14 @@ const SendScreen = () => {
             <CustomText
               color={Colors.White}
               size={16}
-              weight={'500'}
+              weight={'600'}
               letterSpacing={1}>
               {constants.AMOUNT}
             </CustomText>
             <Block middle row space={'between'}>
               <Block style={styles.viewChildAmount}>
                 <CustomText
-                  color={Colors.Blue_ice}
+                  color={Colors.Pink}
                   size={24}
                   weight={'400'}
                   letterSpacing={1}>
@@ -168,7 +177,7 @@ const SendScreen = () => {
             <CustomText
               color={Colors.White}
               size={16}
-              weight={'500'}
+              weight={'600'}
               letterSpacing={1}
               style={{marginTop: pxScale.hp(16)}}>
               {constants.AVAILABLE}
@@ -180,7 +189,7 @@ const SendScreen = () => {
                   paddingBottom: pxScale.hp(5),
                 }}>
                 <CustomText
-                  color={Colors.Blue_ice}
+                  color={Colors.Pink}
                   size={24}
                   weight={'400'}
                   letterSpacing={1}>
@@ -188,10 +197,10 @@ const SendScreen = () => {
                 </CustomText>
               </Block>
               <Block row>
-                <AppSvg source={AppIcon.iconUpBlue} width={14} height={14} />
+                <AppSvg source={AppIcon.iconUpPink} width={14} height={14} />
 
                 <CustomText
-                  color={Colors.Blue_ice}
+                  color={Colors.Pink}
                   weight={'500'}
                   customFont="Bold"
                   style={{marginLeft: pxScale.wp(10)}}>
@@ -259,21 +268,26 @@ const SendScreen = () => {
               : ' Min transaction fee to send offline transaction is 0.01 FAC'}
           </CustomText>
           <Block center middle style={{marginBottom: pxScale.hp(50)}}>
-            <ButtonGradient onGradient style={styles.buttonNext} middle center>
+            <CustomButton
+              row
+              onGradient
+              style={styles.buttonNext}
+              middle
+              center>
               <AppSvg source={AppIcon.iconRightBlue} width={14} height={14} />
               <CustomText
                 style={{marginLeft: pxScale.wp(5)}}
                 color={Colors.White}
                 customFont="Bold"
-                weight={'500'}
+                weight={'600'}
                 size={16}>
                 {constants.NEXT}
               </CustomText>
-            </ButtonGradient>
+            </CustomButton>
           </Block>
         </ScrollView>
       </Block>
-    </Block>
+    </LinearGradient>
   );
 };
 

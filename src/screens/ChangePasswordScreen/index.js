@@ -46,7 +46,12 @@ const ChangePasswordScreen = () => {
 
   return (
     <LinearGradient
-      colors={[Colors.Gradient_start, Colors.Gradient_end]}
+      colors={[
+        Colors.Gradient_start,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+      ]}
       style={styles.linearGradient}>
       <Header title={'Change password'} goBack={goBack} />
       <Block style={styles.body}>
@@ -60,7 +65,7 @@ const ChangePasswordScreen = () => {
             {constants.ONLINE}
           </CustomText>
         </Block>
-        <Block>{_renderInput()}</Block>
+        <Block style={{marginTop: pxScale.hp(10)}}>{_renderInput()}</Block>
       </Block>
     </LinearGradient>
   );

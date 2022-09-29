@@ -34,7 +34,7 @@ const NodeScreen = () => {
       {
         title: 'OWN NODE (fast and secure, advanced)',
         subTitle: 'For those who don’t have any  other PPay wallet.',
-        icon: AppIcon.iconQrCodeBlue,
+        icon: AppIcon.iconQrCodePink,
       },
     ];
     return (

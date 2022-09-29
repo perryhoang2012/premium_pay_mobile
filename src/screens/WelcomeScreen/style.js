@@ -4,7 +4,7 @@ import {pxScale} from '~utils/funcHelper';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 2,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -16,16 +16,17 @@ export default StyleSheet.create({
     height: pxScale.hp(150),
   },
   viewTextFooter: {
-    position: 'absolute',
-    bottom: pxScale.hp(120),
+    flex: 1,
+    // position: 'absolute',
+    // bottom: pxScale.hp(150),
     alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
     width: '100%',
   },
   button: {
-    height: pxScale.hp(40),
-    backgroundColor: Colors.Blue_ice,
-    borderRadius: 30,
+    height: pxScale.hp(43),
+    backgroundColor: Colors.Background_button,
+    borderRadius: 10,
     width: pxScale.wp(290),
     marginBottom: pxScale.hp(20),
   },

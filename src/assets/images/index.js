@@ -3,7 +3,7 @@ export default {
   imageBnb: require('./icon_bnb.png'),
   imageEth: require('./icon_eth.png'),
   imageQr: require('./QR_Code.png'),
-  imageIconApp: require('./iconApp_2.png'),
+  imageIconApp: require('./LogoRemove.png'),
   imageBackgroundFaceId: require('./backGroundFaceId.png'),
   imageScanning: require('./scanning.png'),
   imageIconAppRemove: require('./LogoRemove.png'),

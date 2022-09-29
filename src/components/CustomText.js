@@ -1,6 +1,7 @@
 import {Platform, StyleSheet, Text} from 'react-native';
 import React from 'react';
 import {pxScale} from '~utils/funcHelper';
+import {Fonts} from '~utils/fonts';
 
 const CustomText = props => {
   const {
@@ -21,6 +22,15 @@ const CustomText = props => {
     numberOfLines,
     customFont,
     letterSpacing,
+    black,
+    bold,
+    extraBold,
+    extraLight,
+    light,
+    medium,
+    regular,
+    semiBold,
+    thin,
   } = props;
 
   const handleMargins = () => {
@@ -127,13 +137,24 @@ const CustomText = props => {
     right && styles.right,
     color && styles[color],
     color && !styles[color] && {color},
-    customFont && {fontFamily: `Rubik-${customFont}`},
     letterSpacing && {letterSpacing: letterSpacing},
 
     // color shortcuts
 
     secondary && styles.secondary,
     primary && styles.primary,
+
+    // fonts
+
+    black && Fonts.fontBlack,
+    bold && Fonts.fontBold,
+    extraBold && Fonts.fontExtraBold,
+    extraLight && Fonts.fontExtraLight,
+    light && Fonts.fontLight,
+    medium && Fonts.fontMedium,
+    regular && Fonts.fontRegular,
+    semiBold && Fonts.fontSemiBold,
+    thin && Fonts.fontThin,
 
     style, // rewrite predefined styles
   ];
@@ -153,10 +174,10 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: pxScale.fontSize(16),
     fontWeight: 'bold',
-    fontFamily: 'Rubik-Light',
+    ...Fonts.fontLight,
   },
   text: {
-    fontFamily: 'Rubik-Regular',
+    ...Fonts.fontRegular,
     // fontSize: pxScale.fontSize(16),
     // color: color.black,
   },

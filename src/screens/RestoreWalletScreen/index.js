@@ -68,24 +68,28 @@ const RestoreWalletScreen = () => {
         </Block>
 
         <Block style={style.viewMarginTop} center middle>
-          <ButtonGradient
-            onGradient
+          <CustomButton
             middle
             center
             style={style.buttonStepOne}
             row
             onPress={() => navigation.replace('AppDrawer')}>
-            <CustomText color={Colors.White} weight={'500'}>
+            <CustomText color={Colors.White} weight={'700'}>
               {constants.NEXT}
             </CustomText>
-          </ButtonGradient>
+          </CustomButton>
         </Block>
       </Block>
     );
   };
   return (
     <LinearGradient
-      colors={[Colors.Gradient_start, Colors.Gradient_end]}
+      colors={[
+        Colors.Gradient_start,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+      ]}
       style={style.linearGradient}>
       <Header
         title={constants.RESTORE_WALLET_UP_CASE}

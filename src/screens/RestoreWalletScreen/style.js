@@ -17,11 +17,12 @@ export default StyleSheet.create({
     color: Colors.White,
   },
   viewItemSendPhase: {
-    width: pxScale.wp(140),
+    width: pxScale.wp(150),
     height: pxScale.hp(50),
     marginBottom: pxScale.hp(10),
-    marginHorizontal: pxScale.hp(10),
-    backgroundColor: Colors.Background_item,
+    marginLeft: pxScale.hp(10),
+    marginRight: pxScale.hp(10),
+    backgroundColor: Colors.Background_button,
     borderRadius: pxScale.hp(12),
     marginTop: pxScale.hp(10),
     borderColor: Colors.Border_Gray,
@@ -30,7 +31,7 @@ export default StyleSheet.create({
   },
 
   viewNumber: {
-    borderColor: Colors.Blue_ice,
+    borderColor: Colors.Pink,
     width: pxScale.wp(20),
     height: pxScale.hp(20),
     borderRadius: pxScale.wp(10),
@@ -59,9 +60,9 @@ export default StyleSheet.create({
   textContentStepOne: {marginLeft: pxScale.wp(10), width: pxScale.wp(270)},
 
   buttonStepOne: {
-    height: pxScale.hp(40),
-    backgroundColor: Colors.Blue_ice,
-    borderRadius: 30,
+    height: pxScale.hp(43),
+    backgroundColor: Colors.Background_button,
+    borderRadius: 10,
     width: pxScale.wp(290),
   },
 

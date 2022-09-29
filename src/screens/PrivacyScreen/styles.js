@@ -32,7 +32,7 @@ export default StyleSheet.create({
   },
 
   viewContent: {
-    backgroundColor: Colors.Background_item,
+    backgroundColor: Colors.Background_block,
     padding: pxScale.wp(20),
     borderRadius: pxScale.wp(12),
     marginTop: pxScale.wp(20),

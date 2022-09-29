@@ -67,7 +67,7 @@ const TransactionDetailScreen = () => {
         <CustomButton row middle style={{marginTop: pxScale.hp(10)}}>
           <CustomText
             size={14}
-            color={Colors.Blue_ice}
+            color={Colors.Pink}
             weight={'400'}
             customFont="Bold"
             style={{marginRight: pxScale.wp(10)}}>
@@ -146,7 +146,7 @@ const TransactionDetailScreen = () => {
           </CustomButton>
 
           <Block row middle style={{marginTop: pxScale.hp(10)}}>
-            <AppSvg source={AppIcon.iconUpBlue} width={14} height={14} />
+            <AppSvg source={AppIcon.iconUpPink} width={14} height={14} />
             <CustomText
               color={Colors.White}
               size={15}

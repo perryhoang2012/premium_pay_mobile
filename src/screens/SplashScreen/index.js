@@ -46,7 +46,7 @@ const SplashScreen = () => {
   // * render
   return (
     <LinearGradient
-      colors={[Colors.Gradient_start, Colors.Gradient_end]}
+      colors={[Colors.Gradient_end, Colors.Gradient_start]}
       style={styles.linearGradient}>
       <Block style={styles.container}>
         <AppFastImage
@@ -60,7 +60,7 @@ const SplashScreen = () => {
           customFont={'Bold'}
           style={styles.textCenter}
           size={24}
-          weight={'500'}
+          weight={'700'}
           color={Colors.White}
           letterSpacing={4}>
           {constants.NAME_APP}

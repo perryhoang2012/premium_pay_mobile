@@ -5,8 +5,6 @@ import {pxScale} from '~utils/funcHelper';
 export default StyleSheet.create({
   linearGradient: {
     flex: 1,
-    paddingLeft: pxScale.wp(12),
-    paddingRight: pxScale.wp(12),
   },
   container: {
     flex: 1,
@@ -16,7 +14,7 @@ export default StyleSheet.create({
   },
   body: {
     flex: 1,
-    backgroundColor: Colors.Gradient_end,
+    // backgroundColor: Colors.Gradient_end,
     padding: pxScale.wp(20),
   },
 
@@ -30,7 +28,7 @@ export default StyleSheet.create({
   buttonTab: {width: '48%', borderRadius: pxScale.hp(50)},
 
   viewItem: {
-    backgroundColor: Colors.Background_item,
+    backgroundColor: Colors.Background_block,
     padding: pxScale.wp(20),
     borderRadius: pxScale.hp(12),
     marginBottom: pxScale.hp(16),

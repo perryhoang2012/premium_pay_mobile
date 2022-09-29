@@ -9,6 +9,7 @@ import constants from '~constants';
 import ButtonGradient from '~components/ButtonGradient';
 import style from './style';
 import {useNavigation} from '@react-navigation/native';
+import CustomButton from '~components/CustomButton';
 
 const WelcomeScreen = () => {
   const navigation = useNavigation();
@@ -23,7 +24,7 @@ const WelcomeScreen = () => {
 
   return (
     <LinearGradient
-      colors={[Colors.Gradient_start, Colors.Gradient_end]}
+      colors={[Colors.Gradient_end, Colors.Gradient_start]}
       style={style.linearGradient}>
       <Block style={style.container}>
         <AppFastImage
@@ -33,8 +34,7 @@ const WelcomeScreen = () => {
         />
       </Block>
       <Block style={style.viewTextFooter}>
-        <ButtonGradient
-          onGradient
+        <CustomButton
           middle
           center
           style={style.button}
@@ -43,9 +43,8 @@ const WelcomeScreen = () => {
           <CustomText color={Colors.White} weight={'500'}>
             {constants.I_HAVE_NOT_GOT_A_WALLET}
           </CustomText>
-        </ButtonGradient>
-        <ButtonGradient
-          onGradient
+        </CustomButton>
+        <CustomButton
           middle
           center
           style={style.button}
@@ -54,7 +53,7 @@ const WelcomeScreen = () => {
           <CustomText color={Colors.White} weight={'500'}>
             {constants.RESTORE_WALLET}
           </CustomText>
-        </ButtonGradient>
+        </CustomButton>
       </Block>
     </LinearGradient>
   );

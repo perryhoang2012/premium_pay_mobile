@@ -16,12 +16,11 @@ export default StyleSheet.create({
   },
   body: {
     flex: 1,
-    backgroundColor: Colors.Gradient_end,
     padding: pxScale.wp(20),
   },
 
   viewItem: {
-    backgroundColor: Colors.Background_item,
+    backgroundColor: Colors.Background_block,
     padding: pxScale.wp(20),
     borderRadius: pxScale.hp(12),
     marginBottom: pxScale.hp(16),
@@ -31,9 +30,9 @@ export default StyleSheet.create({
   },
   viewUnderlined: {
     marginTop: pxScale.hp(5),
-    borderBottomColor: 'rgba(255,255,255,0.5)',
-    borderBottomWidth: pxScale.hp(0.5),
-    paddingBottom: pxScale.hp(5),
+    // borderBottomColor: 'rgba(255,255,255,0.5)',
+    // borderBottomWidth: pxScale.hp(0.5),
+    // paddingBottom: pxScale.hp(5),
   },
   viewTab: {
     height: pxScale.hp(48),
@@ -58,10 +57,11 @@ export default StyleSheet.create({
   },
 
   buttonNext: {
-    height: pxScale.hp(40),
+    height: pxScale.hp(43),
     width: pxScale.wp(170),
     marginTop: pxScale.hp(10),
-    borderRadius: pxScale.hp(40),
+    borderRadius: pxScale.hp(10),
+    backgroundColor: Colors.Background_button,
   },
   inputComment: {
     marginTop: pxScale.hp(15),
