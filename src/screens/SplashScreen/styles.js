@@ -16,7 +16,7 @@ export default StyleSheet.create({
   },
   viewTextFooter: {
     position: 'absolute',
-    bottom: 40,
+    bottom: 60,
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',

@@ -16,6 +16,7 @@ const CustomButton = props => {
     disabled,
     onPress,
     hitSlop,
+    activeOpacity,
   } = props;
   const handlePaddings = () => {
     if (typeof padding === 'number') {

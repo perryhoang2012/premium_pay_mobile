@@ -12,15 +12,12 @@ import CustomInput from '~components/CustomInput';
 import AppSvg from '~components/AppSvg';
 import {AppIcon} from '~assets/svg';
 import ButtonGradient from '~components/ButtonGradient';
-import {ScrollView} from 'react-native';
-import {KeyboardAvoidingView} from 'react-native';
-import {Platform} from 'react-native';
-import {TouchableWithoutFeedback} from 'react-native';
-import {Keyboard} from 'react-native';
-import {View} from 'react-native';
-import {TextInput} from 'react-native';
-import {Button} from 'react-native';
-import {Text} from 'react-native';
+import {
+  KeyboardAvoidingView,
+  Keyboard,
+  TouchableWithoutFeedback,
+  ScrollView,
+} from 'react-native';
 import CustomButton from '~components/CustomButton';
 
 const ChangePasswordScreen = () => {
@@ -111,7 +108,7 @@ const ChangePasswordScreen = () => {
                   height: pxScale.hp(43),
                   backgroundColor: Colors.Background_button,
                   borderRadius: 10,
-                  width: pxScale.wp(250),
+                  width: pxScale.wp(320),
                   marginBottom: 100,
                 }}>
                 <CustomText color={Colors.White} size={16} weight={'600'}>

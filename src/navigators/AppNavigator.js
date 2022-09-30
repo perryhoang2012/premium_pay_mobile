@@ -31,7 +31,7 @@ const AppNavigator = () => {
     <NavigationContainer
       fallback={<ActivityIndicator color="blue" size="large" />}>
       <Stack.Navigator
-        initialRouteName="WelcomeScreen"
+        initialRouteName="SplashScreen"
         screenOptions={{
           headerShown: false,
         }}>

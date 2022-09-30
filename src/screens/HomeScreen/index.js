@@ -22,8 +22,8 @@ import images from '~assets/images';
 import {useNavigation} from '@react-navigation/native';
 import {Modal} from 'react-native';
 import CustomInput from '~components/CustomInput';
-import {Switch} from 'react-native';
 import {Alert} from 'react-native';
+import {TouchableWithoutFeedback, Keyboard} from 'react-native';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -523,83 +523,77 @@ const HomeScreen = () => {
             setShowModalAddToken(false);
           }}>
           <Block style={style.centeredView}>
-            <Block style={style.modalView}>
-              <Block
-                row
-                space={'between'}
-                style={{width: '100%', marginTop: pxScale.hp(11)}}>
-                <CustomButton onPress={() => setShowModalAddToken(false)}>
-                  <AppSvg source={AppIcon.iconCancel} width={14} height={14} />
-                </CustomButton>
-                <CustomText color={Colors.White} size={16} weight={'500'}>
-                  {constants.ADD_TOKEN_METADATA}
-                </CustomText>
-                <AppSvg source={AppIcon.iconPlus} width={14} height={14} />
-              </Block>
-              <Block style={{marginTop: pxScale.hp(28)}}>
-                <AppSvg source={AppIcon.iconPlusPink} width={80} height={80} />
-              </Block>
-              <Block style={{width: '100%', flex: 3}}>
-                {_renderInputAddToken()}
-              </Block>
-              <Block flex style={{width: '100%', marginTop: pxScale.hp(50)}}>
-                {/* <Block
-                  row
-                  middle
-                  style={{
-                    backgroundColor: Colors.Background_item,
-                    width: '100%',
-                    height: pxScale.hp(44),
-                    paddingHorizontal: pxScale.wp(20),
-                    borderRadius: pxScale.hp(15),
-                  }}>
-                  <AppSvg
-                    source={AppIcon.iconInfoCircle}
-                    width={20}
-                    height={20}
-                  />
-                  <CustomText
-                    color={Colors.White}
-                    size={14}
-                    style={{marginLeft: pxScale.wp(10)}}>
-                    This will cost 0.00204 FAC
-                  </CustomText>
-                </Block> */}
+            <CustomButton
+              opacity={1}
+              style={style.centeredView}
+              onPress={() => Keyboard.dismiss()}>
+              <Block style={style.modalView}>
                 <Block
                   row
-                  flex
-                  style={{width: '100%', marginTop: pxScale.hp(20)}}
-                  space={'between'}>
-                  <CustomButton
-                    center
-                    middle
-                    style={{
-                      backgroundColor: Colors.Background_button,
-                      height: pxScale.hp(43),
-                      width: '45%',
-                      borderRadius: pxScale.wp(10),
-                    }}>
-                    <CustomText size={16} weight={'600'} color={Colors.White}>
-                      {constants.CANCEL}
-                    </CustomText>
+                  space={'between'}
+                  style={{width: '100%', marginTop: pxScale.hp(11)}}>
+                  <CustomButton onPress={() => setShowModalAddToken(false)}>
+                    <AppSvg
+                      source={AppIcon.iconCancel}
+                      width={14}
+                      height={14}
+                    />
                   </CustomButton>
-                  <CustomButton
-                    center
-                    middle
-                    onGradient
-                    style={{
-                      height: pxScale.hp(43),
-                      width: '45%',
-                      borderRadius: pxScale.wp(10),
-                      backgroundColor: Colors.White,
-                    }}>
-                    <CustomText size={16} weight={'600'} color={Colors.Black}>
-                      {constants.SAVE}
-                    </CustomText>
-                  </CustomButton>
+                  <CustomText color={Colors.White} size={16} weight={'500'}>
+                    {constants.ADD_TOKEN_METADATA}
+                  </CustomText>
+                  <AppSvg source={AppIcon.iconPlus} width={14} height={14} />
+                </Block>
+
+                <Block style={{marginTop: pxScale.hp(28)}}>
+                  <AppSvg
+                    source={AppIcon.iconPlusPink}
+                    width={80}
+                    height={80}
+                  />
+                </Block>
+
+                <Block style={{width: '100%', flex: 3}}>
+                  {_renderInputAddToken()}
+                </Block>
+
+                <Block flex style={{width: '100%', marginTop: pxScale.hp(50)}}>
+                  <Block
+                    row
+                    flex
+                    style={{width: '100%', marginTop: pxScale.hp(20)}}
+                    space={'between'}>
+                    <CustomButton
+                      center
+                      middle
+                      style={{
+                        backgroundColor: Colors.Background_button,
+                        height: pxScale.hp(43),
+                        width: '45%',
+                        borderRadius: pxScale.wp(10),
+                      }}>
+                      <CustomText size={16} weight={'600'} color={Colors.White}>
+                        {constants.CANCEL}
+                      </CustomText>
+                    </CustomButton>
+                    <CustomButton
+                      center
+                      middle
+                      onGradient
+                      style={{
+                        height: pxScale.hp(43),
+                        width: '45%',
+                        borderRadius: pxScale.wp(10),
+                        backgroundColor: Colors.White,
+                      }}>
+                      <CustomText size={16} weight={'600'} color={Colors.Black}>
+                        {constants.SAVE}
+                      </CustomText>
+                    </CustomButton>
+                  </Block>
                 </Block>
               </Block>
-            </Block>
+            </CustomButton>
           </Block>
         </Modal>
       </Block>
