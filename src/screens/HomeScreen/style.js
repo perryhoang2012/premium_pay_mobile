@@ -21,8 +21,7 @@ export default StyleSheet.create({
   },
   buttonSendAndReceive: {
     height: pxScale.hp(43),
-    flex: 1,
-    marginRight: pxScale.wp(20),
+    width: '48%',
     borderRadius: pxScale.wp(10),
     backgroundColor: Colors.White,
   },
@@ -48,7 +47,7 @@ export default StyleSheet.create({
   },
   viewDoubleButton: {
     flex: 1,
-    paddingHorizontal: pxScale.wp(10),
+    paddingHorizontal: pxScale.wp(24),
   },
   textButton: {
     fontSize: pxScale.fontSize(16),
@@ -92,8 +91,8 @@ export default StyleSheet.create({
     padding: pxScale.hp(20),
     borderRadius: pxScale.wp(12),
     marginTop: pxScale.hp(10),
-    // borderColor: Colors.Border_Gray,
-    // borderWidth: 1,
+    borderColor: Colors.Border_Gray,
+    borderWidth: 1,
   },
 
   viewItemChild: {
@@ -102,7 +101,7 @@ export default StyleSheet.create({
     borderWidth: 1,
   },
 
-  imageIconItem: {width: pxScale.wp(20), height: pxScale.hp(20)},
+  imageIconItem: {width: pxScale.wp(20), height: pxScale.hp(21)},
 
   centeredView: {
     flex: 1,
@@ -115,7 +114,7 @@ export default StyleSheet.create({
     width: '100%',
     height: '100%',
     margin: 20,
-    backgroundColor: Colors.Background_block,
+    backgroundColor: '#171717',
     borderRadius: pxScale.wp(10),
     alignItems: 'center',
     padding: pxScale.wp(10),

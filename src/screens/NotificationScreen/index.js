@@ -78,18 +78,24 @@ const NotificationScreen = () => {
             <CustomText
               color={Colors.White}
               size={14}
-              weight="500"
+              semiBold
+              weight="600"
               style={{width: pxScale.wp(220)}}>
               {item.item.title}
             </CustomText>
-            <CustomText color={Colors.Gray} size={12}>
+            <CustomText regular color={Colors.Gray} size={12}>
               {item.item.time}
             </CustomText>
           </Block>
           <Block row middle>
             <CustomText
-              size={14}
-              style={{width: pxScale.wp(220), marginTop: pxScale.hp(4)}}
+              size={12}
+              regular
+              style={{
+                width: pxScale.wp(220),
+                marginTop: pxScale.hp(4),
+                lineHeight: 18,
+              }}
               color={'#B1B5C4'}>
               {item.item.subTitle}
             </CustomText>
@@ -113,8 +119,7 @@ const NotificationScreen = () => {
   return (
     <LinearGradient
       colors={[
-        Colors.Gradient_start,
-        Colors.Gradient_end,
+        Colors.Gradient_start_2,
         Colors.Gradient_end,
         Colors.Gradient_end,
       ]}
@@ -123,9 +128,10 @@ const NotificationScreen = () => {
       <Block row middle style={styles.viewStatus}>
         <Block style={styles.gradientDot} />
         <CustomText
+          medium
           color={Colors.Gray}
-          weight={'400'}
-          size={16}
+          weight={'500'}
+          size={14}
           style={styles.textStatus}>
           {constants.ONLINE}
         </CustomText>
@@ -138,6 +144,7 @@ const NotificationScreen = () => {
           ListEmptyComponent={() => (
             <Block center middle flex>
               <CustomText
+                bold
                 size={20}
                 weight={'700'}
                 color={Colors.White}
@@ -146,6 +153,8 @@ const NotificationScreen = () => {
               </CustomText>
               <CustomText
                 align={'center'}
+                regular
+                size={16}
                 color={Colors.Gray}
                 style={styles.textNoData}>
                 {constants.SUBTITLE_NO_DATA_NOTIFICATION}
@@ -163,7 +172,7 @@ const NotificationScreen = () => {
                 onPress={() =>
                   navigation.navigate('SettingNotificationScreen')
                 }>
-                <CustomText size={16} weight={'500'} color={Colors.Black}>
+                <CustomText bold size={14} weight={'700'} color={Colors.Black}>
                   {constants.NOTIFICATIONS_SETTINGS}
                 </CustomText>
               </CustomButton>
@@ -171,6 +180,7 @@ const NotificationScreen = () => {
           )}
           renderSectionHeader={({section: {title}}) => (
             <CustomText
+              bold
               size={16}
               color={Colors.White}
               weight={'700'}

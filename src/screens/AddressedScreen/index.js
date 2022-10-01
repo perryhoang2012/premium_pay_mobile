@@ -89,7 +89,11 @@ const AddressedScreen = () => {
 
   return (
     <LinearGradient
-      colors={[Colors.Gradient_start, Colors.Gradient_end]}
+      colors={[
+        Colors.Gradient_start_2,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+      ]}
       style={styles.linearGradient}>
       <HeaderDrawer title={'ADDRESSED'} noEye />
       <Block row style={styles.viewStatus}>

@@ -90,12 +90,20 @@ const ReceiveScreen = () => {
                 <CustomText
                   letterSpacing={1}
                   color={Colors.White}
-                  weight={'500'}
-                  customFont="Bold">
+                  weight={'700'}
+                  size={14}
+                  bold>
                   {item.title}
                 </CustomText>
-                <Block row style={{marginTop: pxScale.hp(5)}} space={'between'}>
-                  <CustomText color={Colors.White} weight={'400'}>
+                <Block
+                  row
+                  style={{marginTop: pxScale.hp(10)}}
+                  space={'between'}>
+                  <CustomText
+                    size={14}
+                    regular
+                    color={Colors.White}
+                    weight={'400'}>
                     {item.value}
                   </CustomText>
                   <Block row space={'around'} style={{width: pxScale.wp(50)}}>
@@ -114,9 +122,10 @@ const ReceiveScreen = () => {
                   </Block>
                   <CustomButton>
                     <CustomText
+                      size={12}
                       color={Colors.Pink}
                       weight={'600'}
-                      customFont="Bold">
+                      semiBold>
                       address details
                     </CustomText>
                   </CustomButton>
@@ -126,10 +135,11 @@ const ReceiveScreen = () => {
               <Block>
                 <Block row space="between">
                   <CustomText
-                    color={Colors.White}
                     letterSpacing={1}
-                    weight={'500'}
-                    customFont="Bold">
+                    color={Colors.White}
+                    weight={'700'}
+                    size={14}
+                    bold>
                     {item.title}
                   </CustomText>
                   <CustomButton
@@ -175,8 +185,7 @@ const ReceiveScreen = () => {
   return (
     <LinearGradient
       colors={[
-        Colors.Gradient_start,
-        Colors.Gradient_end,
+        Colors.Gradient_start_2,
         Colors.Gradient_end,
         Colors.Gradient_end,
       ]}
@@ -212,7 +221,8 @@ const ReceiveScreen = () => {
               },
             ]}
             color={Colors.White}
-            size={16}>
+            size={14}
+            regular>
             For the transaction to complete, you should get online during the 12
             hours after FAC are sent
           </CustomText>
@@ -220,7 +230,7 @@ const ReceiveScreen = () => {
           <CustomButton
             style={{
               height: pxScale.hp(43),
-              width: pxScale.wp(220),
+              width: pxScale.wp(193),
               marginTop: pxScale.hp(16),
               borderRadius: pxScale.hp(10),
               backgroundColor: Colors.Background_button,
@@ -228,11 +238,7 @@ const ReceiveScreen = () => {
             middle
             center
             onPress={toggleModal}>
-            <CustomText
-              color={Colors.White}
-              customFont="Bold"
-              weight={'700'}
-              size={16}>
+            <CustomText color={Colors.White} bold weight={'700'} size={16}>
               {constants.SHARE_ADDRESS}
             </CustomText>
           </CustomButton>

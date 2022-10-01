@@ -65,20 +65,22 @@ const NodeScreen = () => {
               }}>
               <AppSvg source={item.icon} width={24} height={24} />
               <CustomText
+                semiBold
                 color={Colors.White}
-                size={18}
-                weight={'500'}
+                size={14}
+                weight={'700'}
                 style={{
-                  marginTop: pxScale.wp(10),
+                  marginTop: pxScale.wp(5),
                 }}>
                 {item.title}
               </CustomText>
               <CustomText
                 color={Colors.White}
-                size={14}
+                size={12}
                 weight={'400'}
+                regular
                 style={{
-                  marginTop: pxScale.wp(10),
+                  marginTop: pxScale.wp(5),
                 }}>
                 {item.subTitle}
               </CustomText>
@@ -91,7 +93,11 @@ const NodeScreen = () => {
 
   return (
     <LinearGradient
-      colors={[Colors.Gradient_start, Colors.Gradient_end]}
+      colors={[
+        Colors.Gradient_start_2,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+      ]}
       style={styles.linearGradient}>
       <Header title={'Node'} goBack={goBack} />
       <Block style={styles.body}>
@@ -101,6 +107,7 @@ const NodeScreen = () => {
             color={Colors.Gray}
             weight={'400'}
             size={14}
+            medium
             style={styles.textStatus}>
             {constants.ONLINE} : mobile node
           </CustomText>

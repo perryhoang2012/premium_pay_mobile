@@ -34,8 +34,9 @@ const HeaderGradient = prop => {
         <Block style={styles.gradientDot} />
         <CustomText
           color={Colors.Gray}
-          weight={'400'}
-          size={16}
+          medium
+          weight={'500'}
+          size={14}
           style={styles.textStatus}>
           {constants.ONLINE}: mobile node
         </CustomText>

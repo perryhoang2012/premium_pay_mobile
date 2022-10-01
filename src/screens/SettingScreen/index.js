@@ -60,8 +60,9 @@ const SettingScreen = () => {
             <AppSvg source={item.icon} width={20} height={20} />
             <CustomText
               color={Colors.White}
-              size={16}
-              weight={'400'}
+              size={18}
+              weight={'500'}
+              medium
               style={{marginLeft: pxScale.wp(10)}}>
               {item.title}
             </CustomText>
@@ -84,8 +85,9 @@ const SettingScreen = () => {
           <AppSvg source={AppIcon.iconTag} width={20} height={20} />
           <CustomText
             color={Colors.White}
-            size={16}
-            weight={'400'}
+            size={18}
+            weight={'500'}
+            medium
             style={{marginLeft: pxScale.wp(10)}}>
             Tag
           </CustomText>
@@ -107,8 +109,9 @@ const SettingScreen = () => {
           <AppSvg source={AppIcon.iconStar} width={20} height={20} />
           <CustomText
             color={Colors.White}
-            size={16}
-            weight={'400'}
+            size={18}
+            weight={'500'}
+            medium
             style={{marginLeft: pxScale.wp(10)}}>
             Rate The App
           </CustomText>
@@ -117,8 +120,9 @@ const SettingScreen = () => {
           <AppSvg source={AppIcon.iconReport} width={20} height={20} />
           <CustomText
             color={Colors.White}
-            size={16}
-            weight={'400'}
+            size={18}
+            weight={'500'}
+            medium
             style={{marginLeft: pxScale.wp(10)}}>
             Report a problem
           </CustomText>
@@ -152,8 +156,7 @@ const SettingScreen = () => {
   return (
     <LinearGradient
       colors={[
-        Colors.Gradient_start,
-        Colors.Gradient_end,
+        Colors.Gradient_start_2,
         Colors.Gradient_end,
         Colors.Gradient_end,
       ]}
@@ -164,7 +167,8 @@ const SettingScreen = () => {
         <CustomText
           color={Colors.Gray}
           weight={'400'}
-          size={16}
+          size={14}
+          medium
           style={styles.textStatus}>
           {constants.ONLINE}
         </CustomText>

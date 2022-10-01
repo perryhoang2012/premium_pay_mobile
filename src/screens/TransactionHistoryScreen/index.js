@@ -26,8 +26,10 @@ const TransactionHistoryScreen = () => {
         style={{marginRight: pxScale.hp(16)}}
         onPress={() => setActiveTab(index)}>
         <CustomText
+          bold
           color={index === activeTab ? Colors.White : Colors.Gray}
-          weight={'500'}
+          weight={'700'}
+          size={14}
           style={{letterSpacing: 1}}>
           {item.title}
         </CustomText>
@@ -48,14 +50,17 @@ const TransactionHistoryScreen = () => {
       <Block style={styles.viewItem}>
         <CustomText
           color={Colors.White}
-          size={16}
-          weight={'500'}
+          size={14}
+          weight={'600'}
+          semiBold
           letterSpacing={1}>
           {constants.DEFAULT}
         </CustomText>
         <CustomText
           color={Colors.Gray}
           weight={'400'}
+          regular
+          size={12}
           style={{marginTop: pxScale.hp(4)}}>
           3XHPHamvtJkoU3XHPHam
         </CustomText>
@@ -66,8 +71,7 @@ const TransactionHistoryScreen = () => {
   return (
     <LinearGradient
       colors={[
-        Colors.Gradient_start,
-        Colors.Gradient_end,
+        Colors.Gradient_start_2,
         Colors.Gradient_end,
         Colors.Gradient_end,
       ]}
@@ -77,8 +81,9 @@ const TransactionHistoryScreen = () => {
         <Block style={styles.gradientDot} />
         <CustomText
           color={Colors.Gray}
-          weight={'400'}
-          size={16}
+          weight={'500'}
+          medium
+          size={14}
           style={styles.textStatus}>
           {constants.ONLINE}
         </CustomText>

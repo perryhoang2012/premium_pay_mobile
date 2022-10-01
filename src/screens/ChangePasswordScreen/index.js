@@ -22,11 +22,13 @@ const ChangePasswordScreen = () => {
       {title: 'PASSWORD CONFIRMATION', value: 'password_confirmation'},
     ];
     return input.map((item, index) => (
-      <Block key={index} style={{marginBottom: pxScale.hp(30)}}>
+      <Block key={index} style={{marginTop: pxScale.hp(20)}}>
         <CustomText
           color={Colors.White}
-          weight={'500'}
-          style={{marginBottom: pxScale.hp(8)}}>
+          weight={'700'}
+          size={12}
+          semiBold
+          style={{marginBottom: pxScale.hp(8), lineHeight: 18}}>
           {item.title}
         </CustomText>
         <CustomInput
@@ -47,8 +49,7 @@ const ChangePasswordScreen = () => {
   return (
     <LinearGradient
       colors={[
-        Colors.Gradient_start,
-        Colors.Gradient_end,
+        Colors.Gradient_start_2,
         Colors.Gradient_end,
         Colors.Gradient_end,
       ]}
@@ -60,7 +61,8 @@ const ChangePasswordScreen = () => {
           <CustomText
             color={Colors.Gray}
             weight={'400'}
-            size={16}
+            size={14}
+            medium
             style={styles.textStatus}>
             {constants.ONLINE}
           </CustomText>

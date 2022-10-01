@@ -40,7 +40,7 @@ const WelcomeScreen = () => {
           style={style.button}
           row
           onPress={() => goToCreateWallet()}>
-          <CustomText color={Colors.White} weight={'500'}>
+          <CustomText color={Colors.White} weight={'500'} size={16} semiBold>
             {constants.I_HAVE_NOT_GOT_A_WALLET}
           </CustomText>
         </CustomButton>
@@ -50,7 +50,7 @@ const WelcomeScreen = () => {
           style={style.button}
           row
           onPress={() => goToRestoreWalletScreen()}>
-          <CustomText color={Colors.White} weight={'500'}>
+          <CustomText color={Colors.White} weight={'500'} size={16} semiBold>
             {constants.RESTORE_WALLET}
           </CustomText>
         </CustomButton>

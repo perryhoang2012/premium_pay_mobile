@@ -35,5 +35,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.Background_block,
     padding: pxScale.wp(20),
     borderRadius: pxScale.wp(12),
+    borderColor: Colors.Border_Gray,
+    borderWidth: 1,
   },
 });

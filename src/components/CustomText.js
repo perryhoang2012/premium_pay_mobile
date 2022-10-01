@@ -178,6 +178,7 @@ const styles = StyleSheet.create({
   },
   text: {
     ...Fonts.fontRegular,
+    fontWeight: '400',
     // fontSize: pxScale.fontSize(16),
     // color: color.black,
   },

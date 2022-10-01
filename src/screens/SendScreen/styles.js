@@ -12,7 +12,8 @@ export default StyleSheet.create({
     flex: 1,
   },
   textTitleHeader: {
-    fontSize: pxScale.fontSize(20),
+    fontSize: pxScale.fontSize(24),
+    fontWeight: '700',
   },
   body: {
     flex: 1,

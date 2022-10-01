@@ -38,18 +38,21 @@ const SendScreen = () => {
       <Block style={styles.viewItem}>
         <CustomText
           color={Colors.White}
-          size={16}
-          weight={'500'}
+          size={14}
+          weight={'600'}
+          bold
           letterSpacing={1}
           style={{marginBottom: pxScale.hp(10)}}>
-          {constants.TRANSACTION_INFO}{' '}
+          {constants.TRANSACTION_INFO}
         </CustomText>
         <Block row style={styles.viewUnderlined} space={'between'}>
-          <CustomText color={Colors.White} weight={'400'}>
+          <CustomText regular size={14} color={Colors.White} weight={'400'}>
             3XHPHa...mvtJkoU
           </CustomText>
-          <CustomButton row>
+          <CustomButton row center middle>
             <CustomText
+              semiBold
+              size={12}
               color={Colors.Pink}
               weight={'500'}
               customFont="Bold"
@@ -105,8 +108,7 @@ const SendScreen = () => {
   return (
     <LinearGradient
       colors={[
-        Colors.Gradient_start,
-        Colors.Gradient_end,
+        Colors.Gradient_start_2,
         Colors.Gradient_end,
         Colors.Gradient_end,
       ]}
@@ -136,9 +138,11 @@ const SendScreen = () => {
           <Block style={styles.viewItem}>
             <CustomText
               color={Colors.White}
-              size={16}
-              weight={'600'}
-              letterSpacing={1}>
+              size={14}
+              bold
+              weight={'700'}
+              letterSpacing={1}
+              style={{lineHeight: 20}}>
               {constants.AMOUNT}
             </CustomText>
             <Block middle row space={'between'}>
@@ -146,7 +150,9 @@ const SendScreen = () => {
                 <CustomText
                   color={Colors.Pink}
                   size={24}
-                  weight={'400'}
+                  weight={'500'}
+                  medium
+                  style={{lineHeight: 30}}
                   letterSpacing={1}>
                   0.01
                 </CustomText>
@@ -158,8 +164,9 @@ const SendScreen = () => {
                 />
                 <CustomText
                   color={Colors.White}
-                  size={14}
-                  weight={'400'}
+                  size={12}
+                  weight={'600'}
+                  semiBold
                   style={{marginRight: pxScale.wp(5)}}>
                   FAC
                 </CustomText>
@@ -170,16 +177,18 @@ const SendScreen = () => {
               color={Colors.Gray}
               size={16}
               weight={'400'}
+              regular
               letterSpacing={1}
-              style={{marginTop: pxScale.wp(5)}}>
+              style={{marginTop: pxScale.wp(8)}}>
               0.01 USD
             </CustomText>
             <CustomText
               color={Colors.White}
-              size={16}
-              weight={'600'}
+              size={14}
+              bold
+              weight={'700'}
               letterSpacing={1}
-              style={{marginTop: pxScale.hp(16)}}>
+              style={{lineHeight: 20, marginTop: pxScale.hp(16)}}>
               {constants.AVAILABLE}
             </CustomText>
             <Block middle row space={'between'}>
@@ -191,27 +200,30 @@ const SendScreen = () => {
                 <CustomText
                   color={Colors.Pink}
                   size={24}
-                  weight={'400'}
+                  weight={'500'}
+                  medium
+                  style={{lineHeight: 30}}
                   letterSpacing={1}>
                   1 FAC
                 </CustomText>
               </Block>
               <Block row>
                 <AppSvg source={AppIcon.iconUpPink} width={14} height={14} />
-
                 <CustomText
                   color={Colors.Pink}
-                  weight={'500'}
-                  customFont="Bold"
+                  weight={'600'}
+                  semiBold
+                  size={12}
                   style={{marginLeft: pxScale.wp(10)}}>
                   {constants.ADDRESS_DETAILS}
                 </CustomText>
               </Block>
             </Block>
             <CustomText
-              color={Colors.White}
+              color={Colors.Gray}
               size={16}
               weight={'400'}
+              regular
               letterSpacing={1}
               style={{marginTop: pxScale.wp(5)}}>
               0.58 USD
@@ -221,8 +233,9 @@ const SendScreen = () => {
             <Block row middle center space={'between'}>
               <CustomText
                 color={Colors.White}
-                size={16}
-                weight={'500'}
+                size={14}
+                weight={'700'}
+                bold
                 letterSpacing={1}>
                 {constants.COMMENT}
               </CustomText>
@@ -261,13 +274,14 @@ const SendScreen = () => {
           <CustomText
             color={Colors.White}
             size={14}
+            regular
             weight={'400'}
-            style={styles.textCenterAndLineHeight}>
+            style={[styles.textCenterAndLineHeight, {lineHeight: 22}]}>
             {activeTab === 0
               ? 'For the transaction to complete, the recipient must get online within the next 12 hours and you should get online within 2 hours afterwards'
               : ' Min transaction fee to send offline transaction is 0.01 FAC'}
           </CustomText>
-          <Block center middle style={{marginBottom: pxScale.hp(50)}}>
+          <Block center middle style={{marginTop: pxScale.hp(20)}}>
             <CustomButton
               row
               onGradient
@@ -278,8 +292,8 @@ const SendScreen = () => {
               <CustomText
                 style={{marginLeft: pxScale.wp(5)}}
                 color={Colors.White}
-                customFont="Bold"
-                weight={'600'}
+                bold
+                weight={'700'}
                 size={16}>
                 {constants.NEXT}
               </CustomText>

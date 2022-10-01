@@ -10,7 +10,7 @@ export default StyleSheet.create({
     flex: 1,
   },
   textTitle: {
-    fontWeight: '500',
+    fontWeight: '700',
     marginLeft: pxScale.wp(4),
     letterSpacing: 2,
     fontSize: pxScale.fontSize(20),
@@ -41,7 +41,11 @@ export default StyleSheet.create({
 
   inputConfirm: {width: pxScale.wp(90), color: Colors.White},
 
-  textCenter: {textAlign: 'center', marginHorizontal: pxScale.wp(10)},
+  textCenter: {
+    textAlign: 'center',
+    marginHorizontal: pxScale.wp(10),
+    lineHeight: 20,
+  },
 
   viewStepOne: {marginTop: pxScale.hp(20), padding: pxScale.wp(10)},
 

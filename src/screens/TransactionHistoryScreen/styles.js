@@ -56,6 +56,6 @@ export default StyleSheet.create({
     marginTop: pxScale.hp(5),
     backgroundColor: Colors.Pink,
   },
-  viewScrollView: {marginTop: pxScale.hp(20), marginBottom: pxScale.hp(20)},
+  viewScrollView: {marginTop: pxScale.hp(20), marginBottom: pxScale.hp(10)},
   viewContent: {paddingRight: pxScale.wp(20)},
 });

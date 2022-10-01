@@ -24,6 +24,8 @@ import {Modal} from 'react-native';
 import CustomInput from '~components/CustomInput';
 import {Alert} from 'react-native';
 import {TouchableWithoutFeedback, Keyboard} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {setActiveDrawer} from '~redux/actions/ui';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -33,6 +35,7 @@ if (Platform.OS === 'android') {
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [showChildren, setShowChildren] = React.useState(false);
 
   const [closeGetCoin, setCloseGetCoin] = React.useState(false);
@@ -137,6 +140,10 @@ const HomeScreen = () => {
     navigation.navigate('TransactionDetailScreen');
   };
 
+  React.useEffect(() => {
+    dispatch(setActiveDrawer(1));
+  }, [dispatch]);
+
   const _renderItemHome = ({item}) => {
     return (
       <>
@@ -161,12 +168,17 @@ const HomeScreen = () => {
               <AppFastImage source={item.image} style={style.imageIconItem} />
             </Block>
             <Block style={{marginLeft: pxScale.hp(10)}}>
-              <CustomText size={20} color={Colors.White}>
+              <CustomText
+                semiBold
+                weight={'600'}
+                size={20}
+                color={Colors.White}>
                 {item.value}
               </CustomText>
               <CustomText
                 style={{marginTop: pxScale.hp(4)}}
-                size={14}
+                size={12}
+                regular
                 color={Colors.Gray}>
                 {item.title}
               </CustomText>
@@ -183,17 +195,20 @@ const HomeScreen = () => {
           <AppSvg source={AppIcon.iconSettingSwitch} width={20} height={20} />
           <CustomText
             color={Colors.White}
-            size={14}
+            size={12}
+            semiBold
+            weight={'600'}
             style={{marginLeft: pxScale.wp(10)}}>
             {constants.MANAGER_TOKEN_LIST}
           </CustomText>
         </CustomButton>
 
         <Block style={{marginTop: 24}}>
-          <Block row space="between">
+          <Block row middle space="between">
             <CustomText
               color={Colors.White}
               size={16}
+              semiBold
               weight={'700'}
               letterSpacing={2}>
               {constants.TRANSACTION}
@@ -201,7 +216,8 @@ const HomeScreen = () => {
             <CustomText
               color={Colors.Pink}
               weight={'500'}
-              customFont="Bold"
+              semiBold
+              size={12}
               style={{marginLeft: pxScale.wp(10)}}>
               {constants.ADDRESS_DETAILS}
             </CustomText>
@@ -230,7 +246,14 @@ const HomeScreen = () => {
 
     return input.map((item, index) => (
       <Block key={index}>
-        <CustomText color={Colors.White}>{item.title}</CustomText>
+        <CustomText
+          letterSpacing={0.4}
+          semiBold
+          weight={'600'}
+          size={12}
+          color={Colors.White}>
+          {item.title}
+        </CustomText>
         <Block
           row
           middle
@@ -241,6 +264,8 @@ const HomeScreen = () => {
             height: pxScale.hp(48),
             borderRadius: pxScale.hp(10),
             marginBottom: pxScale.hp(20),
+            borderColor: Colors.Border_Gray,
+            borderWidth: 1,
           }}>
           <Block flex>
             <CustomInput style={{width: '100%'}} />
@@ -254,7 +279,7 @@ const HomeScreen = () => {
                 borderRadius: pxScale.hp(10),
                 marginRight: pxScale.wp(10),
               }}>
-              <CustomText size={12} color={Colors.Pink}>
+              <CustomText medium weight={'500'} size={12} color={Colors.Pink}>
                 Paste
               </CustomText>
             </CustomButton>
@@ -285,21 +310,22 @@ const HomeScreen = () => {
         <Block row middle>
           <AppSvg source={item.icon} width={15} height={15} />
           <Block style={{marginLeft: pxScale.wp(5)}}>
-            <CustomText size={16} weight={'500'} color={Colors.White}>
+            <CustomText semiBold size={16} weight={'700'} color={Colors.White}>
               {item.type}
             </CustomText>
-            <CustomText size={14} weight={'400'} color={Colors.White}>
+            <CustomText semiBold size={12} weight={'400'} color={Colors.White}>
               {item.subTitle}
             </CustomText>
           </Block>
         </Block>
-        <Block>
-          <CustomText size={16} weight={'500'} color={Colors.White}>
+        <Block style={{marginTop: pxScale.hp(4)}}>
+          <CustomText semiBold size={16} weight={'600'} color={Colors.White}>
             {item.value}
           </CustomText>
           <CustomText
             style={style.textRight}
             size={14}
+            semiBold
             weight={'400'}
             color={Colors.White}>
             {item.value2}
@@ -324,6 +350,8 @@ const HomeScreen = () => {
             borderRadius: pxScale.hp(12),
             paddingHorizontal: pxScale.wp(16),
             backgroundColor: Colors.Background_button,
+            borderColor: Colors.Border_Gray,
+            borderWidth: 1,
           },
         ]}>
         <Block flex>
@@ -346,10 +374,10 @@ const HomeScreen = () => {
         </Block>
 
         <Block style={{flex: 4}}>
-          <CustomText color={Colors.White} size={16}>
+          <CustomText medium weight={'500'} color={Colors.White} size={16}>
             {item.title}
           </CustomText>
-          <CustomText color={Colors.Gray} size={14}>
+          <CustomText regular color={Colors.Gray} size={12}>
             {item.value}
           </CustomText>
         </Block>
@@ -361,7 +389,7 @@ const HomeScreen = () => {
             width: 30,
             height: 30,
             borderRadius: 6,
-            borderColor: Colors.Background_block,
+            borderColor: Colors.Border_Gray,
             borderWidth: 1,
           }}
           onPress={() =>
@@ -392,8 +420,7 @@ const HomeScreen = () => {
   return (
     <LinearGradient
       colors={[
-        Colors.Gradient_start,
-        Colors.Gradient_end,
+        Colors.Gradient_start_2,
         Colors.Gradient_end,
         Colors.Gradient_end,
       ]}
@@ -405,7 +432,8 @@ const HomeScreen = () => {
           <CustomText
             color={Colors.Gray}
             weight={'400'}
-            size={16}
+            size={14}
+            medium
             style={style.textStatus}>
             {constants.ONLINE}
           </CustomText>
@@ -419,6 +447,7 @@ const HomeScreen = () => {
             onPress={() => goToSend()}>
             <AppSvg source={AppIcon.iconUp} width={16} height={16} />
             <CustomText
+              semiBold
               color={Colors.Black}
               style={style.textButton}
               weight={'600'}>
@@ -433,6 +462,7 @@ const HomeScreen = () => {
             onPress={() => goToReceive()}>
             <AppSvg source={AppIcon.iconDown} width={16} height={16} />
             <CustomText
+              semiBold
               color={Colors.Black}
               style={style.textButton}
               weight={'600'}>
@@ -466,7 +496,11 @@ const HomeScreen = () => {
                   onPress={() => setShowModalManagerTokenList(false)}>
                   <AppSvg source={AppIcon.iconCancel} width={14} height={14} />
                 </CustomButton>
-                <CustomText color={Colors.White} size={16} weight={'500'}>
+                <CustomText
+                  semiBold
+                  color={Colors.White}
+                  size={16}
+                  weight={'600'}>
                   {constants.MANAGER_TOKEN_LIST}
                 </CustomText>
                 <CustomButton
@@ -493,7 +527,7 @@ const HomeScreen = () => {
                 <CustomInput
                   placeholder={constants.SEARCH}
                   onChangeText={() => console.log('hihi')}
-                  style={{color: Colors.White}}
+                  style={{color: Colors.White, fontSize: 14}}
                 />
               </Block>
               <Block
@@ -539,7 +573,11 @@ const HomeScreen = () => {
                       height={14}
                     />
                   </CustomButton>
-                  <CustomText color={Colors.White} size={16} weight={'500'}>
+                  <CustomText
+                    semiBold
+                    color={Colors.White}
+                    size={16}
+                    weight={'600'}>
                     {constants.ADD_TOKEN_METADATA}
                   </CustomText>
                   <AppSvg source={AppIcon.iconPlus} width={14} height={14} />
@@ -572,7 +610,11 @@ const HomeScreen = () => {
                         width: '45%',
                         borderRadius: pxScale.wp(10),
                       }}>
-                      <CustomText size={16} weight={'600'} color={Colors.White}>
+                      <CustomText
+                        bold
+                        size={16}
+                        weight={'700'}
+                        color={Colors.White}>
                         {constants.CANCEL}
                       </CustomText>
                     </CustomButton>
@@ -586,7 +628,11 @@ const HomeScreen = () => {
                         borderRadius: pxScale.wp(10),
                         backgroundColor: Colors.White,
                       }}>
-                      <CustomText size={16} weight={'600'} color={Colors.Black}>
+                      <CustomText
+                        size={16}
+                        bold
+                        weight={'700'}
+                        color={Colors.Black}>
                         {constants.SAVE}
                       </CustomText>
                     </CustomButton>

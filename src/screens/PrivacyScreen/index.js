@@ -42,6 +42,7 @@ const PrivacyScreen = () => {
               color={Colors.White}
               size={16}
               weight={'400'}
+              medium
               style={[styles.textTitle]}>
               {item.title}
             </CustomText>
@@ -61,8 +62,9 @@ const PrivacyScreen = () => {
             {item.subtitle && (
               <CustomText
                 color={Colors.Gray}
-                size={16}
+                size={14}
                 weight={'400'}
+                regular
                 style={styles.textSubTitle}>
                 {item.subtitle}
               </CustomText>
@@ -76,8 +78,7 @@ const PrivacyScreen = () => {
   return (
     <LinearGradient
       colors={[
-        Colors.Gradient_start,
-        Colors.Gradient_end,
+        Colors.Gradient_start_2,
         Colors.Gradient_end,
         Colors.Gradient_end,
       ]}
@@ -89,7 +90,8 @@ const PrivacyScreen = () => {
           <CustomText
             color={Colors.Gray}
             weight={'400'}
-            size={16}
+            medium
+            size={14}
             style={styles.textStatus}>
             {constants.ONLINE}
           </CustomText>

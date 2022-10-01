@@ -42,11 +42,17 @@ const ChangePasswordScreen = () => {
       },
     ];
     return input.map((item, index) => (
-      <Block key={index} style={{marginBottom: pxScale.hp(30)}}>
+      <Block
+        key={index}
+        style={{
+          marginBottom: pxScale.hp(30),
+        }}>
         <CustomText
           color={Colors.White}
-          weight={'500'}
-          style={{marginBottom: pxScale.hp(8)}}>
+          weight={'700'}
+          size={12}
+          semiBold
+          style={{marginBottom: pxScale.hp(8), lineHeight: 18}}>
           {item.title}
         </CustomText>
         <CustomInput
@@ -57,6 +63,8 @@ const ChangePasswordScreen = () => {
             backgroundColor: 'rgba(255, 255, 255, 0.1)',
             borderRadius: pxScale.hp(10),
             color: Colors.Gray,
+            borderColor: Colors.Border_Gray,
+            borderWidth: 1,
           }}
           onChangeText={() => console.log('hehe')}
         />
@@ -78,7 +86,11 @@ const ChangePasswordScreen = () => {
         // backgroundColor: 'rgba(72, 204, 247, 0.1)',
       }}>
       <AppSvg source={AppIcon.iconInfoCirclePink} width={20} height={20} />
-      <CustomText color={Colors.White} style={{marginLeft: pxScale.wp(8)}}>
+      <CustomText
+        regular
+        size={14}
+        color={Colors.White}
+        style={{marginLeft: pxScale.wp(8), marginRight: 30}}>
         A malicious network provider can lie about the state of the blockchain
         and record your network activity. Only add custom networks you trust
       </CustomText>
@@ -88,8 +100,7 @@ const ChangePasswordScreen = () => {
   return (
     <LinearGradient
       colors={[
-        Colors.Gradient_start,
-        Colors.Gradient_end,
+        Colors.Gradient_start_2,
         Colors.Gradient_end,
         Colors.Gradient_end,
       ]}
@@ -111,7 +122,11 @@ const ChangePasswordScreen = () => {
                   width: pxScale.wp(320),
                   marginBottom: 100,
                 }}>
-                <CustomText color={Colors.White} size={16} weight={'600'}>
+                <CustomText
+                  color={Colors.White}
+                  medium
+                  size={16}
+                  weight={'500'}>
                   {constants.ADD}
                 </CustomText>
               </CustomButton>

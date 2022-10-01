@@ -122,6 +122,8 @@ export default function DrawerContent(props) {
               style={{width: pxScale.wp(23), height: pxScale.hp(20)}}
             />
             <CustomText
+              regular
+              size={15}
               style={{marginLeft: pxScale.wp(10)}}
               color={activeNetwork === index ? Colors.Pink : Colors.White}>
               {item.title}
@@ -130,6 +132,7 @@ export default function DrawerContent(props) {
           {activeNetwork === index && (
             <Block
               style={{
+                marginLeft: 4,
                 width: pxScale.wp(10),
                 height: pxScale.hp(10),
                 borderRadius: pxScale.hp(50),
@@ -164,7 +167,9 @@ export default function DrawerContent(props) {
         <Block row>
           <Block row flex>
             <AppSvg source={item.icon} width={20} height={20} />
-            <CustomText style={styles.menuText}>{item.title}</CustomText>
+            <CustomText medium size={16} weight={'500'} style={styles.menuText}>
+              {item.title}
+            </CustomText>
           </Block>
         </Block>
       </CustomButton>
@@ -180,7 +185,7 @@ export default function DrawerContent(props) {
           // eslint-disable-next-line react-native/no-inline-styles
           {
             backgroundColor:
-              activeDrawer === item.id ? 'rgba(72, 204, 247, 0.1)' : null,
+              activeDrawer === item.id ? 'rgba(241, 63, 149, 0.1)' : null,
           },
         ]}
         onPress={() => {
@@ -189,6 +194,11 @@ export default function DrawerContent(props) {
               LayoutAnimation.Presets.easeInEaseOut,
             );
             setShowWallet(pre => !pre);
+          } else if (item.title === 'Networks') {
+            LayoutAnimation.configureNext(
+              LayoutAnimation.Presets.easeInEaseOut,
+            );
+            setShowNetwork(pre => !pre);
           } else {
             dispatch(setActiveDrawer(item.id));
             item.route && props.navigation.navigate(item.route);
@@ -198,7 +208,11 @@ export default function DrawerContent(props) {
           <Block row flex middle>
             <AppSvg source={item.icon} width={20} height={20} />
             <Block>
-              <CustomText style={styles.menuText}>
+              <CustomText
+                medium
+                size={16}
+                weight={'500'}
+                style={styles.menuText}>
                 {item.value === 'view_on'
                   ? item.title + netWorkActive
                   : item.title}
@@ -269,15 +283,18 @@ export default function DrawerContent(props) {
                 center
                 middle
                 style={{
+                  width: pxScale.wp(161),
                   paddingHorizontal: pxScale.wp(15),
                   height: pxScale.hp(39),
                   borderRadius: 10,
                   backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  // borderWidth: 1,
-                  // borderColor: 'rgba(72, 204, 247, 0.4)',
                 }}
                 onPress={() => navigation.navigate('AddANetworkScreen')}>
-                <CustomText color={Colors.White} weight={'500'} size={15}>
+                <CustomText
+                  semiBold
+                  color={Colors.White}
+                  weight={'500'}
+                  size={16}>
                   {constants.ADD_A_NETWORK}
                 </CustomText>
               </CustomButton>
@@ -312,7 +329,11 @@ export default function DrawerContent(props) {
                   marginRight: pxScale.wp(7),
                 }}
                 onPress={() => navigation.navigate('CreateNewWallet')}>
-                <CustomText color={Colors.White} weight={'500'} size={15}>
+                <CustomText
+                  semiBold
+                  color={Colors.White}
+                  weight={'500'}
+                  size={16}>
                   {constants.CREATE}
                 </CustomText>
               </CustomButton>
@@ -327,7 +348,11 @@ export default function DrawerContent(props) {
                   // borderWidth: 1,
                   // borderColor: 'rgba(72, 204, 247, 0.4)',
                 }}>
-                <CustomText color={Colors.White} weight={'500'} size={15}>
+                <CustomText
+                  semiBold
+                  color={Colors.White}
+                  weight={'500'}
+                  size={16}>
                   {constants.IMPORT}
                 </CustomText>
               </CustomButton>
@@ -373,7 +398,7 @@ export default function DrawerContent(props) {
       <ScrollView style={styles.scrollView}>{_renderMenu()}</ScrollView>
 
       <Block row middle style={styles.viewFooter}>
-        <ScrollView style={styles.scrollView}>{_renderMenuFooter()}</ScrollView>
+        <Block style={styles.scrollView}>{_renderMenuFooter()}</Block>
 
         {/* <AppFastImage
           source={images.imageIconApp}
@@ -404,8 +429,8 @@ const styles = StyleSheet.create({
   },
   menuText: {
     letterSpacing: 1,
-    fontSize: pxScale.fontSize(16),
-    fontWeight: '400',
+    // fontSize: pxScale.fontSize(16),
+    // fontWeight: '400',
     color: Colors.White,
     marginLeft: pxScale.wp(10),
   },

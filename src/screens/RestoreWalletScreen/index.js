@@ -41,7 +41,7 @@ const RestoreWalletScreen = () => {
     return (
       <Block row middle style={style.viewItemSendPhase}>
         <Block center middle style={style.viewNumber}>
-          <CustomText color={Colors.White} size={12}>
+          <CustomText medium color={Colors.White} size={14}>
             {item.id}
           </CustomText>
         </Block>
@@ -53,7 +53,11 @@ const RestoreWalletScreen = () => {
   const _renderBody = () => {
     return (
       <Block style={style.viewStepOne}>
-        <CustomText style={style.textCenter} color={Colors.White}>
+        <CustomText
+          regular
+          size={14}
+          style={style.textCenter}
+          color={Colors.White}>
           {constants.SUBTITLE_RESTORE_WALLET}
         </CustomText>
         <Block style={style.viewFlatListStepTwo}>
@@ -74,7 +78,7 @@ const RestoreWalletScreen = () => {
             style={style.buttonStepOne}
             row
             onPress={() => navigation.replace('AppDrawer')}>
-            <CustomText color={Colors.White} weight={'700'}>
+            <CustomText bold size={16} color={Colors.White} weight={'700'}>
               {constants.NEXT}
             </CustomText>
           </CustomButton>
@@ -85,8 +89,7 @@ const RestoreWalletScreen = () => {
   return (
     <LinearGradient
       colors={[
-        Colors.Gradient_start,
-        Colors.Gradient_end,
+        Colors.Gradient_start_2,
         Colors.Gradient_end,
         Colors.Gradient_end,
       ]}

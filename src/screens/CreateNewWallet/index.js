@@ -62,11 +62,16 @@ const CreateNewWallet = () => {
     return (
       <Block row middle style={style.viewItemSendPhase}>
         <Block center middle style={style.viewNumber}>
-          <CustomText color={Colors.White} size={14}>
+          <CustomText medium color={Colors.White} size={14}>
             {item.id}
           </CustomText>
         </Block>
-        <CustomText color={Colors.White} style={style.viewMarginLeft}>
+        <CustomText
+          medium
+          weight={'500'}
+          color={Colors.White}
+          style={style.viewMarginLeft}
+          size={14}>
           {item.title}
         </CustomText>
       </Block>
@@ -77,7 +82,7 @@ const CreateNewWallet = () => {
     return (
       <Block row middle style={style.viewItemSendPhase}>
         <Block center middle style={style.viewNumber}>
-          <CustomText color={Colors.White} size={12}>
+          <CustomText medium size={14} color={Colors.White}>
             {item.id}
           </CustomText>
         </Block>
@@ -98,7 +103,11 @@ const CreateNewWallet = () => {
       case 1:
         return (
           <Block style={style.viewStepOne}>
-            <CustomText style={style.textCenter} color={Colors.White}>
+            <CustomText
+              style={style.textCenter}
+              color={Colors.White}
+              regular
+              size={15}>
               {constants.SUBTITLE_CREATE_WALLET}
             </CustomText>
             <Block style={style.viewContentStepOne}>
@@ -109,6 +118,8 @@ const CreateNewWallet = () => {
                   height={30}
                 />
                 <CustomText
+                  regular
+                  size={15}
                   style={style.textContentStepOne}
                   color={Colors.White}>
                   {constants.DO_NOT_SEE_YOUR_PHRASE}
@@ -117,6 +128,8 @@ const CreateNewWallet = () => {
               <Block row middle style={{marginTop: pxScale.hp(30)}}>
                 <AppSvg source={AppIcon.iconLock} width={30} height={30} />
                 <CustomText
+                  regular
+                  size={15}
                   style={style.textContentStepOne}
                   color={Colors.White}>
                   {constants.NEVER_TYPE_PHRASE}
@@ -125,6 +138,8 @@ const CreateNewWallet = () => {
               <Block row middle style={{marginTop: pxScale.hp(30)}}>
                 <AppSvg source={AppIcon.iconBook} width={30} height={30} />
                 <CustomText
+                  regular
+                  size={15}
                   style={style.textContentStepOne}
                   color={Colors.White}>
                   {constants.MAKE_AT_LEAST_2_COPIES}
@@ -144,6 +159,7 @@ const CreateNewWallet = () => {
                   size={16}
                   color={Colors.White}
                   weight={'700'}
+                  bold
                   style={{marginLeft: pxScale.wp(10)}}>
                   {constants.I_UNDERSTAND}
                 </CustomText>
@@ -157,7 +173,9 @@ const CreateNewWallet = () => {
           <Block style={style.viewStepOne}>
             <CustomText
               color={Colors.White}
-              style={{width: '80%', marginLeft: pxScale.wp(8)}}>
+              regular
+              size={14}
+              style={{width: '80%', marginLeft: pxScale.wp(8), lineHeight: 20}}>
               {constants.SUBTITLE_SEND_PHASE}
             </CustomText>
             <Block style={style.viewFlatListStepTwo}>
@@ -178,6 +196,8 @@ const CreateNewWallet = () => {
                   row
                   onPress={() => setStep(3)}>
                   <CustomText
+                    bold
+                    size={16}
                     color={Colors.Black}
                     style={style.textMarginLeft}
                     weight={'700'}>
@@ -190,7 +210,11 @@ const CreateNewWallet = () => {
                   style={style.buttonGrayStepTwo}
                   row
                   onPress={() => setStep(2)}>
-                  <CustomText weight={'500'} color={Colors.White}>
+                  <CustomText
+                    bold
+                    size={16}
+                    weight={'700'}
+                    color={Colors.White}>
                     {constants.I_WILL_DO_IT_LATER}
                   </CustomText>
                 </CustomButton>
@@ -203,7 +227,9 @@ const CreateNewWallet = () => {
         return (
           <Block style={style.viewStepOne}>
             <CustomText
-              style={{width: '80%', marginLeft: pxScale.wp(8)}}
+              regular
+              size={14}
+              style={{width: '80%', marginLeft: pxScale.wp(8), lineHeight: 20}}
               color={Colors.White}>
               {constants.SUBTITLE_CONFIRM_SEED_PHASE}
             </CustomText>
@@ -227,7 +253,7 @@ const CreateNewWallet = () => {
                 ]}
                 row
                 onPress={() => navigation.replace('AppDrawer')}>
-                <CustomText color={Colors.White} weight={'500'}>
+                <CustomText weight={'700'} color={Colors.White} bold>
                   {constants.NEXT}
                 </CustomText>
               </CustomButton>
@@ -240,7 +266,6 @@ const CreateNewWallet = () => {
     <LinearGradient
       colors={[
         Colors.Gradient_start_2,
-        Colors.Gradient_end,
         Colors.Gradient_end,
         Colors.Gradient_end,
       ]}
