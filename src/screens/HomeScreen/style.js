@@ -101,7 +101,7 @@ export default StyleSheet.create({
     borderWidth: 1,
   },
 
-  imageIconItem: {width: pxScale.wp(20), height: pxScale.hp(21)},
+  imageIconItem: {width: pxScale.wp(18), height: pxScale.hp(20)},
 
   centeredView: {
     flex: 1,

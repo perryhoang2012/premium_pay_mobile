@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import Colors from '~assets/colors';
 import {pxScale} from '~utils/funcHelper';
 
@@ -32,8 +32,8 @@ export default StyleSheet.create({
 
   viewNumber: {
     backgroundColor: Colors.Pink,
-    width: pxScale.wp(20),
-    height: pxScale.hp(20),
+    width: Platform.OS === 'ios' ? pxScale.wp(20) : pxScale.wp(22),
+    height: Platform.OS === 'ios' ? pxScale.wp(20) : pxScale.hp(24),
     borderRadius: pxScale.wp(10),
   },
 

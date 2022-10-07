@@ -386,11 +386,14 @@ export default function DrawerContent(props) {
             backgroundColor: Colors.White,
             width: pxScale.wp(80),
             height: pxScale.hp(80),
-            borderRadius: 50,
+            borderRadius: 100,
           }}>
           <AppFastImage
             source={images.imageIconAppRemove}
-            style={{width: pxScale.wp(40), height: pxScale.hp(36)}}
+            style={{
+              width: pxScale.wp(40),
+              height: pxScale.hp(36),
+            }}
           />
         </Block>
       </Block>

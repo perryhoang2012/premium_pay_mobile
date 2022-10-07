@@ -41,7 +41,7 @@ const FacBrowserScreen = () => {
   const [onSearch, setOnSearch] = React.useState(false);
 
   const [valueSearch, setValueSearch] = React.useState('');
-  const goBack = () => navigation.goBack();
+  const goBack = () => navigation.replace('AppDrawer');
 
   const scrollX = React.useRef(new Animated.Value(0)).current;
 
