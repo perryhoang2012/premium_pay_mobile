@@ -23,6 +23,7 @@ const AppFastImage = props => {
             <FastImage
               style={styles.linearGradientStyle}
               source={Image.imageBlank}
+              resizeMode={FastImage.resizeMode.cover}
             />
           );
         }

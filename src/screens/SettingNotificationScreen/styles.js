@@ -16,7 +16,7 @@ export default StyleSheet.create({
   },
   body: {
     flex: 1,
-    padding: pxScale.wp(20),
+    padding: pxScale.wp(10),
   },
   viewStatus: {
     marginBottom: pxScale.hp(10),
@@ -38,7 +38,6 @@ export default StyleSheet.create({
   },
 
   textTitle: {
-    marginLeft: pxScale.wp(10),
     width: '70%',
   },
 

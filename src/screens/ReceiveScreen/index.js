@@ -16,6 +16,7 @@ import constants from '~constants';
 import CustomInput from '~components/CustomInput';
 
 import {LayoutAnimation, Platform, UIManager} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -66,7 +67,7 @@ const ReceiveScreen = () => {
             weight={'500'}
             customFont="Bold"
             size={16}>
-            {constants.MAX_PRIVACY}
+            {constants.OFFLINE}
           </CustomText>
         </ButtonGradient>
       </Block>
@@ -81,7 +82,7 @@ const ReceiveScreen = () => {
 
   const renderContent = () => {
     return (
-      <Block style={{marginTop: pxScale.hp(16)}}>
+      <Block>
         {data.map((item, index) => (
           <Block key={index} style={styles.viewItem}>
             {item.type === 'address' ? (
@@ -89,12 +90,20 @@ const ReceiveScreen = () => {
                 <CustomText
                   letterSpacing={1}
                   color={Colors.White}
-                  weight={'500'}
-                  customFont="Bold">
+                  weight={'700'}
+                  size={14}
+                  bold>
                   {item.title}
                 </CustomText>
-                <Block row style={{marginTop: pxScale.hp(5)}} space={'between'}>
-                  <CustomText color={Colors.White} weight={'500'}>
+                <Block
+                  row
+                  style={{marginTop: pxScale.hp(10)}}
+                  space={'between'}>
+                  <CustomText
+                    size={14}
+                    regular
+                    color={Colors.White}
+                    weight={'400'}>
                     {item.value}
                   </CustomText>
                   <Block row space={'around'} style={{width: pxScale.wp(50)}}>
@@ -106,16 +115,17 @@ const ReceiveScreen = () => {
                       />
                     </CustomButton>
                     <AppSvg
-                      source={AppIcon.iconQrCode}
+                      source={AppIcon.iconQrCodeWhite}
                       width={16}
                       height={16}
                     />
                   </Block>
                   <CustomButton>
                     <CustomText
-                      color={Colors.Blue_ice}
-                      weight={'500'}
-                      customFont="Bold">
+                      size={12}
+                      color={Colors.Pink}
+                      weight={'600'}
+                      semiBold>
                       address details
                     </CustomText>
                   </CustomButton>
@@ -125,10 +135,11 @@ const ReceiveScreen = () => {
               <Block>
                 <Block row space="between">
                   <CustomText
-                    color={Colors.White}
                     letterSpacing={1}
-                    weight={'500'}
-                    customFont="Bold">
+                    color={Colors.White}
+                    weight={'700'}
+                    size={14}
+                    bold>
                     {item.title}
                   </CustomText>
                   <CustomButton
@@ -172,30 +183,36 @@ const ReceiveScreen = () => {
   };
 
   return (
-    <Block style={styles.container}>
+    <LinearGradient
+      colors={[
+        Colors.Gradient_start_2,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+      ]}
+      style={styles.linearGradient}>
       <HeaderGradient
         title={'RECEIVE'}
         styleTitle={styles.textTitleHeader}
         goBack={goBack}
       />
       <Block style={styles.body}>
-        <CustomText
+        {/* <CustomText
           color={Colors.White}
           size={16}
           weight={'500'}
           letterSpacing={1}>
           TRANSACTION TYPE
         </CustomText>
-        {renderTab()}
+        {renderTab()} */}
         {renderContent()}
 
         <Block center middle>
-          <CustomText
+          {/* <CustomText
             style={styles.textCenterAndLineHeight}
             color={Colors.White}
             size={16}>
             Sender will be given a choice between regular and offline payment.
-          </CustomText>
+          </CustomText> */}
           <CustomText
             style={[
               styles.textCenterAndLineHeight,
@@ -204,35 +221,32 @@ const ReceiveScreen = () => {
               },
             ]}
             color={Colors.White}
-            size={16}>
+            size={14}
+            regular>
             For the transaction to complete, you should get online during the 12
-            hours after Beams are sent
+            hours after FAC are sent
           </CustomText>
 
-          <ButtonGradient
-            onGradient
+          <CustomButton
             style={{
-              height: pxScale.hp(40),
-              width: pxScale.wp(170),
-              marginTop: pxScale.hp(10),
-              borderRadius: pxScale.hp(40),
+              height: pxScale.hp(43),
+              width: pxScale.wp(193),
+              marginTop: pxScale.hp(16),
+              borderRadius: pxScale.hp(10),
+              backgroundColor: Colors.Background_button,
             }}
             middle
             center
             onPress={toggleModal}>
-            <CustomText
-              color={Colors.White}
-              customFont="Bold"
-              weight={'500'}
-              size={16}>
+            <CustomText color={Colors.White} bold weight={'700'} size={16}>
               {constants.SHARE_ADDRESS}
             </CustomText>
-          </ButtonGradient>
+          </CustomButton>
         </Block>
 
         <ModalScanQr modalVisible={modalVisible} toggleModal={toggleModal} />
       </Block>
-    </Block>
+    </LinearGradient>
   );
 };
 

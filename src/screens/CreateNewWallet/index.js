@@ -62,11 +62,16 @@ const CreateNewWallet = () => {
     return (
       <Block row middle style={style.viewItemSendPhase}>
         <Block center middle style={style.viewNumber}>
-          <CustomText color={Colors.White} size={12}>
+          <CustomText medium color={Colors.White} size={14}>
             {item.id}
           </CustomText>
         </Block>
-        <CustomText color={Colors.White} style={style.viewMarginLeft}>
+        <CustomText
+          medium
+          weight={'500'}
+          color={Colors.White}
+          style={style.viewMarginLeft}
+          size={14}>
           {item.title}
         </CustomText>
       </Block>
@@ -77,7 +82,7 @@ const CreateNewWallet = () => {
     return (
       <Block row middle style={style.viewItemSendPhase}>
         <Block center middle style={style.viewNumber}>
-          <CustomText color={Colors.White} size={12}>
+          <CustomText medium size={14} color={Colors.White}>
             {item.id}
           </CustomText>
         </Block>
@@ -98,7 +103,11 @@ const CreateNewWallet = () => {
       case 1:
         return (
           <Block style={style.viewStepOne}>
-            <CustomText style={style.textCenter} color={Colors.White}>
+            <CustomText
+              style={style.textCenter}
+              color={Colors.White}
+              regular
+              size={15}>
               {constants.SUBTITLE_CREATE_WALLET}
             </CustomText>
             <Block style={style.viewContentStepOne}>
@@ -109,6 +118,8 @@ const CreateNewWallet = () => {
                   height={30}
                 />
                 <CustomText
+                  regular
+                  size={15}
                   style={style.textContentStepOne}
                   color={Colors.White}>
                   {constants.DO_NOT_SEE_YOUR_PHRASE}
@@ -117,6 +128,8 @@ const CreateNewWallet = () => {
               <Block row middle style={{marginTop: pxScale.hp(30)}}>
                 <AppSvg source={AppIcon.iconLock} width={30} height={30} />
                 <CustomText
+                  regular
+                  size={15}
                   style={style.textContentStepOne}
                   color={Colors.White}>
                   {constants.NEVER_TYPE_PHRASE}
@@ -125,25 +138,32 @@ const CreateNewWallet = () => {
               <Block row middle style={{marginTop: pxScale.hp(30)}}>
                 <AppSvg source={AppIcon.iconBook} width={30} height={30} />
                 <CustomText
+                  regular
+                  size={15}
                   style={style.textContentStepOne}
                   color={Colors.White}>
-                  {constants.DO_NOT_SEE_YOUR_PHRASE}
+                  {constants.MAKE_AT_LEAST_2_COPIES}
                 </CustomText>
               </Block>
             </Block>
 
             <Block style={style.viewMarginTop} center middle>
-              <ButtonGradient
-                onGradient
+              <CustomButton
                 middle
                 center
                 style={style.buttonStepOne}
                 row
                 onPress={() => setStep(2)}>
-                <CustomText color={Colors.White} weight={'500'}>
+                <AppSvg source={AppIcon.iconCheck} width={14} height={14} />
+                <CustomText
+                  size={16}
+                  color={Colors.White}
+                  weight={'700'}
+                  bold
+                  style={{marginLeft: pxScale.wp(10)}}>
                   {constants.I_UNDERSTAND}
                 </CustomText>
-              </ButtonGradient>
+              </CustomButton>
             </Block>
           </Block>
         );
@@ -151,7 +171,11 @@ const CreateNewWallet = () => {
       case 2:
         return (
           <Block style={style.viewStepOne}>
-            <CustomText style={style.textCenter} color={Colors.White}>
+            <CustomText
+              color={Colors.White}
+              regular
+              size={14}
+              style={{width: '80%', marginLeft: pxScale.wp(8), lineHeight: 20}}>
               {constants.SUBTITLE_SEND_PHASE}
             </CustomText>
             <Block style={style.viewFlatListStepTwo}>
@@ -164,7 +188,7 @@ const CreateNewWallet = () => {
                 horizontal={false}
               />
               <Block style={{marginTop: pxScale.hp(30)}} center middle>
-                <ButtonGradient
+                <CustomButton
                   onGradient
                   middle
                   center
@@ -172,19 +196,25 @@ const CreateNewWallet = () => {
                   row
                   onPress={() => setStep(3)}>
                   <CustomText
-                    color={Colors.White}
+                    bold
+                    size={16}
+                    color={Colors.Black}
                     style={style.textMarginLeft}
-                    weight={'500'}>
+                    weight={'700'}>
                     {constants.COMPLETE_VERIFICATION}
                   </CustomText>
-                </ButtonGradient>
+                </CustomButton>
                 <CustomButton
                   middle
                   center
                   style={style.buttonGrayStepTwo}
                   row
                   onPress={() => setStep(2)}>
-                  <CustomText weight={'500'} color={Colors.White}>
+                  <CustomText
+                    bold
+                    size={16}
+                    weight={'700'}
+                    color={Colors.White}>
                     {constants.I_WILL_DO_IT_LATER}
                   </CustomText>
                 </CustomButton>
@@ -196,7 +226,11 @@ const CreateNewWallet = () => {
       case 3:
         return (
           <Block style={style.viewStepOne}>
-            <CustomText style={style.textCenter} color={Colors.White}>
+            <CustomText
+              regular
+              size={14}
+              style={{width: '80%', marginLeft: pxScale.wp(8), lineHeight: 20}}
+              color={Colors.White}>
               {constants.SUBTITLE_CONFIRM_SEED_PHASE}
             </CustomText>
             <Block style={style.viewFlatListStepTwo}>
@@ -210,17 +244,19 @@ const CreateNewWallet = () => {
               />
             </Block>
             <Block style={style.viewMarginTop} center middle>
-              <ButtonGradient
-                onGradient
+              <CustomButton
                 middle
                 center
-                style={style.buttonCompleteStepTwo}
+                style={[
+                  style.buttonCompleteStepTwo,
+                  {backgroundColor: Colors.Background_button},
+                ]}
                 row
-                onPress={() => setStep(2)}>
-                <CustomText color={Colors.White} weight={'500'}>
+                onPress={() => navigation.replace('AppDrawer')}>
+                <CustomText weight={'700'} color={Colors.White} bold>
                   {constants.NEXT}
                 </CustomText>
-              </ButtonGradient>
+              </CustomButton>
             </Block>
           </Block>
         );
@@ -228,14 +264,16 @@ const CreateNewWallet = () => {
   };
   return (
     <LinearGradient
-      colors={[Colors.Gradient_start, Colors.Gradient_end]}
+      colors={[
+        Colors.Gradient_start_2,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+      ]}
       style={style.linearGradient}>
       <Header
         title={
           step === 1
             ? constants.CREATE_NEW_WALLET
-            : step === 2
-            ? constants.SEND_PHASE
             : constants.CONFIRM_SEND_PHASE
         }
         goBack={goBack}

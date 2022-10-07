@@ -25,9 +25,11 @@ export default StyleSheet.create({
     height: pxScale.hp(12),
     borderRadius: pxScale.hp(50),
     backgroundColor: Colors.Green_status,
+    marginTop: pxScale.hp(4),
   },
   textStatus: {
     marginLeft: pxScale.wp(10),
+    width: pxScale.wp(250),
   },
   scrollStyle: {
     // justifyContent: 'center',
@@ -35,7 +37,6 @@ export default StyleSheet.create({
   tabBarTextStyle: {
     fontSize: 16,
     fontWeight: 'normal',
-    fontFamily: 'Rubik-Bold',
   },
   underlineStyle: {
     height: 3,
@@ -43,20 +44,21 @@ export default StyleSheet.create({
     borderRadius: 3,
   },
   viewItem: {
-    height: pxScale.hp(420),
+    // height: pxScale.hp(64),
     backgroundColor: Colors.Background_item,
-    padding: 20,
-    borderRadius: pxScale.hp(12),
-    marginBottom: pxScale.hp(16),
-    marginTop: pxScale.hp(10),
+    padding: pxScale.hp(20),
     borderColor: Colors.Border_Gray,
     borderWidth: 1,
-    paddingRight: pxScale.wp(20),
+    paddingVertical: pxScale.hp(12),
   },
   viewUnderlined: {
     marginTop: pxScale.hp(5),
     backgroundColor: Colors.Blue_ice,
   },
-  viewScrollView: {marginTop: pxScale.hp(20), marginBottom: pxScale.hp(20)},
-  viewContent: {paddingRight: pxScale.wp(20)},
+  viewScrollView: {marginTop: pxScale.hp(20), marginBottom: pxScale.hp(10)},
+  viewContent: {
+    borderRadius: pxScale.hp(10),
+    marginRight: pxScale.wp(15),
+    flex: 1,
+  },
 });

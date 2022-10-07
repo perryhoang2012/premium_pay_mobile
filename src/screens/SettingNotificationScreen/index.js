@@ -25,33 +25,28 @@ const SettingNotificationScreen = () => {
     return (
       <Block
         style={{
-          backgroundColor: Colors.Background_item,
+          backgroundColor: Colors.Background_block,
           padding: pxScale.wp(20),
           borderRadius: pxScale.wp(12),
           marginTop: pxScale.wp(20),
+          borderColor: Colors.Border_Gray,
+          borderWidth: 1,
         }}>
         {setting.map((item, index) => (
-          <Block
-            key={index}
-            middle={item.type === 'switch' ? true : false}
-            row={item.type === 'switch' ? true : false}>
+          <Block key={index} middle row space="between" style={{height: 40}}>
             <CustomText
               color={Colors.White}
               size={16}
-              weight={'400'}
-              style={[
-                styles.textTitle,
-                {
-                  marginTop: index === 0 ? 0 : pxScale.hp(20),
-                },
-              ]}>
+              weight={'500'}
+              medium
+              style={[styles.textTitle]}>
               {item.title}
             </CustomText>
             {item.type === 'switch' && (
               <Switch
                 trackColor={{
                   false: Colors.Gradient_end,
-                  true: Colors.Gradient_start,
+                  true: Colors.Pink,
                 }}
                 thumbColor={Colors.White}
                 ios_backgroundColor={Colors.Gray}
@@ -59,15 +54,6 @@ const SettingNotificationScreen = () => {
                 onValueChange={toggleSwitch}
                 style={styles.switch}
               />
-            )}
-            {item.subtitle && (
-              <CustomText
-                color={Colors.Gray}
-                size={16}
-                weight={'400'}
-                style={styles.textSubtitle}>
-                {item.subtitle}
-              </CustomText>
             )}
           </Block>
         ))}
@@ -77,7 +63,11 @@ const SettingNotificationScreen = () => {
 
   return (
     <LinearGradient
-      colors={[Colors.Gradient_start, Colors.Gradient_end]}
+      colors={[
+        Colors.Gradient_start_2,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+      ]}
       style={styles.linearGradient}>
       <Header title={'Notification'} goBack={goBack} />
       <Block style={styles.body}>
@@ -85,8 +75,9 @@ const SettingNotificationScreen = () => {
           <Block style={styles.gradientDot} />
           <CustomText
             color={Colors.Gray}
-            weight={'500'}
-            size={16}
+            weight={'400'}
+            size={14}
+            medium
             style={styles.textStatus}>
             {constants.ONLINE}
           </CustomText>

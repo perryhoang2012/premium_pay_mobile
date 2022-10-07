@@ -9,16 +9,25 @@ import CustomText from '~components/CustomText';
 import constants from '~constants';
 import CustomButton from '~components/CustomButton';
 import {pxScale} from '~utils/funcHelper';
+import {FlatList} from 'react-native';
+import AppSvg from '~components/AppSvg';
+import {AppIcon} from '~assets/svg';
 
 const AddressedScreen = () => {
   const [activeTab, setActiveTab] = React.useState(0);
 
+  const data = [
+    {id: 1, name: 'No Name', value: '3723d...4d134c'},
+    {id: 1, name: 'No Name', value: '3723d...4d134c'},
+    {id: 1, name: 'No Name', value: '3723d...4d134c'},
+    {id: 1, name: 'No Name', value: '3723d...4d134c'},
+  ];
+
   const renderTab = () => {
     const tabs = [
-      {title: 'TOKEN', value: 'token'},
-      {title: 'IN PROGRESS', value: 'in_progress'},
-      {title: 'SPENT', value: 'spent'},
-      {title: 'UNAVAILABLE', value: 'unavailable'},
+      {title: 'AVAILABLE', value: 'available'},
+      {title: 'MY EXPIRED', value: 'my_expired'},
+      {title: 'CONTACTS', value: 'contacts'},
     ];
     return tabs.map((item, index) => (
       <CustomButton
@@ -43,48 +52,73 @@ const AddressedScreen = () => {
     ));
   };
 
-  const renderContent = () => {
+  const renderContent = ({item, index}) => {
     return (
-      <Block style={styles.viewItem}>
-        <CustomText
-          color={Colors.White}
-          size={16}
-          weight={'500'}
-          letterSpacing={1}>
-          {constants.DEFAULT}
-        </CustomText>
-        <CustomText
-          color={Colors.White}
-          weight={'400'}
-          style={{marginTop: pxScale.hp(10)}}>
-          3XHPHamvtJkoU3XHPHam
-        </CustomText>
+      <Block
+        row
+        style={[
+          styles.viewItem,
+          {
+            borderTopLeftRadius: index === 0 ? 10 : 0,
+            borderTopRightRadius: index === 0 ? 10 : 0,
+            borderBottomLeftRadius: index === data.length - 1 ? 10 : 0,
+            borderBottomRightRadius: index === data.length - 1 ? 10 : 0,
+            backgroundColor:
+              index % 2 === 0 ? Colors.Background_item : Colors.Blue_2,
+          },
+        ]}
+        center
+        middle>
+        <Block flex>
+          <CustomText color={Colors.White} size={16} weight={'500'}>
+            {item.name}
+          </CustomText>
+          <CustomText
+            color={Colors.White}
+            weight={'400'}
+            style={{marginTop: pxScale.hp(10)}}>
+            {item.value}
+          </CustomText>
+        </Block>
+        <Block>
+          <AppSvg source={AppIcon.iconArrowRight} width={14} height={15} />
+        </Block>
       </Block>
     );
   };
 
   return (
     <LinearGradient
-      colors={[Colors.Gradient_start, Colors.Gradient_end]}
+      colors={[
+        Colors.Gradient_start_2,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+      ]}
       style={styles.linearGradient}>
-      <HeaderDrawer title={'HISTORY'} noEye />
-      <Block row middle style={styles.viewStatus}>
+      <HeaderDrawer title={'ADDRESSED'} noEye />
+      <Block row style={styles.viewStatus}>
         <Block style={styles.gradientDot} />
         <CustomText
           color={Colors.Gray}
-          weight={'500'}
+          weight={'400'}
           size={16}
           style={styles.textStatus}>
-          {constants.ONLINE}
+          {constants.ONLINE}: random node supports online transaction only
         </CustomText>
       </Block>
       <Block style={styles.body}>
         <Block style={styles.viewScrollView}>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <Block row space={'between'}>
             {renderTab()}
-          </ScrollView>
+          </Block>
         </Block>
-        <Block style={styles.viewContent}>{renderContent()}</Block>
+        <Block style={styles.viewContent}>
+          <FlatList
+            data={data}
+            renderItem={renderContent}
+            keyExtractor={(item, index) => index}
+          />
+        </Block>
       </Block>
     </LinearGradient>
   );

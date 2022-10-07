@@ -20,8 +20,8 @@ const Header = props => {
         <CustomText
           size={20}
           color={Colors.White}
-          customFont={'Bold'}
-          weight={'600'}
+          bold
+          weight={'700'}
           style={[styleTitle, styles.textTitle]}>
           {title}
         </CustomText>

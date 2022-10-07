@@ -28,10 +28,12 @@ const SettingGeneralScreen = () => {
     return (
       <Block
         style={{
-          backgroundColor: Colors.Background_item,
+          backgroundColor: Colors.Background_block,
           padding: pxScale.wp(20),
           borderRadius: pxScale.wp(12),
           marginTop: pxScale.wp(20),
+          borderColor: Colors.Border_Gray,
+          borderWidth: 1,
         }}>
         {setting.map((item, index) => (
           <Block
@@ -40,8 +42,9 @@ const SettingGeneralScreen = () => {
             row={item.type === 'switch' ? true : false}>
             <CustomText
               color={Colors.White}
-              size={16}
-              weight={'400'}
+              size={14}
+              medium
+              weight={'500'}
               style={[
                 styles.textTile,
                 {
@@ -54,7 +57,7 @@ const SettingGeneralScreen = () => {
               <Switch
                 trackColor={{
                   false: Colors.Gradient_end,
-                  true: Colors.Gradient_start,
+                  true: Colors.Pink,
                 }}
                 thumbColor={Colors.White}
                 ios_backgroundColor={Colors.Gray}
@@ -66,7 +69,8 @@ const SettingGeneralScreen = () => {
             {item.subtitle && (
               <CustomText
                 color={Colors.Gray}
-                size={16}
+                size={14}
+                regular
                 weight={'400'}
                 style={styles.textSubTitle}>
                 {item.subtitle}
@@ -86,10 +90,12 @@ const SettingGeneralScreen = () => {
     return (
       <Block
         style={{
-          backgroundColor: Colors.Background_item,
+          backgroundColor: Colors.Background_block,
           padding: pxScale.wp(20),
           borderRadius: pxScale.wp(12),
           marginTop: pxScale.wp(20),
+          borderColor: Colors.Border_Gray,
+          borderWidth: 1,
         }}>
         {setting.map((item, index) => (
           <Block
@@ -97,8 +103,9 @@ const SettingGeneralScreen = () => {
             row={item.type === 'switch' ? true : false}>
             <CustomText
               color={Colors.White}
-              size={16}
-              weight={'400'}
+              size={14}
+              medium
+              weight={'500'}
               style={[
                 styles.textTile,
                 {
@@ -111,7 +118,7 @@ const SettingGeneralScreen = () => {
               <Switch
                 trackColor={{
                   false: Colors.Gradient_end,
-                  true: Colors.Gradient_start,
+                  true: Colors.Pink,
                 }}
                 thumbColor={Colors.White}
                 ios_backgroundColor={Colors.Gray}
@@ -124,6 +131,7 @@ const SettingGeneralScreen = () => {
               <CustomText
                 color={Colors.Gray}
                 size={16}
+                regular
                 weight={'400'}
                 style={styles.textSubTitle}>
                 {item.subtitle}
@@ -136,7 +144,11 @@ const SettingGeneralScreen = () => {
   };
   return (
     <LinearGradient
-      colors={[Colors.Gradient_start, Colors.Gradient_end]}
+      colors={[
+        Colors.Gradient_start_2,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+      ]}
       style={styles.linearGradient}>
       <Header title={'General'} goBack={goBack} />
       <Block style={styles.body}>
@@ -144,7 +156,7 @@ const SettingGeneralScreen = () => {
           <Block style={styles.gradientDot} />
           <CustomText
             color={Colors.Gray}
-            weight={'500'}
+            weight={'400'}
             size={16}
             style={styles.textStatus}>
             {constants.ONLINE}

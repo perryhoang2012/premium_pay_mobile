@@ -17,7 +17,7 @@ const UtilitiesScreen = () => {
   const options = [
     {title: 'Show public offline address'},
     {title: 'Get FAC from Fahrenheit Chain Faucet'},
-    {title: 'Rescan'},
+    {title: 'FACscan'},
     {title: 'Payment proof', route: 'PaymentProofVerificationScreen'},
     {title: 'Export wallet data'},
     {title: 'Import wallet data'},
@@ -32,7 +32,7 @@ const UtilitiesScreen = () => {
           <Block style={styles.gradientDot} />
           <CustomText
             color={Colors.Gray}
-            weight={'500'}
+            weight={'400'}
             size={16}
             style={styles.textStatus}>
             {constants.ONLINE}

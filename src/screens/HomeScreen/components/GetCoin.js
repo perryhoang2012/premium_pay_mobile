@@ -12,8 +12,8 @@ import constants from '~constants';
 const GetCoin = props => {
   const {toggleGetCoin} = props;
   return (
-    <Block center middle style={styles.container}>
-      <Block row>
+    <Block center style={styles.container}>
+      <Block row center>
         <Block>
           <CustomText
             style={styles.textContent}
@@ -27,16 +27,18 @@ const GetCoin = props => {
           <AppSvg source={AppIcon.iconCancel} width={14} height={14} />
         </CustomButton>
       </Block>
-      <CustomButton row middle center style={styles.buttonGradient}>
-        <AppSvg source={AppIcon.iconDown_Gradient} width={14} height={14} />
-        <CustomText
-          color={Colors.Blue_ice}
-          size={16}
-          weight={'700'}
-          style={styles.textMarginLeft}>
-          {constants.GET_COINS}
-        </CustomText>
-      </CustomButton>
+      <Block center middle>
+        <CustomButton row middle center style={styles.buttonGradient}>
+          <AppSvg source={AppIcon.iconDown_Gradient} width={14} height={14} />
+          <CustomText
+            color={Colors.Blue_ice}
+            size={16}
+            weight={'700'}
+            style={styles.textMarginLeft}>
+            {constants.GET_COINS}
+          </CustomText>
+        </CustomButton>
+      </Block>
     </Block>
   );
 };
@@ -46,11 +48,15 @@ export default GetCoin;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.Background_item,
-    padding: pxScale.wp(20),
+    paddingTop: pxScale.wp(10),
+    paddingBottom: pxScale.wp(10),
     borderRadius: pxScale.wp(12),
     marginTop: pxScale.wp(10),
   },
-  textContent: {},
+  textContent: {
+    width: pxScale.wp(240),
+    lineHeight: pxScale.hp(20),
+  },
   buttonGradient: {
     marginTop: pxScale.hp(16),
     height: pxScale.hp(40),

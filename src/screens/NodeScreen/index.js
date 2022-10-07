@@ -22,19 +22,19 @@ const NodeScreen = () => {
     const setting = [
       {
         title: 'RANDOM NODE (fast sync)',
-        subTitle: 'For those who don’t have any  other Fac wallet.',
+        subTitle: 'For those who don’t have any  other PPay wallet.',
         icon: AppIcon.iconNode,
       },
       {
         title: 'MOBILE NODE (slow sync)',
         subTitle:
-          'For those who want to sync the balance across multiple Fac wallets.',
+          'For those who want to sync the balance across multiple PPay wallets.',
         icon: AppIcon.iconMobile,
       },
       {
         title: 'OWN NODE (fast and secure, advanced)',
-        subTitle: 'For those who don’t have any  other Fac wallet.',
-        icon: AppIcon.iconQrCode,
+        subTitle: 'For those who don’t have any  other PPay wallet.',
+        icon: AppIcon.iconQrCodePink,
       },
     ];
     return (
@@ -65,20 +65,22 @@ const NodeScreen = () => {
               }}>
               <AppSvg source={item.icon} width={24} height={24} />
               <CustomText
+                semiBold
                 color={Colors.White}
-                size={16}
-                weight={'400'}
+                size={14}
+                weight={'700'}
                 style={{
-                  marginTop: pxScale.wp(10),
+                  marginTop: pxScale.wp(5),
                 }}>
                 {item.title}
               </CustomText>
               <CustomText
                 color={Colors.White}
-                size={14}
+                size={12}
                 weight={'400'}
+                regular
                 style={{
-                  marginTop: pxScale.wp(10),
+                  marginTop: pxScale.wp(5),
                 }}>
                 {item.subTitle}
               </CustomText>
@@ -91,7 +93,11 @@ const NodeScreen = () => {
 
   return (
     <LinearGradient
-      colors={[Colors.Gradient_start, Colors.Gradient_end]}
+      colors={[
+        Colors.Gradient_start_2,
+        Colors.Gradient_end,
+        Colors.Gradient_end,
+      ]}
       style={styles.linearGradient}>
       <Header title={'Node'} goBack={goBack} />
       <Block style={styles.body}>
@@ -99,8 +105,9 @@ const NodeScreen = () => {
           <Block style={styles.gradientDot} />
           <CustomText
             color={Colors.Gray}
-            weight={'500'}
+            weight={'400'}
             size={14}
+            medium
             style={styles.textStatus}>
             {constants.ONLINE} : mobile node
           </CustomText>

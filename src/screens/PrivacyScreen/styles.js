@@ -16,7 +16,7 @@ export default StyleSheet.create({
   },
   body: {
     flex: 1,
-    padding: pxScale.wp(20),
+    padding: pxScale.wp(10),
   },
   viewStatus: {
     marginBottom: pxScale.hp(10),
@@ -32,25 +32,24 @@ export default StyleSheet.create({
   },
 
   viewContent: {
-    backgroundColor: Colors.Background_item,
+    backgroundColor: Colors.Background_block,
     padding: pxScale.wp(20),
     borderRadius: pxScale.wp(12),
     marginTop: pxScale.wp(20),
+    borderWidth: 1,
+    borderColor: Colors.Border_Gray,
   },
 
   textTitle: {
-    marginLeft: pxScale.wp(10),
-    width: '70%',
+    width: '80%',
   },
 
   textSubTitle: {
-    marginLeft: pxScale.wp(10),
     marginTop: pxScale.wp(5),
     width: '70%',
   },
 
   switch: {
     transform: [{scaleX: 0.8}, {scaleY: 0.8}],
-    backgroundColor: 'yellow',
   },
 });

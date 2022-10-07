@@ -34,13 +34,11 @@ export default StyleSheet.create({
   switch: {transform: [{scaleX: 0.8}, {scaleY: 0.8}]},
 
   textTile: {
-    marginLeft: pxScale.wp(10),
     width: '70%',
   },
 
   textSubTitle: {
-    marginLeft: pxScale.wp(10),
-    marginTop: pxScale.wp(5),
+    marginTop: pxScale.wp(8),
     width: '70%',
   },
 });

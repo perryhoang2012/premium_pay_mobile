@@ -14,9 +14,7 @@ import constants from '~constants';
 const HeaderGradient = prop => {
   const {goBack, title, styleTitle} = prop;
   return (
-    <LinearGradient
-      colors={['#48CCF7', '#0A2649']}
-      style={styles.linearGradient}>
+    <Block style={styles.linearGradient}>
       <Block space={'between'} center middle row style={styles.constrainer}>
         <CustomButton onPress={() => goBack()}>
           <AppSvg source={AppIcon.iconRight} width={24} height={24} />
@@ -36,13 +34,14 @@ const HeaderGradient = prop => {
         <Block style={styles.gradientDot} />
         <CustomText
           color={Colors.Gray}
+          medium
           weight={'500'}
-          size={16}
+          size={14}
           style={styles.textStatus}>
-          {constants.ONLINE}
+          {constants.ONLINE}: mobile node
         </CustomText>
       </Block>
-    </LinearGradient>
+    </Block>
   );
 };
 

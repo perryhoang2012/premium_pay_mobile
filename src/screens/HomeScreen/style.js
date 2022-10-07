@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import Colors from '~assets/colors';
 import {pxScale} from '~utils/funcHelper';
+import Insets from '~utils/insets';
 
 export default StyleSheet.create({
   button: {
@@ -19,10 +20,10 @@ export default StyleSheet.create({
     flex: 1,
   },
   buttonSendAndReceive: {
-    height: pxScale.hp(40),
-    flex: 1,
-    marginRight: pxScale.wp(20),
-    borderRadius: pxScale.wp(50),
+    height: pxScale.hp(43),
+    width: '48%',
+    borderRadius: pxScale.wp(10),
+    backgroundColor: Colors.White,
   },
 
   viewItem: {
@@ -46,7 +47,7 @@ export default StyleSheet.create({
   },
   viewDoubleButton: {
     flex: 1,
-    paddingHorizontal: pxScale.wp(10),
+    paddingHorizontal: pxScale.wp(24),
   },
   textButton: {
     fontSize: pxScale.fontSize(16),
@@ -55,6 +56,7 @@ export default StyleSheet.create({
 
   viewScrollView: {
     flex: 10,
+    marginTop: pxScale.hp(10),
   },
   letterSpacingText: {
     letterSpacing: 2,
@@ -85,7 +87,7 @@ export default StyleSheet.create({
   },
 
   containerItem: {
-    backgroundColor: Colors.Background_item,
+    backgroundColor: Colors.Background_block,
     padding: pxScale.hp(20),
     borderRadius: pxScale.wp(12),
     marginTop: pxScale.hp(10),
@@ -99,5 +101,24 @@ export default StyleSheet.create({
     borderWidth: 1,
   },
 
-  imageIconItem: {width: pxScale.wp(16), height: pxScale.hp(16)},
+  imageIconItem: {width: pxScale.wp(18), height: pxScale.hp(20)},
+
+  centeredView: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginTop: Insets.TOP - 10,
+    width: '100%',
+  },
+  modalView: {
+    width: '100%',
+    height: '100%',
+    margin: 20,
+    backgroundColor: '#171717',
+    borderRadius: pxScale.wp(10),
+    alignItems: 'center',
+    padding: pxScale.wp(10),
+    paddingHorizontal: pxScale.wp(20),
+  },
+  switch: {flex: 1, transform: [{scaleX: 0.8}, {scaleY: 0.8}]},
 });
