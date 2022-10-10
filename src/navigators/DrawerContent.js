@@ -12,7 +12,7 @@ import React from 'react';
 import Insets from '~utils/insets';
 import Colors from '~assets/colors';
 import CustomText from '~components/CustomText';
-import {pxScale} from '~utils/funcHelper';
+import {coverAddress, pxScale} from '~utils/funcHelper';
 import CustomButton from '~components/CustomButton';
 import AppFastImage from '~components/AppFastImage';
 import images from '~assets/images';
@@ -20,13 +20,14 @@ import AppSvg from '~components/AppSvg';
 import {useSelector, useDispatch} from 'react-redux';
 import {
   setActiveDrawer,
-  setActiveWallet,
   setNetWorkActive,
+  setActiveAccount,
 } from '~redux/actions/ui';
 import {AppIcon} from '~assets/svg';
 import constants from '~constants';
 import routes from '~constants/routes';
 import {useNavigation} from '@react-navigation/native';
+import {createAccountOfWallet} from '~redux/actions/user';
 
 if (
   Platform.OS === 'android' &&
@@ -41,8 +42,10 @@ export default function DrawerContent(props) {
   const navigation = useNavigation();
 
   const activeDrawer = useSelector(rootState => rootState?.activeDrawer);
-  const activeWallet = useSelector(rootState => rootState?.activeWallet);
+  const activeAccount = useSelector(rootState => rootState?.activeAccount);
   const netWorkActive = useSelector(rootState => rootState?.netWorkActive);
+  const listAccounts = useSelector(rootState => rootState?.listAccounts);
+  const token = useSelector(rootState => rootState?.token);
 
   const [showWallet, setShowWallet] = React.useState(false);
   const [showNetwork, setShowNetwork] = React.useState(false);
@@ -51,12 +54,6 @@ export default function DrawerContent(props) {
     React.useState('Fahrenheit Chain');
 
   const [activeNetwork, setActiveNetwork] = React.useState(0);
-
-  const dataWallet = [
-    {id: 1, name: 'Account 1 (0xDeEb...367)'},
-    {id: 2, name: 'Account 2 (0xDeEb...256)'},
-    {id: 3, name: 'Account 3 (0xDeEb...341)'},
-  ];
 
   const dataNetwork = [
     {
@@ -74,6 +71,12 @@ export default function DrawerContent(props) {
     {id: 1, title: 'BSC', icon: images.imageEth, value: 'BSCscan'},
   ];
 
+  const createAccount = () => {
+    try {
+      dispatch(createAccountOfWallet(token));
+    } catch (e) {}
+  };
+
   const renderItemWallet = React.useCallback(
     (item, index) => {
       return (
@@ -84,17 +87,17 @@ export default function DrawerContent(props) {
           style={{
             width: '100%',
             height: pxScale.hp(39),
-            borderRadius: activeWallet === index ? pxScale.hp(10) : 0,
+            borderRadius: activeAccount._id === item._id ? pxScale.hp(10) : 0,
           }}
-          onPress={() => dispatch(setActiveWallet(index))}>
+          onPress={() => dispatch(setActiveAccount(item))}>
           <CustomText
-            color={activeWallet === index ? Colors.Pink : Colors.White}>
-            {item.name}
+            color={activeAccount._id === item._id ? Colors.Pink : Colors.White}>
+            Account {index + 1} {coverAddress(item.address, 5)}
           </CustomText>
         </CustomButton>
       );
     },
-    [activeWallet, dispatch],
+    [activeAccount, dispatch],
   );
 
   const renderItemNetwork = React.useCallback(
@@ -117,9 +120,12 @@ export default function DrawerContent(props) {
           }}>
           <Block row style={{width: '85%'}}>
             <AppFastImage
-              resizeMode="contain"
               source={item.icon}
-              style={{width: pxScale.wp(23), height: pxScale.hp(20)}}
+              style={{
+                width: pxScale.wp(19),
+                height: pxScale.hp(20),
+                borderRadius: 50,
+              }}
             />
             <CustomText
               regular
@@ -305,7 +311,7 @@ export default function DrawerContent(props) {
         {item.value === 'wallet' && showWallet && (
           <Block style={{flex: 1, width: '100%', marginTop: pxScale.hp(5)}}>
             <ScrollView>
-              {dataWallet.map((itemWallet, indexWallet) =>
+              {listAccounts.map((itemWallet, indexWallet) =>
                 renderItemWallet(itemWallet, indexWallet),
               )}
             </ScrollView>
@@ -328,7 +334,9 @@ export default function DrawerContent(props) {
                   // borderColor: 'rgba(72, 204, 247, 0.4)',
                   marginRight: pxScale.wp(7),
                 }}
-                onPress={() => navigation.navigate('CreateNewWallet')}>
+                onPress={() => {
+                  createAccount();
+                }}>
                 <CustomText
                   semiBold
                   color={Colors.White}
@@ -364,9 +372,10 @@ export default function DrawerContent(props) {
   }, [
     activeChildren,
     activeDrawer,
+    createAccount,
     dataNetwork,
-    dataWallet,
     dispatch,
+    listAccounts,
     navigation,
     netWorkActive,
     props.navigation,

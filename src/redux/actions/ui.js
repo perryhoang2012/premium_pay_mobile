@@ -5,8 +5,8 @@ export const setActiveDrawer = payload => ({
   payload: payload,
 });
 
-export const setActiveWallet = payload => ({
-  type: 'SET_ACTIVE_WALLET',
+export const setActiveAccount = payload => ({
+  type: 'SET_ACTIVE_ACCOUNT',
   payload: payload,
 });
 

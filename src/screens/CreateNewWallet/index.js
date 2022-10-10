@@ -14,19 +14,31 @@ import CustomInput from '~components/CustomInput';
 import ButtonGradient from '~components/ButtonGradient';
 import AppSvg from '~components/AppSvg';
 import {AppIcon} from '~assets/svg';
+import {genMnemonicAPI, loginAPI} from '~apis/user';
+import {requestLogin} from '~redux/actions/user';
+import {useDispatch} from 'react-redux';
 
 const CreateNewWallet = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const [step, setStep] = React.useState(1);
 
+  const [dataMnemonic, setDataMnemonic] = React.useState([]);
+
   const [stateConfirm, setStateConfirm] = React.useState([
-    {id: 1},
-    {id: 4},
-    {id: 5},
-    {id: 8},
-    {id: 11},
-    {id: 12},
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
   ]);
 
   const goBack = () => {
@@ -43,27 +55,38 @@ const CreateNewWallet = () => {
     }
   };
 
-  const dataSeedPhase = [
-    {id: 1, title: 'cart'},
-    {id: 2, title: 'roof'},
-    {id: 3, title: 'promote'},
-    {id: 4, title: 'mask'},
-    {id: 5, title: 'scout'},
-    {id: 6, title: 'scene'},
-    {id: 7, title: 'trend'},
-    {id: 8, title: 'ankle'},
-    {id: 9, title: 'rally'},
-    {id: 10, title: 'alcohol'},
-    {id: 11, title: 'melody'},
-    {id: 12, title: 'bread'},
-  ];
+  const generateMnemonic = async () => {
+    try {
+      const res = await genMnemonicAPI();
+      const data = res.data.mnemonic.split(' ');
+      setDataMnemonic(data);
+      setStep(2);
+    } catch (e) {}
+  };
+
+  const checkMnemonic = React.useCallback(() => {
+    const dataOld = dataMnemonic.toString().replaceAll(',', ' ');
+    const dataConfirm = stateConfirm?.toString().replaceAll(',', ' ');
+    if (dataOld === dataConfirm) {
+      navigation.replace('AppDrawer');
+    }
+  }, [dataMnemonic, navigation, stateConfirm]);
+
+  const handleLogin = React.useCallback(async () => {
+    try {
+      dispatch(
+        requestLogin({mnemonic: dataMnemonic.toString().replaceAll(',', ' ')}),
+      );
+      setStep(3);
+    } catch (e) {}
+  }, [dataMnemonic, dispatch]);
 
   const _renderItemSeedPhase = ({item, index}) => {
     return (
       <Block row middle style={style.viewItemSendPhase}>
         <Block center middle style={style.viewNumber}>
           <CustomText medium color={Colors.White} size={14}>
-            {item.id}
+            {index + 1}
           </CustomText>
         </Block>
         <CustomText
@@ -72,33 +95,36 @@ const CreateNewWallet = () => {
           color={Colors.White}
           style={style.viewMarginLeft}
           size={14}>
-          {item.title}
+          {item}
         </CustomText>
       </Block>
     );
   };
 
-  const _renderItemConfirmSeed = ({item, index}) => {
-    return (
-      <Block row middle style={style.viewItemSendPhase}>
-        <Block center middle style={style.viewNumber}>
-          <CustomText medium size={14} color={Colors.White}>
-            {item.id}
-          </CustomText>
+  const _renderItemConfirmSeed = React.useCallback(
+    ({item, index}) => {
+      return (
+        <Block row middle style={style.viewItemSendPhase}>
+          <Block center middle style={style.viewNumber}>
+            <CustomText medium size={14} color={Colors.White}>
+              {index + 1}
+            </CustomText>
+          </Block>
+          <CustomInput
+            style={style.inputConfirm}
+            value={item.value}
+            onChangeText={e => {
+              let newArr = [...stateConfirm];
+              newArr[index] = e;
+              setStateConfirm(newArr);
+            }}
+          />
         </Block>
-        <CustomInput
-          style={style.inputConfirm}
-          value={item.value}
-          onChangeText={e => {
-            let newArr = [...stateConfirm];
-            newArr[index].value = e;
-            setStateConfirm(newArr);
-          }}
-        />
-      </Block>
-    );
-  };
-  const _renderBody = () => {
+      );
+    },
+    [stateConfirm],
+  );
+  const _renderBody = React.useCallback(() => {
     switch (step) {
       case 1:
         return (
@@ -153,7 +179,9 @@ const CreateNewWallet = () => {
                 center
                 style={style.buttonStepOne}
                 row
-                onPress={() => setStep(2)}>
+                onPress={() => {
+                  generateMnemonic();
+                }}>
                 <AppSvg source={AppIcon.iconCheck} width={14} height={14} />
                 <CustomText
                   size={16}
@@ -181,9 +209,9 @@ const CreateNewWallet = () => {
             <Block style={style.viewFlatListStepTwo}>
               <FlatList
                 scrollEnabled={false}
-                data={dataSeedPhase}
+                data={dataMnemonic}
                 renderItem={_renderItemSeedPhase}
-                keyExtractor={item => item.id}
+                keyExtractor={item => item}
                 numColumns={2}
                 horizontal={false}
               />
@@ -194,7 +222,9 @@ const CreateNewWallet = () => {
                   center
                   style={style.buttonCompleteStepTwo}
                   row
-                  onPress={() => setStep(3)}>
+                  onPress={() => {
+                    handleLogin();
+                  }}>
                   <CustomText
                     bold
                     size={16}
@@ -235,10 +265,9 @@ const CreateNewWallet = () => {
             </CustomText>
             <Block style={style.viewFlatListStepTwo}>
               <FlatList
-                scrollEnabled={false}
                 data={stateConfirm}
                 renderItem={_renderItemConfirmSeed}
-                keyExtractor={item => item.id}
+                keyExtractor={(item, index) => index}
                 numColumns={2}
                 horizontal={false}
               />
@@ -252,7 +281,9 @@ const CreateNewWallet = () => {
                   {backgroundColor: Colors.Background_button},
                 ]}
                 row
-                onPress={() => navigation.replace('AppDrawer')}>
+                onPress={() => {
+                  checkMnemonic();
+                }}>
                 <CustomText weight={'700'} color={Colors.White} bold>
                   {constants.NEXT}
                 </CustomText>
@@ -261,7 +292,14 @@ const CreateNewWallet = () => {
           </Block>
         );
     }
-  };
+  }, [
+    step,
+    dataMnemonic,
+    stateConfirm,
+    _renderItemConfirmSeed,
+    handleLogin,
+    checkMnemonic,
+  ]);
   return (
     <LinearGradient
       colors={[

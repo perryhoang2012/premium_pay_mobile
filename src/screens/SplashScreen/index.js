@@ -11,18 +11,21 @@ import styles from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch} from 'react-redux';
 import {setActiveDrawer} from '~redux/actions/ui';
+import {useSelector} from 'react-redux';
 
 const SplashScreen = () => {
   // *
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
+  const token = useSelector(rootState => rootState?.token);
+
   //
 
   const checkNewUser = React.useCallback(async () => {
     try {
       const value = await AsyncStorage.getItem('isNewUser');
-      if (value) {
+      if (value && token.length > 0) {
         dispatch(setActiveDrawer(1));
         setTimeout(() => {
           navigation.replace('AppDrawer');
@@ -36,7 +39,7 @@ const SplashScreen = () => {
         } catch (e) {}
       }
     } catch (e) {}
-  }, [navigation]);
+  }, [dispatch, navigation, token.length]);
 
   // * useEffect
   React.useEffect(() => {
@@ -49,11 +52,7 @@ const SplashScreen = () => {
       colors={[Colors.Gradient_end, Colors.Gradient_start]}
       style={styles.linearGradient}>
       <Block style={styles.container}>
-        <AppFastImage
-          resizeMode="contain"
-          source={images.imageIconAppRemove}
-          style={styles.logo}
-        />
+        <AppFastImage source={images.imageIconAppRemove} style={styles.logo} />
       </Block>
       <Block style={styles.viewTextFooter}>
         <CustomText

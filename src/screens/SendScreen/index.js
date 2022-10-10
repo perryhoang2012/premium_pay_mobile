@@ -4,7 +4,7 @@ import HeaderGradient from '~components/HeaderGradient';
 import styles from './styles';
 import CustomText from '~components/CustomText';
 import Colors from '~assets/colors';
-import {pxScale} from '~utils/funcHelper';
+import {coverAddress, pxScale} from '~utils/funcHelper';
 import AppSvg from '~components/AppSvg';
 import CustomButton from '~components/CustomButton';
 import {AppIcon} from '~assets/svg';
@@ -16,6 +16,7 @@ import {LayoutAnimation, Platform, ScrollView, UIManager} from 'react-native';
 import images from '~assets/images';
 import AppFastImage from '~components/AppFastImage';
 import LinearGradient from 'react-native-linear-gradient';
+import {useSelector} from 'react-redux';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -27,8 +28,11 @@ const SendScreen = () => {
   const navigation = useNavigation();
   const [activeTab, setActiveTab] = React.useState(0);
   const [showComment, setShowComment] = React.useState(false);
+  const activeAccount = useSelector(rootState => rootState?.activeAccount);
 
   const [valueComment, setValueComment] = React.useState('');
+
+  const [valueAmount, setValueAmount] = React.useState(0);
 
   const goBack = () => {
     navigation.goBack();
@@ -47,7 +51,7 @@ const SendScreen = () => {
         </CustomText>
         <Block row style={styles.viewUnderlined} space={'between'}>
           <CustomText regular size={14} color={Colors.White} weight={'400'}>
-            3XHPHa...mvtJkoU
+            {coverAddress(activeAccount.address, 9)}
           </CustomText>
           <CustomButton row center middle>
             <CustomText
@@ -147,15 +151,19 @@ const SendScreen = () => {
             </CustomText>
             <Block middle row space={'between'}>
               <Block style={styles.viewChildAmount}>
-                <CustomText
-                  color={Colors.Pink}
-                  size={24}
-                  weight={'500'}
-                  medium
-                  style={{lineHeight: 30}}
-                  letterSpacing={1}>
-                  0.01
-                </CustomText>
+                <CustomInput
+                  number
+                  keyboardType={'number-pad'}
+                  onChangeText={e => setValueAmount(e)}
+                  value={valueAmount}
+                  style={{
+                    color: Colors.Pink,
+                    fontSize: pxScale.fontSize(24),
+                    fontWeight: '500',
+                    lineHeight: 30,
+                    letterSpacing: 1,
+                  }}
+                />
               </Block>
               <Block row middle>
                 <AppFastImage

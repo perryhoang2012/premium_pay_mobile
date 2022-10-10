@@ -14,6 +14,10 @@ service.interceptors.request.use(
 
     config.headers['Content-Type'] = 'application/json';
 
+    if (config.Host) {
+      config.headers.Host = '<calculated when request is sent>';
+    }
+
     if (config.token) {
       config.headers.Authorization = `Bearer ${config.token}`;
     }

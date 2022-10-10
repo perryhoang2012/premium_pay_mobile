@@ -10,9 +10,12 @@ import ButtonGradient from '~components/ButtonGradient';
 import style from './style';
 import {useNavigation} from '@react-navigation/native';
 import CustomButton from '~components/CustomButton';
+import {useDispatch} from 'react-redux';
+import {cleanDataLocal} from '~redux/actions/user';
 
 const WelcomeScreen = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const goToCreateWallet = () => {
     navigation.navigate('CreateNewWallet');
@@ -21,6 +24,10 @@ const WelcomeScreen = () => {
   const goToRestoreWalletScreen = () => {
     navigation.navigate('RestoreWalletScreen');
   };
+
+  React.useEffect(() => {
+    dispatch(cleanDataLocal());
+  }, [dispatch]);
 
   return (
     <LinearGradient

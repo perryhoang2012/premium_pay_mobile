@@ -14,43 +14,77 @@ import CustomInput from '~components/CustomInput';
 import ButtonGradient from '~components/ButtonGradient';
 import AppSvg from '~components/AppSvg';
 import {AppIcon} from '~assets/svg';
+import {loginAPI} from '~apis/user';
+import {useDispatch, useSelector} from 'react-redux';
+import {cleanDataLocal, requestLogin} from '~redux/actions/user';
 
 const RestoreWalletScreen = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const token = useSelector(rootState => rootState?.token);
 
   const goBack = () => {
     navigation.goBack();
   };
 
-  const dataSeedPhase = [
-    {id: 1, title: 'cart'},
-    {id: 2, title: 'roof'},
-    {id: 3, title: 'promote'},
-    {id: 4, title: 'mask'},
-    {id: 5, title: 'scout'},
-    {id: 6, title: 'scene'},
-    {id: 7, title: 'trend'},
-    {id: 8, title: 'ankle'},
-    {id: 9, title: 'rally'},
-    {id: 10, title: 'alcohol'},
-    {id: 11, title: 'melody'},
-    {id: 12, title: 'bread'},
-  ];
+  const [dataSeedPhase, setDataSeedPhase] = React.useState([
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+  ]);
 
-  const _renderItemSeedPhase = ({item, index}) => {
-    return (
-      <Block row middle style={style.viewItemSendPhase}>
-        <Block center middle style={style.viewNumber}>
-          <CustomText medium color={Colors.White} size={14}>
-            {item.id}
-          </CustomText>
+  const handleToken = React.useCallback(() => {
+    if (token.length > 0) {
+      navigation.replace('AppDrawer');
+    }
+  }, [navigation, token.length]);
+
+  React.useEffect(() => {
+    handleToken();
+  }, [token, handleToken]);
+
+  const handleLogin = React.useCallback(async () => {
+    try {
+      dispatch(
+        requestLogin({mnemonic: dataSeedPhase.toString().replaceAll(',', ' ')}),
+      );
+    } catch (e) {}
+  }, [dataSeedPhase, dispatch]);
+
+  const _renderItemSeedPhase = React.useCallback(
+    ({item, index}) => {
+      return (
+        <Block row middle style={style.viewItemSendPhase}>
+          <Block center middle style={style.viewNumber}>
+            <CustomText medium color={Colors.White} size={14}>
+              {index + 1}
+            </CustomText>
+          </Block>
+          <CustomInput
+            style={{color: Colors.White, width: '80%'}}
+            onChangeText={e => {
+              const newArr = [...dataSeedPhase];
+              newArr[index].title = e;
+              setDataSeedPhase(newArr);
+            }}
+          />
         </Block>
-        <CustomInput />
-      </Block>
-    );
-  };
+      );
+    },
+    [dataSeedPhase],
+  );
 
-  const _renderBody = () => {
+  const _renderBody = React.useCallback(() => {
     return (
       <Block style={style.viewStepOne}>
         <CustomText
@@ -65,7 +99,7 @@ const RestoreWalletScreen = () => {
             scrollEnabled={false}
             data={dataSeedPhase}
             renderItem={_renderItemSeedPhase}
-            keyExtractor={item => item.id}
+            keyExtractor={(item, index) => index}
             numColumns={2}
             horizontal={false}
           />
@@ -77,7 +111,9 @@ const RestoreWalletScreen = () => {
             center
             style={style.buttonStepOne}
             row
-            onPress={() => navigation.replace('AppDrawer')}>
+            onPress={() => {
+              handleLogin();
+            }}>
             <CustomText bold size={16} color={Colors.White} weight={'700'}>
               {constants.NEXT}
             </CustomText>
@@ -85,7 +121,8 @@ const RestoreWalletScreen = () => {
         </Block>
       </Block>
     );
-  };
+  }, [_renderItemSeedPhase, dataSeedPhase, navigation]);
+
   return (
     <LinearGradient
       colors={[

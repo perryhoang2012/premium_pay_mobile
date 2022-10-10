@@ -11,8 +11,8 @@ export default StyleSheet.create({
     flex: 1,
   },
   logo: {
-    width: pxScale.wp(150),
-    height: pxScale.hp(150),
+    width: pxScale.wp(160),
+    height: pxScale.hp(160),
   },
   viewTextFooter: {
     position: 'absolute',

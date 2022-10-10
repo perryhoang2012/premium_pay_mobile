@@ -45,7 +45,7 @@ export default StyleSheet.create({
   buttonTab: {width: '48%', borderRadius: pxScale.hp(50)},
 
   viewChildAmount: {
-    width: '80%',
+    width: '70%',
     marginTop: pxScale.hp(5),
     borderBottomColor: 'rgba(255,255,255,0.5)',
     borderBottomWidth: pxScale.hp(0.5),

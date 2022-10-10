@@ -24,8 +24,15 @@ import {Modal} from 'react-native';
 import CustomInput from '~components/CustomInput';
 import {Alert} from 'react-native';
 import {TouchableWithoutFeedback, Keyboard} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setActiveDrawer} from '~redux/actions/ui';
+import {
+  requestGetListAccountOfWallet,
+  requestGetListTokenMetaData,
+  requestGetListTokenOfWallet,
+} from '~redux/actions/user';
+import {createWalletTokenAPI} from '~apis/user';
+import Clipboard from '@react-native-clipboard/clipboard';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -45,11 +52,24 @@ const HomeScreen = () => {
 
   const [showModalAddToken, setShowModalAddToken] = React.useState(false);
 
+  const token = useSelector(rootState => rootState?.token);
+  const listToken = useSelector(rootState => rootState?.listToken);
+
+  console.log(listToken);
+
+  const activeAccount = useSelector(rootState => rootState?.activeAccount);
+
   const data = [
     {id: 1, value: '100 FAC', title: '$100', image: images.imageIconEllipse},
     {id: 2, value: '0 BNB', title: `-BNB`, image: images.imageBnb},
     {id: 3, value: '0 Ethereum', title: `-ETH`, image: images.imageEth},
   ];
+
+  const [stateAddToken, setStateAddToken] = React.useState({
+    address: '',
+    symbol: '',
+    decimals: 0,
+  });
 
   const dataToken = [
     {
@@ -139,6 +159,44 @@ const HomeScreen = () => {
   const goToDetail = () => {
     navigation.navigate('TransactionDetailScreen');
   };
+
+  const createTokenToListToken = async () => {
+    try {
+      await createWalletTokenAPI();
+    } catch (e) {}
+  };
+
+  const getListAccountsOfWallet = React.useCallback(() => {
+    dispatch(requestGetListAccountOfWallet(token));
+  }, [dispatch, token]);
+
+  const getListTokenOfWallet = React.useCallback(() => {
+    const payload = {
+      token: token,
+      body: {account: activeAccount.address},
+    };
+    dispatch(requestGetListTokenOfWallet(payload));
+  }, [activeAccount.address, dispatch, token]);
+
+  const getListTokenMetaData = React.useCallback(() => {
+    const payload = {
+      token: token,
+      param: activeAccount.address,
+    };
+    dispatch(requestGetListTokenMetaData(payload));
+  }, [activeAccount.address, dispatch, token]);
+
+  React.useEffect(() => {
+    getListTokenMetaData();
+  }, [getListTokenMetaData]);
+
+  React.useEffect(() => {
+    getListTokenOfWallet();
+  }, [getListTokenOfWallet]);
+
+  React.useEffect(() => {
+    getListAccountsOfWallet();
+  }, [getListAccountsOfWallet]);
 
   React.useEffect(() => {
     dispatch(setActiveDrawer(1));
@@ -239,9 +297,9 @@ const HomeScreen = () => {
 
   const _renderInputAddToken = () => {
     const input = [
-      {title: 'TOKEN ADDRESS', value: '', type: 'Paste'},
-      {title: 'TOKEN DECIMAL', value: ''},
-      {title: 'TOKEN SYMBOL', value: ''},
+      {title: 'TOKEN ADDRESS', value: 'address', type: 'Paste'},
+      {title: 'TOKEN DECIMAL', value: 'decimal'},
+      {title: 'TOKEN SYMBOL', value: 'symbol'},
     ];
 
     return input.map((item, index) => (
@@ -268,11 +326,23 @@ const HomeScreen = () => {
             borderWidth: 1,
           }}>
           <Block flex>
-            <CustomInput style={{width: '100%'}} />
+            <CustomInput
+              value={stateAddToken[item.value]}
+              onChangeText={e => {
+                let newObj = {...stateAddToken};
+                newObj[item.value] = e;
+                setStateAddToken(newObj);
+              }}
+              style={{width: '100%', color: Colors.White}}
+            />
           </Block>
 
           {item.type === 'Paste' && (
             <CustomButton
+              onPress={async () => {
+                const text = await Clipboard.getString();
+                setStateAddToken({...stateAddToken, address: text});
+              }}
               style={{
                 backgroundColor: 'rgba(241, 63, 149, 0.2)',
                 padding: 7,
@@ -622,6 +692,7 @@ const HomeScreen = () => {
                       center
                       middle
                       onGradient
+                      onPress={() => createTokenToListToken()}
                       style={{
                         height: pxScale.hp(43),
                         width: '45%',

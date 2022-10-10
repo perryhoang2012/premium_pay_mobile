@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import Colors from '~assets/colors';
 import {pxScale} from '~utils/funcHelper';
 import Insets from '~utils/insets';
@@ -101,7 +101,10 @@ export default StyleSheet.create({
     borderWidth: 1,
   },
 
-  imageIconItem: {width: pxScale.wp(18), height: pxScale.hp(20)},
+  imageIconItem: {
+    width: Platform.OS === 'ios' ? pxScale.wp(19) : pxScale.wp(19),
+    height: Platform.OS === 'ios' ? pxScale.hp(20) : pxScale.wp(19),
+  },
 
   centeredView: {
     flex: 1,
