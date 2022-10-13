@@ -1,4 +1,4 @@
-import {FlatList} from 'react-native';
+import {FlatList, TouchableOpacity} from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Colors from '~assets/colors';
@@ -8,14 +8,14 @@ import {useNavigation} from '@react-navigation/native';
 import Block from '~components/Block';
 import constants from '~constants';
 import CustomText from '~components/CustomText';
-import {pxScale} from '~utils/funcHelper';
+import {pxScale, shuffle} from '~utils/funcHelper';
 import CustomButton from '~components/CustomButton';
 import CustomInput from '~components/CustomInput';
 import ButtonGradient from '~components/ButtonGradient';
 import AppSvg from '~components/AppSvg';
 import {AppIcon} from '~assets/svg';
 import {genMnemonicAPI, loginAPI} from '~apis/user';
-import {requestLogin} from '~redux/actions/user';
+import {cleanDataLocal, requestLogin} from '~redux/actions/user';
 import {useDispatch} from 'react-redux';
 
 const CreateNewWallet = () => {
@@ -23,9 +23,8 @@ const CreateNewWallet = () => {
   const dispatch = useDispatch();
 
   const [step, setStep] = React.useState(1);
-
   const [dataMnemonic, setDataMnemonic] = React.useState([]);
-
+  const [listShuffle, setListShuffle] = React.useState([]);
   const [stateConfirm, setStateConfirm] = React.useState([
     '',
     '',
@@ -40,6 +39,8 @@ const CreateNewWallet = () => {
     '',
     '',
   ]);
+  const [indexSelect, setIndexSelect] = React.useState(0);
+  const [lengthStateConfirm, setLengthStateConfirm] = React.useState(0);
 
   const goBack = () => {
     switch (step) {
@@ -51,35 +52,43 @@ const CreateNewWallet = () => {
         break;
       case 3:
         setStep(2);
+        setStateConfirm(['', '', '', '', '', '', '', '', '', '', '', '']);
+        setIndexSelect(0);
+        setLengthStateConfirm(0);
         break;
     }
   };
 
-  const generateMnemonic = async () => {
+  const generateMnemonic = React.useCallback(async () => {
     try {
       const res = await genMnemonicAPI();
       const data = res.data.mnemonic.split(' ');
       setDataMnemonic(data);
       setStep(2);
+      dispatch(cleanDataLocal());
     } catch (e) {}
-  };
+  }, [dispatch]);
 
   const checkMnemonic = React.useCallback(() => {
     const dataOld = dataMnemonic.toString().replaceAll(',', ' ');
     const dataConfirm = stateConfirm?.toString().replaceAll(',', ' ');
+
     if (dataOld === dataConfirm) {
-      navigation.replace('AppDrawer');
+      handleLogin();
     }
-  }, [dataMnemonic, navigation, stateConfirm]);
+  }, [dataMnemonic, handleLogin, stateConfirm]);
 
   const handleLogin = React.useCallback(async () => {
     try {
       dispatch(
         requestLogin({mnemonic: dataMnemonic.toString().replaceAll(',', ' ')}),
       );
-      setStep(3);
+      navigation.replace('LoadingScreen', {
+        screen: 'CreateWalletScreen',
+        title: 'You have successfully created a wallet',
+      });
     } catch (e) {}
-  }, [dataMnemonic, dispatch]);
+  }, [dataMnemonic, dispatch, navigation]);
 
   const _renderItemSeedPhase = ({item, index}) => {
     return (
@@ -101,25 +110,110 @@ const CreateNewWallet = () => {
     );
   };
 
+  const _renderItemSeedPhaseSelect = React.useCallback(
+    ({item, index}) => {
+      return (
+        <TouchableOpacity
+          disabled={
+            stateConfirm.filter(itemFilter => itemFilter === item).length > 0
+          }
+          onPress={() => {
+            if (lengthStateConfirm === 11) {
+              const indexItemSelect = stateConfirm.findIndex(val => val === '');
+              let newArr = [...stateConfirm];
+              newArr[indexItemSelect] = item;
+              setStateConfirm(newArr);
+              setIndexSelect(index);
+              const length = newArr.filter(value => value !== '').length;
+              setLengthStateConfirm(length);
+            } else {
+              let newArr = [...stateConfirm];
+              newArr[indexSelect] = item;
+              setStateConfirm(newArr);
+              setIndexSelect(pre => pre + 1);
+              const length = newArr.filter(value => value !== '').length;
+              setLengthStateConfirm(length);
+            }
+          }}
+          style={{
+            width: '31%',
+            marginLeft: pxScale.hp(4),
+            marginRight: pxScale.hp(4),
+            height: 36,
+            backgroundColor: Colors.Background_button,
+            borderRadius: pxScale.hp(12),
+            marginBottom: 6,
+            borderColor:
+              stateConfirm.filter(itemFilter => itemFilter === item).length > 0
+                ? Colors.Background_button
+                : Colors.Pink,
+            borderWidth: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <CustomText
+            medium
+            weight={'500'}
+            color={
+              stateConfirm.filter(itemFilter => itemFilter === item).length > 0
+                ? Colors.Gray
+                : Colors.White
+            }
+            size={14}>
+            {item}
+          </CustomText>
+        </TouchableOpacity>
+      );
+    },
+    [indexSelect, lengthStateConfirm, stateConfirm],
+  );
+
   const _renderItemConfirmSeed = React.useCallback(
     ({item, index}) => {
       return (
-        <Block row middle style={style.viewItemSendPhase}>
-          <Block center middle style={style.viewNumber}>
+        <TouchableOpacity
+          onPress={() => {
+            let newArr = [...stateConfirm];
+            newArr[index] = '';
+            setStateConfirm(newArr);
+            setLengthStateConfirm(pre => pre - 1);
+            setIndexSelect(index);
+          }}
+          style={[
+            style.viewItemSendPhase,
+            {
+              marginTop: pxScale.hp(6),
+              marginBottom: pxScale.hp(0),
+              flexDirection: 'row',
+              alignItems: 'center',
+            },
+          ]}>
+          <Block
+            center
+            middle
+            style={[
+              style.viewNumber,
+              {
+                backgroundColor: Colors.Background_button,
+                borderColor: Colors.Pink,
+                borderWidth: 1,
+              },
+            ]}>
             <CustomText medium size={14} color={Colors.White}>
               {index + 1}
             </CustomText>
           </Block>
-          <CustomInput
-            style={style.inputConfirm}
-            value={item.value}
-            onChangeText={e => {
-              let newArr = [...stateConfirm];
-              newArr[index] = e;
-              setStateConfirm(newArr);
-            }}
-          />
-        </Block>
+          <TouchableOpacity>
+            <CustomText
+              medium
+              weight={'500'}
+              color={Colors.White}
+              style={style.viewMarginLeft}
+              size={14}>
+              {item}
+            </CustomText>
+          </TouchableOpacity>
+        </TouchableOpacity>
       );
     },
     [stateConfirm],
@@ -223,7 +317,10 @@ const CreateNewWallet = () => {
                   style={style.buttonCompleteStepTwo}
                   row
                   onPress={() => {
-                    handleLogin();
+                    const newArr = [...dataMnemonic];
+                    const dataShuffle = shuffle(newArr);
+                    setListShuffle(dataShuffle);
+                    setStep(3);
                   }}>
                   <CustomText
                     bold
@@ -239,7 +336,9 @@ const CreateNewWallet = () => {
                   center
                   style={style.buttonGrayStepTwo}
                   row
-                  onPress={() => setStep(2)}>
+                  onPress={() => {
+                    setStep(1);
+                  }}>
                   <CustomText
                     bold
                     size={16}
@@ -255,21 +354,36 @@ const CreateNewWallet = () => {
 
       case 3:
         return (
-          <Block style={style.viewStepOne}>
+          <Block style={[style.viewStepOne, {marginTop: pxScale.hp(4)}]}>
             <CustomText
               regular
               size={14}
-              style={{width: '80%', marginLeft: pxScale.wp(8), lineHeight: 20}}
+              style={{
+                width: '80%',
+                marginLeft: pxScale.wp(8),
+                lineHeight: 20,
+              }}
               color={Colors.White}>
               {constants.SUBTITLE_CONFIRM_SEED_PHASE}
             </CustomText>
-            <Block style={style.viewFlatListStepTwo}>
+            <Block
+              style={[style.viewFlatListStepTwo, {marginTop: pxScale.hp(4)}]}>
               <FlatList
                 data={stateConfirm}
                 renderItem={_renderItemConfirmSeed}
                 keyExtractor={(item, index) => index}
                 numColumns={2}
                 horizontal={false}
+              />
+            </Block>
+            <Block style={style.viewFlatListStepTwo}>
+              <FlatList
+                data={listShuffle}
+                renderItem={_renderItemSeedPhaseSelect}
+                keyExtractor={(item, index) => index}
+                numColumns={3}
+                horizontal={false}
+                scrollEnabled={false}
               />
             </Block>
             <Block style={style.viewMarginTop} center middle>
@@ -297,7 +411,9 @@ const CreateNewWallet = () => {
     dataMnemonic,
     stateConfirm,
     _renderItemConfirmSeed,
-    handleLogin,
+    listShuffle,
+    _renderItemSeedPhaseSelect,
+    generateMnemonic,
     checkMnemonic,
   ]);
   return (

@@ -41,7 +41,6 @@ export function getListAccountOfWalletAPI(token) {
 }
 
 export function getListTokenAPI(token, data) {
-  console.log(token);
   return service({
     url: URL_GET_TOKEN,
     method: 'post',

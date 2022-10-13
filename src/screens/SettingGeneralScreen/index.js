@@ -9,18 +9,29 @@ import CustomText from '~components/CustomText';
 import constants from '~constants';
 import {pxScale} from '~utils/funcHelper';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+import {saveSettingApp} from '~redux/actions/user';
 
 const SettingGeneralScreen = () => {
   const navigation = useNavigation();
-  const [isEnabled, setIsEnabled] = React.useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const dispatch = useDispatch();
+
+  const settingApp = useSelector(rootState => rootState?.settingApp);
 
   const goBack = () => navigation.goBack();
 
   const settingOne = () => {
     const setting = [
-      {title: 'Allow open external link', type: 'switch'},
-      {title: 'Allow wallet to run in background', type: 'switch'},
+      {
+        title: 'Allow open external link',
+        type: 'switch',
+        value: 'allow_open_external_links',
+      },
+      {
+        title: 'Allow wallet to run in background',
+        type: 'switch',
+        value: 'allow_wallet_to_run_in_background',
+      },
       {title: 'Lock Screen', subtitle: 'Never'},
       {title: 'Show Amount in', subtitle: 'USD (United States Dollar)'},
       {title: 'Clear local wallet  data'},
@@ -61,8 +72,12 @@ const SettingGeneralScreen = () => {
                 }}
                 thumbColor={Colors.White}
                 ios_backgroundColor={Colors.Gray}
-                value={isEnabled}
-                onValueChange={toggleSwitch}
+                value={settingApp[item.value]}
+                onValueChange={e => {
+                  let newObj = {...settingApp};
+                  newObj[item.value] = e;
+                  dispatch(saveSettingApp(newObj));
+                }}
                 style={styles.switch}
               />
             )}
@@ -85,7 +100,7 @@ const SettingGeneralScreen = () => {
   const settingTwo = () => {
     const setting = [
       {title: 'Language', subtitle: 'English'},
-      {title: 'Dark Mode', type: 'switch'},
+      {title: 'Dark Mode', type: 'switch', value: 'dark_mode'},
     ];
     return (
       <Block
@@ -122,8 +137,12 @@ const SettingGeneralScreen = () => {
                 }}
                 thumbColor={Colors.White}
                 ios_backgroundColor={Colors.Gray}
-                value={isEnabled}
-                onValueChange={toggleSwitch}
+                value={settingApp[item.value]}
+                onValueChange={e => {
+                  let newObj = {...settingApp};
+                  newObj[item.value] = e;
+                  dispatch(saveSettingApp(newObj));
+                }}
                 style={styles.switch}
               />
             )}

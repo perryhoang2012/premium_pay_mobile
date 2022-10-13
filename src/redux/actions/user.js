@@ -43,6 +43,11 @@ export const saveListTokenOfWallet = payload => ({
   payload: payload,
 });
 
+export const saveSettingApp = payload => ({
+  type: 'SET_SETTING_APP',
+  payload: payload,
+});
+
 export const cleanDataLocal = payload => ({
   type: 'CLEAR_DATA_LOCAL',
   payload: payload,

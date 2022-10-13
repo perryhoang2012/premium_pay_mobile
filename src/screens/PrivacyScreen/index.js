@@ -10,18 +10,29 @@ import constants from '~constants';
 import {pxScale} from '~utils/funcHelper';
 import {useNavigation} from '@react-navigation/native';
 import CustomButton from '~components/CustomButton';
+import {useDispatch, useSelector} from 'react-redux';
+import {saveSettingApp} from '~redux/actions/user';
 
 const PrivacyScreen = () => {
   const navigation = useNavigation();
-  const [isEnabled, setIsEnabled] = React.useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const dispatch = useDispatch();
+
+  const settingApp = useSelector(rootState => rootState?.settingApp);
 
   const goBack = () => navigation.goBack();
 
   const renderSetting = () => {
     const setting = [
-      {title: 'Ask for password on every Send', type: 'switch'},
-      {title: 'Enable Fingerprint/Face ID unlock', type: 'switch'},
+      {
+        title: 'Ask for password on every Send',
+        type: 'switch',
+        value: 'ask_for_password_on_every_send',
+      },
+      {
+        title: 'Enable Fingerprint/Face ID unlock',
+        type: 'switch',
+        value: 'enable_biometrics',
+      },
       {title: 'Max Privacy lock time limit', subtitle: '72 hours'},
       {title: 'Verify speed phrase'},
       {title: 'Show owner key'},
@@ -54,8 +65,12 @@ const PrivacyScreen = () => {
                 }}
                 thumbColor={Colors.White}
                 ios_backgroundColor={Colors.Gray}
-                value={isEnabled}
-                onValueChange={toggleSwitch}
+                value={settingApp[item.value]}
+                onValueChange={e => {
+                  let newObj = {...settingApp};
+                  newObj[item.value] = e;
+                  dispatch(saveSettingApp(newObj));
+                }}
                 style={styles.switch}
               />
             )}

@@ -9,18 +9,28 @@ import CustomText from '~components/CustomText';
 import constants from '~constants';
 import {pxScale} from '~utils/funcHelper';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+import {saveSettingApp} from '~redux/actions/user';
 
 const SettingNotificationScreen = () => {
   const navigation = useNavigation();
-  const [isEnabled, setIsEnabled] = React.useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const dispatch = useDispatch();
 
+  const settingApp = useSelector(rootState => rootState?.settingApp);
   const goBack = () => navigation.goBack();
 
   const renderSetting = () => {
     const setting = [
-      {title: 'Wallet Update', type: 'switch'},
-      {title: 'Transaction Status', type: 'switch'},
+      {
+        title: 'Wallet Update',
+        type: 'switch',
+        value: 'notification_wallet_update',
+      },
+      {
+        title: 'Transaction Status',
+        type: 'switch',
+        value: 'notification_transaction_update',
+      },
     ];
     return (
       <Block
@@ -50,8 +60,12 @@ const SettingNotificationScreen = () => {
                 }}
                 thumbColor={Colors.White}
                 ios_backgroundColor={Colors.Gray}
-                value={isEnabled}
-                onValueChange={toggleSwitch}
+                value={settingApp[item.value]}
+                onValueChange={e => {
+                  let newObj = {...settingApp};
+                  newObj[item.value] = e;
+                  dispatch(saveSettingApp(newObj));
+                }}
                 style={styles.switch}
               />
             )}

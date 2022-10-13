@@ -4,7 +4,7 @@ import styles from './styles';
 import Colors from '~assets/colors';
 import {HeaderGradient} from '~components';
 import CustomText from '~components/CustomText';
-import {pxScale} from '~utils/funcHelper';
+import {coverAddress, pxScale} from '~utils/funcHelper';
 import CustomButton from '~components/CustomButton';
 import ButtonGradient from '~components/ButtonGradient';
 import AppSvg from '~components/AppSvg';
@@ -17,6 +17,8 @@ import CustomInput from '~components/CustomInput';
 
 import {LayoutAnimation, Platform, UIManager} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import {useSelector} from 'react-redux';
+import {toast} from '~utils/ToastHelper';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -29,9 +31,11 @@ const ReceiveScreen = () => {
   const [activeTab, setActiveTab] = React.useState(0);
   const [showComment, setShowComment] = React.useState(false);
   const [valueComment, setValueComment] = React.useState('');
+  const activeAccount = useSelector(rootState => rootState?.activeAccount);
 
   const copyToClipboard = () => {
-    Clipboard.setString('hello world');
+    Clipboard.setString(activeAccount.address);
+    toast('Copy to clipboard');
   };
 
   const toggleModal = () => {
@@ -104,7 +108,7 @@ const ReceiveScreen = () => {
                     regular
                     color={Colors.White}
                     weight={'400'}>
-                    {item.value}
+                    {coverAddress(activeAccount.address, 9)}
                   </CustomText>
                   <Block row space={'around'} style={{width: pxScale.wp(50)}}>
                     <CustomButton onPress={() => copyToClipboard()}>

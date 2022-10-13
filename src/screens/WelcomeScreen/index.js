@@ -8,7 +8,7 @@ import CustomText from '~components/CustomText';
 import constants from '~constants';
 import ButtonGradient from '~components/ButtonGradient';
 import style from './style';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
 import CustomButton from '~components/CustomButton';
 import {useDispatch} from 'react-redux';
 import {cleanDataLocal} from '~redux/actions/user';
@@ -22,12 +22,14 @@ const WelcomeScreen = () => {
   };
 
   const goToRestoreWalletScreen = () => {
-    navigation.navigate('RestoreWalletScreen');
+    navigation.navigate('ImportFromSeenScreen');
   };
 
-  React.useEffect(() => {
-    dispatch(cleanDataLocal());
-  }, [dispatch]);
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     dispatch(cleanDataLocal());
+  //   }, [dispatch]),
+  // );
 
   return (
     <LinearGradient

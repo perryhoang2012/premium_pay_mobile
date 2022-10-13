@@ -544,7 +544,7 @@ const HomeScreen = () => {
         <Block style={style.viewScrollView}>
           <FlatList
             showsVerticalScrollIndicator={false}
-            data={data}
+            data={listToken}
             renderItem={_renderItemHome}
             keyExtractor={item => item.id}
           />

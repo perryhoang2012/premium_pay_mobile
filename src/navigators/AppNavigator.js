@@ -21,6 +21,8 @@ import {
   ChangePasswordScreen,
   FacBrowserScreen,
   AddANetworkScreen,
+  ImportFromSeenScreen,
+  LoadingScreen,
 } from '~screens';
 import AppDrawer from './AppDrawer';
 
@@ -34,6 +36,7 @@ const AppNavigator = () => {
         initialRouteName="SplashScreen"
         screenOptions={{
           headerShown: false,
+          animation: 'none',
         }}>
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
@@ -76,6 +79,11 @@ const AppNavigator = () => {
         />
         <Stack.Screen name="FacBrowserScreen" component={FacBrowserScreen} />
         <Stack.Screen name="AddANetworkScreen" component={AddANetworkScreen} />
+        <Stack.Screen
+          name="ImportFromSeenScreen"
+          component={ImportFromSeenScreen}
+        />
+        <Stack.Screen name="LoadingScreen" component={LoadingScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

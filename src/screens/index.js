@@ -21,6 +21,8 @@ import TransactionHistoryScreen from './TransactionHistoryScreen';
 import ChangePasswordScreen from './ChangePasswordScreen';
 import FacBrowserScreen from './FacBrowserScreen';
 import AddANetworkScreen from './AddANetworkScreen';
+import ImportFromSeenScreen from './ImportFormSeedScreen';
+import LoadingScreen from './LoadingScreen';
 
 module.exports = {
   HomeScreen,
@@ -46,4 +48,6 @@ module.exports = {
   ChangePasswordScreen,
   FacBrowserScreen,
   AddANetworkScreen,
+  ImportFromSeenScreen,
+  LoadingScreen,
 };

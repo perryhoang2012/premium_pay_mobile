@@ -7,6 +7,15 @@ var initialState = {
   token: '',
   listAccounts: [],
   listToken: [],
+  settingApp: {
+    allow_open_external_links: false,
+    allow_wallet_to_run_in_background: false,
+    dark_mode: false,
+    notification_wallet_update: false,
+    notification_transaction_update: false,
+    ask_for_password_on_every_send: false,
+    enable_biometrics: false,
+  },
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -29,6 +38,10 @@ export const userReducer = (state = initialState, action) => {
 
     case 'LIST_TOKEN_OF_WALLET': {
       return {...state, listToken: action.payload};
+    }
+
+    case 'SET_SETTING_APP': {
+      return {...state, settingApp: action.payload};
     }
 
     case 'CLEAR_DATA_LOCAL': {

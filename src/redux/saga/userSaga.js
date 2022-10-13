@@ -37,11 +37,8 @@ function* getListTokenOfWalletSaga(action) {
       action.payload.token,
       action.payload.body,
     );
-    console.log(action.payload);
     yield put(saveListToken(res.data.token));
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (e) {}
 }
 
 function* getListTokenMetaDataSaga(action) {

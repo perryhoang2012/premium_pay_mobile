@@ -16,6 +16,7 @@ const HeaderDrawer = prop => {
   return (
     <Block space={'between'} center middle row style={styles.constrainer}>
       <CustomButton
+        hitSlop={{top: 10, left: 10, bottom: 10, right: 10}}
         onPress={() => {
           if (title === 'WALLET') {
             navigation.toggleDrawer();

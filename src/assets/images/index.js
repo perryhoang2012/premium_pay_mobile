@@ -13,4 +13,6 @@ export default {
   imageUniswap: require('./Uniswap.png'),
   image_548: require('./image_548.png'),
   imageLogoGradient: require('./logo_gradient.png'),
+  imageLogo2: require('./logo_2.png'),
+  imageMegaPhone: require('./megaphone.png'),
 };

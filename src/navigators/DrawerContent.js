@@ -28,6 +28,8 @@ import constants from '~constants';
 import routes from '~constants/routes';
 import {useNavigation} from '@react-navigation/native';
 import {createAccountOfWallet} from '~redux/actions/user';
+import {toast} from '~utils/ToastHelper';
+import Clipboard from '@react-native-clipboard/clipboard';
 
 if (
   Platform.OS === 'android' &&
@@ -71,11 +73,14 @@ export default function DrawerContent(props) {
     {id: 1, title: 'BSC', icon: images.imageEth, value: 'BSCscan'},
   ];
 
-  const createAccount = () => {
+  const createAccount = React.useCallback(async () => {
     try {
-      dispatch(createAccountOfWallet(token));
-    } catch (e) {}
-  };
+      await dispatch(createAccountOfWallet(token));
+      await toast('Create Account Successful');
+    } catch (e) {
+      toast('Create Account Failed', e);
+    }
+  }, [dispatch, token]);
 
   const renderItemWallet = React.useCallback(
     (item, index) => {
@@ -89,7 +94,11 @@ export default function DrawerContent(props) {
             height: pxScale.hp(39),
             borderRadius: activeAccount._id === item._id ? pxScale.hp(10) : 0,
           }}
-          onPress={() => dispatch(setActiveAccount(item))}>
+          onPress={() => {
+            dispatch(setActiveAccount(item));
+            toast('Copy Success');
+            Clipboard.setString(item.address);
+          }}>
           <CustomText
             color={activeAccount._id === item._id ? Colors.Pink : Colors.White}>
             Account {index + 1} {coverAddress(item.address, 5)}
@@ -119,6 +128,23 @@ export default function DrawerContent(props) {
             setActiveChildren(item.title);
           }}>
           <Block row style={{width: '85%'}}>
+            {activeNetwork === index && (
+              <Block
+                style={{
+                  position: 'absolute',
+                  bottom: -2,
+                  left: 7,
+                  marginLeft: 4,
+                  width: pxScale.wp(10),
+                  height: pxScale.hp(10),
+                  borderRadius: pxScale.hp(50),
+                  backgroundColor: Colors.Green_status,
+                  alignItems: 'flex-end',
+                  zIndex: 10000,
+                  // marginLeft: pxScale.wp(140),
+                }}
+              />
+            )}
             <AppFastImage
               source={item.icon}
               style={{
@@ -127,6 +153,7 @@ export default function DrawerContent(props) {
                 borderRadius: 50,
               }}
             />
+
             <CustomText
               regular
               size={15}
@@ -135,19 +162,6 @@ export default function DrawerContent(props) {
               {item.title}
             </CustomText>
           </Block>
-          {activeNetwork === index && (
-            <Block
-              style={{
-                marginLeft: 4,
-                width: pxScale.wp(10),
-                height: pxScale.hp(10),
-                borderRadius: pxScale.hp(50),
-                backgroundColor: Colors.Green_status,
-                alignItems: 'flex-end',
-                // marginLeft: pxScale.wp(140),
-              }}
-            />
-          )}
         </CustomButton>
       );
     },
@@ -311,7 +325,7 @@ export default function DrawerContent(props) {
         {item.value === 'wallet' && showWallet && (
           <Block style={{flex: 1, width: '100%', marginTop: pxScale.hp(5)}}>
             <ScrollView>
-              {listAccounts.map((itemWallet, indexWallet) =>
+              {listAccounts?.map((itemWallet, indexWallet) =>
                 renderItemWallet(itemWallet, indexWallet),
               )}
             </ScrollView>
@@ -348,6 +362,7 @@ export default function DrawerContent(props) {
               <CustomButton
                 center
                 middle
+                // onPress={() => navigation.navigate('ImportFromSeenScreen')}
                 style={{
                   width: '35%',
                   height: pxScale.hp(35),
