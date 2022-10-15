@@ -43,7 +43,7 @@ export const coverAddress = (address, length) => {
   return (
     address.slice(0, length) +
     '...' +
-    address.slice(address.length - (length - 1), address.length - 1)
+    address.slice(address.length - (length - 2), address.length)
   );
 };
 
@@ -52,7 +52,7 @@ export const shuffle = array => {
     randomIndex;
 
   // While there remain elements to shuffle.
-  while (currentIndex != 0) {
+  while (currentIndex !== 0) {
     // Pick a remaining element.
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;

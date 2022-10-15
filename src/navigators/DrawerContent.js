@@ -57,6 +57,10 @@ export default function DrawerContent(props) {
 
   const [activeNetwork, setActiveNetwork] = React.useState(0);
 
+  React.useEffect(() => {
+    setActiveNetwork(netWorkActive);
+  }, [netWorkActive]);
+
   const dataNetwork = [
     {
       id: 1,
@@ -67,10 +71,10 @@ export default function DrawerContent(props) {
     {
       id: 1,
       title: 'Ethereum Main Network',
-      icon: images.imageBnb,
+      icon: images.imageEth,
       value: 'Etherscan',
     },
-    {id: 1, title: 'BSC', icon: images.imageEth, value: 'BSCscan'},
+    {id: 1, title: 'BSC', icon: images.imageBnb, value: 'BSCscan'},
   ];
 
   const createAccount = React.useCallback(async () => {
@@ -120,15 +124,15 @@ export default function DrawerContent(props) {
             width: '100%',
             height: pxScale.hp(39),
             marginLeft: pxScale.wp(20),
-            borderRadius: activeNetwork === index ? pxScale.hp(10) : 0,
+            borderRadius: activeNetwork === item.value ? pxScale.hp(10) : 0,
           }}
           onPress={() => {
             dispatch(setNetWorkActive(item.value));
-            setActiveNetwork(index);
+            setActiveNetwork(item.value);
             setActiveChildren(item.title);
           }}>
           <Block row style={{width: '85%'}}>
-            {activeNetwork === index && (
+            {activeNetwork === item.value && (
               <Block
                 style={{
                   position: 'absolute',
@@ -158,7 +162,7 @@ export default function DrawerContent(props) {
               regular
               size={15}
               style={{marginLeft: pxScale.wp(10)}}
-              color={activeNetwork === index ? Colors.Pink : Colors.White}>
+              color={activeNetwork === item.value ? Colors.Pink : Colors.White}>
               {item.title}
             </CustomText>
           </Block>
@@ -408,14 +412,14 @@ export default function DrawerContent(props) {
           center
           style={{
             backgroundColor: Colors.White,
-            width: pxScale.wp(80),
-            height: pxScale.hp(80),
-            borderRadius: 100,
+            width: 80,
+            height: 80,
+            borderRadius: 500,
           }}>
           <AppFastImage
             source={images.imageIconAppRemove}
             style={{
-              width: pxScale.wp(40),
+              width: pxScale.wp(36),
               height: pxScale.hp(36),
             }}
           />

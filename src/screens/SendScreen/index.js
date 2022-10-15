@@ -17,6 +17,7 @@ import images from '~assets/images';
 import AppFastImage from '~components/AppFastImage';
 import LinearGradient from 'react-native-linear-gradient';
 import {useSelector} from 'react-redux';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -32,8 +33,18 @@ const SendScreen = () => {
   const activeAccount = useSelector(rootState => rootState?.activeAccount);
 
   const [valueComment, setValueComment] = React.useState('');
+  const [activeToken, setActiveToken] = React.useState('FAC');
+
+  const [showDropDownToken, setShowDropDownToken] = React.useState(false);
 
   const [valueAmount, setValueAmount] = React.useState(0);
+
+  const dataTokenDropDown = [
+    {id: 1, title: 'FAC'},
+    {id: 2, title: 'BNB'},
+    {id: 3, title: 'BUSD'},
+    {id: 4, title: 'ETH'},
+  ];
 
   const goBack = () => {
     if (step === 1) {
@@ -182,13 +193,16 @@ const SendScreen = () => {
                     weight={'600'}
                     semiBold
                     style={{marginRight: pxScale.wp(5)}}>
-                    FAC
+                    {activeToken}
                   </CustomText>
-                  <AppSvg
-                    source={AppIcon.iconDropDown}
-                    width={12}
-                    height={12}
-                  />
+                  <TouchableOpacity
+                    onPress={() => setShowDropDownToken(pre => !pre)}>
+                    <AppSvg
+                      source={AppIcon.iconDropDown}
+                      width={12}
+                      height={12}
+                    />
+                  </TouchableOpacity>
                 </Block>
               </Block>
               <CustomText
@@ -222,7 +236,7 @@ const SendScreen = () => {
                     medium
                     style={{lineHeight: 30}}
                     letterSpacing={1}>
-                    1 FAC
+                    1 {activeToken}
                   </CustomText>
                 </Block>
                 <Block row>
@@ -303,6 +317,55 @@ const SendScreen = () => {
               ? 'For the transaction to complete, the recipient must get online within the next 12 hours and you should get online within 2 hours afterwards'
               : ' Min transaction fee to send offline transaction is 0.01 FAC'}
           </CustomText> */}
+            {showDropDownToken && (
+              <Block
+                space={'between'}
+                style={{
+                  position: 'absolute',
+                  right: 10,
+                  top: 205,
+                  zIndex: 999999,
+                  backgroundColor: '#2E2E2E',
+                  width: 110,
+                  // height: 114,
+                  borderRadius: 12,
+                }}>
+                {dataTokenDropDown.map((item, index) => (
+                  <TouchableOpacity
+                    onPress={() => {
+                      setActiveToken(item.title);
+                      setShowDropDownToken(false);
+                    }}
+                    style={{
+                      backgroundColor:
+                        activeToken === item.title
+                          ? 'rgba(255, 255, 255, 0.5)'
+                          : '#2E2E2E',
+                      borderTopLeftRadius: index === 0 ? 12 : 0,
+                      borderTopRightRadius: index === 0 ? 12 : 0,
+                      borderBottomLeftRadius:
+                        index === dataTokenDropDown.length - 1 ? 12 : 0,
+                      borderBottomRightRadius:
+                        index === dataTokenDropDown.length - 1 ? 12 : 0,
+                    }}>
+                    <Block row padding={4} middle style={{height: 35}}>
+                      <AppFastImage
+                        source={images.imageIconEllipse}
+                        style={{width: 15, height: 15, marginRight: 5}}
+                      />
+                      <CustomText
+                        color={Colors.White}
+                        size={12}
+                        weight={'600'}
+                        semiBold>
+                        {item.title}
+                      </CustomText>
+                    </Block>
+                  </TouchableOpacity>
+                ))}
+              </Block>
+            )}
+
             <Block center middle style={{marginTop: pxScale.hp(20)}}>
               <CustomButton
                 row

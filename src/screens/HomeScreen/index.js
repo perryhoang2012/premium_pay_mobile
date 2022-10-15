@@ -47,6 +47,10 @@ const HomeScreen = () => {
 
   const [closeGetCoin, setCloseGetCoin] = React.useState(false);
 
+  const [dataTokenInWallet, setDataTokenInWallet] = React.useState([
+    {id: 1, value: '100 FAC', title: '$100', image: images.imageIconEllipse},
+  ]);
+
   const [showModalManagerTokenList, setShowModalManagerTokenList] =
     React.useState(false);
 
@@ -55,14 +59,14 @@ const HomeScreen = () => {
   const token = useSelector(rootState => rootState?.token);
   const listToken = useSelector(rootState => rootState?.listToken);
 
-  console.log(listToken);
-
   const activeAccount = useSelector(rootState => rootState?.activeAccount);
 
+  const netWorkActive = useSelector(rootState => rootState?.netWorkActive);
+
   const data = [
-    {id: 1, value: '100 FAC', title: '$100', image: images.imageIconEllipse},
-    {id: 2, value: '0 BNB', title: `-BNB`, image: images.imageBnb},
-    {id: 3, value: '0 Ethereum', title: `-ETH`, image: images.imageEth},
+    {id: 1, value: '0 FAC', title: '$0', image: images.imageIconEllipse},
+    // {id: 2, value: '0 BNB', title: `-BNB`, image: images.imageBnb},
+    // {id: 3, value: '0 Ethereum', title: `-ETH`, image: images.imageEth},
   ];
 
   const [stateAddToken, setStateAddToken] = React.useState({
@@ -95,54 +99,54 @@ const HomeScreen = () => {
   ];
 
   const dataChild = [
-    {
-      id: 1,
-      value: '- 0.039997 FAC',
-      value2: '- 0.03 USD',
-      type: 'Send',
-      subTitle: 'Send (max privacy)',
-      icon: AppIcon.iconArrowSendMax,
-    },
-    {
-      id: 2,
-      value: '- 0.01 FAC',
-      value2: '- 0.01 USD',
-      type: 'Send',
-      subTitle: 'Send (offline)',
-      icon: AppIcon.iconArrowSendOffline,
-    },
-    {
-      id: 3,
-      value: '- 0.01 FAC',
-      value2: '- 0.01 USD',
-      type: 'Send',
-      subTitle: 'Send',
-      icon: AppIcon.iconArrowSend,
-    },
-    {
-      id: 4,
-      value: '+ 0.08 FAC',
-      value2: '+ 0.06 USD',
-      type: 'Receive',
-      subTitle: 'Receive',
-      icon: AppIcon.iconArrowReceive,
-    },
-    {
-      id: 5,
-      value: '- 0.01 FAC',
-      value2: '- 0.01 USD',
-      type: 'Send',
-      subTitle: 'Send',
-      icon: AppIcon.iconArrowSend,
-    },
-    {
-      id: 6,
-      value: '+ 0.08 FAC',
-      value2: '+ 0.06 USD',
-      type: 'Receive',
-      subTitle: 'Receive',
-      icon: AppIcon.iconArrowReceive,
-    },
+    // {
+    //   id: 1,
+    //   value: '- 0.039997 FAC',
+    //   value2: '- 0.03 USD',
+    //   type: 'Send',
+    //   subTitle: 'Send (max privacy)',
+    //   icon: AppIcon.iconArrowSendMax,
+    // },
+    // {
+    //   id: 2,
+    //   value: '- 0.01 FAC',
+    //   value2: '- 0.01 USD',
+    //   type: 'Send',
+    //   subTitle: 'Send (offline)',
+    //   icon: AppIcon.iconArrowSendOffline,
+    // },
+    // {
+    //   id: 3,
+    //   value: '- 0.01 FAC',
+    //   value2: '- 0.01 USD',
+    //   type: 'Send',
+    //   subTitle: 'Send',
+    //   icon: AppIcon.iconArrowSend,
+    // },
+    // {
+    //   id: 4,
+    //   value: '+ 0.08 FAC',
+    //   value2: '+ 0.06 USD',
+    //   type: 'Receive',
+    //   subTitle: 'Receive',
+    //   icon: AppIcon.iconArrowReceive,
+    // },
+    // {
+    //   id: 5,
+    //   value: '- 0.01 FAC',
+    //   value2: '- 0.01 USD',
+    //   type: 'Send',
+    //   subTitle: 'Send',
+    //   icon: AppIcon.iconArrowSend,
+    // },
+    // {
+    //   id: 6,
+    //   value: '+ 0.08 FAC',
+    //   value2: '+ 0.06 USD',
+    //   type: 'Receive',
+    //   subTitle: 'Receive',
+    //   icon: AppIcon.iconArrowReceive,
+    // },
   ];
 
   const toggleGetCoin = () => {
@@ -187,6 +191,45 @@ const HomeScreen = () => {
   }, [activeAccount.address, dispatch, token]);
 
   React.useEffect(() => {
+    if (listToken?.length > 0) {
+      setDataTokenInWallet([...dataTokenInWallet, listToken[0]]);
+    }
+  }, [listToken]);
+
+  React.useEffect(() => {
+    if (netWorkActive.length > 0) {
+      if (netWorkActive === 'Etherscan') {
+        let newArr = [...dataTokenInWallet];
+        newArr[0] = {
+          id: 3,
+          value: '0 Ethereum',
+          title: `-ETH`,
+          image: images.imageEth,
+        };
+        setDataTokenInWallet(newArr);
+      } else if (netWorkActive === 'BSCscan') {
+        let newArr = [...dataTokenInWallet];
+        newArr[0] = {
+          id: 2,
+          value: '0 BNB',
+          title: `-BNB`,
+          image: images.imageBnb,
+        };
+        setDataTokenInWallet(newArr);
+      } else {
+        let newArr = [...dataTokenInWallet];
+        newArr[0] = {
+          id: 1,
+          value: '0 FAC',
+          title: '$0',
+          image: images.imageIconEllipse,
+        };
+        setDataTokenInWallet(newArr);
+      }
+    }
+  }, [netWorkActive]);
+
+  React.useEffect(() => {
     getListTokenMetaData();
   }, [getListTokenMetaData]);
 
@@ -223,7 +266,7 @@ const HomeScreen = () => {
 
           <Block row>
             <Block style={{marginTop: pxScale.hp(4)}}>
-              <AppFastImage source={item.image} style={style.imageIconItem} />
+              <AppFastImage source={item?.image} style={style.imageIconItem} />
             </Block>
             <Block style={{marginLeft: pxScale.hp(10)}}>
               <CustomText
@@ -231,14 +274,14 @@ const HomeScreen = () => {
                 weight={'600'}
                 size={20}
                 color={Colors.White}>
-                {item.value}
+                {item?.value}
               </CustomText>
               <CustomText
                 style={{marginTop: pxScale.hp(4)}}
                 size={12}
                 regular
                 color={Colors.Gray}>
-                {item.title}
+                {item?.title}
               </CustomText>
             </Block>
           </Block>
@@ -261,36 +304,38 @@ const HomeScreen = () => {
           </CustomText>
         </CustomButton>
 
-        <Block style={{marginTop: 24}}>
-          <Block row middle space="between">
-            <CustomText
-              color={Colors.White}
-              size={16}
-              semiBold
-              weight={'700'}
-              letterSpacing={2}>
-              {constants.TRANSACTION}
-            </CustomText>
-            <CustomText
-              color={Colors.Pink}
-              weight={'500'}
-              semiBold
-              size={12}
-              style={{marginLeft: pxScale.wp(10)}}>
-              {constants.ADDRESS_DETAILS}
-            </CustomText>
+        {dataChild.length > 0 && (
+          <Block style={{marginTop: 24}}>
+            <Block row middle space="between">
+              <CustomText
+                color={Colors.White}
+                size={16}
+                semiBold
+                weight={'700'}
+                letterSpacing={2}>
+                {constants.TRANSACTION}
+              </CustomText>
+              <CustomText
+                color={Colors.Pink}
+                weight={'500'}
+                semiBold
+                size={12}
+                style={{marginLeft: pxScale.wp(10)}}>
+                {constants.ADDRESS_DETAILS}
+              </CustomText>
+            </Block>
+            <Block
+              style={{
+                marginTop: pxScale.hp(12),
+                marginBottom: pxScale.hp(12),
+                borderRadius: 10,
+              }}>
+              {dataChild.map((itemChild, indexChild) =>
+                _renderItemChild(itemChild, indexChild),
+              )}
+            </Block>
           </Block>
-          <Block
-            style={{
-              marginTop: pxScale.hp(12),
-              marginBottom: pxScale.hp(12),
-              borderRadius: 10,
-            }}>
-            {dataChild.map((itemChild, indexChild) =>
-              _renderItemChild(itemChild, indexChild),
-            )}
-          </Block>
-        </Block>
+        )}
       </>
     );
   };
@@ -544,9 +589,9 @@ const HomeScreen = () => {
         <Block style={style.viewScrollView}>
           <FlatList
             showsVerticalScrollIndicator={false}
-            data={listToken}
+            data={dataTokenInWallet}
             renderItem={_renderItemHome}
-            keyExtractor={item => item.id}
+            keyExtractor={item => item?.id}
           />
         </Block>
         <Modal
