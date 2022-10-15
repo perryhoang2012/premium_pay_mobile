@@ -91,9 +91,7 @@ const CreateNewWallet = () => {
         screen: 'CreateWalletScreen',
         title: 'You have successfully created a wallet',
       });
-    } catch (e) {
-      console.log('e', e);
-    }
+    } catch (e) {}
   }, [dataMnemonic, dispatch, navigation]);
 
   const _renderItemSeedPhase = ({item, index}) => {

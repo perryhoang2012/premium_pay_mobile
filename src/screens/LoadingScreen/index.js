@@ -25,8 +25,6 @@ const LoadingScreen = () => {
   const {screen, title} = route.params;
   const token = useSelector(rootState => rootState?.token);
 
-  console.log(token);
-
   const navigation = useNavigation();
 
   useEffect(() => {

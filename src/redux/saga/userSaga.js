@@ -17,12 +17,9 @@ import {
 
 function* loginSaga(action) {
   try {
-    console.log('action', action.payload);
     const res = yield call(loginAPI, action.payload);
     yield put(saveToken(res.data.token));
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (e) {}
 }
 
 function* getListAccountsOfWalletSaga(action) {
