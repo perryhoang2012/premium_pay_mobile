@@ -33,10 +33,11 @@ const AppNavigator = () => {
     <NavigationContainer
       fallback={<ActivityIndicator color="blue" size="large" />}>
       <Stack.Navigator
-        initialRouteName="SplashScreen"
+        initialRouteName="AppDrawer"
         screenOptions={{
           headerShown: false,
-          animation: 'none',
+          // animation: 'none',
+          animationTypeForReplace: 'pop',
         }}>
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />

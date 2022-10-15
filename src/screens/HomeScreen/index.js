@@ -304,38 +304,40 @@ const HomeScreen = () => {
           </CustomText>
         </CustomButton>
 
-        {dataChild.length > 0 && (
-          <Block style={{marginTop: 24}}>
-            <Block row middle space="between">
-              <CustomText
-                color={Colors.White}
-                size={16}
-                semiBold
-                weight={'700'}
-                letterSpacing={2}>
-                {constants.TRANSACTION}
-              </CustomText>
-              <CustomText
-                color={Colors.Pink}
-                weight={'500'}
-                semiBold
-                size={12}
-                style={{marginLeft: pxScale.wp(10)}}>
-                {constants.ADDRESS_DETAILS}
-              </CustomText>
-            </Block>
-            <Block
-              style={{
-                marginTop: pxScale.hp(12),
-                marginBottom: pxScale.hp(12),
-                borderRadius: 10,
-              }}>
-              {dataChild.map((itemChild, indexChild) =>
+        <Block style={{marginTop: 24}}>
+          <Block row middle space="between">
+            <CustomText
+              color={Colors.White}
+              size={16}
+              semiBold
+              weight={'700'}
+              letterSpacing={2}>
+              {constants.TRANSACTION}
+            </CustomText>
+            <CustomText
+              color={Colors.Pink}
+              weight={'500'}
+              semiBold
+              size={12}
+              style={{marginLeft: pxScale.wp(10)}}>
+              {constants.ADDRESS_DETAILS}
+            </CustomText>
+          </Block>
+
+          <Block
+            style={{
+              marginTop: pxScale.hp(12),
+              marginBottom: pxScale.hp(12),
+              borderRadius: 10,
+              backgroundColor: Colors.Background_block,
+              height: 420,
+            }}>
+            {dataChild.length > 0 &&
+              dataChild.map((itemChild, indexChild) =>
                 _renderItemChild(itemChild, indexChild),
               )}
-            </Block>
           </Block>
-        )}
+        </Block>
       </>
     );
   };
@@ -655,7 +657,7 @@ const HomeScreen = () => {
                 ]}>
                 <FlatList
                   showsVerticalScrollIndicator={false}
-                  data={dataToken}
+                  data={listToken}
                   renderItem={_renderItemToken}
                   keyExtractor={item => item.id}
                 />

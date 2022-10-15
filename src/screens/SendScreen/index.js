@@ -34,6 +34,9 @@ const SendScreen = () => {
 
   const [valueComment, setValueComment] = React.useState('');
   const [activeToken, setActiveToken] = React.useState('FAC');
+  const [addressWalletReceiver, setAddressWalletReceiver] = React.useState('');
+
+  const netWorkActive = useSelector(rootState => rootState?.netWorkActive);
 
   const [showDropDownToken, setShowDropDownToken] = React.useState(false);
 
@@ -63,12 +66,21 @@ const SendScreen = () => {
           bold
           letterSpacing={1}
           style={{marginBottom: pxScale.hp(10)}}>
-          {constants.TRANSACTION_INFO}
+          SEND TO
         </CustomText>
         <Block row style={styles.viewUnderlined} space={'between'}>
-          <CustomText regular size={14} color={Colors.White} weight={'400'}>
+          <CustomInput
+            placeholder={'please enter the address'}
+            onChangeText={e => setAddressWalletReceiver(e)}
+            style={{
+              width: pxScale.hp(200),
+              fontSize: 14,
+              color: Colors.White,
+              marginLeft: -10,
+            }}></CustomInput>
+          {/* <CustomText regular size={14} color={Colors.White} weight={'400'}>
             {coverAddress(activeAccount.address, 9)}
-          </CustomText>
+          </CustomText> */}
           <CustomButton row center middle>
             <CustomText
               semiBold
@@ -236,7 +248,12 @@ const SendScreen = () => {
                     medium
                     style={{lineHeight: 30}}
                     letterSpacing={1}>
-                    1 {activeToken}
+                    1{' '}
+                    {netWorkActive === 'FACscan'
+                      ? 'FAC'
+                      : netWorkActive === 'Etherscan'
+                      ? 'ETH'
+                      : netWorkActive === 'BSCscan' && 'BNB'}
                   </CustomText>
                 </Block>
                 <Block row>
