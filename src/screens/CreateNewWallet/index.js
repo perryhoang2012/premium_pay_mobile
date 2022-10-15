@@ -17,6 +17,7 @@ import {AppIcon} from '~assets/svg';
 import {genMnemonicAPI, loginAPI} from '~apis/user';
 import {cleanDataLocal, requestLogin} from '~redux/actions/user';
 import {useDispatch} from 'react-redux';
+import {toast} from '~utils/ToastHelper';
 
 const CreateNewWallet = () => {
   const navigation = useNavigation();
@@ -70,24 +71,29 @@ const CreateNewWallet = () => {
   }, [dispatch]);
 
   const checkMnemonic = React.useCallback(() => {
-    const dataOld = dataMnemonic.toString().replaceAll(',', ' ');
-    const dataConfirm = stateConfirm?.toString().replaceAll(',', ' ');
-
+    const dataOld = JSON.stringify(dataMnemonic);
+    const dataConfirm = JSON.stringify(stateConfirm);
     if (dataOld === dataConfirm) {
       handleLogin();
+    } else {
+      toast('Confirm failed');
     }
   }, [dataMnemonic, handleLogin, stateConfirm]);
 
   const handleLogin = React.useCallback(async () => {
     try {
       dispatch(
-        requestLogin({mnemonic: dataMnemonic.toString().replaceAll(',', ' ')}),
+        requestLogin({
+          mnemonic: dataMnemonic.toString().replace(/,/g, ' '),
+        }),
       );
       navigation.replace('LoadingScreen', {
         screen: 'CreateWalletScreen',
         title: 'You have successfully created a wallet',
       });
-    } catch (e) {}
+    } catch (e) {
+      console.log('e', e);
+    }
   }, [dataMnemonic, dispatch, navigation]);
 
   const _renderItemSeedPhase = ({item, index}) => {

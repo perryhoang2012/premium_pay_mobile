@@ -25,6 +25,8 @@ const LoadingScreen = () => {
   const {screen, title} = route.params;
   const token = useSelector(rootState => rootState?.token);
 
+  console.log(token);
+
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -166,7 +168,7 @@ const LoadingScreen = () => {
                   borderRadius: 10,
                   width: '80%',
                 }}>
-                <CustomText bold size={16} weight={'700'}>
+                <CustomText bold size={16} weight={'700'} color={Colors.Black}>
                   Done
                 </CustomText>
               </CustomButton>
