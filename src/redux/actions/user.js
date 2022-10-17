@@ -18,10 +18,10 @@ export const requestGetListTokenOfWallet = payload => ({
   payload: payload,
 });
 
-export const requestGetListTokenMetaData = payload => ({
-  type: 'REQUEST_GET_LIST_TOKEN_META_DATA',
-  payload: payload,
-});
+// export const requestGetListTokenMetaData = payload => ({
+//   type: 'REQUEST_GET_LIST_TOKEN_META_DATA',
+//   payload: payload,
+// });
 
 export const saveListToken = payload => ({
   type: 'LIST_TOKEN_OF_WALLET',

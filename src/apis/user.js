@@ -49,13 +49,13 @@ export function getListTokenAPI(token, data) {
   });
 }
 
-export function getListTokenMetaDataAPI(token, params) {
-  return service({
-    url: `${URL_GET_TOKEN}/${params}`,
-    method: 'get',
-    token,
-  });
-}
+// export function getListTokenMetaDataAPI(token, params) {
+//   return service({
+//     url: `${URL_GET_TOKEN}` + `/${params}`,
+//     method: 'get',
+//     token,
+//   });
+// }
 
 export function createWalletTokenAPI(data) {
   return service({
@@ -65,10 +65,11 @@ export function createWalletTokenAPI(data) {
   });
 }
 
-export function getTokenMetadataAPI(address) {
+export function getTokenMetadataAPI(token, address) {
   return service({
     url: `${URL_GET_TOKEN}` + `/${address}`,
-    method: 'post',
+    method: 'get',
+    token,
   });
 }
 

@@ -31,8 +31,9 @@ import {
   requestGetListTokenMetaData,
   requestGetListTokenOfWallet,
 } from '~redux/actions/user';
-import {createWalletTokenAPI} from '~apis/user';
+import {createWalletTokenAPI, getTokenMetadataAPI} from '~apis/user';
 import Clipboard from '@react-native-clipboard/clipboard';
+import debounce from 'lodash/debounce';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -164,6 +165,18 @@ const HomeScreen = () => {
     navigation.navigate('TransactionDetailScreen');
   };
 
+  const fetchTokenMetaData = React.useCallback(async () => {
+    try {
+      const res = await getTokenMetadataAPI(token, stateAddToken.address);
+      setStateAddToken(res.data);
+    } catch (e) {}
+  }, [stateAddToken.address, token]);
+
+  const onChangeTextDelayed = React.useCallback(
+    debounce(() => fetchTokenMetaData(), 1000),
+    [stateAddToken],
+  );
+
   const createTokenToListToken = async () => {
     try {
       await createWalletTokenAPI();
@@ -182,13 +195,13 @@ const HomeScreen = () => {
     dispatch(requestGetListTokenOfWallet(payload));
   }, [activeAccount.address, dispatch, token]);
 
-  const getListTokenMetaData = React.useCallback(() => {
-    const payload = {
-      token: token,
-      param: activeAccount.address,
-    };
-    dispatch(requestGetListTokenMetaData(payload));
-  }, [activeAccount.address, dispatch, token]);
+  // const getListTokenMetaData = React.useCallback(() => {
+  //   const payload = {
+  //     token: token,
+  //     param: activeAccount.address,
+  //   };
+  //   dispatch(requestGetListTokenMetaData(payload));
+  // }, [activeAccount.address, dispatch, token]);
 
   React.useEffect(() => {
     if (listToken?.length > 0) {
@@ -229,9 +242,9 @@ const HomeScreen = () => {
     }
   }, [netWorkActive]);
 
-  React.useEffect(() => {
-    getListTokenMetaData();
-  }, [getListTokenMetaData]);
+  // React.useEffect(() => {
+  //   getListTokenMetaData();
+  // }, [getListTokenMetaData]);
 
   React.useEffect(() => {
     getListTokenOfWallet();
@@ -345,7 +358,7 @@ const HomeScreen = () => {
   const _renderInputAddToken = () => {
     const input = [
       {title: 'TOKEN ADDRESS', value: 'address', type: 'Paste'},
-      {title: 'TOKEN DECIMAL', value: 'decimal'},
+      {title: 'TOKEN DECIMAL', value: 'decimals'},
       {title: 'TOKEN SYMBOL', value: 'symbol'},
     ];
 
@@ -374,11 +387,12 @@ const HomeScreen = () => {
           }}>
           <Block flex>
             <CustomInput
-              value={stateAddToken[item.value]}
+              value={stateAddToken[item.value].toString()}
               onChangeText={e => {
                 let newObj = {...stateAddToken};
                 newObj[item.value] = e;
                 setStateAddToken(newObj);
+                onChangeTextDelayed();
               }}
               style={{width: '100%', color: Colors.White}}
             />
@@ -388,7 +402,11 @@ const HomeScreen = () => {
             <CustomButton
               onPress={async () => {
                 const text = await Clipboard.getString();
-                setStateAddToken({...stateAddToken, address: text});
+                setStateAddToken({
+                  ...stateAddToken,
+                  address: '0xbd4066a7D96D9a589Ac7e758FDD822849601De50',
+                });
+                fetchTokenMetaData();
               }}
               style={{
                 backgroundColor: 'rgba(241, 63, 149, 0.2)',
@@ -683,7 +701,11 @@ const HomeScreen = () => {
                   row
                   space={'between'}
                   style={{width: '100%', marginTop: pxScale.hp(11)}}>
-                  <CustomButton onPress={() => setShowModalAddToken(false)}>
+                  <CustomButton
+                    onPress={() => {
+                      setShowModalAddToken(false);
+                      setStateAddToken({address: '', symbol: '', decimals: 0});
+                    }}>
                     <AppSvg
                       source={AppIcon.iconCancel}
                       width={14}

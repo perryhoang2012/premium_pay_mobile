@@ -41,15 +41,15 @@ function* getListTokenOfWalletSaga(action) {
   } catch (e) {}
 }
 
-function* getListTokenMetaDataSaga(action) {
-  try {
-    yield call(
-      getListTokenMetaDataAPI,
-      action.payload.token,
-      action.payload.param,
-    );
-  } catch (e) {}
-}
+// function* getListTokenMetaDataSaga(action) {
+//   try {
+//     yield call(
+//       getListTokenMetaDataAPI,
+//       action.payload.token,
+//       action.payload.param,
+//     );
+//   } catch (e) {}
+// }
 
 function* createAccountSaga(action) {
   try {
@@ -68,10 +68,10 @@ function* userSaga() {
     'REQUEST_GET_LIST_TOKEN_OF_WALLET',
     getListTokenOfWalletSaga,
   );
-  yield takeLatest(
-    'REQUEST_GET_LIST_TOKEN_META_DATA',
-    getListTokenMetaDataSaga,
-  );
+  // yield takeLatest(
+  //   'REQUEST_GET_LIST_TOKEN_META_DATA',
+  //   getListTokenMetaDataSaga,
+  // );
 
   yield takeLatest('CREATE_ACCOUNT', createAccountSaga);
 }
