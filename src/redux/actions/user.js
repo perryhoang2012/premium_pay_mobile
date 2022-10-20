@@ -18,6 +18,16 @@ export const requestGetListTokenOfWallet = payload => ({
   payload: payload,
 });
 
+export const requestGetListNetWork = payload => ({
+  type: 'REQUEST_GET_LIST_NETWORK',
+  payload: payload,
+});
+
+export const requestGetListTransactionsOfAccount = payload => ({
+  type: 'REQUEST_GET_LIST_TRANSACTIONS_OF_ACCOUNT',
+  payload: payload,
+});
+
 // export const requestGetListTokenMetaData = payload => ({
 //   type: 'REQUEST_GET_LIST_TOKEN_META_DATA',
 //   payload: payload,
@@ -50,5 +60,20 @@ export const saveSettingApp = payload => ({
 
 export const cleanDataLocal = payload => ({
   type: 'CLEAR_DATA_LOCAL',
+  payload: payload,
+});
+
+export const saveListNetWorks = payload => ({
+  type: 'SET_LIST_NETWORK',
+  payload: payload,
+});
+
+export const saveNetWork = payload => ({
+  type: 'SET_NETWORK_ACTIVE',
+  payload: payload,
+});
+
+export const saveListTransactionsOfAccount = payload => ({
+  type: 'SET_LIST_TRANSACTION_OF_ACCOUNT',
   payload: payload,
 });

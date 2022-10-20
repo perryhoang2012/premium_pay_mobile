@@ -46,6 +46,7 @@ export default function DrawerContent(props) {
   const activeDrawer = useSelector(rootState => rootState?.activeDrawer);
   const activeAccount = useSelector(rootState => rootState?.activeAccount);
   const netWorkActive = useSelector(rootState => rootState?.netWorkActive);
+  const listNetWorks = useSelector(rootState => rootState?.listNetWorks);
   const listAccounts = useSelector(rootState => rootState?.listAccounts);
   const token = useSelector(rootState => rootState?.token);
 
@@ -124,19 +125,20 @@ export default function DrawerContent(props) {
             width: '100%',
             height: pxScale.hp(39),
             marginLeft: pxScale.wp(20),
-            borderRadius: activeNetwork === item.value ? pxScale.hp(10) : 0,
+            borderRadius:
+              activeNetwork.chainId === item.chainId ? pxScale.hp(10) : 0,
           }}
           onPress={() => {
-            dispatch(setNetWorkActive(item.value));
-            setActiveNetwork(item.value);
+            dispatch(setNetWorkActive(item));
+            setActiveNetwork(item);
             setActiveChildren(item.title);
           }}>
           <Block row style={{width: '85%'}}>
-            {activeNetwork === item.value && (
+            {activeNetwork.chainId === item.chainId && (
               <Block
                 style={{
                   position: 'absolute',
-                  bottom: -2,
+                  top: 12,
                   left: 7,
                   marginLeft: 4,
                   width: pxScale.wp(10),
@@ -145,12 +147,17 @@ export default function DrawerContent(props) {
                   backgroundColor: Colors.Green_status,
                   alignItems: 'flex-end',
                   zIndex: 10000,
-                  // marginLeft: pxScale.wp(140),
                 }}
               />
             )}
             <AppFastImage
-              source={item.icon}
+              source={
+                item.chainId === 97
+                  ? images.imageBnb
+                  : item.chainId === 56
+                  ? images.imageBnb
+                  : images.imageIconEllipse
+              }
               style={{
                 width: pxScale.wp(19),
                 height: pxScale.hp(20),
@@ -163,7 +170,7 @@ export default function DrawerContent(props) {
               size={15}
               style={{marginLeft: pxScale.wp(10)}}
               color={activeNetwork === item.value ? Colors.Pink : Colors.White}>
-              {item.title}
+              {item.name}
             </CustomText>
           </Block>
         </CustomButton>
@@ -295,7 +302,7 @@ export default function DrawerContent(props) {
         {item.value === 'network' && showNetwork && (
           <Block style={{flex: 1, width: '100%', marginTop: pxScale.hp(5)}}>
             <ScrollView>
-              {dataNetwork.map((itemNetwork, indexNetwork) =>
+              {listNetWorks.map((itemNetwork, indexNetwork) =>
                 renderItemNetwork(itemNetwork, indexNetwork),
               )}
             </ScrollView>

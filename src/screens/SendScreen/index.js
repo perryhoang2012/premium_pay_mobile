@@ -18,6 +18,7 @@ import AppFastImage from '~components/AppFastImage';
 import LinearGradient from 'react-native-linear-gradient';
 import {useSelector} from 'react-redux';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {estimateGasToSendTokenAPI} from '~apis/user';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -31,12 +32,12 @@ const SendScreen = () => {
   const [showComment, setShowComment] = React.useState(false);
   const [step, setStep] = React.useState(1);
   const activeAccount = useSelector(rootState => rootState?.activeAccount);
+  const token = useSelector(rootState => rootState?.token);
+  const netWorkActive = useSelector(rootState => rootState?.netWorkActive);
 
   const [valueComment, setValueComment] = React.useState('');
   const [activeToken, setActiveToken] = React.useState('FAC');
   const [addressWalletReceiver, setAddressWalletReceiver] = React.useState('');
-
-  const netWorkActive = useSelector(rootState => rootState?.netWorkActive);
 
   const [showDropDownToken, setShowDropDownToken] = React.useState(false);
 
@@ -55,6 +56,20 @@ const SendScreen = () => {
     } else {
       setStep(1);
     }
+  };
+
+  const onSubmitSend = async () => {
+    try {
+      const body = {
+        token: '',
+        from: activeAccount.address,
+        to: addressWalletReceiver,
+        amount: valueAmount,
+        chainId: netWorkActive.chainId,
+      };
+
+      const res = await estimateGasToSendTokenAPI(token, body);
+    } catch (e) {}
   };
   const transactionInfo = () => {
     return (

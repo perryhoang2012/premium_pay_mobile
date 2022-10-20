@@ -1,17 +1,23 @@
+import {functions} from 'lodash';
 import {compose} from 'redux';
 import {call, put, takeEvery, takeLatest} from 'redux-saga/effects';
 import {
   createAccountAPI,
   getListAccountOfWalletAPI,
+  getListNetWorksAPI,
   getListTokenAPI,
   getListTokenMetaDataAPI,
+  getListTransactionsOfAccountAPI,
   loginAPI,
 } from '~apis/user';
 import {setActiveAccount, setactiveAccount} from '~redux/actions/ui';
 import {
   saveListAccountOfToken,
   saveListAccountOfWallet,
+  saveListNetWorks,
   saveListToken,
+  saveListTransactionsOfAccount,
+  saveNetWork,
   saveToken,
 } from '~redux/actions/user';
 
@@ -51,10 +57,30 @@ function* getListTokenOfWalletSaga(action) {
 //   } catch (e) {}
 // }
 
+function* getListNetWorksSaga(action) {
+  try {
+    const res = yield call(getListNetWorksAPI, action.payload.token);
+    yield put(saveListNetWorks(res.data?.networks));
+    yield put(saveNetWork(res.data?.networks?.[0]));
+  } catch (e) {}
+}
+
 function* createAccountSaga(action) {
   try {
     yield call(createAccountAPI, action.payload);
     yield call(getListAccountsOfWalletSaga, action);
+  } catch (e) {}
+}
+
+function* getListTransactionsOfAccountSaga(action) {
+  try {
+    const params = action.payload.params;
+    const res = yield call(
+      getListTransactionsOfAccountAPI,
+      action.payload.token,
+      params,
+    );
+    yield put(saveListTransactionsOfAccount(res.data));
   } catch (e) {}
 }
 
@@ -74,6 +100,13 @@ function* userSaga() {
   // );
 
   yield takeLatest('CREATE_ACCOUNT', createAccountSaga);
+
+  yield takeLatest('REQUEST_GET_LIST_NETWORK', getListNetWorksSaga);
+
+  yield takeLatest(
+    'REQUEST_GET_LIST_TRANSACTIONS_OF_ACCOUNT',
+    getListTransactionsOfAccountSaga,
+  );
 }
 
 export default userSaga;

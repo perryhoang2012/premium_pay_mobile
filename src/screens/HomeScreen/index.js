@@ -28,8 +28,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import {setActiveDrawer} from '~redux/actions/ui';
 import {
   requestGetListAccountOfWallet,
+  requestGetListNetWork,
   requestGetListTokenMetaData,
   requestGetListTokenOfWallet,
+  requestGetListTransactionsOfAccount,
 } from '~redux/actions/user';
 import {createWalletTokenAPI, getTokenMetadataAPI} from '~apis/user';
 import Clipboard from '@react-native-clipboard/clipboard';
@@ -59,10 +61,9 @@ const HomeScreen = () => {
 
   const token = useSelector(rootState => rootState?.token);
   const listToken = useSelector(rootState => rootState?.listToken);
+  const netWorkActive = useSelector(rootState => rootState?.netWorkActive);
 
   const activeAccount = useSelector(rootState => rootState?.activeAccount);
-
-  const netWorkActive = useSelector(rootState => rootState?.netWorkActive);
 
   const data = [
     {id: 1, value: '0 FAC', title: '$0', image: images.imageIconEllipse},
@@ -167,10 +168,14 @@ const HomeScreen = () => {
 
   const fetchTokenMetaData = React.useCallback(async () => {
     try {
-      const res = await getTokenMetadataAPI(token, stateAddToken.address);
+      const params = {
+        address: stateAddToken.address,
+        chainId: netWorkActive.chainId,
+      };
+      const res = await getTokenMetadataAPI(token, params);
       setStateAddToken(res.data);
     } catch (e) {}
-  }, [stateAddToken.address, token]);
+  }, [netWorkActive.chainId, stateAddToken.address, token]);
 
   const onChangeTextDelayed = React.useCallback(
     debounce(() => fetchTokenMetaData(), 1000),
@@ -179,7 +184,11 @@ const HomeScreen = () => {
 
   const createTokenToListToken = async () => {
     try {
-      await createWalletTokenAPI();
+      const body = {
+        address: stateAddToken.address,
+        chainId: netWorkActive.chainId,
+      };
+      await createWalletTokenAPI(body);
     } catch (e) {}
   };
 
@@ -190,10 +199,10 @@ const HomeScreen = () => {
   const getListTokenOfWallet = React.useCallback(() => {
     const payload = {
       token: token,
-      body: {account: activeAccount.address},
+      body: {account: activeAccount.address, chainId: netWorkActive.chainId},
     };
     dispatch(requestGetListTokenOfWallet(payload));
-  }, [activeAccount.address, dispatch, token]);
+  }, [activeAccount.address, dispatch, netWorkActive.chainId, token]);
 
   // const getListTokenMetaData = React.useCallback(() => {
   //   const payload = {
@@ -203,44 +212,70 @@ const HomeScreen = () => {
   //   dispatch(requestGetListTokenMetaData(payload));
   // }, [activeAccount.address, dispatch, token]);
 
+  const getListNetWork = React.useCallback(() => {
+    const payload = {
+      token: token,
+    };
+    dispatch(requestGetListNetWork(payload));
+  }, [dispatch, token]);
+
+  const getListTransactionsOfAccount = React.useCallback(() => {
+    const payload = {
+      params: {
+        account: activeAccount.address,
+        chainId: netWorkActive.chainId,
+      },
+      token: token,
+    };
+    dispatch(requestGetListTransactionsOfAccount(payload));
+  }, [activeAccount.address, dispatch, netWorkActive.chainId, token]);
+
+  React.useEffect(() => {
+    getListNetWork();
+  }, [getListNetWork]);
+
+  React.useEffect(() => {
+    getListTransactionsOfAccount();
+  }, [getListTransactionsOfAccount]);
+
   React.useEffect(() => {
     if (listToken?.length > 0) {
       setDataTokenInWallet([...dataTokenInWallet, listToken[0]]);
     }
   }, [listToken]);
 
-  React.useEffect(() => {
-    if (netWorkActive.length > 0) {
-      if (netWorkActive === 'Etherscan') {
-        let newArr = [...dataTokenInWallet];
-        newArr[0] = {
-          id: 3,
-          value: '0 Ethereum',
-          title: `-ETH`,
-          image: images.imageEth,
-        };
-        setDataTokenInWallet(newArr);
-      } else if (netWorkActive === 'BSCscan') {
-        let newArr = [...dataTokenInWallet];
-        newArr[0] = {
-          id: 2,
-          value: '0 BNB',
-          title: `-BNB`,
-          image: images.imageBnb,
-        };
-        setDataTokenInWallet(newArr);
-      } else {
-        let newArr = [...dataTokenInWallet];
-        newArr[0] = {
-          id: 1,
-          value: '0 FAC',
-          title: '$0',
-          image: images.imageIconEllipse,
-        };
-        setDataTokenInWallet(newArr);
-      }
-    }
-  }, [netWorkActive]);
+  // React.useEffect(() => {
+  //   if (netWorkActive.length > 0) {
+  //     if (netWorkActive === 'Etherscan') {
+  //       let newArr = [...dataTokenInWallet];
+  //       newArr[0] = {
+  //         id: 3,
+  //         value: '0 Ethereum',
+  //         title: `-ETH`,
+  //         image: images.imageEth,
+  //       };
+  //       setDataTokenInWallet(newArr);
+  //     } else if (netWorkActive === 'BSCscan') {
+  //       let newArr = [...dataTokenInWallet];
+  //       newArr[0] = {
+  //         id: 2,
+  //         value: '0 BNB',
+  //         title: `-BNB`,
+  //         image: images.imageBnb,
+  //       };
+  //       setDataTokenInWallet(newArr);
+  //     } else {
+  //       let newArr = [...dataTokenInWallet];
+  //       newArr[0] = {
+  //         id: 1,
+  //         value: '0 FAC',
+  //         title: '$0',
+  //         image: images.imageIconEllipse,
+  //       };
+  //       setDataTokenInWallet(newArr);
+  //     }
+  //   }
+  // }, [netWorkActive]);
 
   // React.useEffect(() => {
   //   getListTokenMetaData();

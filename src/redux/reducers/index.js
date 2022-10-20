@@ -16,6 +16,8 @@ var initialState = {
     ask_for_password_on_every_send: false,
     enable_biometrics: false,
   },
+  listNetWorks: [],
+  listTransactions: [],
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -42,6 +44,14 @@ export const userReducer = (state = initialState, action) => {
 
     case 'SET_SETTING_APP': {
       return {...state, settingApp: action.payload};
+    }
+
+    case 'SET_LIST_NETWORK': {
+      return {...state, listNetWorks: action.payload};
+    }
+
+    case 'SET_LIST_TRANSACTION_OF_ACCOUNT': {
+      return {...state, listTransactions: action.payload};
     }
 
     case 'CLEAR_DATA_LOCAL': {
