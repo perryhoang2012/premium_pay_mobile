@@ -75,11 +75,12 @@ export function getTokenMetadataAPI(token, params) {
   });
 }
 
-export function sendTokenAPI(data) {
+export function sendTokenAPI(token, data) {
   return service({
     url: URL_TRANSACTIONS,
     method: 'post',
     data,
+    token,
   });
 }
 

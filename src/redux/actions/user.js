@@ -77,3 +77,8 @@ export const saveListTransactionsOfAccount = payload => ({
   type: 'SET_LIST_TRANSACTION_OF_ACCOUNT',
   payload: payload,
 });
+
+export const setLoading = payload => ({
+  type: 'SET_LOADING',
+  payload: payload,
+});

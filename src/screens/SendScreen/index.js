@@ -16,9 +16,11 @@ import {LayoutAnimation, Platform, ScrollView, UIManager} from 'react-native';
 import images from '~assets/images';
 import AppFastImage from '~components/AppFastImage';
 import LinearGradient from 'react-native-linear-gradient';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {estimateGasToSendTokenAPI} from '~apis/user';
+import {estimateGasToSendTokenAPI, sendTokenAPI} from '~apis/user';
+import {toast} from '~utils/ToastHelper';
+import {setLoading} from '~redux/actions/user';
 
 if (Platform.OS === 'android') {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -28,20 +30,30 @@ if (Platform.OS === 'android') {
 
 const SendScreen = () => {
   const navigation = useNavigation();
+
+  const dispatch = useDispatch();
   const [activeTab, setActiveTab] = React.useState(0);
   const [showComment, setShowComment] = React.useState(false);
   const [step, setStep] = React.useState(1);
   const activeAccount = useSelector(rootState => rootState?.activeAccount);
   const token = useSelector(rootState => rootState?.token);
   const netWorkActive = useSelector(rootState => rootState?.netWorkActive);
+  const listToken = useSelector(rootState => rootState?.listToken);
 
   const [valueComment, setValueComment] = React.useState('');
-  const [activeToken, setActiveToken] = React.useState('FAC');
+  const [activeToken, setActiveToken] = React.useState({});
   const [addressWalletReceiver, setAddressWalletReceiver] = React.useState('');
 
   const [showDropDownToken, setShowDropDownToken] = React.useState(false);
 
   const [valueAmount, setValueAmount] = React.useState(0);
+  const [dataEstimateGas, setDataEstimateGas] = React.useState(0);
+
+  React.useEffect(() => {
+    if (listToken.length > 0) {
+      setActiveToken(listToken[0]);
+    }
+  }, [listToken]);
 
   const dataTokenDropDown = [
     {id: 1, title: 'FAC'},
@@ -59,17 +71,61 @@ const SendScreen = () => {
   };
 
   const onSubmitSend = async () => {
+    dispatch(setLoading(true));
     try {
-      const body = {
-        token: '',
-        from: activeAccount.address,
-        to: addressWalletReceiver,
-        amount: valueAmount,
-        chainId: netWorkActive.chainId,
-      };
+      if (
+        activeToken &&
+        activeAccount &&
+        addressWalletReceiver &&
+        valueAmount
+      ) {
+        const body = {
+          token: activeToken.address,
+          from: activeAccount.address,
+          to: addressWalletReceiver,
+          amount: valueAmount,
+          chainId: netWorkActive.chainId,
+        };
+        const res = await estimateGasToSendTokenAPI(token, body);
+        setDataEstimateGas(res.data.estimateGas);
+        dispatch(setLoading(false));
+        setStep(2);
+      } else {
+        dispatch(setLoading(false));
+        toast('Please fill out all information before sending');
+      }
+    } catch (e) {
+      dispatch(setLoading(false));
+    }
+  };
 
-      const res = await estimateGasToSendTokenAPI(token, body);
-    } catch (e) {}
+  const submitSendTransition = async () => {
+    dispatch(setLoading(true));
+    try {
+      if (
+        activeToken &&
+        activeAccount &&
+        addressWalletReceiver &&
+        valueAmount
+      ) {
+        const body = {
+          token: activeToken.address,
+          from: activeAccount.address,
+          to: addressWalletReceiver,
+          amount: valueAmount,
+          chainId: netWorkActive.chainId,
+        };
+        const res = await sendTokenAPI(token, body);
+        setDataEstimateGas(res.data.estimateGas);
+        dispatch(setLoading(false));
+        setStep(2);
+      } else {
+        dispatch(setLoading(false));
+        toast('Please fill out all information before sending');
+      }
+    } catch (e) {
+      dispatch(setLoading(false));
+    }
   };
   const transactionInfo = () => {
     return (
@@ -220,7 +276,7 @@ const SendScreen = () => {
                     weight={'600'}
                     semiBold
                     style={{marginRight: pxScale.wp(5)}}>
-                    {activeToken}
+                    {activeToken?.name}
                   </CustomText>
                   <TouchableOpacity
                     onPress={() => setShowDropDownToken(pre => !pre)}>
@@ -362,15 +418,15 @@ const SendScreen = () => {
                   // height: 114,
                   borderRadius: 12,
                 }}>
-                {dataTokenDropDown.map((item, index) => (
+                {listToken.map((item, index) => (
                   <TouchableOpacity
                     onPress={() => {
-                      setActiveToken(item.title);
+                      setActiveToken(item);
                       setShowDropDownToken(false);
                     }}
                     style={{
                       backgroundColor:
-                        activeToken === item.title
+                        activeToken?.name === item.name
                           ? 'rgba(255, 255, 255, 0.5)'
                           : '#2E2E2E',
                       borderTopLeftRadius: index === 0 ? 12 : 0,
@@ -390,7 +446,7 @@ const SendScreen = () => {
                         size={12}
                         weight={'600'}
                         semiBold>
-                        {item.title}
+                        {item.name}
                       </CustomText>
                     </Block>
                   </TouchableOpacity>
@@ -405,7 +461,7 @@ const SendScreen = () => {
                 style={styles.buttonNext}
                 middle
                 center
-                onPress={() => setStep(2)}>
+                onPress={() => onSubmitSend()}>
                 <AppSvg source={AppIcon.iconRightBlue} width={14} height={14} />
                 <CustomText
                   style={{marginLeft: pxScale.wp(5)}}
@@ -499,7 +555,7 @@ const SendScreen = () => {
                     size={16}
                     color={Colors.White}
                     style={{marginTop: 6}}>
-                    0xfaEf...ce40
+                    {coverAddress(addressWalletReceiver)}
                   </CustomText>
                 </Block>
               </Block>
@@ -519,7 +575,7 @@ const SendScreen = () => {
                 weight={'700'}
                 color={Colors.White}
                 style={{marginTop: pxScale.hp(20)}}>
-                0.00004 FAC
+                {valueAmount} FAC
               </CustomText>
 
               <Block
@@ -551,7 +607,7 @@ const SendScreen = () => {
                     Gas fee
                   </CustomText>
                   <CustomText bold weight={'600'} size={14} color={Colors.Pink}>
-                    0.00011 FAC
+                    {dataEstimateGas} FAC
                   </CustomText>
                 </Block>
                 <Block center row middle space={'between'} flex>
@@ -563,7 +619,7 @@ const SendScreen = () => {
                     Amount
                   </CustomText>
                   <CustomText bold weight={'600'} size={14} color={Colors.Pink}>
-                    0.00011 FAC
+                    {dataEstimateGas * 1 + valueAmount * 1} FAC
                   </CustomText>
                 </Block>
               </Block>
@@ -574,7 +630,8 @@ const SendScreen = () => {
                 onGradient
                 style={styles.buttonNext}
                 middle
-                center>
+                center
+                onPress={() => submitSendTransition()}>
                 <AppSvg source={AppIcon.iconRightBlue} width={14} height={14} />
                 <CustomText
                   style={{marginLeft: pxScale.wp(5)}}

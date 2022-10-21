@@ -189,6 +189,7 @@ const HomeScreen = () => {
         chainId: netWorkActive.chainId,
       };
       await createWalletTokenAPI(body);
+      await getListTokenOfWallet();
     } catch (e) {}
   };
 

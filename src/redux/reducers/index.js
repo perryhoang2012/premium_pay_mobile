@@ -18,6 +18,7 @@ var initialState = {
   },
   listNetWorks: [],
   listTransactions: [],
+  loading: false,
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -52,6 +53,10 @@ export const userReducer = (state = initialState, action) => {
 
     case 'SET_LIST_TRANSACTION_OF_ACCOUNT': {
       return {...state, listTransactions: action.payload};
+    }
+
+    case 'SET_LOADING': {
+      return {...state, loading: action.payload};
     }
 
     case 'CLEAR_DATA_LOCAL': {
