@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.premium_pay_mobile">
+  package="com.facwallet">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

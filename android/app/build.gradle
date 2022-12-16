@@ -136,13 +136,13 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.premium_pay_mobile"
+        applicationId "com.facwallet"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 3
         versionName "1.0"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
-        resValue "string", "build_config_package", "com.premium_pay_mobile"
+        resValue "string", "build_config_package", "com.facwallet"
 
 
         if (isNewArchitectureEnabled()) {

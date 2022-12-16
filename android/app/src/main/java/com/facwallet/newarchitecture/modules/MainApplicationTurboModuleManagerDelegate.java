@@ -1,4 +1,4 @@
-package com.premium_pay_mobile.newarchitecture.modules;
+package com.facwallet.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

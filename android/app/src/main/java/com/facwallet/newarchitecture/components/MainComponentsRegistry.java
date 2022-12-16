@@ -1,4 +1,4 @@
-package com.premium_pay_mobile.newarchitecture.components;
+package com.facwallet.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

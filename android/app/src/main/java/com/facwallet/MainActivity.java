@@ -1,4 +1,4 @@
-package com.premium_pay_mobile;
+package com.facwallet;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
