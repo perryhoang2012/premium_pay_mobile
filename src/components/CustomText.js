@@ -1,5 +1,7 @@
 import {Platform, StyleSheet, Text} from 'react-native';
 import React from 'react';
+import {pxScale} from '~utils/funcHelper';
+import {Fonts} from '~utils/fonts';
 
 const CustomText = props => {
   const {
@@ -18,6 +20,17 @@ const CustomText = props => {
     style,
     children,
     numberOfLines,
+    customFont,
+    letterSpacing,
+    black,
+    bold,
+    extraBold,
+    extraLight,
+    light,
+    medium,
+    regular,
+    semiBold,
+    thin,
   } = props;
 
   const handleMargins = () => {
@@ -112,7 +125,7 @@ const CustomText = props => {
   const textStyles = [
     styles.text,
     title && styles.title,
-    size && {fontSize: size},
+    size && {fontSize: pxScale.fontSize(size)},
     margin && {...handleMargins()},
     padding && {...handlePaddings()},
     align && {textAlign: 'center'},
@@ -124,10 +137,24 @@ const CustomText = props => {
     right && styles.right,
     color && styles[color],
     color && !styles[color] && {color},
+    letterSpacing && {letterSpacing: letterSpacing},
+
     // color shortcuts
 
     secondary && styles.secondary,
     primary && styles.primary,
+
+    // fonts
+
+    black && Fonts.fontBlack,
+    bold && Fonts.fontBold,
+    extraBold && Fonts.fontExtraBold,
+    extraLight && Fonts.fontExtraLight,
+    light && Fonts.fontLight,
+    medium && Fonts.fontMedium,
+    regular && Fonts.fontRegular,
+    semiBold && Fonts.fontSemiBold,
+    thin && Fonts.fontThin,
 
     style, // rewrite predefined styles
   ];
@@ -145,10 +172,13 @@ const styles = StyleSheet.create({
   // default style
   title: {
     color: 'black',
-    fontSize: 16,
+    fontSize: pxScale.fontSize(16),
     fontWeight: 'bold',
+    ...Fonts.fontLight,
   },
   text: {
+    ...Fonts.fontRegular,
+    fontWeight: '400',
     // fontSize: pxScale.fontSize(16),
     // color: color.black,
   },

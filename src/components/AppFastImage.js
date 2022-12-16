@@ -21,14 +21,16 @@ const AppFastImage = props => {
         if (props.haveLoading) {
           return (
             <FastImage
-              style={styles.linearGradientStyle}
+              style={[styles.linearGradientStyle]}
               source={Image.imageBlank}
+              resizeMode={FastImage.resizeMode.center}
             />
           );
         }
         return null;
       }}
       {...props}
+      resizeMode={FastImage.resizeMode.contain}
       source={errorUrl ? Image.imageBlank : props.source}
       onError={onError}
       style={[styles.imgStyle, props.style]}

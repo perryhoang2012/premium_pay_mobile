@@ -11,11 +11,12 @@ const CustomButton = props => {
     margin,
     space,
     padding,
-    shadow,
     children,
     center,
     disabled,
     onPress,
+    hitSlop,
+    activeOpacity,
   } = props;
   const handlePaddings = () => {
     if (typeof padding === 'number') {
@@ -121,6 +122,7 @@ const CustomButton = props => {
 
   return (
     <TouchableOpacity
+      hitSlop={hitSlop}
       style={buttonStyles}
       activeOpacity={opacity !== 0.7 ? opacity : 0.85}
       onPress={() => {

@@ -1,1 +1,3 @@
-export default {};
+export default {
+  loading: require('./loading.json'),
+};
